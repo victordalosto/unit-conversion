@@ -1,5 +1,6 @@
 package dace.unit;
 
+import dace.model.Unit;
 
 public enum Length implements Unit {
 

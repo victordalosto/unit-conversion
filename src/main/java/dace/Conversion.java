@@ -16,6 +16,7 @@ public class Conversion {
      * @return double value converted in [mm] unit
      */
     private static double lengthEquivalence(double value, String unit) {
+        System.out.println();
         // Remove numbers and convert to lowerstring
         unit = unit.replaceAll("[¹²³ªº°^/]", "").replaceAll("\\d", "").toLowerCase(); 
         // Convert some customary unit

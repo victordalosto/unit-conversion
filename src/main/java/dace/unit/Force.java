@@ -1,5 +1,7 @@
 package dace.unit;
 
+import dace.model.Unit;
+
 public enum Force implements Unit {
 
     N(1),
