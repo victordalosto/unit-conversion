@@ -2,23 +2,23 @@ package dace.unit;
 
 import dace.model.Unit;
 
-public enum Length implements Unit {
+public enum Area implements Unit {
 
-    M(1),
-    DM(0.1),
-    CM(0.01),
-    MM(0.001),
-    HM(100),
-    KM(1000),
-    UM(Math.pow(10, -6)),
-    IN(0.0254),
-    FT(0.3048),
-    YD(0.9144);
+    M_2(1),
+    DM_2(0.01),
+    CM_2(0.0001),
+    MM_2(0.000001),
+    HM_2(10000),
+    KM_2(1000000),
+    UM_2(Math.pow(10, -12)),
+    IN_2(0.00064516),
+    FT_2(0.09290304),
+    YD_2(0.83612736);
 
     
     private final double factorEquivalenceToSI;
 
-    private Length(double value) {
+    private Area(double value) {
         this.factorEquivalenceToSI = value;
     }
 
@@ -31,7 +31,7 @@ public enum Length implements Unit {
 
     @Override
     public Unit[] getAllUnits() {
-        return Length.values();
+        return Area.values();
     }
     
 }

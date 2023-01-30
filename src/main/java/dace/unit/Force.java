@@ -12,9 +12,10 @@ public enum Force implements Unit {
     LB(4.4482216153),
     POUND(4.4482216153),
     KIP(4448.2216153),
-    G(1.0/1000),
-    KG(1),
-    T(1000);
+    G(1.0/1000), // *= Gravity
+    KG(1),       // *= Gravity
+    T(1000);     // *= Gravity
+
 
     private final double factorEquivalenceToSI;
     private final double gravityForce = 9.80665; // m/s2
