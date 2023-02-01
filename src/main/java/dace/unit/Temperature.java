@@ -1,5 +1,17 @@
 package dace.unit;
 
-public class Temperature {
+import dace.model.Unit;
+
+public enum Temperature implements Unit  {
+
+    K,
+    C,
+    F;
+
+
+    @Override
+    public double getEquivalenceFactorInSI() {
+        return 0;
+    }
     
 }
