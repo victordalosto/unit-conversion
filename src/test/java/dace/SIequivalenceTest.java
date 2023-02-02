@@ -54,8 +54,8 @@ public class SIequivalenceTest {
         assertEquals(0.1*0.1, Area.DM_2.getEquivalenceFactorInSI(), tolerance);
         assertEquals(0.01*0.01, Area.CM_2.getEquivalenceFactorInSI(), tolerance);
         assertEquals(0.001*0.001, Area.MM_2.getEquivalenceFactorInSI(), tolerance);
-        assertEquals(100*100, Area.HM_2.getEquivalenceFactorInSI(), tolerance);
-        assertEquals(1000*1000, Area.KM_2.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(100.0*100, Area.HM_2.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(1000.0*1000, Area.KM_2.getEquivalenceFactorInSI(), tolerance);
         assertEquals(1.0/(1000*1000)*1.0/(1000*1000), Area.UM_2.getEquivalenceFactorInSI(), tolerance);
         assertEquals(0.0254*0.0254, Area.IN_2.getEquivalenceFactorInSI(), tolerance);
         assertEquals(0.3048*0.3048, Area.FT_2.getEquivalenceFactorInSI(), tolerance);
@@ -71,8 +71,8 @@ public class SIequivalenceTest {
         assertEquals(0.1*0.1*0.1, Volume.DM_3.getEquivalenceFactorInSI(), tolerance);
         assertEquals(0.01*0.01*0.01, Volume.CM_3.getEquivalenceFactorInSI(), tolerance);
         assertEquals(0.001*0.001*0.001, Volume.MM_3.getEquivalenceFactorInSI(), tolerance);
-        assertEquals(100*100*100, Volume.HM_3.getEquivalenceFactorInSI(), tolerance);
-        assertEquals(1000*1000*1000, Volume.KM_3.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(100.0*100*100, Volume.HM_3.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(1000.0*1000*1000, Volume.KM_3.getEquivalenceFactorInSI(), tolerance);
         assertEquals(1.0/(1000*1000)*1.0/(1000*1000)*1.0/(1000*1000), Volume.UM_3.getEquivalenceFactorInSI(), tolerance);
         assertEquals(0.0254*0.0254*0.0254, Volume.IN_3.getEquivalenceFactorInSI(), tolerance);
         assertEquals(0.3048*0.3048*0.3048, Volume.FT_3.getEquivalenceFactorInSI(), tolerance);
@@ -87,8 +87,17 @@ public class SIequivalenceTest {
 
     @Test
     void timeEquivalenceInSIShouldBeCorrect() {
-        assertEquals(1.0, Time.S.getEquivalenceFactorInSI());
-        assertEquals(1.0/1000, Time.MS.getEquivalenceFactorInSI());
+        assertEquals(1.0, Time.S.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(1.0/1000, Time.MS.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(1.0/1000/1000, Time.US.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(60.0, Time.MIN.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(3600.0, Time.H.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(86400.0, Time.DAY.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(604800.0, Time.WEEK.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(2628000.0, Time.MONTH.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(2592000.0, Time.MONTH_30.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(2678400.0, Time.MONTH_31.getEquivalenceFactorInSI(), tolerance);
+        assertEquals(31536000.0, Time.YEAR.getEquivalenceFactorInSI(), tolerance);
     }
 
     

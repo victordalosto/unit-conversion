@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import dace.unit.Area;
 import dace.unit.Force;
 import dace.unit.Length;
+import dace.unit.Time;
 import dace.unit.Volume;
 
 
@@ -25,13 +26,16 @@ public class ReturnAllUnitsTest {
     private Set<String> mockVolume = Set.of("M_3", "DM_3", "CM_3", "MM_3", "HM_3", "KM_3",
                                             "UM_3", "IN_3", "FT_3", "YD_3", "ML", "L");
 
+    private Set<String> mockTime = Set.of("S", "MS", "US", "MIN", "H", "DAY", "WEEK",
+                                          "MONTH", "MONTH_30", "MONTH_31", "YEAR");
+
 
     @Test
     void shouldBeAbleToReturnAllForceUnits() {
         assertEquals(mockForce.size(), Force.values().length);
         assertTrue(mockForce.containsAll(Stream.of(Force.values())
-                                                .map(Enum::name)
-                                                .collect(Collectors.toList())));
+                                               .map(Enum::name)
+                                               .collect(Collectors.toList())));
     }
 
 
@@ -39,8 +43,8 @@ public class ReturnAllUnitsTest {
     void shouldBeAbleToReturnAllLengthUnits() {
         assertEquals(mockLength.size(), Length.values().length);
         assertTrue(mockLength.containsAll(Stream.of(Length.values())
-                                                 .map(Enum::name)
-                                                 .collect(Collectors.toList())));
+                                                .map(Enum::name)
+                                                .collect(Collectors.toList())));
     }
 
 
@@ -48,8 +52,8 @@ public class ReturnAllUnitsTest {
     void shouldBeAbleToReturnAllAreaUnits() {
         assertEquals(mockArea.size(), Area.values().length);
         assertTrue(mockArea.containsAll(Stream.of(Area.values())
-                                                 .map(Enum::name)
-                                                 .collect(Collectors.toList())));
+                                              .map(Enum::name)
+                                              .collect(Collectors.toList())));
     }
 
 
@@ -57,8 +61,17 @@ public class ReturnAllUnitsTest {
     void shouldBeAbleToReturnAllVolumeUnits() {
         assertEquals(mockVolume.size(), Volume.values().length);
         assertTrue(mockVolume.containsAll(Stream.of(Volume.values())
-                                                 .map(Enum::name)
-                                                 .collect(Collectors.toList())));
+                                                .map(Enum::name)
+                                                .collect(Collectors.toList())));
+    }
+
+
+    @Test
+    void shouldBeAbleToReturnAllTimeUnits() {
+        assertEquals(mockTime.size(), Time.values().length);
+        assertTrue(mockTime.containsAll(Stream.of(Time.values())
+                                              .map(Enum::name)
+                                              .collect(Collectors.toList())));
     }
 
 }
