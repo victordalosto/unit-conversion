@@ -24,8 +24,9 @@ public enum Area implements Unit {
 
     
     @Override
-    public double getEquivalenceFactorInSI() {
-        return factorEquivalenceToSI;
+    public double convertValueToSI(double value) {
+        return value * factorEquivalenceToSI;
     }
+
     
 }

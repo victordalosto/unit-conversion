@@ -26,10 +26,10 @@ public enum Force implements Unit {
 
 
     @Override
-    public double getEquivalenceFactorInSI() {
+    public double convertValueToSI(double value) {
         if (this.equals(G) || this.equals(KG) || this.equals(T))
-            return gravityForce * factorEquivalenceToSI;
-        return factorEquivalenceToSI;
+            return value * gravityForce * factorEquivalenceToSI;
+        return value * factorEquivalenceToSI;
     }
 
 }

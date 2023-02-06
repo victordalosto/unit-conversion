@@ -5,9 +5,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import dace.model.Unit;
 import dace.unit.Area;
 import dace.unit.Force;
+import dace.unit.Inertia;
 import dace.unit.Length;
+import dace.unit.Temperature;
 import dace.unit.Time;
 import dace.unit.Volume;
 
@@ -28,10 +31,16 @@ public class ReturnAllUnitsTest {
 
     private Set<String> mockTime = Set.of("S", "MS", "US", "MIN", "H", "DAY", "WEEK",
                                           "MONTH", "MONTH_30", "MONTH_31", "YEAR");
+                                          
+    private Set<String> mockInertia = Set.of("M_4",  "DM_4", "CM_4", "MM_4", "HM_4",
+                                             "KM_4", "UM_4", "IN_4", "FT_4", "YD_4");
+                                      
+    private Set<String> mockTemperature = Set.of("K", "F", "C");
 
-
+    
     @Test
-    void shouldBeAbleToReturnAllForceUnits() {
+    void forceIsReturningAllUnits() {
+        assertTrue(Unit.class.isAssignableFrom(Force.class));
         assertEquals(mockForce.size(), Force.values().length);
         assertTrue(mockForce.containsAll(Stream.of(Force.values())
                                                .map(Enum::name)
@@ -40,7 +49,8 @@ public class ReturnAllUnitsTest {
 
 
     @Test
-    void shouldBeAbleToReturnAllLengthUnits() {
+    void lengthIsReturningAllUnits() {
+        assertTrue(Unit.class.isAssignableFrom(Length.class));
         assertEquals(mockLength.size(), Length.values().length);
         assertTrue(mockLength.containsAll(Stream.of(Length.values())
                                                 .map(Enum::name)
@@ -49,7 +59,8 @@ public class ReturnAllUnitsTest {
 
 
     @Test
-    void shouldBeAbleToReturnAllAreaUnits() {
+    void areaIsReturningAllUnits() {
+        assertTrue(Unit.class.isAssignableFrom(Area.class));
         assertEquals(mockArea.size(), Area.values().length);
         assertTrue(mockArea.containsAll(Stream.of(Area.values())
                                               .map(Enum::name)
@@ -58,7 +69,8 @@ public class ReturnAllUnitsTest {
 
 
     @Test
-    void shouldBeAbleToReturnAllVolumeUnits() {
+    void volumeIsReturningAllUnits() {
+        assertTrue(Unit.class.isAssignableFrom(Volume.class));
         assertEquals(mockVolume.size(), Volume.values().length);
         assertTrue(mockVolume.containsAll(Stream.of(Volume.values())
                                                 .map(Enum::name)
@@ -67,9 +79,30 @@ public class ReturnAllUnitsTest {
 
 
     @Test
-    void shouldBeAbleToReturnAllTimeUnits() {
+    void inertiaBeAbleToReturnAllInertiaUnits() {
+        assertTrue(Unit.class.isAssignableFrom(Inertia.class));
+        assertEquals(mockInertia.size(), Inertia.values().length);
+        assertTrue(mockInertia.containsAll(Stream.of(Inertia.values())
+                                                .map(Enum::name)
+                                                .collect(Collectors.toList())));
+    }
+
+
+    @Test
+    void timeIsReturningAllUnits() {
+        assertTrue(Unit.class.isAssignableFrom(Time.class));
         assertEquals(mockTime.size(), Time.values().length);
         assertTrue(mockTime.containsAll(Stream.of(Time.values())
+                                              .map(Enum::name)
+                                              .collect(Collectors.toList())));
+    }
+
+
+    @Test
+    void temperatureIsReturningAllUnits() {
+        assertTrue(Unit.class.isAssignableFrom(Temperature.class));
+        assertEquals(mockTemperature.size(), Temperature.values().length);
+        assertTrue(mockTemperature.containsAll(Stream.of(Temperature.values())
                                               .map(Enum::name)
                                               .collect(Collectors.toList())));
     }
