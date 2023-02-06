@@ -28,5 +28,4 @@ public enum Area implements Unit {
         return value * factorEquivalenceToSI;
     }
 
-    
 }

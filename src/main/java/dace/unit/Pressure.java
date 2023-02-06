@@ -1,13 +1,18 @@
 package dace.unit;
 
-import dace.model.Unit;
-
-public class Pressure implements Unit {
+// public enum Pressure implements Unit {
 
 
-    @Override
-    public double convertValueToSI(double value) {
-        return 0;
-    }
+//     @Override
+//     public double convertValueToSI(double value) {
+//         return 0;
+//     }
+
+
+//     @Override
+//     public Unit[] getAllUnits() {
+//         return values();
+//     }
+
     
-}
+// }

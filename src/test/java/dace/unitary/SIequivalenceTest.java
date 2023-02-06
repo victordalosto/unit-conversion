@@ -1,4 +1,4 @@
-package dace;
+package dace.unitary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import dace.unit.Area;
