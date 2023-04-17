@@ -6,7 +6,7 @@ import dalosto.engineering.unitconversion.domain.UnitType;
 /**
  * Interface for the Unit Formulas
  */
-public interface UnitFormulas {
+public interface UnitFormula {
 
 
     /** Build another Unit to the International System of Units (SI).  */

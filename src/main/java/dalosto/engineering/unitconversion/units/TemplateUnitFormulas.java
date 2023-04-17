@@ -2,10 +2,10 @@ package dalosto.engineering.unitconversion.units;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
-import dalosto.engineering.unitconversion.interfaces.UnitFormulas;
+import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 
 
-abstract class TemplateUnitFormulas implements UnitFormulas {
+abstract class TemplateUnitFormulas implements UnitFormula {
 
     
     public final Unit buildUnitToSI(Unit unit) {
