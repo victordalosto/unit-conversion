@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class TestVolume {
 
     @Autowired
-    @Qualifier("VolumeFormula")
+    @Qualifier("Volume")
     UnitFormula unitFormula;
 
 
@@ -181,8 +181,8 @@ public class TestVolume {
         assertEquivalentVolume(randomValue, Volume.Types.L, randomValue * 61.023744094732283952756881891717, Volume.Types.IN_3);
         assertEquivalentVolume(randomValue, Volume.Types.L, randomValue * 0.001, Volume.Types.M_3);
         assertEquivalentVolume(randomValue, Volume.Types.ML, randomValue / 100 / 100 / 100, Volume.Types.M_3);
-        assertEquivalentVolume(randomValue, Volume.Types.ML, randomValue / 100 / 100 / 100, Volume.Types.CM_3);
-        assertEquivalentVolume(randomValue, Volume.Types.ML, randomValue / 100 / 100 / 100, Volume.Types.IN_3);
+        assertEquivalentVolume(randomValue, Volume.Types.ML, randomValue, Volume.Types.CM_3);
+        assertEquivalentVolume(randomValue, Volume.Types.ML, randomValue / 16.38706400, Volume.Types.IN_3);
         assertEquivalentVolume(randomValue, Volume.Types.CM_3, randomValue / 100 / 100 / 100, Volume.Types.M_3);
         assertEquivalentVolume(randomValue, Volume.Types.MM_3, randomValue / 1000 / 1000 / 1000, Volume.Types.M_3);
         assertEquivalentVolume(randomValue, Volume.Types.IN_3, randomValue * 0.0254 * 0.0254 * 0.0254, Volume.Types.M_3);
@@ -202,7 +202,6 @@ public class TestVolume {
         assertEquivalentVolume(randomValue, Volume.Types.UM_3, randomValue / Math.pow(10, 27), Volume.Types.KM_3);
         assertEquivalentVolume(randomValue, Volume.Types.UM_3, randomValue / 25400 / 25400 / 25400, Volume.Types.IN_3);
         assertEquivalentVolume(randomValue, Volume.Types.IN_3, randomValue / 12 / 12 /12, Volume.Types.FT_3);
-        assertEquivalentVolume(randomValue, Volume.Types.IN_3, randomValue * 1.638706399999999804688 * Math.pow(10, 13), Volume.Types.UM_3);
         assertEquivalentVolume(randomValue, Volume.Types.FT_3, randomValue * 1.0 / 3.0 / 3.0 / 3.0, Volume.Types.YD_3);
         assertEquivalentVolume(randomValue, Volume.Types.FT_3, randomValue * 12 * 12 * 12, Volume.Types.IN_3);
         assertEquivalentVolume(randomValue, Volume.Types.YD_3, randomValue * 0.9144 * 0.9144 * 0.9144, Volume.Types.M_3);

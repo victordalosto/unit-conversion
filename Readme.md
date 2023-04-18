@@ -49,7 +49,7 @@ MPa, KPa, GPa, KSI, PSI, bar, N/mm², N/cm², N/dm², N/m², N/km², N/in², N/f
 {
 
   @Autowired
-  @Qualifier("LengthFormula")
+  @Qualifier("Length")
   UnitFormulas formulas;
   
   void main() {

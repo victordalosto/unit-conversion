@@ -17,7 +17,7 @@ import dalosto.engineering.unitconversion.units.Length;
 public class LengthController {
 
     @Autowired
-    @Qualifier("LengthFormula")
+    @Qualifier("Length")
     UnitFormula unitFormula;
 
 

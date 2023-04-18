@@ -8,7 +8,7 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 
 
-@Component("AreaFormula")
+@Component("Area")
 public class Area extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {

@@ -8,23 +8,21 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 
 
-@Component("Volume")
-public class Volume extends TemplateUnitFormulas {
+@Component("Inertia")
+public class Inertia extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {
 
-        M_3(1.0),
-        DM_3(0.001),
-        CM_3(Math.pow(10.0, -6)),
-        MM_3(Math.pow(10.0, -9)),
-        HM_3(Math.pow(10.0, 6)),
-        KM_3(Math.pow(10.0, 9)),
-        UM_3(Math.pow(10.0, -18)),
-        IN_3(0.000016387064),
-        FT_3(0.028316846592),
-        YD_3(0.764554857984),
-        ML(0.000001),
-        L(0.001);
+        M_4(1.0),
+        DM_4(Math.pow(10.0, -4)),
+        CM_4(Math.pow(10.0, -8)),
+        MM_4(Math.pow(10.0, -12)),
+        HM_4(Math.pow(10.0, 8)),
+        KM_4(Math.pow(10.0, 12)),
+        UM_4(Math.pow(10.0, -24)),
+        IN_4(0.0000004162314256),
+        FT_4(0.0086309748412416),
+        YD_4(0.6991089621405696);
     
 
         protected final double factorOfEquivalenceToSI;
@@ -35,7 +33,7 @@ public class Volume extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return M_3;
+            return M_4;
         }
 
 
@@ -59,13 +57,13 @@ public class Volume extends TemplateUnitFormulas {
 
     @Override
     public UnitType getSITypeOfThisCategory() {
-        return Types.M_3.getSITypeOfThisCategory();
+        return Types.M_4.getSITypeOfThisCategory();
     }
 
 
     @Override
     public Set<UnitType> getAllUnitTypesOfThisCategory() {
-        return Types.M_3.getAllUnitTypesOfThisCategory();
+        return Types.M_4.getAllUnitTypesOfThisCategory();
     }
 
 
