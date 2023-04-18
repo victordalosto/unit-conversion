@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.TestMetrics;
 import dalosto.engineering.unitconversion.domain.Unit;
+import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 
@@ -14,16 +15,15 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 @SpringBootTest
 public class TestLength {
 
-
     @Autowired
     @Qualifier("LengthFormula")
     UnitFormula unitFormula;
 
 
-
     void assertEquivalentLengthInSI(double expected, Unit actual) {
         TestMetrics.assertEquavalentInSI(expected, actual, unitFormula);
     }
+
 
     void assertEquivalentLength(double fromValue, Length.Types from, Double toValue, Length.Types to) {
         TestMetrics.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
@@ -31,8 +31,24 @@ public class TestLength {
 
 
     @Test
+    void shouldBeAbleToCreateALengthAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
+        double value = 5000.0;
+        UnitType unitType = Length.Types.MM;
+        Unit unit = new Unit(value, unitType);
+        Unit outputSI = unitFormula.buildUnitToSI(unit);
+        Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Length.Types.CM);
+        assertEquals(value, unit.getValue(), TestMetrics.tolerance);
+        assertEquals(unitType, unit.getUnitType());
+        assertEquals(5.0, outputSI.getValue(), TestMetrics.tolerance);
+        assertEquals(Length.Types.M, outputSI.getUnitType());
+        assertEquals(500.0, outputAnotherType.getValue(), TestMetrics.tolerance);
+        assertEquals(Length.Types.CM, outputAnotherType.getUnitType());
+    }
+
+
+    @Test
     void SIUnitTypeOfLengthShouldBeMeter() {
-        assertEquals(Length.Types.M, Length.Types.CM.getSITypeOfThisCategory());
+        assertEquals(Length.Types.M, unitFormula.getSITypeOfThisCategory());
         assertEquals(Length.Types.M, Length.Types.DM.getSITypeOfThisCategory());
         assertEquals(Length.Types.M, new Unit(0.0, Length.Types.FT).getUnitType().getSITypeOfThisCategory());
         assertEquals(Length.Types.M, new Unit(0.0, Length.Types.KM).getUnitType().getSITypeOfThisCategory());
@@ -40,7 +56,13 @@ public class TestLength {
 
 
     @Test
-    void AllLengthValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+    void unitsReturnFromTypeAreEqualThoseReturnedFromUnitFormula() {
+        assertEquals(Length.Types.CM.getAllUnitTypesOfThisCategory(), unitFormula.getAllUnitTypesOfThisCategory());
+    }
+
+
+    @Test
+    void allLengthValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(10, Length.Types.values().length);
         assertEquivalentLengthInSI(1.0, new Unit(1, Length.Types.M));
         assertEquivalentLengthInSI(0.1, new Unit(1, Length.Types.DM));
@@ -56,7 +78,7 @@ public class TestLength {
 
 
     @Test
-    void AllLengthValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
+    void allLengthValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(10, Length.Types.values().length);
         double expected = 12345.67;
         assertEquivalentLengthInSI(expected, new Unit(12345.67000000, Length.Types.M));
@@ -73,7 +95,7 @@ public class TestLength {
 
 
     @Test
-    void AllLengthValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
+    void allLengthValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
         assertEquals(10, Length.Types.values().length);
         double expected = -12345.67;
         assertEquivalentLengthInSI(expected, new Unit(-12345.67000000, Length.Types.M));
@@ -90,7 +112,7 @@ public class TestLength {
 
 
     @Test
-    void AllLengthValuesShouldBeTestedAndAreCorrectInSIForZero() {
+    void allLengthValuesShouldBeTestedAndAreCorrectInSIForZero() {
         assertEquals(10, Length.Types.values().length);
         double expected = 0.0;
         assertEquivalentLengthInSI(expected, new Unit(0.0, Length.Types.M));
@@ -107,7 +129,7 @@ public class TestLength {
 
 
     @Test
-    void LengthValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
+    void lengthValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(10, Length.Types.values().length);
         assertEquivalentLength(0.0, Length.Types.CM, 0.0, Length.Types.M);
         assertEquivalentLength(0.0, Length.Types.MM, 0.0, Length.Types.M);
@@ -138,7 +160,7 @@ public class TestLength {
 
 
     @Test
-    void LengthValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
+    void lengthValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(10, Length.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentLength(randomValue, Length.Types.CM, randomValue / 100, Length.Types.M);
@@ -162,7 +184,7 @@ public class TestLength {
         assertEquivalentLength(randomValue, Length.Types.UM, randomValue / 25400, Length.Types.IN);
         assertEquivalentLength(randomValue, Length.Types.IN, randomValue / 12, Length.Types.FT);
         assertEquivalentLength(randomValue, Length.Types.IN, randomValue * 25400, Length.Types.UM);
-        assertEquivalentLength(randomValue, Length.Types.FT, randomValue * 1.0/3.0   , Length.Types.YD);
+        assertEquivalentLength(randomValue, Length.Types.FT, randomValue * 1.0 / 3.0, Length.Types.YD);
         assertEquivalentLength(randomValue, Length.Types.FT, randomValue * 12, Length.Types.IN);
         assertEquivalentLength(randomValue, Length.Types.YD, randomValue * 0.9144, Length.Types.M);
         assertEquivalentLength(randomValue, Length.Types.YD, randomValue * 3, Length.Types.FT);
@@ -170,7 +192,7 @@ public class TestLength {
 
 
     @Test
-    void UnitExceptionShouldBeThrownWhenNullValuesArePassed() {
+    void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Length.Types.CM);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
@@ -180,7 +202,7 @@ public class TestLength {
 
 
     @Test
-    void UnitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
+    void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Length.Types.CM));

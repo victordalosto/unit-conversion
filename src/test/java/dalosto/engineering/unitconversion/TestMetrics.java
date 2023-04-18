@@ -7,11 +7,14 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 
 public class TestMetrics {
 
-    public static double tolerance = Math.pow(10, -10);
+    public static double tolerance = Math.pow(10, -9);
 
 
     public static void assertEquavalentInSI(double expected, Unit actual, UnitFormula unitFormula) {
         assertEquals(expected, unitFormula.buildUnitToSI(actual).getValue(), TestMetrics.tolerance);
+        if (expected != 0) {
+            assertEquals(1, expected/unitFormula.buildUnitToSI(actual).getValue(), TestMetrics.tolerance);
+        }
     }
 
 
@@ -19,6 +22,11 @@ public class TestMetrics {
             UnitFormula unitFormula) {
         assertEquals(toValue, unitFormula.buildUnitIntoAnotherType(new Unit(fromValue, from), to).getValue(),
                 TestMetrics.tolerance);
+        if (toValue != 0) {
+            assertEquals(1, toValue/unitFormula.buildUnitIntoAnotherType(new Unit(fromValue, from), to).getValue(),
+                    TestMetrics.tolerance);
+        }
+            
     }
 
 }
