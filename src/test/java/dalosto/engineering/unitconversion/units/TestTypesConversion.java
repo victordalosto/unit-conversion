@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.types;
+package dalosto.engineering.unitconversion.units;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.domain.Unit;
+import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 
@@ -16,6 +17,22 @@ public class TestTypesConversion {
 
     @Autowired
     Set<UnitFormula> formulas;
+
+
+    @Test
+    void assertThatFormulasExtendsTemplateFormula() {
+        for (UnitFormula unitFormula : formulas) {
+            assert(unitFormula instanceof TemplateUnitFormulas);
+        }
+    }
+
+
+    @Test
+    void assertThatFormulasTypeExtendsUnitType() {
+        for (UnitFormula unitFormula : formulas) {
+            assert(unitFormula.getSITypeOfThisCategory() instanceof UnitType);
+        }
+    }
 
 
     @Test
