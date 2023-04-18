@@ -32,12 +32,6 @@ public class Length extends TemplateUnitFormulas {
 
 
         @Override
-        public String getCategory() {
-            return "Length";
-        }
-
-
-        @Override
         public UnitType getSITypeOfThisCategory() {
             return M;
         }
@@ -58,6 +52,18 @@ public class Length extends TemplateUnitFormulas {
         double ouputConversion = ((Types) anotherType).factorOfEquivalenceToSI;
         double value = unit.getValue() * (inputConversion / ouputConversion);
         return new Unit(value, anotherType);
+    }
+
+
+    @Override
+    public UnitType getSITypeOfThisCategory() {
+        return Types.M.getSITypeOfThisCategory();
+    }
+
+
+    @Override
+    public Set<UnitType> getAllUnitTypesOfThisCategory() {
+        return Types.M.getAllUnitTypesOfThisCategory();
     }
 
 

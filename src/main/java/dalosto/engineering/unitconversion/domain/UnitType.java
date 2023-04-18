@@ -7,11 +7,7 @@ import java.util.Set;
  */
 public interface UnitType {
 
-
-    /**  Returns the Category that belongs to this UnitType. */
-    String getCategory();
-
-
+    
     /** Gets the UnitType in the International System of Units (SI). */
     UnitType getSITypeOfThisCategory();
 

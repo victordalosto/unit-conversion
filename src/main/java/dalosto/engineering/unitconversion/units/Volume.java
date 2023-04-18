@@ -8,21 +8,23 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 
 
-@Component("AreaFormula")
-public class Area extends TemplateUnitFormulas {
+@Component("VolumeFormula")
+public class Volume extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {
 
-        M_2(1.0),
-        DM_2(0.01),
-        CM_2(0.0001),
-        MM_2(0.000001),
-        HM_2(10000.0),
-        KM_2(1000000.0),
-        UM_2(Math.pow(10.0, -12)),
-        IN_2(0.00064516),
-        FT_2(0.09290304),
-        YD_2(0.83612736);
+        M_3(1.0),
+        DM_3(0.001),
+        CM_3(Math.pow(10.0, -6)),
+        MM_3(Math.pow(10.0, -9)),
+        HM_3(Math.pow(10.0, 6)),
+        KM_3(Math.pow(10.0, 9)),
+        UM_3(Math.pow(10.0, -18)),
+        IN_3(0.000016387064),
+        FT_3(0.028316846592),
+        YD_3(0.764554857984),
+        ML(0.000001),
+        L(0.001);
     
 
         protected final double factorOfEquivalenceToSI;
@@ -33,7 +35,7 @@ public class Area extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return M_2;
+            return M_3;
         }
 
 
@@ -57,13 +59,13 @@ public class Area extends TemplateUnitFormulas {
 
     @Override
     public UnitType getSITypeOfThisCategory() {
-        return Types.M_2.getSITypeOfThisCategory();
+        return Types.M_3.getSITypeOfThisCategory();
     }
 
-    
+
     @Override
     public Set<UnitType> getAllUnitTypesOfThisCategory() {
-        return Types.M_2.getAllUnitTypesOfThisCategory();
+        return Types.M_3.getAllUnitTypesOfThisCategory();
     }
 
 
