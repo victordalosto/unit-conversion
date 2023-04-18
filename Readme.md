@@ -1,11 +1,10 @@
-# Unit converter
+<h1 align="center"> Unit Converter </h1>
 
-Unit Converter is a <strong>Java </strong> application for converting between various measurement units.
+Unit Converter is a <strong>Java </strong> application, made in Spring, used for conversion between various measurement units.
 The units presented in this program are the most commonly used in the engineering.
 
-
-The program basically converts the Measurement Unit and its value into another equivalent Unit.
-
+The program basically converts the Measurement Unit and its value into another equivalent Unit. 
+<br/>
 
 ## Types of conversion
 Currently, this application supports the conversion of the following measurement units:
@@ -46,7 +45,7 @@ MPa, KPa, GPa, KSI, PSI, bar, N/mm2, N/cm2, N/dm2, N/m2, N/km2, N/in2, N/ft2, N/
 </details>
  -->
 
-<br/><br/>
+<br/>
 
 ## How to use
 
