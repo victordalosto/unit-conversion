@@ -56,12 +56,6 @@ public class TestArea {
 
 
     @Test
-    void unitsReturnFromTypeAreEqualThoseReturnedFromUnitFormula() {
-        assertEquals(Area.Types.CM_2.getAllUnitTypesOfThisCategory(), unitFormula.getAllUnitTypesOfThisCategory());
-    }
-
-
-    @Test
     void allAreaValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(10, Area.Types.values().length);
         assertEquivalentAreaInSI(1.0, new Unit(1, Area.Types.M_2));

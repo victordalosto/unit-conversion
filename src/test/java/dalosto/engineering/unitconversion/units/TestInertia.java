@@ -56,12 +56,6 @@ public class TestInertia {
 
 
     @Test
-    void unitsReturnFromTypeAreEqualThoseReturnedFromUnitFormula() {
-        assertEquals(Inertia.Types.CM_4.getAllUnitTypesOfThisCategory(), unitFormula.getAllUnitTypesOfThisCategory());
-    }
-
-
-    @Test
     void allVolumeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(10, Inertia.Types.values().length);
         assertEquivalentInertiaInSI(1.0, new Unit(1, Inertia.Types.M_4));

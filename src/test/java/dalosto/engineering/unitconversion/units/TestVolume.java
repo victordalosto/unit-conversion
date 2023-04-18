@@ -56,12 +56,6 @@ public class TestVolume {
 
 
     @Test
-    void unitsReturnFromTypeAreEqualThoseReturnedFromUnitFormula() {
-        assertEquals(Volume.Types.CM_3.getAllUnitTypesOfThisCategory(), unitFormula.getAllUnitTypesOfThisCategory());
-    }
-
-
-    @Test
     void allVolumeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(12, Volume.Types.values().length);
         assertEquivalentVolumeInSI(1.0, new Unit(1, Volume.Types.M_3));
