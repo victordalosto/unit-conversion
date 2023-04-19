@@ -37,12 +37,10 @@ MPa, KPa, GPa, KSI, PSI, bar, N/mm², N/cm², N/dm², N/m², N/km², N/in², N/f
 ## How to use
 The methods inputs ignore case sensitivity and handle special characters such as mm3 or mm³ or mm^3.
 
-The Test.java file provides a list with some examples of usage of the methods used for unit conversion.
-
 >Java code example of usage:
 ```java
 // All conversion methods can be imported as follow:
-import src.Conversion;
+import dalosto.conversion;
 Class * extends Conversion {
 
 // Class methods handles double values
