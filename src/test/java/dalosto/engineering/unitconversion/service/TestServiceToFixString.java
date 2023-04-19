@@ -17,6 +17,7 @@ public class TestServiceToFixString {
     }
 
 
+
     @Test
     void serviceShouldMakeUpperCaseOfInputs() {
         assert (mapUnitTypeService.fixStringToFindUnityType("mM").equals("MM"));
