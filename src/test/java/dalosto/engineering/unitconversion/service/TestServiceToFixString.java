@@ -45,18 +45,22 @@ public class TestServiceToFixString {
     void serviceShouldFixStringContaingEspecialCharacter() {
         assert(mapUnitTypeService.fixStringToFindUnityType("M!@#!").equals("M"));
         assert(mapUnitTypeService.fixStringToFindUnityType("!@#$%¨&&*()M_!@*#*!@)2!@#$%¨&*()").equals("M_2"));
+        assert(mapUnitTypeService.fixStringToFindUnityType("!@#M~^!@#___2!").equals("M_2"));
     }
 
 
     @Test
-    void serviceShouldFixStringToMapExponential() {
+    void serviceShouldFixStringToMapExponentialSymbol() {
         assert(mapUnitTypeService.fixStringToFindUnityType("M^2").equals("M_2"));
         assert(mapUnitTypeService.fixStringToFindUnityType("M^^2").equals("M_2"));
         assert(mapUnitTypeService.fixStringToFindUnityType("M^^^2").equals("M_2"));
+        assert(mapUnitTypeService.fixStringToFindUnityType("M~2").equals("M_2"));
+        assert(mapUnitTypeService.fixStringToFindUnityType("M~~2").equals("M_2"));
         assert(mapUnitTypeService.fixStringToFindUnityType("M-2").equals("M_2"));
         assert(mapUnitTypeService.fixStringToFindUnityType("M--2").equals("M_2"));
         assert(mapUnitTypeService.fixStringToFindUnityType("M_2").equals("M_2"));
         assert(mapUnitTypeService.fixStringToFindUnityType("M__2").equals("M_2"));
+        assert(mapUnitTypeService.fixStringToFindUnityType("M~^2").equals("M_2"));
     }
 
 
