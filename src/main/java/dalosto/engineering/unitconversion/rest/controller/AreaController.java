@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
-import dalosto.engineering.unitconversion.rest.domain.DescriptionEndpoint;
+import dalosto.engineering.unitconversion.rest.controller.template.TemplateController;
+import dalosto.engineering.unitconversion.rest.domain.DescriptionOfEndpoint;
 
 
 @RestController
@@ -16,13 +17,18 @@ public class AreaController extends TemplateController {
     private UnitFormula unitFormula;
 
 
+    public AreaController() {
+        super();
+    }
+
+
     @Override
-    public DescriptionEndpoint getDescription() {
-        return DescriptionEndpoint.builder()
-                                  .title("Area")
-                                  .uri("/api/area")
-                                  .unitTypes(unitFormula.getAllUnitTypesOfThisCategory().toString())
-                                  .build();
+    public DescriptionOfEndpoint description() {
+        return DescriptionOfEndpoint.builder()
+                                    .title("Area")
+                                    .uri("/api/area")
+                                    .unitTypes(unitFormula.getAllUnitTypesOfThisCategory().toString())
+                                    .build();
     }
 
     

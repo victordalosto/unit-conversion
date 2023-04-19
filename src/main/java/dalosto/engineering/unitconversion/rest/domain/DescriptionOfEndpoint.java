@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class DescriptionEndpoint {
+public class DescriptionOfEndpoint {
 
     private String title;
     private String uri;

@@ -10,18 +10,19 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class MapUnitTypeService {
 
 
-    public UnitType getUnitTypeFromString(String string, UnitFormula unitFormula) {
-        if (string == null || unitFormula == null) {
+    public UnitType getUnitTypeFromString(String unitType, UnitFormula unitFormula) {
+        if (unitType == null || unitFormula == null) {
             throw new ParameterException("UnitType can't be NULL.");
         }
-        return mapUnity(fixStringToFindUnityType(string), unitFormula);
+        return mapUnity(unitType, unitFormula);
     }
 
 
     private UnitType mapUnity(String string, UnitFormula unitFormula) {
-        for (UnitType unitType : unitFormula.getAllUnitTypesOfThisCategory()) {
-            if (unitType.toString().equals(string)) {
-                return unitType;
+        string = fixStringToFindUnityType(string);
+        for (UnitType type : unitFormula.getAllUnitTypesOfThisCategory()) {
+            if (string.equals(type.toString())) {
+                return type;
             }
         }
         throw new UnitException("UnitType " + string + " not found.");
@@ -36,8 +37,8 @@ public class MapUnitTypeService {
         string = string.replaceAll("₁", "1").replaceAll("₂", "2").replaceAll("₃", "3").replaceAll("₄", "4");
         string = string.replaceAll("1", "").replaceAll("0", "").replaceAll("₀", "").replaceAll("⁰", "");
         string = string.replaceAll("[^a-zA-Z0-9_]+", "");
-        string = string.replaceAll("_{2,}", "_"); // replace multiple _ with one
         string = fixMissingUnderlineOrWithVogalEasExponential(string);
+        string = string.replaceAll("_{2,}", "_"); // replace multiple _ with one
         return string;
     }
 

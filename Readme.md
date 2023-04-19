@@ -79,3 +79,5 @@ MPa, KPa, GPa, KSI, PSI, bar, N/mm2, N/cm2, N/dm2, N/m2, N/km2, N/in2, N/ft2, N/
 }
   
 ```
+
+Application licensed under the <a ref="https://github.com/victordalosto/UnitConversion/blob/master/LICENSE">MIT License</a>.
