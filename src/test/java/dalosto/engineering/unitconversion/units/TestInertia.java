@@ -156,24 +156,23 @@ public class TestInertia {
     @Test
     void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(10, Inertia.Types.values().length);
-        // double randomValue = Math.random() * 100;
-        double randomValue = 100;
-        assertEquivalentInertia(randomValue, Inertia.Types.CM_4, randomValue / 100 / 100 / 100 / 100, Inertia.Types.M_4);
+        double randomValue = Math.random() * 100;
+        assertEquivalentInertia(randomValue, Inertia.Types.CM_4, randomValue / 100000000, Inertia.Types.M_4);
         assertEquivalentInertia(randomValue, Inertia.Types.MM_4, randomValue / 1000 / 1000 / 1000 / 1000, Inertia.Types.M_4);
         assertEquivalentInertia(randomValue, Inertia.Types.IN_4, randomValue * 0.0254 * 0.0254 * 0.0254 * 0.0254, Inertia.Types.M_4);
         assertEquivalentInertia(randomValue, Inertia.Types.IN_4, randomValue * 2.54 * 2.54 * 2.54 * 2.54, Inertia.Types.CM_4);
         assertEquivalentInertia(randomValue, Inertia.Types.IN_4, randomValue * 416231.4256, Inertia.Types.MM_4);
-        assertEquivalentInertia(randomValue, Inertia.Types.M_4, randomValue * 10 * 10 * 10 * 10, Inertia.Types.DM_4);
+        assertEquivalentInertia(randomValue, Inertia.Types.M_4, randomValue * 10000, Inertia.Types.DM_4);
         assertEquivalentInertia(randomValue, Inertia.Types.M_4, randomValue * 1.4303921908512600956886527637634, Inertia.Types.YD_4);
-        assertEquivalentInertia(randomValue, Inertia.Types.DM_4, randomValue * 10 * 10 * 10 * 10, Inertia.Types.CM_4);
-        assertEquivalentInertia(randomValue, Inertia.Types.DM_4, randomValue / 10 / 10 / 10 / 10, Inertia.Types.M_4);
-        assertEquivalentInertia(randomValue, Inertia.Types.CM_4, randomValue * 10 * 10 * 10 * 10, Inertia.Types.MM_4);
-        assertEquivalentInertia(randomValue, Inertia.Types.CM_4, randomValue / 10 / 10 / 10 / 10, Inertia.Types.DM_4);
+        assertEquivalentInertia(randomValue, Inertia.Types.DM_4, randomValue * 10000, Inertia.Types.CM_4);
+        assertEquivalentInertia(randomValue, Inertia.Types.DM_4, randomValue / 10000, Inertia.Types.M_4);
+        assertEquivalentInertia(randomValue, Inertia.Types.CM_4, randomValue * 10000, Inertia.Types.MM_4);
+        assertEquivalentInertia(randomValue, Inertia.Types.CM_4, randomValue / 10000, Inertia.Types.DM_4);
         assertEquivalentInertia(randomValue, Inertia.Types.MM_4, randomValue * Math.pow(10, -20), Inertia.Types.HM_4);
-        assertEquivalentInertia(randomValue, Inertia.Types.MM_4, randomValue / 10 / 10 / 10 / 10, Inertia.Types.CM_4);
-        assertEquivalentInertia(randomValue, Inertia.Types.HM_4, randomValue / 10 / 10 / 10 / 10, Inertia.Types.KM_4);
+        assertEquivalentInertia(randomValue, Inertia.Types.MM_4, randomValue / 10000, Inertia.Types.CM_4);
+        assertEquivalentInertia(randomValue, Inertia.Types.HM_4, randomValue / 10000, Inertia.Types.KM_4);
         assertEquivalentInertia(randomValue, Inertia.Types.HM_4, randomValue * Math.pow(10, 20), Inertia.Types.MM_4);
-        assertEquivalentInertia(randomValue, Inertia.Types.KM_4, randomValue * 10 * 10 * 10 * 10, Inertia.Types.HM_4);
+        assertEquivalentInertia(randomValue, Inertia.Types.KM_4, randomValue * 10000, Inertia.Types.HM_4);
         assertEquivalentInertia(randomValue, Inertia.Types.UM_4, randomValue / Math.pow(10, 36), Inertia.Types.KM_4);
         assertEquivalentInertia(randomValue, Inertia.Types.UM_4, randomValue / 25400 / 25400 / 25400 / 25400, Inertia.Types.IN_4);
         assertEquivalentInertia(randomValue, Inertia.Types.IN_4, randomValue / 12 / 12 / 12 / 12, Inertia.Types.FT_4);

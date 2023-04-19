@@ -155,7 +155,7 @@ public class TestTime {
         assertEquivalentTime(randomValue, Time.Types.H, randomValue*60.0, Time.Types.MIN);
         assertEquivalentTime(randomValue, Time.Types.DAY, randomValue*24.0, Time.Types.H);
         assertEquivalentTime(randomValue, Time.Types.WEEK, randomValue*7.0, Time.Types.DAY);
-        assertEquivalentTime(randomValue, Time.Types.MONTH, randomValue * 365.0/12/7, Time.Types.WEEK);
+        assertEquivalentTime(randomValue, Time.Types.MONTH,         randomValue * 365.0/12/7, Time.Types.WEEK);
         assertEquivalentTime(randomValue, Time.Types.MONTH_30, randomValue*30.0/(365.0/12), Time.Types.MONTH);
         assertEquivalentTime(randomValue, Time.Types.MONTH_31, randomValue*31.0/30.0, Time.Types.MONTH_30);
         assertEquivalentTime(randomValue, Time.Types.YEAR, randomValue*365.0/31, Time.Types.MONTH_31);

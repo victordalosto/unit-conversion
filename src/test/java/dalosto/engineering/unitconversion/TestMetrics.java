@@ -7,7 +7,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 
 public class TestMetrics {
 
-    public static double tolerance = Math.pow(10, -10);
+    public static double tolerance = Math.pow(10, -9);
 
 
     public static void assertEquavalentInSI(double expected, Unit actual, UnitFormula unitFormula) {

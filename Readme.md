@@ -33,11 +33,11 @@ Currently, this application supports the conversion of the following measurement
 <h5>s, ms, us, min, h, day, week, month, month_30, month_31, year</h5>
 </details>
 
-<!-- 
 <details><summary><strong>Force</strong></summary>
 <h5>N, kN, MN, GN, tf, kgf, gf, kipf, lbf</h5>
 </details>
 
+<!-- 
 <details><summary><strong>Moment</strong></summary>
 <h5>Units are separated by a dot . String as: Force.length.
 N.mm, N.cm, N.dm, N.m, N.km, N.in, N.ft, N.yd, N.mi, kN.mm, kN.cm, kN.dm, kN.m, kN.km, kN.in, kN.ft, kN.yd, kN.mi, MN.mm, MN.cm, MN.dm, MN.m, MN.km, MN.in, MN.ft, MN.yd, MN.mi, GN.mm, GN.cm, GN.dm, GN.m, GN.km, GN.in, GN.ft, GN.yd, GN.mi, tf.mm, tf.cm, tf.dm, tf.m, tf.km, tf.in, tf.ft, tf.yd, tf.mi, kgf.mm, kgf.cm, kgf.dm, kgf.m, kgf.km, kgf.in, kgf.ft, kgf.yd, kgf.mi, gf.mm, gf.cm, gf.dm, gf.m, gf.km, gf.in, gf.ft, gf.yd, gf.mi, kipf.mm, kipf.cm, kipf.dm, kipf.m, kipf.km, kipf.in, kipf.ft, kipf.yd, kipf.mi, lbf.mm, lbf.cm, lbf.dm, lbf.m, lbf.km, lbf.in, lbf.ft, lbf.yd, lbf.mi</h5>
