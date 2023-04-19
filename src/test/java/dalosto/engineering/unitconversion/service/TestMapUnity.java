@@ -1,5 +1,4 @@
 package dalosto.engineering.unitconversion.service;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,8 @@ import dalosto.engineering.unitconversion.units.Length;
 
 
 @SpringBootTest
-public class TestMapUnityFromString {
-    
-    
+public class TestMapUnity {
+
     @Autowired
     private MapUnitTypeService mapUnitTypeService;
 
