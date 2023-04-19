@@ -29,6 +29,10 @@ Currently, this application supports the conversion of the following measurement
 <h5>°C (celsisus),  K (kelvin),  °F (Fahrenheit),  °R (Rankine),</h5>
 </details>
 
+<details><summary><strong>Time</strong></summary>
+<h5>s, ms, us, min, h, day, week, month, month_30, month_31, year</h5>
+</details>
+
 <!-- 
 <details><summary><strong>Force</strong></summary>
 <h5>N, kN, MN, GN, tf, kgf, gf, kipf, lbf</h5>

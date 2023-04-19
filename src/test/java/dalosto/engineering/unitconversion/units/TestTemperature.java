@@ -125,8 +125,7 @@ public class TestTemperature {
     @Test
     void TemperatureValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(4, Temperature.Types.values().length);
-        // double randomValue = Math.random() * 100;
-        double randomValue = 100;
+        double randomValue = Math.random() * 100;
         assertEquivalentTemperature(randomValue, Temperature.Types.K, randomValue, Temperature.Types.K);
         assertEquivalentTemperature(randomValue, Temperature.Types.F, (randomValue - 32) * 5.0/9.0 + 273.15, Temperature.Types.K);
         assertEquivalentTemperature(randomValue, Temperature.Types.C, randomValue + 273.15, Temperature.Types.K);
