@@ -2,6 +2,7 @@ package dalosto.engineering.unitconversion.rest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
@@ -22,6 +23,7 @@ public class ForceController extends TemplateController {
 
     @Override
     @GetMapping
+    @PostMapping
     public RestMessage home(UnitDAO unitDAO) {
         return super.createRestMessage(unitDAO);
     }

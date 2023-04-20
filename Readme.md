@@ -1,83 +1,161 @@
 <h1 align="center"> Unit Converter </h1>
 
-Unit Converter is a <strong>Java </strong> application, made in Spring, used for conversion between various measurement units.
-The units presented in this program are the most commonly used in the engineering.
+Unit Converter is a <strong> RESTful </strong> application, that implements the Level 3 of Richardson Maturity Model - HATEOAs, made in Spring, used for conversion between various measurement units.
 
+The units presented in this program are the most commonly used in the engineering.
 The program basically converts the Measurement Unit and its value into another equivalent Unit. 
 <br/>
 
-## Types of conversion
-Currently, this application supports the conversion of the following measurement units:
 
-<details><summary><strong>Length</strong></summary>
-<h5>mm , cm , dm , m , hm , km , in , ft , yd , um</h5>
-</details>
+<h2 align="center"> How to use </h2>
 
-<details><summary><strong>Area</strong></summary>
-<h5>mm2 , cm2 , dm2 , m2 , hm2 , km2 , in2 , ft2 , yd2 , um2 </h5>
-</details>
+The entirely usage of the application is guided by the resources and URI.
+> <b>Endpoint</b>: localhost:8080
+```json
+{
+  "header": {
+    "home": "http://localhost:8080",
+    "title": "Unit Conversion API",
+    "about": "API used for conversion between measurement units most commonly used in the engineering",
+    "description": "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit",
+    "reference": "https://github.com/victordalosto/UnitConversion"
+  },
+  "result": {
+    "area": {
+      "uri": "/api/area",
+      "about": "This endpoint converts area measurement units.",
+      "units": "[DM^2, MM^2, M^2, YD^2, KM^2, UM^2, IN^2, HM^2, FT^2, CM^2]"
+    },
+    "force": {
+      "uri": "/api/force",
+      "about": "This endpoint converts force measurement units.",
+      "units": "[KIP, TN, N, G, KN, MN, GN, LB, POUND, KG, T]"
+    },
+    "inertia": {
+      "uri": "/api/inertia",
+      "about": "This endpoint converts inertia measurement units.",
+      "units": "[KM^4, UM^4, HM^4, M^4, DM^4, IN^4, MM^4, FT^4, CM^4, YD^4]"
+    },
+    "length": {
+      "uri": "/api/length",
+      "about": "This endpoint converts length measurement units.",
+      "units": "[HM, FT, M, MM, KM, IN, DM, UM, CM, YD]"
+    },
+    "temperature": {
+      "uri": "/api/temperature",
+      "about": "This endpoint converts temperature measurement units.",
+      "units": "[R, K, F, C]"
+    },
+    "time": {
+      "uri": "/api/time",
+      "about": "This endpoint converts time measurement units.",
+      "units": "[US, YEAR, S, MS, H, MIN, WEEK, MONTH, MONTH^31, DAY, MONTH^30]"
+    },
+    "volume": {
+      "uri": "/api/volume",
+      "about": "This endpoint converts volume measurement units.",
+      "units": "[KM^3, HM^3, FT^3, MM^3, M^3, UM^3, YD^3, DM^3, CM^3, IN^3, ML, L]"
+    }
+  }
+}
+```
+<br/>
 
-<details><summary><strong>Volume</strong></summary>
-<h5>mm3 , cm3 , dm3 , m3 , hm3 , km3 , in3 , ft3 , yd3 , um3 , L, mL</h5>
-</details>
 
-<details><summary><strong>Inertia</strong></summary>
-<h5>mm4 , cm4 , dm4 , m4 , km4 , in4 , ft4 , yd4 , mi4</h5>
-</details>
+When entering any mentioned endpoint to perform the appropriate conversion.
+This same page will present the request based on 3 different status: 
 
-<details><summary><strong>Temperature</strong></summary>
-<h5>°C (celsisus),  K (kelvin),  °F (Fahrenheit),  °R (Rankine),</h5>
-</details>
-
-<details><summary><strong>Time</strong></summary>
-<h5>s, ms, us, min, h, day, week, month, month_30, month_31, year</h5>
-</details>
-
-<details><summary><strong>Force</strong></summary>
-<h5>N, kN, MN, GN, tf, kgf, gf, kipf, lbf</h5>
-</details>
-
-<!-- 
-<details><summary><strong>Moment</strong></summary>
-<h5>Units are separated by a dot . String as: Force.length.
-N.mm, N.cm, N.dm, N.m, N.km, N.in, N.ft, N.yd, N.mi, kN.mm, kN.cm, kN.dm, kN.m, kN.km, kN.in, kN.ft, kN.yd, kN.mi, MN.mm, MN.cm, MN.dm, MN.m, MN.km, MN.in, MN.ft, MN.yd, MN.mi, GN.mm, GN.cm, GN.dm, GN.m, GN.km, GN.in, GN.ft, GN.yd, GN.mi, tf.mm, tf.cm, tf.dm, tf.m, tf.km, tf.in, tf.ft, tf.yd, tf.mi, kgf.mm, kgf.cm, kgf.dm, kgf.m, kgf.km, kgf.in, kgf.ft, kgf.yd, kgf.mi, gf.mm, gf.cm, gf.dm, gf.m, gf.km, gf.in, gf.ft, gf.yd, gf.mi, kipf.mm, kipf.cm, kipf.dm, kipf.m, kipf.km, kipf.in, kipf.ft, kipf.yd, kipf.mi, lbf.mm, lbf.cm, lbf.dm, lbf.m, lbf.km, lbf.in, lbf.ft, lbf.yd, lbf.mi</h5>
-</details>
-
-<details><summary><strong>Pressure</strong></summary>
-<h5>Units are separated by a slash \ - String as: Force/Area.
-MPa, KPa, GPa, KSI, PSI, bar, N/mm2, N/cm2, N/dm2, N/m2, N/km2, N/in2, N/ft2, N/yd2, N/mi2, kN/mm2, kN/cm2, kN/dm2, kN/m2, kN/km2, kN/in2, kN/ft2, kN/yd2, kN/mi2, MN/mm2, MN/cm2, MN/dm2, MN/m2, MN/km2, MN/in2, MN/ft2, MN/yd2, MN/mi2, GN/mm2, GN/cm2, GN/dm2, GN/m2, GN/km2, GN/in2, GN/ft2, GN/yd2, GN/mi2, tf/mm2, tf/cm2, tf/dm2, tf/m2, tf/km2, tf/in2, tf/ft2, tf/yd2, tf/mi2, kgf/mm2, kgf/cm2, kgf/dm2, kgf/m2, kgf/km2, kgf/in2, kgf/ft2, kgf/yd2, kgf/mi2, gf/mm2, gf/cm2, gf/dm2, gf/m2, gf/km2, gf/in2, gf/ft2, gf/yd2, gf/mi2, kipf/mm2, kipf/cm2, kipf/dm2, kipf/m2, kipf/km2, kipf/in2, kipf/ft2, kipf/yd2, kipf/mi2, lbf/mm2, lbf/cm2, lbf/dm2, lbf/m2, lbf/km2, lbf/in2, lbf/ft2, lbf/yd2, lbf/mi2</h5>
-</details>
- -->
+* Info: If no parameter was given, it will show a dialog guiding you to a example of usage
+* Error: If you typed invalid parameters, it will show you were you made the mistake.
+* Sucess: Will show you the measurement unit converted.
 
 <br/>
 
-## How to use
-
->Java code example of usage:
-```java
-
+Info status:
+> <b>Endpoint</b>: localhost:8080/api/length
+```json
 {
-
-  @Autowired
-  @Qualifier("length")
-  UnitFormulas formulas;
-  
-  void main() {
-      Double value = 25.4;
-      UnitType cm = Length.Types.CM;
-      Unit unit = new Unit(value, cm);
-
-      formulas.buildUnitToSI(unit);  
-      // returns: Unit(value=0.254 , unitType=M);
-    
-      formulas.buildUnitIntoAnotherType(unit, Length.Types.MM);
-      // returns: Unit(value=10.0, unitType=IN);
-    
-      formulas.buildUnitIntoAnotherType(unit, Length.Types.MM);
-      // returns: Unit(value=254.0, unitType=MM);
+  "header": {
+    "uri": "/api/length",
+    "home": "http://localhost:8080",
+    "input": "{value=null, type=null, target=null}"
+  },
+  "result": {
+    "info": {
+      "uri": "/api/length/example",
+      "about": "Check the /example endpoint for a usage example."
+    }
   }
 }
-  
+```
+<br/>
+
+Error status:
+> <b>Endpoint</b>: localhost:8080/api/length?value=5.55&type=INVALID
+```json
+{
+  "header": {
+    "uri": "/api/length",
+    "home": "http://localhost:8080",
+    "input": "{value=5.55, type=INVALID, target=null}"
+  },
+  "result": {
+    "error": {
+      "ParameterException": "type INVALID not found.",
+      "about": "Check the /example endpoint to verify the correct API usage.",
+      "uri": "/api/length/example"
+    }
+  }
+}
+```
+<br/>
+
+Sucess status:
+> <b>Endpoint</b>: localhost:8080/api/length?value=5.55&type=INVALID
+```json
+{
+  "header": {
+    "uri": "/api/length",
+    "home": "http://localhost:8080",
+    "input": "{value=5.55, type=M, target=CM}"
+  },
+  "result": {
+    "sucess": {
+      "unit": "{value=555.0, type=CM}"
+    }
+  }
+}
+```
+
+
+<br/br/>
+
+### Example page
+If you don't know how to use the API. just go to the /example end-point and it will prompt a full tutorial on how to use the API.
+
+```json
+{
+  "header": {
+    "uri": "/api/length/example",
+    "home": "http://localhost:8080",
+    "input": "{value=null, type=null, target=null}"
+  },
+  "result": {
+    "info": {
+      "ref": "/api/length",
+      "title": "This endpoint provides functionality to convert LENGTH measurement units.",
+      "description": "Given a quantity expressed in a unit type, the end-point returns the equivalent quantity in a different measurement unit.",
+      "how-to": "Convert 12345.67 MM to KM",
+      "GET": "/api/length?value=12345.67&type=MM&target=KM",
+      "POST": "/api/length  Body ->  {'value': 12345.67, 'type': 'MM', 'target': 'KM'}",
+      "result": "Contains a status of the request, and possibly the result of the conversion.",
+      "status": "can be: { SUCESS | ERROR | INFO }",
+      "unit": "Expressed in {value=0.01234567, type=KM}",
+      "observation": "The params are resilients. Values can be separated using comma (1,23), dot (1.23) or contain noise (myValue=1.23)",
+      "observation2": "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
+    }
+  }
+}
 ```
 
 Application licensed under the <a ref="https://github.com/victordalosto/UnitConversion/blob/master/LICENSE">MIT License</a>.
