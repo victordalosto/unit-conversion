@@ -40,11 +40,19 @@ public class MessageRestService {
     }
 
 
+    private void appendDefaultHATEOASmessage(MessageRest messageRest, EndpointInfo info) {
+        Map<String, String> map = new LinkedHashMap<>();
+        map.put("about", "Check the /example endpoint for a usage example.");
+        map.put("uri", info.getUri() + "/example");
+        messageRest.addToResult("info", map);
+    }
+
+
     private void appendConversion(MessageRest messageRest, EndpointInfo info, UnitDAO unitDAO) {
         try {
-            Unit unit = conversorService.convertUnit(unitDAO, info.getUnitFormula());
-            appendHeader(messageRest, info, unitDAO); // This lines fixes the unitDAO
-            appendResultOfConversion(messageRest, unit);
+            Unit unitConverted = conversorService.convertUnit(unitDAO, info.getUnitFormula());
+            appendHeader(messageRest, info, unitDAO); // This lines fixes the unitDAO after the conversion
+            appendResultOfConversion(messageRest, unitConverted);
         } catch (ParameterException e) {
             appendMessageOfError(messageRest, info, e);
         }
@@ -55,14 +63,6 @@ public class MessageRestService {
         Map<String, String> map = new LinkedHashMap<>();
         map.put("unit", unit.toString());
         messageRest.addToResult("sucess", map);
-    }
-
-
-    private void appendDefaultHATEOASmessage(MessageRest messageRest, EndpointInfo info) {
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("about", "Check the /example endpoint for a usage example.");
-        map.put("uri", info.getUri() + "/example");
-        messageRest.addToResult("info", map);
     }
 
 

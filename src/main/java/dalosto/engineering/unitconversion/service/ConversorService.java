@@ -20,8 +20,8 @@ public class ConversorService {
 
     public Unit convertUnit(UnitDAO unitDAO, UnitFormula unitFormula) {
         Unit unit = createUnitFromUnitDAO(unitDAO, unitFormula);
-        unitDAO.setValue(String.valueOf(unit.getValue()));
         UnitType targetType = getTargetUnitType(unitDAO, unitFormula);
+        unitDAO.setValue(String.valueOf(unit.getValue()));
         return unitFormula.buildUnitIntoAnotherType(unit, targetType);
     }
 
@@ -33,7 +33,7 @@ public class ConversorService {
     }
 
 
-    public UnitType getTargetUnitType(UnitDAO unitDAO, UnitFormula unitFormula) throws ParameterException {
+    private UnitType getTargetUnitType(UnitDAO unitDAO, UnitFormula unitFormula) throws ParameterException {
         if (unitDAO.getTarget() == null) {
             throw new ParameterException("target can't be NULL.");
         }

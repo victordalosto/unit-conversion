@@ -7,13 +7,10 @@ import java.util.Set;
  */
 public interface UnitType {
 
-    
     /** Gets the UnitType in the International System of Units (SI). */
     UnitType getSITypeOfThisCategory();
 
-
-    /** Returns all UnitTypes of this category  */
+    /** Returns all UnitTypes of this category */
     Set<UnitType> getAllUnitTypesOfThisCategory();
-
 
 }
