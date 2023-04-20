@@ -28,7 +28,7 @@ public final class NumericService {
         try {
             return Double.parseDouble(newValue);
         } catch (NumberFormatException e) {
-            throw new ParameterException("value must be to numeric.");
+            throw new ParameterException("value must be Numeric.");
         }
     }
 

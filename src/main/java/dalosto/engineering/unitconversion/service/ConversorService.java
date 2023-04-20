@@ -20,6 +20,7 @@ public class ConversorService {
 
     public Unit convertUnit(UnitDAO unitDAO, UnitFormula unitFormula) {
         Unit unit = createUnitFromUnitDAO(unitDAO, unitFormula);
+        unitDAO.setValue(String.valueOf(unit.getValue()));
         UnitType targetType = getTargetUnitType(unitDAO, unitFormula);
         return unitFormula.buildUnitIntoAnotherType(unit, targetType);
     }
@@ -38,5 +39,6 @@ public class ConversorService {
         }
         return mapUnitTypeService.getUnitTypeFromString(unitDAO.getTarget(), unitFormula);
     }
+
 
 }

@@ -3,9 +3,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class UnitDAO {
 
@@ -27,7 +29,5 @@ public class UnitDAO {
         map.put("target", this.target);
         return map.toString();
     }
-
-    
 
 }

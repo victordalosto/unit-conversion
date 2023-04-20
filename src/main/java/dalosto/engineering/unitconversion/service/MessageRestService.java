@@ -43,6 +43,7 @@ public class MessageRestService {
     private void appendConversion(MessageRest messageRest, EndpointInfo info, UnitDAO unitDAO) {
         try {
             Unit unit = conversorService.convertUnit(unitDAO, info.getUnitFormula());
+            appendHeader(messageRest, info, unitDAO); // This lines fixes the unitDAO
             appendResultOfConversion(messageRest, unit);
         } catch (ParameterException e) {
             appendMessageOfError(messageRest, info, e);
