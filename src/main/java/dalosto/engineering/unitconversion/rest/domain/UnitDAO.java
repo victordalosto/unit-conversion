@@ -37,12 +37,12 @@ public class UnitDAO {
 
 
     public void setType(String type) {
-        this.type = type.replaceAll("_", "\\^");
+        this.type = type.replaceAll("_", "");
     }
 
 
     public void setTarget(String target) {
-        this.target = target.replaceAll("_", "\\^");
+        this.target = target.replaceAll("_", "");
     }
 
 }

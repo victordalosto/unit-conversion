@@ -12,11 +12,11 @@ import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
 
 
 @RestController
-@RequestMapping("/api/length")
-public class LengthController extends TemplateController {
+@RequestMapping("/api/force")
+public class ForceController extends TemplateController {
 
     @Autowired
-    @Qualifier("length")
+    @Qualifier("force")
     private UnitFormula unitFormula;
 
 
@@ -36,7 +36,7 @@ public class LengthController extends TemplateController {
 
     @Override
     public EndpointInfo getEndpointInfo() {
-        return new EndpointInfo("length", unitFormula);
+        return new EndpointInfo("force", unitFormula);
     }
 
     

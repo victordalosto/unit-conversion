@@ -5,7 +5,7 @@ import lombok.Getter;
 
 
 @Getter
-public class MessageRest {
+public class RestMessage {
 
     private Map<String, String> header = new LinkedHashMap<>();
     private Map<String, Map<String, String>> result = new LinkedHashMap<>();
@@ -26,7 +26,8 @@ public class MessageRest {
         for (int i = 0; i < keysAndValues.length; i += 2) {
             map.put(keysAndValues[i], keysAndValues[i + 1]);
         }
-        addToResult(status.toString().toLowerCase(), map);
+        this.result.put(status.toString().toLowerCase(), map);
     }
+
 
 }

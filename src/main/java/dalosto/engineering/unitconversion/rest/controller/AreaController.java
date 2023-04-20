@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 import dalosto.engineering.unitconversion.rest.controller.template.TemplateController;
 import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
-import dalosto.engineering.unitconversion.rest.domain.MessageRest;
+import dalosto.engineering.unitconversion.rest.domain.RestMessage;
 import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
 
 
@@ -22,15 +22,15 @@ public class AreaController extends TemplateController {
 
     @Override
     @GetMapping
-    public MessageRest home(UnitDAO unitDAO) {
-        return super.getHome(unitDAO);
+    public RestMessage home(UnitDAO unitDAO) {
+        return super.createRestMessage(unitDAO);
     }
 
 
     @Override
     @GetMapping("/example")
-    public MessageRest example(UnitDAO unitDAO) {
-        return super.getExample(unitDAO);
+    public RestMessage example(UnitDAO unitDAO) {
+        return super.createRestMessage(unitDAO);
     }
 
 

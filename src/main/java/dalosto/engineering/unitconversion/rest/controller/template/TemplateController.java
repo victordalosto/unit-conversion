@@ -2,29 +2,24 @@ package dalosto.engineering.unitconversion.rest.controller.template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
-import dalosto.engineering.unitconversion.rest.domain.MessageRest;
+import dalosto.engineering.unitconversion.rest.domain.RestMessage;
 import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
-import dalosto.engineering.unitconversion.service.MessageRestService;
+import dalosto.engineering.unitconversion.service.RestMessageService;
 
 @Component
 public abstract class TemplateController {
 
     @Autowired
-    private MessageRestService service;
+    private RestMessageService service;
 
-    
-    public final MessageRest getHome(UnitDAO unitDAO) {
-        return service.getMessageForEndPoint(this.getEndpointInfo(), unitDAO);
-    }
 
-    
-    public final MessageRest getExample(UnitDAO unitDAO) {
+    public final RestMessage createRestMessage(UnitDAO unitDAO) {
         return service.getMessageForEndPoint(this.getEndpointInfo(), unitDAO);
     }
 
 
-    public abstract MessageRest home(UnitDAO unitDAO);
-    public abstract MessageRest example(UnitDAO unitDAO);
     public abstract EndpointInfo getEndpointInfo();
+    protected abstract RestMessage home(UnitDAO unitDAO);
+    protected abstract RestMessage example(UnitDAO unitDAO);
 
 }

@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.rest.controller.template.TemplateController;
-import dalosto.engineering.unitconversion.rest.domain.MessageRest;
+import dalosto.engineering.unitconversion.rest.domain.RestMessage;
+import dalosto.engineering.unitconversion.rest.domain.RestURL;
 
 
 @RestController
@@ -18,16 +19,20 @@ public class HomeController {
     List<TemplateController> controllers;
 
 
+    @Autowired
+    RestURL restURL;
+
     @GetMapping
-    public MessageRest getHomeMessage() {
-        MessageRest message = new MessageRest();
+    public RestMessage getHomeMessage() {
+        RestMessage message = new RestMessage();
         appendHeaderToMessage(message);
         appendResultsToMessage(message);
         return message;
     }
 
 
-    private void appendHeaderToMessage(MessageRest message) {
+    private void appendHeaderToMessage(RestMessage message) {
+        message.addToHeader("home", restURL.getHomeURL());
         message.addToHeader("title", "Unit Conversion API");
         message.addToHeader("about", "API used for conversion between measurement units most commonly used in the engineering");
         message.addToHeader("description", "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit");
@@ -35,12 +40,12 @@ public class HomeController {
     }
 
 
-    private void appendResultsToMessage(MessageRest message) {
+    private void appendResultsToMessage(RestMessage message) {
         appendEndPointsToResults(message);
     }
 
 
-    private void appendEndPointsToResults(MessageRest message) {
+    private void appendEndPointsToResults(RestMessage message) {
         for(TemplateController controller : controllers) {
             Map<String, String> results = new LinkedHashMap<>();
             // The next calls violates the Law of Demeter, but it's the best option considering the design.
