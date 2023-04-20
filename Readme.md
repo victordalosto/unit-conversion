@@ -1,15 +1,17 @@
 <h1 align="center"> Unit Converter </h1>
 
-Unit Converter is a <strong> RESTful </strong> application, that implements the Level 3 of Richardson Maturity Model - HATEOAs, made in Spring, used for conversion between various measurement units.
+Unit Converter is a <strong> RESTful </strong> application, that implements Level 3 of the Richardson Maturity Model - HATEOAs.
 
-The units presented in this program are the most commonly used in the engineering.
+The program was made in Spring and is used for conversion between various measurement units.
+
+The units presented in this program are the most commonly used in engineering.
 The program basically converts the Measurement Unit and its value into another equivalent Unit. 
 <br/>
 
 
 <h2 align="center"> How to use </h2>
 
-The entirely usage of the application is guided by the resources and URI.
+The entire usage of the application is guided by the resources and URI.
 > <b>Endpoint</b>: localhost:8080
 ```json
 {
@@ -61,15 +63,19 @@ The entirely usage of the application is guided by the resources and URI.
 ```
 <br/>
 
+<h3 align="center"><strong>STATUS</strong> </h3>
 
-When entering any mentioned endpoint to perform the appropriate conversion.
-This same page will present the request based on 3 different status: 
+When entering any mentioned endpoint, it performs the appropriate conversion.
 
-* Info: If no parameter was given, it will show a dialog guiding you to a example of usage
-* Error: If you typed invalid parameters, it will show you were you made the mistake.
-* Sucess: Will show you the measurement unit converted.
+This same page will present the request based on 3 different statuses: 
+
+* Info: If no parameter was given, it will show a dialog guiding you to an example of usage
+* Error: If you typed invalid parameters, it will show you where you made the mistake.
+* Success: Will show you the measurement unit converted.
 
 <br/>
+
+
 
 Info status:
 > <b>Endpoint</b>: localhost:8080/api/length
@@ -151,7 +157,7 @@ If you don't know how to use the API. just go to the /example end-point and it w
       "result": "Contains a status of the request, and possibly the result of the conversion.",
       "status": "can be: { SUCESS | ERROR | INFO }",
       "unit": "Expressed in {value=0.01234567, type=KM}",
-      "observation": "The params are resilients. Values can be separated using comma (1,23), dot (1.23) or contain noise (myValue=1.23)",
+      "observation": "The params are resilients. Values can be separated using comma (1,23), dot (1.23), or contain noise (myValue=1.23)",
       "observation2": "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
     }
   }

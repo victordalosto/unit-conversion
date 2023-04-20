@@ -36,7 +36,7 @@ public class ExampleMessage {
         arr[16] = "unit";
         arr[17] = "Expressed in " + service.formatUnitDAOAndConvertToUnit(new UnitDAO(value, type, target), info.getUnitFormula());
         arr[18] = "observation";
-        arr[19] = "The params are resilients. Values can be separated using comma (1,23), dot (1.23) or contain noise (myValue=1.23)";
+        arr[19] = "The params are resilient. Values can be separated using comma (1,23), dot (1.23), or contain noise (myValue=1.23)";
         arr[20] = "observation2";
         arr[21] = "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]...";
         return arr;

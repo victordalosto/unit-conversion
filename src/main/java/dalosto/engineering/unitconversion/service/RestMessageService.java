@@ -64,7 +64,7 @@ public class RestMessageService {
 
 
     private void appendResultOfConversion(RestMessage message, Unit unit) {
-        message.setResult(RestStatus.SUCESS, "unit", unit.toString());
+        message.setResult(RestStatus.SUCCESS, "unit", unit.toString());
     }
 
 
