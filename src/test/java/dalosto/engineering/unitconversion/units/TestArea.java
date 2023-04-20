@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class TestArea {
 
     @Autowired
-    @Qualifier("Area")
+    @Qualifier("area")
     UnitFormula unitFormula;
 
 

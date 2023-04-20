@@ -8,7 +8,7 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 
 
-@Component("Volume")
+@Component("volume")
 public class Volume extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {

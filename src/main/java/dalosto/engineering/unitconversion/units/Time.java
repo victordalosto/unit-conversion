@@ -8,7 +8,7 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 
 
-@Component("Time")
+@Component("time")
 public class Time extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {

@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class TestTemperature {
 
     @Autowired
-    @Qualifier("Temperature")
+    @Qualifier("temperature")
     UnitFormula unitFormula;
 
 

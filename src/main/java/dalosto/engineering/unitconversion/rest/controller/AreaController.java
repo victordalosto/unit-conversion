@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
 public class AreaController extends TemplateController {
 
     @Autowired
-    @Qualifier("Area")
+    @Qualifier("area")
     private UnitFormula unitFormula;
 
 
@@ -36,11 +36,8 @@ public class AreaController extends TemplateController {
 
     @Override
     public EndpointInfo getEndpointInfo() {
-        return EndpointInfo.builder()
-                                    .title("Area")
-                                    .uri("/api/area")
-                                    .unitFormula(unitFormula)
-                                    .build();
+        return new EndpointInfo("area", unitFormula);
     }
 
+    
 }

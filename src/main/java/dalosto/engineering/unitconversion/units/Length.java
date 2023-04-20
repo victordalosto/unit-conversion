@@ -8,7 +8,7 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 
 
-@Component("Length")
+@Component("length")
 public class Length extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {

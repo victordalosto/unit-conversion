@@ -12,15 +12,14 @@ public abstract class TemplateController {
     @Autowired
     private MessageRestService service;
 
+    
     public final MessageRest getHome(UnitDAO unitDAO) {
         return service.getMessageForEndPoint(this.getEndpointInfo(), unitDAO);
     }
 
     
     public final MessageRest getExample(UnitDAO unitDAO) {
-        EndpointInfo endpointInfo = this.getEndpointInfo();
-        endpointInfo.setUri(endpointInfo.getUri() + "/example");
-        return service.getMessageForEndPoint(endpointInfo, unitDAO);
+        return service.getMessageForEndPoint(this.getEndpointInfo(), unitDAO);
     }
 
 

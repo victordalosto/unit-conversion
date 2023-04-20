@@ -8,7 +8,7 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 
 
-@Component("Temperature")
+@Component("temperature")
 public class Temperature extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {

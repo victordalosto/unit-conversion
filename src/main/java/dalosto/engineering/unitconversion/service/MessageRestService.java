@@ -6,6 +6,7 @@ import dalosto.engineering.unitconversion.exception.ParameterException;
 import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
 import dalosto.engineering.unitconversion.rest.domain.MessageRest;
 import dalosto.engineering.unitconversion.rest.domain.RestStatus;
+import dalosto.engineering.unitconversion.rest.domain.RestURL;
 import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
 
 
@@ -14,6 +15,9 @@ public class MessageRestService {
 
     @Autowired
     private ConversorService conversorService;
+
+    @Autowired
+    private RestURL restURL;
 
 
     public MessageRest getMessageForEndPoint(EndpointInfo info, UnitDAO unitDAO) {
@@ -25,7 +29,7 @@ public class MessageRestService {
 
 
     private void appendResult(MessageRest messageRest, EndpointInfo info, UnitDAO unitDAO) {
-        if (info.isExampleURI()) {
+        if (restURL.isExampleURI()) {
             appendExampleMessage(messageRest, info, unitDAO);
         } else if (unitDAO.doesntHaveData()) {
             appendDefaultHATEOASmessage(messageRest, info);
@@ -38,7 +42,7 @@ public class MessageRestService {
     private void appendDefaultHATEOASmessage(MessageRest messageRest, EndpointInfo info) {
         messageRest.setResult(RestStatus.INFO, 
                               "about", "Check the /example endpoint for a usage example.", 
-                              "uri", info.getURIExample());
+                              "uri", restURL.getExampleURI());
     }
 
 
@@ -65,12 +69,13 @@ public class MessageRestService {
         messageRest.setResult(RestStatus.ERROR, 
                               "ParameterException", e.getMessage(), 
                               "about", "Check the /example endpoint to verify the correct API usage.", 
-                              "uri", info.getURIExample());
+                              "uri", restURL.getExampleURI());
     }
 
 
     private void appendHeader(MessageRest messageRest, EndpointInfo info, UnitDAO unitDAO) {
-        messageRest.addToHeader("url", info.getUri());
+        messageRest.addToHeader("home", restURL.getHomeURL());
+        messageRest.addToHeader("uri", restURL.getURI());
         messageRest.addToHeader("input", unitDAO.toString());
     }
 

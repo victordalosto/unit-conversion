@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class TestVolume {
 
     @Autowired
-    @Qualifier("Volume")
+    @Qualifier("volume")
     UnitFormula unitFormula;
 
 

@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class TestForce {
 
     @Autowired
-    @Qualifier("Force")
+    @Qualifier("force")
     UnitFormula unitFormula;
 
 

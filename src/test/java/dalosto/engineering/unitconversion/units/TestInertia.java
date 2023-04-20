@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class TestInertia {
 
     @Autowired
-    @Qualifier("Inertia")
+    @Qualifier("inertia")
     UnitFormula unitFormula;
 
 

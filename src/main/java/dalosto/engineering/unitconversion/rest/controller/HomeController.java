@@ -44,7 +44,7 @@ public class HomeController {
         for(TemplateController controller : controllers) {
             Map<String, String> results = new LinkedHashMap<>();
             // The next calls violates the Law of Demeter, but it's the best option considering the design.
-            results.put("uri", controller.getEndpointInfo().getUri()); 
+            results.put("uri", controller.getEndpointInfo().getURI()); 
             results.put("about", "This endpoint converts "+controller.getEndpointInfo().getTitle()+" measurement units.");
             results.put("units", controller.getEndpointInfo().getUnitFormula().getAllUnitTypesOfThisCategory().toString().replaceAll("_", "\\^"));
             message.addToResult(controller.getEndpointInfo().getTitle(), results);

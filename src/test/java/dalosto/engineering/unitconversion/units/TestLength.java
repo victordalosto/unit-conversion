@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class TestLength {
 
     @Autowired
-    @Qualifier("Length")
+    @Qualifier("length")
     UnitFormula unitFormula;
 
 

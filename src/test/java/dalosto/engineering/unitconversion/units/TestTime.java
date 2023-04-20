@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class TestTime {
 
     @Autowired
-    @Qualifier("Time")
+    @Qualifier("time")
     UnitFormula unitFormula;
 
 
