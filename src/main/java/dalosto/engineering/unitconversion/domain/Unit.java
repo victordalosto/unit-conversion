@@ -21,7 +21,7 @@ public final class Unit {
 
     @Override
     public String toString() {
-        return "[value=" + value + ", type=" + type + "]";
+        return "{value=" + value + ", type=" + type + "}";
     }
 
 }

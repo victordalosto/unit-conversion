@@ -12,4 +12,9 @@ public class EndpointInfo {
     private String uri;
     private UnitFormula unitFormula; 
 
+
+    public boolean isExampleURI() {
+        return this.uri.contains("example");
+    }
+
 }

@@ -16,7 +16,7 @@ public class UnitDAO {
     private String target;
 
 
-    public boolean isEmpty() {
+    public boolean doesntHaveData() {
         return (this.value == null && this.type == null && this.target == null);
     }
 
