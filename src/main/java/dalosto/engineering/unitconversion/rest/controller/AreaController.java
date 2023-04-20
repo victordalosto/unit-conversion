@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 import dalosto.engineering.unitconversion.rest.controller.template.TemplateController;
-import dalosto.engineering.unitconversion.rest.domain.DescriptionOfEndpoint;
+import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
 
 
 @RestController
@@ -23,11 +23,11 @@ public class AreaController extends TemplateController {
 
 
     @Override
-    public DescriptionOfEndpoint description() {
-        return DescriptionOfEndpoint.builder()
+    public EndpointInfo getEndpointInfo() {
+        return EndpointInfo.builder()
                                     .title("Area")
                                     .uri("/api/area")
-                                    .unitTypes(unitFormula.getAllUnitTypesOfThisCategory().toString())
+                                    .unitFormula(unitFormula)
                                     .build();
     }
 

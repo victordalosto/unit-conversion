@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 import dalosto.engineering.unitconversion.rest.controller.template.TemplateController;
-import dalosto.engineering.unitconversion.rest.domain.DescriptionOfEndpoint;
+import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
 import dalosto.engineering.unitconversion.rest.domain.MessageRest;
 import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
-import dalosto.engineering.unitconversion.service.ConversorService;
+import dalosto.engineering.unitconversion.service.MessageRestService;
 
 
 @RestController
@@ -21,21 +21,21 @@ public class LengthController extends TemplateController {
     private UnitFormula unitFormula;
 
     @Autowired
-    private ConversorService conversorService;
+    private MessageRestService service;
 
 
     @GetMapping
     public MessageRest home(UnitDAO unitDAO) {
-        return conversorService.generateMessageRest(unitDAO, unitFormula);
+        return service.getMessageForEndPoint(this.getEndpointInfo(), unitDAO);
     }
 
 
     @Override
-    public DescriptionOfEndpoint description() {
-        return DescriptionOfEndpoint.builder()
+    public EndpointInfo getEndpointInfo() {
+        return EndpointInfo.builder()
                                     .title("Length")
                                     .uri("/api/length")
-                                    .unitTypes(unitFormula.getAllUnitTypesOfThisCategory().toString())
+                                    .unitFormula(unitFormula)
                                     .build();
     }
     

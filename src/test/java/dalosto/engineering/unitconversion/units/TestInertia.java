@@ -38,11 +38,11 @@ public class TestInertia {
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Inertia.Types.CM_4);
         assertEquals(value, unit.getValue(), TestMetrics.tolerance);
-        assertEquals(unitType, unit.getUnitType());
+        assertEquals(unitType, unit.getType());
         assertEquals(2.5*Math.pow(10, -5), outputSI.getValue(), TestMetrics.tolerance);
-        assertEquals(Inertia.Types.M_4, outputSI.getUnitType());
+        assertEquals(Inertia.Types.M_4, outputSI.getType());
         assertEquals(2500.0, outputAnotherType.getValue(), TestMetrics.tolerance);
-        assertEquals(Inertia.Types.CM_4, outputAnotherType.getUnitType());
+        assertEquals(Inertia.Types.CM_4, outputAnotherType.getType());
     }
 
 
@@ -50,8 +50,8 @@ public class TestInertia {
     void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
         assertEquals(Inertia.Types.M_4, unitFormula.getSITypeOfThisCategory());
         assertEquals(Inertia.Types.M_4, Inertia.Types.DM_4.getSITypeOfThisCategory());
-        assertEquals(Inertia.Types.M_4, new Unit(0.0, Inertia.Types.FT_4).getUnitType().getSITypeOfThisCategory());
-        assertEquals(Inertia.Types.M_4, new Unit(0.0, Inertia.Types.KM_4).getUnitType().getSITypeOfThisCategory());
+        assertEquals(Inertia.Types.M_4, new Unit(0.0, Inertia.Types.FT_4).getType().getSITypeOfThisCategory());
+        assertEquals(Inertia.Types.M_4, new Unit(0.0, Inertia.Types.KM_4).getType().getSITypeOfThisCategory());
     }
 
 

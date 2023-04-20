@@ -1,9 +1,9 @@
 package dalosto.engineering.unitconversion.rest.controller.template;
-import dalosto.engineering.unitconversion.rest.domain.DescriptionOfEndpoint;
+import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
 
 
 public abstract class TemplateController {
 
-    public abstract DescriptionOfEndpoint description();
+    public abstract EndpointInfo getEndpointInfo();
 
 }

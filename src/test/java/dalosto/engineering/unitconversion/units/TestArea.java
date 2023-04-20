@@ -38,11 +38,11 @@ public class TestArea {
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Area.Types.CM_2);
         assertEquals(value, unit.getValue(), TestMetrics.tolerance);
-        assertEquals(unitType, unit.getUnitType());
+        assertEquals(unitType, unit.getType());
         assertEquals(25.0, outputSI.getValue(), TestMetrics.tolerance);
-        assertEquals(Area.Types.M_2, outputSI.getUnitType());
+        assertEquals(Area.Types.M_2, outputSI.getType());
         assertEquals(250000.0, outputAnotherType.getValue(), TestMetrics.tolerance);
-        assertEquals(Area.Types.CM_2, outputAnotherType.getUnitType());
+        assertEquals(Area.Types.CM_2, outputAnotherType.getType());
     }
 
 
@@ -50,8 +50,8 @@ public class TestArea {
     void SIUnitTypeOfAreaShouldBeMeterSquare() {
         assertEquals(Area.Types.M_2, unitFormula.getSITypeOfThisCategory());
         assertEquals(Area.Types.M_2, Area.Types.M_2.getSITypeOfThisCategory());
-        assertEquals(Area.Types.M_2, new Unit(0.0, Area.Types.FT_2).getUnitType().getSITypeOfThisCategory());
-        assertEquals(Area.Types.M_2, new Unit(0.0, Area.Types.KM_2).getUnitType().getSITypeOfThisCategory());
+        assertEquals(Area.Types.M_2, new Unit(0.0, Area.Types.FT_2).getType().getSITypeOfThisCategory());
+        assertEquals(Area.Types.M_2, new Unit(0.0, Area.Types.KM_2).getType().getSITypeOfThisCategory());
     }
 
 

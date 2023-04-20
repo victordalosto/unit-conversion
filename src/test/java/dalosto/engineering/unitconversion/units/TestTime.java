@@ -38,11 +38,11 @@ public class TestTime {
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Time.Types.MS);
         assertEquals(value, unit.getValue(), TestMetrics.tolerance);
-        assertEquals(unitType, unit.getUnitType());
+        assertEquals(unitType, unit.getType());
         assertEquals(3600.0, outputSI.getValue(), TestMetrics.tolerance);
-        assertEquals(Time.Types.S, outputSI.getUnitType());
+        assertEquals(Time.Types.S, outputSI.getType());
         assertEquals(3600000.0, outputAnotherType.getValue(), TestMetrics.tolerance);
-        assertEquals(Time.Types.MS, outputAnotherType.getUnitType());
+        assertEquals(Time.Types.MS, outputAnotherType.getType());
     }
 
 
@@ -50,8 +50,8 @@ public class TestTime {
     void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
         assertEquals(Time.Types.S, unitFormula.getSITypeOfThisCategory());
         assertEquals(Time.Types.S, Time.Types.MIN.getSITypeOfThisCategory());
-        assertEquals(Time.Types.S, new Unit(0.0, Time.Types.H).getUnitType().getSITypeOfThisCategory());
-        assertEquals(Time.Types.S, new Unit(0.0, Time.Types.DAY).getUnitType().getSITypeOfThisCategory());
+        assertEquals(Time.Types.S, new Unit(0.0, Time.Types.H).getType().getSITypeOfThisCategory());
+        assertEquals(Time.Types.S, new Unit(0.0, Time.Types.DAY).getType().getSITypeOfThisCategory());
     }
 
 

@@ -38,11 +38,11 @@ public class TestForce {
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Force.Types.KG);
         assertEquals(value, unit.getValue(), TestMetrics.tolerance);
-        assertEquals(unitType, unit.getUnitType());
+        assertEquals(unitType, unit.getType());
         assertEquals(50000.0, outputSI.getValue(), TestMetrics.tolerance);
-        assertEquals(Force.Types.N, outputSI.getUnitType());
+        assertEquals(Force.Types.N, outputSI.getType());
         assertEquals(5098.58104999997, outputAnotherType.getValue(), TestMetrics.tolerance);
-        assertEquals(Force.Types.KG, outputAnotherType.getUnitType());
+        assertEquals(Force.Types.KG, outputAnotherType.getType());
     }
 
 
@@ -50,8 +50,8 @@ public class TestForce {
     void SIUnitTypeOfForceShouldBeMeterSquare() {
         assertEquals(Force.Types.N, unitFormula.getSITypeOfThisCategory());
         assertEquals(Force.Types.N, Force.Types.MN.getSITypeOfThisCategory());
-        assertEquals(Force.Types.N, new Unit(0.0, Force.Types.POUND).getUnitType().getSITypeOfThisCategory());
-        assertEquals(Force.Types.N, new Unit(0.0, Force.Types.KG).getUnitType().getSITypeOfThisCategory());
+        assertEquals(Force.Types.N, new Unit(0.0, Force.Types.POUND).getType().getSITypeOfThisCategory());
+        assertEquals(Force.Types.N, new Unit(0.0, Force.Types.KG).getType().getSITypeOfThisCategory());
     }
 
 

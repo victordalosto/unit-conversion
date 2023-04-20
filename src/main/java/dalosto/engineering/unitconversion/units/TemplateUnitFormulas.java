@@ -12,10 +12,10 @@ abstract class TemplateUnitFormulas implements UnitFormula {
         if (unit == null) {
             throw new UnitException("Unit can't be NULL.");
         }
-        if (unit.getUnitType() == null) {
+        if (unit.getType() == null) {
             throw new UnitException("Unit Type can't be NULL.");
         }
-        return buildUnitIntoAnotherType(unit, unit.getUnitType().getSITypeOfThisCategory());
+        return buildUnitIntoAnotherType(unit, unit.getType().getSITypeOfThisCategory());
     }
 
 
@@ -23,10 +23,10 @@ abstract class TemplateUnitFormulas implements UnitFormula {
         if (unit == null) {
             throw new UnitException("Unit can't be NULL.");
         }
-        if (unit.getUnitType() == null || anotherType == null) {
+        if (unit.getType() == null || anotherType == null) {
             throw new UnitException("Unit Type can't be NULL.");
         }
-        if (!unit.getUnitType().getClass().equals(anotherType.getClass())) {
+        if (!unit.getType().getClass().equals(anotherType.getClass())) {
             throw new UnitException("UnitTypes are not compatible.");
         }
         return convertUnitIntoAnotherType(unit, anotherType);

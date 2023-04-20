@@ -38,11 +38,11 @@ public class TestLength {
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Length.Types.CM);
         assertEquals(value, unit.getValue(), TestMetrics.tolerance);
-        assertEquals(unitType, unit.getUnitType());
+        assertEquals(unitType, unit.getType());
         assertEquals(5.0, outputSI.getValue(), TestMetrics.tolerance);
-        assertEquals(Length.Types.M, outputSI.getUnitType());
+        assertEquals(Length.Types.M, outputSI.getType());
         assertEquals(500.0, outputAnotherType.getValue(), TestMetrics.tolerance);
-        assertEquals(Length.Types.CM, outputAnotherType.getUnitType());
+        assertEquals(Length.Types.CM, outputAnotherType.getType());
     }
 
 
@@ -50,8 +50,8 @@ public class TestLength {
     void SIUnitTypeOfLengthShouldBeMeter() {
         assertEquals(Length.Types.M, unitFormula.getSITypeOfThisCategory());
         assertEquals(Length.Types.M, Length.Types.DM.getSITypeOfThisCategory());
-        assertEquals(Length.Types.M, new Unit(0.0, Length.Types.FT).getUnitType().getSITypeOfThisCategory());
-        assertEquals(Length.Types.M, new Unit(0.0, Length.Types.KM).getUnitType().getSITypeOfThisCategory());
+        assertEquals(Length.Types.M, new Unit(0.0, Length.Types.FT).getType().getSITypeOfThisCategory());
+        assertEquals(Length.Types.M, new Unit(0.0, Length.Types.KM).getType().getSITypeOfThisCategory());
     }
 
 

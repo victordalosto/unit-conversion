@@ -45,7 +45,7 @@ public class Temperature extends TemplateUnitFormulas {
     @Override
     public Unit convertUnitIntoAnotherType(Unit unit, UnitType otherType) {
         double unitValue = unit.getValue();
-        UnitType unitType = unit.getUnitType();
+        UnitType unitType = unit.getType();
         if (unitType.equals(otherType)) {
             return new Unit(unitValue, unitType);
         }

@@ -53,8 +53,8 @@ public class Force extends TemplateUnitFormulas {
 
     @Override
     public Unit convertUnitIntoAnotherType(Unit unit, UnitType anotherType) {
-        double inputConversion = ((Types) unit.getUnitType()).factorOfEquivalenceToSI;
-        if (((Types) unit.getUnitType()).dependesOfGravityOnConversion) {
+        double inputConversion = ((Types) unit.getType()).factorOfEquivalenceToSI;
+        if (((Types) unit.getType()).dependesOfGravityOnConversion) {
             inputConversion *= GRAVITY;
         }
         double ouputConversion = ((Types) anotherType).factorOfEquivalenceToSI;

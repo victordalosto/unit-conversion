@@ -50,7 +50,7 @@ public class Volume extends TemplateUnitFormulas {
 
     @Override
     public Unit convertUnitIntoAnotherType(Unit unit, UnitType anotherType) {
-        double inputConversion = ((Types) unit.getUnitType()).factorOfEquivalenceToSI;
+        double inputConversion = ((Types) unit.getType()).factorOfEquivalenceToSI;
         double ouputConversion = ((Types) anotherType).factorOfEquivalenceToSI;
         double value = unit.getValue() * (inputConversion / ouputConversion);
         return new Unit(value, anotherType);

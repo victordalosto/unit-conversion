@@ -5,7 +5,6 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.ParameterException;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
-import dalosto.engineering.unitconversion.rest.domain.MessageRest;
 import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
 
 
@@ -19,9 +18,10 @@ public class ConversorService {
     private NumericService numericService;
 
 
-    public MessageRest generateMessageRest(UnitDAO unitDAO, UnitFormula unitFormula) {
-        // Unit unit = createUnitFromUnitDAO(unitDAO, unitFormula);
-        return null;
+    public Unit convertUnit(UnitDAO unitDAO, UnitFormula unitFormula) {
+        Unit unit = createUnitFromUnitDAO(unitDAO, unitFormula);
+        UnitType targetType = getTargetUnitType(unitDAO, unitFormula);
+        return unitFormula.buildUnitIntoAnotherType(unit, targetType);
     }
 
 
@@ -30,5 +30,13 @@ public class ConversorService {
         UnitType type = mapUnitTypeService.getUnitTypeFromString(unitDAO.getType(), unitFormula);
         return new Unit(value, type);
     }
-    
+
+
+    public UnitType getTargetUnitType(UnitDAO unitDAO, UnitFormula unitFormula) throws ParameterException {
+        if (unitDAO.getTarget() == null) {
+            throw new ParameterException("target can't be NULL.");
+        }
+        return mapUnitTypeService.getUnitTypeFromString(unitDAO.getTarget(), unitFormula);
+    }
+
 }

@@ -38,11 +38,11 @@ public class TestVolume {
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Volume.Types.CM_3);
         assertEquals(value, unit.getValue(), TestMetrics.tolerance);
-        assertEquals(unitType, unit.getUnitType());
+        assertEquals(unitType, unit.getType());
         assertEquals(0.025, outputSI.getValue(), TestMetrics.tolerance);
-        assertEquals(Volume.Types.M_3, outputSI.getUnitType());
+        assertEquals(Volume.Types.M_3, outputSI.getType());
         assertEquals(25000.0, outputAnotherType.getValue(), TestMetrics.tolerance);
-        assertEquals(Volume.Types.CM_3, outputAnotherType.getUnitType());
+        assertEquals(Volume.Types.CM_3, outputAnotherType.getType());
     }
 
 
@@ -50,8 +50,8 @@ public class TestVolume {
     void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
         assertEquals(Volume.Types.M_3, unitFormula.getSITypeOfThisCategory());
         assertEquals(Volume.Types.M_3, Volume.Types.DM_3.getSITypeOfThisCategory());
-        assertEquals(Volume.Types.M_3, new Unit(0.0, Volume.Types.FT_3).getUnitType().getSITypeOfThisCategory());
-        assertEquals(Volume.Types.M_3, new Unit(0.0, Volume.Types.KM_3).getUnitType().getSITypeOfThisCategory());
+        assertEquals(Volume.Types.M_3, new Unit(0.0, Volume.Types.FT_3).getType().getSITypeOfThisCategory());
+        assertEquals(Volume.Types.M_3, new Unit(0.0, Volume.Types.KM_3).getType().getSITypeOfThisCategory());
     }
 
 

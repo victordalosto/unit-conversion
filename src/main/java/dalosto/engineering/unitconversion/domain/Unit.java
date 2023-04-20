@@ -1,7 +1,7 @@
 package dalosto.engineering.unitconversion.domain;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 
 
 /**
@@ -9,7 +9,7 @@ import lombok.ToString;
  */
 @Getter
 @AllArgsConstructor
-@ToString
+@EqualsAndHashCode
 public final class Unit {
 
 
@@ -18,7 +18,16 @@ public final class Unit {
 
 
     /** Returns the unit type defined. */
-    private final UnitType unitType;
+    private final UnitType type;
+
+
+    @Override
+    public String toString() {
+        return "[value=" + value + ", type=" + type + "]";
+    }
+
+
+    
 
 
 }

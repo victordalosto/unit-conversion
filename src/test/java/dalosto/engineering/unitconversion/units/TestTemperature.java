@@ -38,11 +38,11 @@ public class TestTemperature {
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Temperature.Types.F);
         assertEquals(value, unit.getValue(), TestMetrics.tolerance);
-        assertEquals(unitType, unit.getUnitType());
+        assertEquals(unitType, unit.getType());
         assertEquals(373.15, outputSI.getValue(), TestMetrics.tolerance);
-        assertEquals(Temperature.Types.K, outputSI.getUnitType());
+        assertEquals(Temperature.Types.K, outputSI.getType());
         assertEquals(212, outputAnotherType.getValue(), TestMetrics.tolerance);
-        assertEquals(Temperature.Types.F, outputAnotherType.getUnitType());
+        assertEquals(Temperature.Types.F, outputAnotherType.getType());
     }
 
 
@@ -50,8 +50,8 @@ public class TestTemperature {
     void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
         assertEquals(Temperature.Types.K, unitFormula.getSITypeOfThisCategory());
         assertEquals(Temperature.Types.K, Temperature.Types.C.getSITypeOfThisCategory());
-        assertEquals(Temperature.Types.K, new Unit(0.0, Temperature.Types.F).getUnitType().getSITypeOfThisCategory());
-        assertEquals(Temperature.Types.K, new Unit(0.0, Temperature.Types.R).getUnitType().getSITypeOfThisCategory());
+        assertEquals(Temperature.Types.K, new Unit(0.0, Temperature.Types.F).getType().getSITypeOfThisCategory());
+        assertEquals(Temperature.Types.K, new Unit(0.0, Temperature.Types.R).getType().getSITypeOfThisCategory());
     }
 
 

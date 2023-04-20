@@ -1,14 +1,15 @@
 package dalosto.engineering.unitconversion.rest.domain;
+import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 import lombok.Builder;
 import lombok.Getter;
 
 
 @Builder
 @Getter
-public class DescriptionOfEndpoint {
+public class EndpointInfo {
 
     private String title;
     private String uri;
-    private String unitTypes; 
+    private UnitFormula unitFormula; 
 
 }
