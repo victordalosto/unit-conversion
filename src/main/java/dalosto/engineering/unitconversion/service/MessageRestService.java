@@ -25,20 +25,20 @@ public class MessageRestService {
 
 
     private void appendResult(MessageRest messageRest, EndpointInfo info, UnitDAO unitDAO) {
-        if (unitDAO.doesntHaveData()) {
-            appendDefaultHATEOASmessage(messageRest, info);
-        } else if (info.isExampleURI()) {
+        if (info.isExampleURI()) {
             appendExampleMessage(messageRest, info, unitDAO);
+        } else if (unitDAO.doesntHaveData()) {
+            appendDefaultHATEOASmessage(messageRest, info);
         } else {
             appendConversionMessage(messageRest, info, unitDAO);
-        }
+        }   
     }
 
 
     private void appendDefaultHATEOASmessage(MessageRest messageRest, EndpointInfo info) {
         messageRest.setResult(RestStatus.INFO, 
                               "about", "Check the /example endpoint for a usage example.", 
-                              "uri", info.getUri() + "/example");
+                              "uri", info.getURIExample());
     }
 
 
@@ -65,12 +65,12 @@ public class MessageRestService {
         messageRest.setResult(RestStatus.ERROR, 
                               "ParameterException", e.getMessage(), 
                               "about", "Check the /example endpoint to verify the correct API usage.", 
-                              "uri", info.getUri() + "/example");
+                              "uri", info.getURIExample());
     }
 
 
     private void appendHeader(MessageRest messageRest, EndpointInfo info, UnitDAO unitDAO) {
-        messageRest.addToHeader("uri", info.getUri());
+        messageRest.addToHeader("url", info.getUri());
         messageRest.addToHeader("input", unitDAO.toString());
     }
 

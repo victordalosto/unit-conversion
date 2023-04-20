@@ -9,7 +9,7 @@ import dalosto.engineering.unitconversion.rest.controller.template.TemplateContr
 import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
 import dalosto.engineering.unitconversion.rest.domain.MessageRest;
 import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
-import dalosto.engineering.unitconversion.service.MessageRestService;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -20,13 +20,18 @@ public class LengthController extends TemplateController {
     @Qualifier("Length")
     private UnitFormula unitFormula;
 
-    @Autowired
-    private MessageRestService service;
-
-
+    
+    @Override
     @GetMapping
     public MessageRest home(UnitDAO unitDAO) {
-        return service.getMessageForEndPoint(this.getEndpointInfo(), unitDAO);
+        return super.getHome(unitDAO);
+    }
+
+
+    @Override
+    @GetMapping("/example")
+    public MessageRest example(UnitDAO unitDAO) {
+        return super.getExample(unitDAO);
     }
 
 
@@ -38,5 +43,6 @@ public class LengthController extends TemplateController {
                                     .unitFormula(unitFormula)
                                     .build();
     }
+
     
 }

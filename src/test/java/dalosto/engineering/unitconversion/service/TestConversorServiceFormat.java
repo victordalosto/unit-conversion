@@ -82,7 +82,7 @@ public class TestConversorServiceFormat {
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Temperature());
         assertEquals(new UnitDAO("12345.67", "C", "C"), inputDAO);
 
-        inputDAO = new UnitDAO("12345 . 67", "S", "S");
+        inputDAO = new UnitDAO("12345 . 67", "s", "S");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Time());
         assertEquals(new UnitDAO("12345.67", "S", "S"), inputDAO);
     }
