@@ -2,13 +2,13 @@ package dalosto.engineering.unitconversion.rest.domain;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 
 
 @Getter
-@Setter
 @AllArgsConstructor
+@EqualsAndHashCode
 public class UnitDAO {
 
     private String value;
@@ -28,6 +28,21 @@ public class UnitDAO {
         map.put("type", this.type);
         map.put("target", this.target);
         return map.toString();
+    }
+
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
+    public void setType(String type) {
+        this.type = type.replaceAll("_", "\\^");
+    }
+
+
+    public void setTarget(String target) {
+        this.target = target.replaceAll("_", "\\^");
     }
 
 }
