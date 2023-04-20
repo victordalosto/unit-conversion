@@ -66,18 +66,12 @@ public class TestServiceToFixString {
 
     @Test
     void serviceShouldFixStringContainingNumbersSuperScriptAndSubscript() {
-        assert (mapUnitTypeService.fixStringToFindUnityType("M1").equals("M"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M¹").equals("M"));
         assert (mapUnitTypeService.fixStringToFindUnityType("M²").equals("M_2"));
         assert (mapUnitTypeService.fixStringToFindUnityType("M³").equals("M_3"));
         assert (mapUnitTypeService.fixStringToFindUnityType("M⁴").equals("M_4"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M₁").equals("M"));
         assert (mapUnitTypeService.fixStringToFindUnityType("M₂").equals("M_2"));
         assert (mapUnitTypeService.fixStringToFindUnityType("M₃").equals("M_3"));
         assert (mapUnitTypeService.fixStringToFindUnityType("M₄").equals("M_4"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M0").equals("M"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M⁰").equals("M"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M₀").equals("M"));
     }
 
 }

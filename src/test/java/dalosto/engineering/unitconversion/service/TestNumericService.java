@@ -1,14 +1,22 @@
 package dalosto.engineering.unitconversion.service;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import dalosto.engineering.unitconversion.exception.ParameterException;
 
 
 @SpringBootTest
-public class TestConvertToNumericService {
+public class TestNumericService {
 
     @Autowired
-    private ConvertToNumericService service;
+    private NumericService service;
+
+
+    @Test
+    void invalidNumericShouldThrowsParameterExceptionNotNUmericException() {
+        assertThrows(ParameterException.class, () -> service.convertToNumeric("null"));
+    }
 
 
     @Test

@@ -5,14 +5,14 @@ import dalosto.engineering.unitconversion.exception.ParameterException;
 
 
 @Service
-public final class ConvertToNumericService {
+public final class NumericService {
 
     static {
         setDotAsDefaultDecimalSeparator();
     }
 
 
-    public Double convertToNumeric(String value) {
+    public Double convertToNumeric(String value) throws ParameterException {
         if (value == null || value.isEmpty()) {
             throw new ParameterException("value can't be NULL.");
         }
@@ -20,10 +20,19 @@ public final class ConvertToNumericService {
                                .replaceAll("[^\\d.-]", "");
         newValue = removesMultiplesDecimalSeparator(newValue);
         newValue = fixSignalValueFromString(newValue);
-        return Double.parseDouble(newValue);
+        return convertStringToNumeric(newValue);
     }
 
     
+    private Double convertStringToNumeric(String newValue) {
+        try {
+            return Double.parseDouble(newValue);
+        } catch (NumberFormatException e) {
+            throw new ParameterException("value must be to numeric.");
+        }
+    }
+
+
     private String removesMultiplesDecimalSeparator(String value) {
         if (!value.contains(".")) {
             return value;

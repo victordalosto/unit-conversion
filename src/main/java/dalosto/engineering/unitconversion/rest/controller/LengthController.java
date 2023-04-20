@@ -9,6 +9,7 @@ import dalosto.engineering.unitconversion.rest.controller.template.TemplateContr
 import dalosto.engineering.unitconversion.rest.domain.DescriptionOfEndpoint;
 import dalosto.engineering.unitconversion.rest.domain.MessageRest;
 import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
+import dalosto.engineering.unitconversion.service.ConversorService;
 
 
 @RestController
@@ -19,11 +20,13 @@ public class LengthController extends TemplateController {
     @Qualifier("Length")
     private UnitFormula unitFormula;
 
+    @Autowired
+    private ConversorService conversorService;
+
 
     @GetMapping
-    public MessageRest home(UnitDAO unit, String target) {
-        MessageRest message = new MessageRest();
-        return message;
+    public MessageRest home(UnitDAO unitDAO) {
+        return conversorService.generateMessageRest(unitDAO, unitFormula);
     }
 
 

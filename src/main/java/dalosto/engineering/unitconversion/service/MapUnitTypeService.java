@@ -2,7 +2,6 @@ package dalosto.engineering.unitconversion.service;
 import org.springframework.stereotype.Service;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.ParameterException;
-import dalosto.engineering.unitconversion.exception.UnitException;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 
 
@@ -10,9 +9,9 @@ import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 public class MapUnitTypeService {
 
 
-    public UnitType getUnitTypeFromString(String unitType, UnitFormula unitFormula) {
+    public UnitType getUnitTypeFromString(String unitType, UnitFormula unitFormula) throws ParameterException {
         if (unitType == null || unitFormula == null) {
-            throw new ParameterException("UnitType can't be NULL.");
+            throw new ParameterException("type can't be NULL.");
         }
         return mapUnity(unitType, unitFormula);
     }
@@ -25,7 +24,7 @@ public class MapUnitTypeService {
                 return type;
             }
         }
-        throw new UnitException("UnitType " + string + " not found.");
+        throw new ParameterException("type " + string + " not found.");
     }
 
 
@@ -35,7 +34,6 @@ public class MapUnitTypeService {
         string = string.replaceAll("-", "_").replaceAll("\\^", "_").replaceAll("~", "_");
         string = string.replaceAll("¹", "1").replaceAll("²", "2").replaceAll("³", "3").replaceAll("⁴", "4");
         string = string.replaceAll("₁", "1").replaceAll("₂", "2").replaceAll("₃", "3").replaceAll("₄", "4");
-        string = string.replaceAll("1", "").replaceAll("0", "").replaceAll("₀", "").replaceAll("⁰", "");
         string = string.replaceAll("[^a-zA-Z0-9_]+", "");
         string = fixMissingUnderlineOrWithVogalEasExponential(string);
         string = string.replaceAll("_{2,}", "_"); // replace multiple _ with one
