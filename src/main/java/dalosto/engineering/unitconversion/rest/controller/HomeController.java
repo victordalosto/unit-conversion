@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.rest.controller.template.TemplateController;
@@ -53,7 +52,7 @@ public class HomeController {
             // The next calls violates the Law of Demeter, but it's the best option considering the design.
             results.put("uri", controller.getEndpointInfo().getURI()); 
             results.put("about", "This endpoint converts "+controller.getEndpointInfo().getTitle()+" measurement units.");
-            results.put("units", controller.getEndpointInfo().getUnitFormula().getAllUnitTypesOfThisCategory().toString().replaceAll("_", "\\^"));
+            results.put("units", controller.getEndpointInfo().getAllUnits());
             message.addToResult(controller.getEndpointInfo().getTitle(), results);
         }
     }

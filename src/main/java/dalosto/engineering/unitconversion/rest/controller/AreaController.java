@@ -30,13 +30,6 @@ public class AreaController extends TemplateController {
 
 
     @Override
-    @GetMapping("/example")
-    public RestMessage example(UnitDAO unitDAO) {
-        return super.createRestMessage(unitDAO);
-    }
-
-
-    @Override
     public EndpointInfo getEndpointInfo() {
         return new EndpointInfo("area", unitFormula);
     }

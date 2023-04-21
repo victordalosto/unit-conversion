@@ -30,15 +30,15 @@ public class TestConversorServiceFormat {
 
         inputDAO = new UnitDAO("12345.67", "MM^2", "MM^2");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Area());
-        assertEquals(new UnitDAO("12345.67", "MM^2", "MM^2"), inputDAO);
+        assertEquals(new UnitDAO("12345.67", "MM2", "MM2"), inputDAO);
 
         inputDAO = new UnitDAO("12345.67", "MM^3", "MM^3");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Volume());
-        assertEquals(new UnitDAO("12345.67", "MM^3", "MM^3"), inputDAO);
+        assertEquals(new UnitDAO("12345.67", "MM3", "MM3"), inputDAO);
 
         inputDAO = new UnitDAO("12345.67", "MM^4", "MM^4");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Inertia());
-        assertEquals(new UnitDAO("12345.67", "MM^4", "MM^4"), inputDAO);
+        assertEquals(new UnitDAO("12345.67", "MM4", "MM4"), inputDAO);
 
         inputDAO = new UnitDAO("12345.67", "N", "N");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Force());
@@ -64,15 +64,15 @@ public class TestConversorServiceFormat {
 
         inputDAO = new UnitDAO("12345.6700000", " M m _ 2", " M M 2 ");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Area());
-        assertEquals(new UnitDAO("12345.67", "MM^2", "MM^2"), inputDAO);
+        assertEquals(new UnitDAO("12345.67", "MM2", "MM2"), inputDAO);
 
         inputDAO = new UnitDAO("12345.,.67", " MM3", "MM3");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Volume());
-        assertEquals(new UnitDAO("12345.67", "MM^3", "MM^3"), inputDAO);
+        assertEquals(new UnitDAO("12345.67", "MM3", "MM3"), inputDAO);
 
         inputDAO = new UnitDAO(" 1 2 3 4 5.67 ", "MM ^ 4", "MM _ 4");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Inertia());
-        assertEquals(new UnitDAO("12345.67", "MM^4", "MM^4"), inputDAO);
+        assertEquals(new UnitDAO("12345.67", "MM4", "MM4"), inputDAO);
 
         inputDAO = new UnitDAO("  12345.67", "  n  ", " n ");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Force());

@@ -20,6 +20,5 @@ public abstract class TemplateController {
 
     public abstract EndpointInfo getEndpointInfo();
     protected abstract RestMessage home(UnitDAO unitDAO);
-    protected abstract RestMessage example(UnitDAO unitDAO);
 
 }

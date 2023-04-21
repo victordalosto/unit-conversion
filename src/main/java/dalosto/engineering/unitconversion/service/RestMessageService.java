@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.exception.ParameterException;
 import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
-import dalosto.engineering.unitconversion.rest.domain.ExampleMessage;
 import dalosto.engineering.unitconversion.rest.domain.RestMessage;
 import dalosto.engineering.unitconversion.rest.domain.RestStatus;
 import dalosto.engineering.unitconversion.rest.domain.RestURL;
@@ -30,9 +29,7 @@ public class RestMessageService {
 
 
     private void appendResult(RestMessage message, EndpointInfo info, UnitDAO unitDAO) {
-        if (restURL.isExampleURI()) {
-            appendExampleMessage(message, info, unitDAO);
-        } else if (unitDAO.doesntHaveData()) {
+        if (unitDAO.doesntHaveData()) {
             appendDefaultHATEOASmessage(message, info);
         } else {
             appendConversionMessage(message, info, unitDAO);
@@ -42,14 +39,11 @@ public class RestMessageService {
 
     private void appendDefaultHATEOASmessage(RestMessage message, EndpointInfo info) {
         message.setResult(RestStatus.INFO, 
-                          "uri", restURL.getExampleURI(),
-                          "about", "Check the /example endpoint for a usage example.");
-    }
-
-
-    private void appendExampleMessage(RestMessage message, EndpointInfo info, UnitDAO unitDAO) {
-        message.setResult(RestStatus.INFO, 
-                          new ExampleMessage(info).getMessage(conversorService));
+                          "title", "This endpoint provides functionality to convert " + info.getTitle().toUpperCase() + " measurement units.",
+                          "types", info.getAllUnits(),
+                          "about", "Check the example endpoint for a usage example.",
+                          "uri", "/example"
+                          );
     }
 
 
@@ -71,8 +65,9 @@ public class RestMessageService {
     private void appendMessageOfError(RestMessage message, EndpointInfo info, ParameterException e) {
         message.setResult(RestStatus.ERROR, 
                           "ParameterException", e.getMessage(), 
-                          "about", "Check the /example endpoint to verify the correct API usage.", 
-                          "uri", restURL.getExampleURI());
+                          "about", "Check the example endpoint to verify the correct API usage.",
+                          "uri", "/example"
+                          );
     }
 
 

@@ -1,6 +1,6 @@
 <h1 align="center"> Unit Converter </h1>
 
-Unit Converter is a <strong> RESTful </strong> application, that implements Level 3 of the Richardson Maturity Model - HATEOAs.
+Unit Converter is a <strong> RESTful </strong> application that implements the Level 3 of the Richardson Maturity Model - HATEOAs.
 
 The program was made in Spring and is used for conversion between various measurement units.
 
@@ -11,7 +11,7 @@ The program basically converts the Measurement Unit and its value into another e
 
 <h2 align="center"> How to use </h2>
 
-The entire usage of the application is guided by the resources and URI.
+The entire usage of the application is self explanatory, guided by resources and its URI.
 > <b>Endpoint</b>: localhost:8080
 ```json
 {
@@ -26,7 +26,7 @@ The entire usage of the application is guided by the resources and URI.
     "area": {
       "uri": "/api/area",
       "about": "This endpoint converts area measurement units.",
-      "units": "[DM^2, MM^2, M^2, YD^2, KM^2, UM^2, IN^2, HM^2, FT^2, CM^2]"
+      "units": "[DM2, MM2, M2, YD2, KM2, UM2, IN2, HM2, FT2, CM2]"
     },
     "force": {
       "uri": "/api/force",
@@ -36,7 +36,7 @@ The entire usage of the application is guided by the resources and URI.
     "inertia": {
       "uri": "/api/inertia",
       "about": "This endpoint converts inertia measurement units.",
-      "units": "[KM^4, UM^4, HM^4, M^4, DM^4, IN^4, MM^4, FT^4, CM^4, YD^4]"
+      "units": "[KM4, UM4, HM4, M4, DM4, IN4, MM4, FT4, CM4, YD4]"
     },
     "length": {
       "uri": "/api/length",
@@ -51,12 +51,12 @@ The entire usage of the application is guided by the resources and URI.
     "time": {
       "uri": "/api/time",
       "about": "This endpoint converts time measurement units.",
-      "units": "[US, YEAR, S, MS, H, MIN, WEEK, MONTH, MONTH^31, DAY, MONTH^30]"
+      "units": "[US, YEAR, S, MS, H, MIN, WEEK, MONTH, MONTH31, DAY, MONTH30]"
     },
     "volume": {
       "uri": "/api/volume",
       "about": "This endpoint converts volume measurement units.",
-      "units": "[KM^3, HM^3, FT^3, MM^3, M^3, UM^3, YD^3, DM^3, CM^3, IN^3, ML, L]"
+      "units": "[KM3, HM3, FT3, MM3, M3, UM3, YD3, DM3, CM3, IN3, ML, L]"
     }
   }
 }
@@ -88,8 +88,10 @@ Info status:
   },
   "result": {
     "info": {
-      "uri": "/api/length/example",
-      "about": "Check the /example endpoint for a usage example."
+      "title": "This endpoint provides functionality to convert AREA measurement units.",
+      "types": "[HM2, CM2, DM2, KM2, UM2, YD2, M2, MM2, IN2, FT2]",
+      "about": "Check the example endpoint for a usage example.",
+      "uri": "/example"
     }
   }
 }
@@ -109,7 +111,7 @@ Error status:
     "error": {
       "ParameterException": "type INVALID not found.",
       "about": "Check the /example endpoint to verify the correct API usage.",
-      "uri": "/api/length/example"
+      "uri": "/example"
     }
   }
 }
@@ -142,22 +144,18 @@ If you don't know how to use the API. just go to the /example end-point and it w
 ```json
 {
   "header": {
-    "uri": "/api/length/example",
+    "uri": "/example",
     "home": "http://localhost:8080",
-    "input": "{value=null, type=null, target=null}"
+    "title": "This endpoint provides example in how to use this API to convert measurement units.",
+    "description": "Given a quantity expressed in a unit type, the end-points returns the equivalent quantity in a different measurement unit."
   },
   "result": {
     "info": {
-      "ref": "/api/length",
-      "title": "This endpoint provides functionality to convert LENGTH measurement units.",
-      "description": "Given a quantity expressed in a unit type, the end-point returns the equivalent quantity in a different measurement unit.",
-      "how-to": "Convert 12345.67 MM to KM",
-      "GET": "/api/length?value=12345.67&type=MM&target=KM",
-      "POST": "/api/length  Body ->  {'value': 12345.67, 'type': 'MM', 'target': 'KM'}",
-      "result": "Contains a status of the request, and possibly the result of the conversion.",
-      "status": "can be: { SUCESS | ERROR | INFO }",
-      "unit": "Expressed in {value=0.01234567, type=KM}",
-      "observation": "The params are resilients. Values can be separated using comma (1,23), dot (1.23), or contain noise (myValue=1.23)",
+      "example": "How to convert 12345.67 M2 into CM2  ?",
+      "GET  Request": "/api/area?value=12345.67&type=M2&target=CM2",
+      "POST Request": "/api/area  Body: {'value': 12345.67, 'type': 'M2', 'target': 'CM2'}",
+      "Response": "{ SUCCESS | ERROR | INFO }   {value=1.234567E8, type=CM2}",
+      "observation": "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myValue is 1.23)",
       "observation2": "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
     }
   }

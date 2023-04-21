@@ -23,4 +23,9 @@ public class EndpointInfo {
     }
 
 
+    public String getAllUnits() {
+        return unitFormula.getAllUnitTypesOfThisCategory().toString().replaceAll("_", "");
+    }
+
+
 }
