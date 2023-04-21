@@ -13,16 +13,16 @@ public class Volume extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {
 
-        M_3(1.0),
-        DM_3(0.001),
-        CM_3(Math.pow(10.0, -6)),
-        MM_3(Math.pow(10.0, -9)),
-        HM_3(Math.pow(10.0, 6)),
-        KM_3(Math.pow(10.0, 9)),
-        UM_3(Math.pow(10.0, -18)),
-        IN_3(0.000016387064),
-        FT_3(0.028316846592),
-        YD_3(0.764554857984),
+        M3(1.0),
+        DM3(0.001),
+        CM3(Math.pow(10.0, -6)),
+        MM3(Math.pow(10.0, -9)),
+        HM3(Math.pow(10.0, 6)),
+        KM3(Math.pow(10.0, 9)),
+        UM3(Math.pow(10.0, -18)),
+        IN3(0.000016387064),
+        FT3(0.028316846592),
+        YD3(0.764554857984),
         ML(0.000001),
         L(0.001);
     
@@ -35,7 +35,7 @@ public class Volume extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return M_3;
+            return M3;
         }
 
 
@@ -59,13 +59,13 @@ public class Volume extends TemplateUnitFormulas {
 
     @Override
     public UnitType getSITypeOfThisCategory() {
-        return Types.M_3.getSITypeOfThisCategory();
+        return Types.M3.getSITypeOfThisCategory();
     }
 
 
     @Override
     public Set<UnitType> getAllUnitTypesOfThisCategory() {
-        return Types.M_3.getAllUnitTypesOfThisCategory();
+        return Types.M3.getAllUnitTypesOfThisCategory();
     }
 
 

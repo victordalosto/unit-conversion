@@ -45,9 +45,9 @@ public class TestMapUnity {
         assertEquals(Length.Types.MM, service.getUnitTypeFromString("MM", new Length()));
         assertEquals(Length.Types.MM, service.getUnitTypeFromString("mM", new Length()));
         assertEquals(Length.Types.MM, service.getUnitTypeFromString(" m M ", new Length()));
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString(" M ^ 2", new Area()));
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString("m ^2", new Area()));
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString(" m _^_ 2", new Area()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString(" M ^ 2", new Area()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString("m ^2", new Area()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString(" m _^_ 2", new Area()));
         assertEquals(Temperature.Types.C, service.getUnitTypeFromString("  ºC ", new Temperature()));
     }
 
@@ -55,21 +55,21 @@ public class TestMapUnity {
     void serviceShouldBeAbleToConvertWithDifferentFormats() {
         assertEquals(Length.Types.M, service.getUnitTypeFromString("m", new Length()));
         assertEquals(Length.Types.M, service.getUnitTypeFromString("M", new Length()));
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString("M2", new Area()));
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString("M_2", new Area()));
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString("M^2", new Area()));
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString("M ^ 2", new Area()));
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString("M²", new Area()));
-        assertEquals(Volume.Types.M_3, service.getUnitTypeFromString("M3", new Volume()));
-        assertEquals(Volume.Types.M_3, service.getUnitTypeFromString("M_3", new Volume()));
-        assertEquals(Volume.Types.M_3, service.getUnitTypeFromString("M^3", new Volume()));
-        assertEquals(Volume.Types.M_3, service.getUnitTypeFromString("M ^ 3", new Volume()));
-        assertEquals(Volume.Types.M_3, service.getUnitTypeFromString("M³", new Volume()));
-        assertEquals(Inertia.Types.M_4, service.getUnitTypeFromString("M4", new Inertia()));
-        assertEquals(Inertia.Types.M_4, service.getUnitTypeFromString("M_4", new Inertia()));
-        assertEquals(Inertia.Types.M_4, service.getUnitTypeFromString("M^4", new Inertia()));
-        assertEquals(Inertia.Types.M_4, service.getUnitTypeFromString("M ^ 4", new Inertia()));
-        assertEquals(Inertia.Types.M_4, service.getUnitTypeFromString("M⁴", new Inertia()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString("M2", new Area()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString("M_2", new Area()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString("M^2", new Area()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString("M ^ 2", new Area()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString("M²", new Area()));
+        assertEquals(Volume.Types.M3, service.getUnitTypeFromString("M3", new Volume()));
+        assertEquals(Volume.Types.M3, service.getUnitTypeFromString("M_3", new Volume()));
+        assertEquals(Volume.Types.M3, service.getUnitTypeFromString("M^3", new Volume()));
+        assertEquals(Volume.Types.M3, service.getUnitTypeFromString("M ^ 3", new Volume()));
+        assertEquals(Volume.Types.M3, service.getUnitTypeFromString("M³", new Volume()));
+        assertEquals(Inertia.Types.M4, service.getUnitTypeFromString("M4", new Inertia()));
+        assertEquals(Inertia.Types.M4, service.getUnitTypeFromString("M_4", new Inertia()));
+        assertEquals(Inertia.Types.M4, service.getUnitTypeFromString("M^4", new Inertia()));
+        assertEquals(Inertia.Types.M4, service.getUnitTypeFromString("M ^ 4", new Inertia()));
+        assertEquals(Inertia.Types.M4, service.getUnitTypeFromString("M⁴", new Inertia()));
     }
 
 
@@ -90,31 +90,31 @@ public class TestMapUnity {
 
     @Test
     void serviceShouldBeAbleToMapAreaUnits() {
-        assertEquals(Area.Types.M_2, service.getUnitTypeFromString("M2", new Area()));
-        assertEquals(Area.Types.DM_2, service.getUnitTypeFromString("DM2", new Area()));
-        assertEquals(Area.Types.CM_2, service.getUnitTypeFromString("CM2", new Area()));
-        assertEquals(Area.Types.MM_2, service.getUnitTypeFromString("MM2", new Area()));
-        assertEquals(Area.Types.HM_2, service.getUnitTypeFromString("HM2", new Area()));
-        assertEquals(Area.Types.KM_2, service.getUnitTypeFromString("KM2", new Area()));
-        assertEquals(Area.Types.UM_2, service.getUnitTypeFromString("UM2", new Area()));
-        assertEquals(Area.Types.IN_2, service.getUnitTypeFromString("IN2", new Area()));
-        assertEquals(Area.Types.FT_2, service.getUnitTypeFromString("FT2", new Area()));
-        assertEquals(Area.Types.YD_2, service.getUnitTypeFromString("YD2", new Area()));
+        assertEquals(Area.Types.M2, service.getUnitTypeFromString("M2", new Area()));
+        assertEquals(Area.Types.DM2, service.getUnitTypeFromString("DM2", new Area()));
+        assertEquals(Area.Types.CM2, service.getUnitTypeFromString("CM2", new Area()));
+        assertEquals(Area.Types.MM2, service.getUnitTypeFromString("MM2", new Area()));
+        assertEquals(Area.Types.HM2, service.getUnitTypeFromString("HM2", new Area()));
+        assertEquals(Area.Types.KM2, service.getUnitTypeFromString("KM2", new Area()));
+        assertEquals(Area.Types.UM2, service.getUnitTypeFromString("UM2", new Area()));
+        assertEquals(Area.Types.IN2, service.getUnitTypeFromString("IN2", new Area()));
+        assertEquals(Area.Types.FT2, service.getUnitTypeFromString("FT2", new Area()));
+        assertEquals(Area.Types.YD2, service.getUnitTypeFromString("YD2", new Area()));
     }
 
 
     @Test
     void serviceShouldBeAbleToMapVolumeUnits() {
-        assertEquals(Volume.Types.M_3, service.getUnitTypeFromString("M3", new Volume()));
-        assertEquals(Volume.Types.DM_3, service.getUnitTypeFromString("DM3", new Volume()));
-        assertEquals(Volume.Types.CM_3, service.getUnitTypeFromString("CM3", new Volume()));
-        assertEquals(Volume.Types.MM_3, service.getUnitTypeFromString("MM3", new Volume()));
-        assertEquals(Volume.Types.HM_3, service.getUnitTypeFromString("HM3", new Volume()));
-        assertEquals(Volume.Types.KM_3, service.getUnitTypeFromString("KM3", new Volume()));
-        assertEquals(Volume.Types.UM_3, service.getUnitTypeFromString("UM3", new Volume()));
-        assertEquals(Volume.Types.IN_3, service.getUnitTypeFromString("IN3", new Volume()));
-        assertEquals(Volume.Types.FT_3, service.getUnitTypeFromString("FT3", new Volume()));
-        assertEquals(Volume.Types.YD_3, service.getUnitTypeFromString("YD3", new Volume()));
+        assertEquals(Volume.Types.M3, service.getUnitTypeFromString("M3", new Volume()));
+        assertEquals(Volume.Types.DM3, service.getUnitTypeFromString("DM3", new Volume()));
+        assertEquals(Volume.Types.CM3, service.getUnitTypeFromString("CM3", new Volume()));
+        assertEquals(Volume.Types.MM3, service.getUnitTypeFromString("MM3", new Volume()));
+        assertEquals(Volume.Types.HM3, service.getUnitTypeFromString("HM3", new Volume()));
+        assertEquals(Volume.Types.KM3, service.getUnitTypeFromString("KM3", new Volume()));
+        assertEquals(Volume.Types.UM3, service.getUnitTypeFromString("UM3", new Volume()));
+        assertEquals(Volume.Types.IN3, service.getUnitTypeFromString("IN3", new Volume()));
+        assertEquals(Volume.Types.FT3, service.getUnitTypeFromString("FT3", new Volume()));
+        assertEquals(Volume.Types.YD3, service.getUnitTypeFromString("YD3", new Volume()));
         assertEquals(Volume.Types.ML, service.getUnitTypeFromString("ML", new Volume()));
         assertEquals(Volume.Types.L, service.getUnitTypeFromString("L", new Volume()));
     }
@@ -122,16 +122,16 @@ public class TestMapUnity {
 
     @Test
     void serviceShouldBeAbleToMapInertiaUnits() {
-        assertEquals(Inertia.Types.M_4, service.getUnitTypeFromString("M4", new Inertia()));
-        assertEquals(Inertia.Types.DM_4, service.getUnitTypeFromString("DM4", new Inertia()));
-        assertEquals(Inertia.Types.CM_4, service.getUnitTypeFromString("CM4", new Inertia()));
-        assertEquals(Inertia.Types.MM_4, service.getUnitTypeFromString("MM4", new Inertia()));
-        assertEquals(Inertia.Types.HM_4, service.getUnitTypeFromString("HM4", new Inertia()));
-        assertEquals(Inertia.Types.KM_4, service.getUnitTypeFromString("KM4", new Inertia()));
-        assertEquals(Inertia.Types.UM_4, service.getUnitTypeFromString("UM4", new Inertia()));
-        assertEquals(Inertia.Types.IN_4, service.getUnitTypeFromString("IN4", new Inertia()));
-        assertEquals(Inertia.Types.FT_4, service.getUnitTypeFromString("FT4", new Inertia()));
-        assertEquals(Inertia.Types.YD_4, service.getUnitTypeFromString("YD4", new Inertia()));
+        assertEquals(Inertia.Types.M4, service.getUnitTypeFromString("M4", new Inertia()));
+        assertEquals(Inertia.Types.DM4, service.getUnitTypeFromString("DM4", new Inertia()));
+        assertEquals(Inertia.Types.CM4, service.getUnitTypeFromString("CM4", new Inertia()));
+        assertEquals(Inertia.Types.MM4, service.getUnitTypeFromString("MM4", new Inertia()));
+        assertEquals(Inertia.Types.HM4, service.getUnitTypeFromString("HM4", new Inertia()));
+        assertEquals(Inertia.Types.KM4, service.getUnitTypeFromString("KM4", new Inertia()));
+        assertEquals(Inertia.Types.UM4, service.getUnitTypeFromString("UM4", new Inertia()));
+        assertEquals(Inertia.Types.IN4, service.getUnitTypeFromString("IN4", new Inertia()));
+        assertEquals(Inertia.Types.FT4, service.getUnitTypeFromString("FT4", new Inertia()));
+        assertEquals(Inertia.Types.YD4, service.getUnitTypeFromString("YD4", new Inertia()));
     }
 
 
@@ -170,8 +170,8 @@ public class TestMapUnity {
         assertEquals(Time.Types.DAY, service.getUnitTypeFromString("DAY", new Time()));
         assertEquals(Time.Types.WEEK, service.getUnitTypeFromString("WEEK", new Time()));
         assertEquals(Time.Types.MONTH, service.getUnitTypeFromString("MONTH", new Time()));
-        assertEquals(Time.Types.MONTH_30, service.getUnitTypeFromString("MONTH_30", new Time()));
-        assertEquals(Time.Types.MONTH_31, service.getUnitTypeFromString("MONTH_31", new Time()));
+        assertEquals(Time.Types.MONTH30, service.getUnitTypeFromString("MONTH_30", new Time()));
+        assertEquals(Time.Types.MONTH31, service.getUnitTypeFromString("MONTH_31", new Time()));
         assertEquals(Time.Types.YEAR, service.getUnitTypeFromString("YEAR", new Time()));
     }
 

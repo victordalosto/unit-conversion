@@ -21,8 +21,8 @@ public class Time extends TemplateUnitFormulas {
         DAY(86400.0),
         WEEK(604800.0),
         MONTH(86400.0 * (365.0/12.0)),
-        MONTH_30(86400.0 * 30.0),
-        MONTH_31(86400.0 * 31.0),
+        MONTH30(86400.0 * 30.0),
+        MONTH31(86400.0 * 31.0),
         YEAR(31536000.0);
     
 

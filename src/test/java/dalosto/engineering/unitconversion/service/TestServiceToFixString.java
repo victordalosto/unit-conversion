@@ -1,7 +1,12 @@
 package dalosto.engineering.unitconversion.service;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import dalosto.engineering.unitconversion.units.Area;
+import dalosto.engineering.unitconversion.units.Inertia;
+import dalosto.engineering.unitconversion.units.Length;
+import dalosto.engineering.unitconversion.units.Volume;
 
 
 @SpringBootTest
@@ -11,67 +16,52 @@ public class TestServiceToFixString {
     private MapUnitTypeService mapUnitTypeService;
 
 
-    @Test
-    void serviceShouldThowAErrorIfStringIsEmpty() {
-        assert (mapUnitTypeService.fixStringToFindUnityType("").equals(""));
-    }
-
-
 
     @Test
     void serviceShouldMakeUpperCaseOfInputs() {
-        assert (mapUnitTypeService.fixStringToFindUnityType("mM").equals("MM"));
+        assertEquals(Length.Types.MM, mapUnitTypeService.getUnitTypeFromString("mM", new Length()));
     }
 
 
     @Test
     void serviceShouldFixStringContainingSpaces() {
-        assert (mapUnitTypeService.fixStringToFindUnityType("  M  ").equals("M"));
-        assert (mapUnitTypeService.fixStringToFindUnityType(" M  _  2 ").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType(" M _ 2 ").equals("M_2"));
-    }
-
-
-    @Test
-    void serviceShouldFixStringThatDoesntContainsExponential() {
-        assert (mapUnitTypeService.fixStringToFindUnityType("M").equals("M"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("ME2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("ME3").equals("M_3"));
+        assertEquals(Length.Types.M, mapUnitTypeService.getUnitTypeFromString("  M  ", new Length()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString(" M  _  2 ", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString(" M _ 2 ", new Area()));
     }
 
 
     @Test
     void serviceShouldFixStringContaingEspecialCharacter() {
-        assert (mapUnitTypeService.fixStringToFindUnityType("M!@#!").equals("M"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("!@#$%¨&&*()M_!@*#*!@)2!@#$%¨&*()").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("!@#M~^!@#___2!").equals("M_2"));
+        assertEquals(Length.Types.M, mapUnitTypeService.getUnitTypeFromString("M!@#!", new Length()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("!@#$%¨&&*()M_!@*#*!@)2!@#$%¨&*()", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("!@#M~^!@#___2!", new Area()));
     }
 
 
     @Test
     void serviceShouldFixStringToMapExponentialSymbol() {
-        assert (mapUnitTypeService.fixStringToFindUnityType("M^2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M^^2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M^^^2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M~2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M~~2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M-2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M--2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M_2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M__2").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M~^2").equals("M_2"));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M^2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M^^2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M^^^2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M~2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M~~2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M-2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M--2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M_2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M__2", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M~^2", new Area()));
     }
 
 
     @Test
     void serviceShouldFixStringContainingNumbersSuperScriptAndSubscript() {
-        assert (mapUnitTypeService.fixStringToFindUnityType("M²").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M³").equals("M_3"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M⁴").equals("M_4"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M₂").equals("M_2"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M₃").equals("M_3"));
-        assert (mapUnitTypeService.fixStringToFindUnityType("M₄").equals("M_4"));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M²", new Area()));
+        assertEquals(Volume.Types.M3, mapUnitTypeService.getUnitTypeFromString("M³", new Volume()));
+        assertEquals(Inertia.Types.M4, mapUnitTypeService.getUnitTypeFromString("M⁴", new Inertia()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M₂", new Area()));
+        assertEquals(Volume.Types.M3, mapUnitTypeService.getUnitTypeFromString("M₃", new Volume()));
+        assertEquals(Inertia.Types.M4, mapUnitTypeService.getUnitTypeFromString("M₄", new Inertia()));
     }
 
 }

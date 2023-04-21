@@ -34,7 +34,7 @@ public class TestConversorServiceForDataCreation {
     @Test
     void shouldBeAbreToCreateAreaUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "IN^2", "IN^2");
-        Unit unit = new Unit(3.5, Area.Types.IN_2);
+        Unit unit = new Unit(3.5, Area.Types.IN2);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Area()));
     }
 

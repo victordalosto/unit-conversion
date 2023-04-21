@@ -13,16 +13,16 @@ public class Area extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {
 
-        M_2(1.0),
-        DM_2(0.01),
-        CM_2(0.0001),
-        MM_2(0.000001),
-        HM_2(10000.0),
-        KM_2(1000000.0),
-        UM_2(Math.pow(10.0, -12)),
-        IN_2(0.00064516),
-        FT_2(0.09290304),
-        YD_2(0.83612736);
+        M2(1.0),
+        DM2(0.01),
+        CM2(0.0001),
+        MM2(0.000001),
+        HM2(10000.0),
+        KM2(1000000.0),
+        UM2(Math.pow(10.0, -12)),
+        IN2(0.00064516),
+        FT2(0.09290304),
+        YD2(0.83612736);
     
 
         protected final double factorOfEquivalenceToSI;
@@ -33,7 +33,7 @@ public class Area extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return M_2;
+            return M2;
         }
 
 
@@ -57,13 +57,13 @@ public class Area extends TemplateUnitFormulas {
 
     @Override
     public UnitType getSITypeOfThisCategory() {
-        return Types.M_2.getSITypeOfThisCategory();
+        return Types.M2.getSITypeOfThisCategory();
     }
 
     
     @Override
     public Set<UnitType> getAllUnitTypesOfThisCategory() {
-        return Types.M_2.getAllUnitTypesOfThisCategory();
+        return Types.M2.getAllUnitTypesOfThisCategory();
     }
 
 

@@ -31,7 +31,7 @@ public class TestConversorService {
     @Test
     void shouldBeAbreToConvertAreaUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "IN^2", "MM^2");
-        Unit unit = new Unit(2258.06, Area.Types.MM_2);
+        Unit unit = new Unit(2258.06, Area.Types.MM2);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Area()));
     }
 
@@ -39,7 +39,7 @@ public class TestConversorService {
     @Test
     void shouldBeAbreToConvertVolumeUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "L", "CM^3");
-        Unit unit = new Unit(3500.0, Volume.Types.CM_3);
+        Unit unit = new Unit(3500.0, Volume.Types.CM3);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Volume()));
     }
 

@@ -13,16 +13,16 @@ public class Inertia extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {
 
-        M_4(1.0),
-        DM_4(Math.pow(10.0, -4)),
-        CM_4(Math.pow(10.0, -8)),
-        MM_4(Math.pow(10.0, -12)),
-        HM_4(Math.pow(10.0, 8)),
-        KM_4(Math.pow(10.0, 12)),
-        UM_4(Math.pow(10.0, -24)),
-        IN_4(0.0000004162314256),
-        FT_4(0.0086309748412416),
-        YD_4(0.6991089621405696);
+        M4(1.0),
+        DM4(Math.pow(10.0, -4)),
+        CM4(Math.pow(10.0, -8)),
+        MM4(Math.pow(10.0, -12)),
+        HM4(Math.pow(10.0, 8)),
+        KM4(Math.pow(10.0, 12)),
+        UM4(Math.pow(10.0, -24)),
+        IN4(0.0000004162314256),
+        FT4(0.0086309748412416),
+        YD4(0.6991089621405696);
     
 
         protected final double factorOfEquivalenceToSI;
@@ -33,7 +33,7 @@ public class Inertia extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return M_4;
+            return M4;
         }
 
 
@@ -57,13 +57,13 @@ public class Inertia extends TemplateUnitFormulas {
 
     @Override
     public UnitType getSITypeOfThisCategory() {
-        return Types.M_4.getSITypeOfThisCategory();
+        return Types.M4.getSITypeOfThisCategory();
     }
 
 
     @Override
     public Set<UnitType> getAllUnitTypesOfThisCategory() {
-        return Types.M_4.getAllUnitTypesOfThisCategory();
+        return Types.M4.getAllUnitTypesOfThisCategory();
     }
 
 

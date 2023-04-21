@@ -13,7 +13,10 @@ public class Temperature extends TemplateUnitFormulas {
 
     public enum Types implements UnitType {
 
-        K, C, F, R;
+        K, 
+        C, 
+        F, 
+        R;
 
 
         @Override

@@ -67,8 +67,8 @@ public class TestTime {
         assertEquivalentTimeInSI(86400.0, new Unit(1, Time.Types.DAY));
         assertEquivalentTimeInSI(604800.0, new Unit(1, Time.Types.WEEK));
         assertEquivalentTimeInSI(3600.0*24*(365.0/12), new Unit(1, Time.Types.MONTH));
-        assertEquivalentTimeInSI(3600.0*24*(30), new Unit(1, Time.Types.MONTH_30));
-        assertEquivalentTimeInSI(3600.0*24*(31), new Unit(1, Time.Types.MONTH_31));
+        assertEquivalentTimeInSI(3600.0*24*(30), new Unit(1, Time.Types.MONTH30));
+        assertEquivalentTimeInSI(3600.0*24*(31), new Unit(1, Time.Types.MONTH31));
         assertEquivalentTimeInSI(3600.0*24*365.0, new Unit(1, Time.Types.YEAR));
     }
 
@@ -85,8 +85,8 @@ public class TestTime {
         assertEquivalentTimeInSI(expected, new Unit(12345.67/86400, Time.Types.DAY));
         assertEquivalentTimeInSI(expected, new Unit(12345.67/86400/7, Time.Types.WEEK));
         assertEquivalentTimeInSI(expected, new Unit(12345.67/86400/(365.0/12), Time.Types.MONTH));
-        assertEquivalentTimeInSI(expected, new Unit(12345.67/86400/(30), Time.Types.MONTH_30));
-        assertEquivalentTimeInSI(expected, new Unit(12345.67/86400/(31), Time.Types.MONTH_31));
+        assertEquivalentTimeInSI(expected, new Unit(12345.67/86400/(30), Time.Types.MONTH30));
+        assertEquivalentTimeInSI(expected, new Unit(12345.67/86400/(31), Time.Types.MONTH31));
         assertEquivalentTimeInSI(expected, new Unit(12345.67/86400/(365), Time.Types.YEAR));
     }
 
@@ -103,8 +103,8 @@ public class TestTime {
         assertEquivalentTimeInSI(expected, new Unit(-12345.67/86400, Time.Types.DAY));
         assertEquivalentTimeInSI(expected, new Unit(-12345.67/86400/7, Time.Types.WEEK));
         assertEquivalentTimeInSI(expected, new Unit(-12345.67/86400/(365.0/12), Time.Types.MONTH));
-        assertEquivalentTimeInSI(expected, new Unit(-12345.67/86400/(30), Time.Types.MONTH_30));
-        assertEquivalentTimeInSI(expected, new Unit(-12345.67/86400/(31), Time.Types.MONTH_31));
+        assertEquivalentTimeInSI(expected, new Unit(-12345.67/86400/(30), Time.Types.MONTH30));
+        assertEquivalentTimeInSI(expected, new Unit(-12345.67/86400/(31), Time.Types.MONTH31));
         assertEquivalentTimeInSI(expected, new Unit(-12345.67/86400/(365), Time.Types.YEAR));
     }
 
@@ -121,8 +121,8 @@ public class TestTime {
         assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.DAY));
         assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.WEEK));
         assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.MONTH));
-        assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.MONTH_30));
-        assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.MONTH_31));
+        assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.MONTH30));
+        assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.MONTH31));
         assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.YEAR));
     }
 
@@ -138,9 +138,9 @@ public class TestTime {
         assertEquivalentTime(0.0, Time.Types.DAY, 0.0, Time.Types.H);
         assertEquivalentTime(0.0, Time.Types.WEEK, 0.0, Time.Types.DAY);
         assertEquivalentTime(0.0, Time.Types.MONTH, 0.0, Time.Types.WEEK);
-        assertEquivalentTime(0.0, Time.Types.MONTH_30, 0.0, Time.Types.MONTH);
-        assertEquivalentTime(0.0, Time.Types.MONTH_31, 0.0, Time.Types.MONTH_30);
-        assertEquivalentTime(0.0, Time.Types.YEAR, 0.0, Time.Types.MONTH_31);
+        assertEquivalentTime(0.0, Time.Types.MONTH30, 0.0, Time.Types.MONTH);
+        assertEquivalentTime(0.0, Time.Types.MONTH31, 0.0, Time.Types.MONTH30);
+        assertEquivalentTime(0.0, Time.Types.YEAR, 0.0, Time.Types.MONTH31);
     }
 
 
@@ -156,10 +156,10 @@ public class TestTime {
         assertEquivalentTime(randomValue, Time.Types.DAY, randomValue*24.0, Time.Types.H);
         assertEquivalentTime(randomValue, Time.Types.WEEK, randomValue*7.0, Time.Types.DAY);
         assertEquivalentTime(randomValue, Time.Types.MONTH,         randomValue * 365.0/12/7, Time.Types.WEEK);
-        assertEquivalentTime(randomValue, Time.Types.MONTH_30, randomValue*30.0/(365.0/12), Time.Types.MONTH);
-        assertEquivalentTime(randomValue, Time.Types.MONTH_31, randomValue*31.0/30.0, Time.Types.MONTH_30);
-        assertEquivalentTime(randomValue, Time.Types.YEAR, randomValue*365.0/31, Time.Types.MONTH_31);
-        assertEquivalentTime(randomValue, Time.Types.YEAR, randomValue*365.0/30, Time.Types.MONTH_30);
+        assertEquivalentTime(randomValue, Time.Types.MONTH30, randomValue*30.0/(365.0/12), Time.Types.MONTH);
+        assertEquivalentTime(randomValue, Time.Types.MONTH31, randomValue*31.0/30.0, Time.Types.MONTH30);
+        assertEquivalentTime(randomValue, Time.Types.YEAR, randomValue*365.0/31, Time.Types.MONTH31);
+        assertEquivalentTime(randomValue, Time.Types.YEAR, randomValue*365.0/30, Time.Types.MONTH30);
         assertEquivalentTime(randomValue, Time.Types.YEAR, randomValue*365.0/(365.0/12), Time.Types.MONTH);
     }
 
