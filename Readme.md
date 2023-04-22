@@ -11,6 +11,11 @@ The program basically converts the Measurement Unit and its value into another e
 
 <h2 align="center"> How to use </h2>
 
+The program is now hosted on docker-hub. Just use the command:
+> docker run -d -p 8080:8080 victordalosto/unitconversion
+
+</br>
+
 The entire usage of the application is self explanatory, guided by resources and its URI.
 > <b>Endpoint</b>: localhost:8080
 ```json

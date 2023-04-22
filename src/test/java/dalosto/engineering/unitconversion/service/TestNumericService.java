@@ -117,9 +117,4 @@ public class TestNumericService {
     }
 
 
-    public static void main(String[] args) {
-        String input = "1010*10^5.75";
-        String output = input.replace("10^", "E");
-        System.out.println(output); // Output: "The value is E5.75. 10^ is not the same as 9^."
-    }
 }
