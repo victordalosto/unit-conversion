@@ -1,8 +1,10 @@
 package dalosto.engineering.unitconversion.service;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import dalosto.engineering.unitconversion.TestMetrics;
 import dalosto.engineering.unitconversion.exception.ParameterException;
 
 
@@ -21,6 +23,7 @@ public class TestNumericService {
         assertThrows(ParameterException.class, () -> service.convertToNumeric("null"));
     }
 
+
     @Test
     void serviceShouldBeAbleToHandleExponentialValuesWithExplicitE() {
         assert(service.convertToNumeric("1e-3").equals(0.001));
@@ -35,6 +38,39 @@ public class TestNumericService {
         assert(service.convertToNumeric("1 e+3 ").equals(1000.0));
         assert(service.convertToNumeric("1E3").equals(1000.0));
         assert(service.convertToNumeric("1E+3").equals(1000.0));
+    }
+
+
+    @Test
+    void serviceShouldBeAbleToHandleEspecialExponenitals() {
+        assertEquals(0.001, service.convertToNumeric("1e-3.0"), TestMetrics.tolerance);
+        assertEquals(-0.001, service.convertToNumeric("-1.0e-3.0"), TestMetrics.tolerance);
+        assertEquals(1000.0, service.convertToNumeric("1.0e+3.0"), TestMetrics.tolerance);
+        assertEquals(1743258.1080900824, service.convertToNumeric("3,1e5.75"), TestMetrics.tolerance);
+        assertEquals(1743258.1080900824, service.convertToNumeric("3,1e+5.75"), TestMetrics.tolerance);
+        assertEquals(33951205.17627744, service.convertToNumeric("0.557e+7.785"), TestMetrics.tolerance);
+        assertEquals(-0.14025230678774545, service.convertToNumeric("-0.0125e+1.05"), TestMetrics.tolerance);
+        assertEquals(-0.00257714042, service.convertToNumeric("-0.0332e-1.11"), TestMetrics.tolerance);
+        assertEquals(1743258.1080900824, service.convertToNumeric("+3,1.000e+5.75000"), TestMetrics.tolerance);
+    }
+
+
+    @Test
+    void serviceShouldBeAbleToConvertSomeTypesToExponential() {
+        assertEquals(0.001, service.convertToNumeric("1*10^^-3.0"), TestMetrics.tolerance);
+        assertEquals(0.00075178085, service.convertToNumeric("1.5 * 10^ -3.3"), TestMetrics.tolerance);
+        assertEquals(0.00075178085, service.convertToNumeric("001.500*10^^-3.300"), TestMetrics.tolerance);
+        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*10^+3.3"), TestMetrics.tolerance);
+        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*10^3.3"), TestMetrics.tolerance);
+    }
+
+
+    @Test
+    void serviceShouldBeABleToFixExponentialValuesExportedBySomeProgramsLikeGoogleEarth() {
+        assertEquals(0.001, service.convertToNumeric("1-3.0"), TestMetrics.tolerance);
+        assertEquals(0.00075178085, service.convertToNumeric("1.5  -3.3"), TestMetrics.tolerance);
+        assertEquals(0.00075178085, service.convertToNumeric("001.500-3.300"), TestMetrics.tolerance);
+        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*+3.3"), TestMetrics.tolerance);
     }
 
 
@@ -78,5 +114,12 @@ public class TestNumericService {
         assert(service.convertToNumeric("-123.45").equals(-123.45));
         assert(service.convertToNumeric("123,45").equals(123.45));
         assert(service.convertToNumeric("-123,45").equals(-123.45));
+    }
+
+
+    public static void main(String[] args) {
+        String input = "1010*10^5.75";
+        String output = input.replace("10^", "E");
+        System.out.println(output); // Output: "The value is E5.75. 10^ is not the same as 9^."
     }
 }

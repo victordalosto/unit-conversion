@@ -56,7 +56,21 @@ public class TestEndPoints {
 
 
     @Test
-    void endPointsShouldDisplayExceptionIfInvalidParametersAreGiven() {
+    void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsValue() {
+        double pow = Math.pow(5, 3.3);
+        System.out.println(pow);
+        // TODO
+    }
+
+    
+    @Test
+    void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsType() {
+        // TODO
+    }
+
+
+    @Test
+    void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsTarget() {
         // TODO
     }
 }
