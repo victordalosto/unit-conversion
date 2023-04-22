@@ -104,7 +104,6 @@ public class TestEndPoints {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             String type = formula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();
-            System.out.println(type);
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=" + type))
                     .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=" + type + ", target=null}\"")))
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))

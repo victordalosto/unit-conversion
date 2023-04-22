@@ -65,7 +65,6 @@ public final class NumericService {
 
     
     private Double convertStringToNumeric(String value) {
-        System.out.println(value);
         try {
             if (!value.contains("E")) {
                 return Double.parseDouble(value);
