@@ -78,11 +78,11 @@ This same page will present the request based on 3 different statuses:
 
 
 Info status:
-> <b>Endpoint</b>: localhost:8080/api/length
+> <b>Endpoint</b>: localhost:8080/api/area
 ```json
 {
   "header": {
-    "uri": "/api/length",
+    "uri": "/api/area",
     "home": "http://localhost:8080",
     "input": "{value=null, type=null, target=null}"
   },
@@ -155,7 +155,7 @@ If you don't know how to use the API. just go to the /example end-point and it w
       "GET  Request": "/api/area?value=12345.67&type=M2&target=CM2",
       "POST Request": "/api/area  Body: {'value': 12345.67, 'type': 'M2', 'target': 'CM2'}",
       "Response": "{ SUCCESS | ERROR | INFO }   {value=1.234567E8, type=CM2}",
-      "observation": "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myValue is 1.23)",
+      "observation": "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myVal is 1.23)",
       "observation2": "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
     }
   }

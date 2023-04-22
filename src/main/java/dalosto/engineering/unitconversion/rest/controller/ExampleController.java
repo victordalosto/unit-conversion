@@ -54,7 +54,7 @@ public class ExampleController {
                           "GET  Request",  "/api/area?value=" + value + "&type=" + type + "&target=" + target,
                           "POST Request",  "/api/area" + "  Body: {'value': " + value + ", 'type': '" + type + "', 'target': '" + target + "'}",
                           "Response", RestStatus.possibleStatus() + "   " + service.formatUnitDAOAndConvertToUnit(new UnitDAO(value, type, target), unitFormula),
-                          "observation", "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myValue is 1.23)",
+                          "observation", "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myVal is 1.23)",
                           "observation2", "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
                           );
     }
