@@ -124,7 +124,7 @@ Error status:
 <br/>
 
 Sucess status:
-> <b>Endpoint</b>: localhost:8080/api/length?value=5.55&type=INVALID
+> <b>Endpoint</b>: localhost:8080/api/length?value=5.55&type=M&target=CM
 ```json
 {
   "header": {

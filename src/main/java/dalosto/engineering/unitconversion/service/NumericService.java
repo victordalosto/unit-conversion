@@ -78,13 +78,11 @@ public final class NumericService {
 
     private Double handleExponentialValues(String value) {
         Matcher matcher = pattern.matcher(value);
-        if (matcher.find()) {
-            String coefficient = matcher.group(1);
-            String exponential = matcher.group(2);
-            if (exponential.contains(".")) {
-                return Double.parseDouble(coefficient) * Math.pow(10, Double.parseDouble(exponential));
-            }
-            return Double.parseDouble(value);
+        matcher.find();
+        String coefficient = matcher.group(1);
+        String exponential = matcher.group(2);
+        if (exponential.contains(".")) {
+            return Double.parseDouble(coefficient) * Math.pow(10, Double.parseDouble(exponential));
         }
         return Double.parseDouble(value);
     }

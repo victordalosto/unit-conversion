@@ -1,13 +1,11 @@
 package dalosto.engineering.unitconversion.rest.domain;
 import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 import lombok.Getter;
-import lombok.Setter;
 
 
 @Getter
 public class EndpointInfo {
 
-    @Setter 
     private String title;
     private UnitFormula unitFormula;
 

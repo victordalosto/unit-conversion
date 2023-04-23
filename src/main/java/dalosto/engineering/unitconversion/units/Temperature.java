@@ -46,6 +46,7 @@ public class Temperature extends TemplateUnitFormulas {
 
 
     @Override
+    @SuppressWarnings("all")
     public Unit convertUnitIntoAnotherType(Unit unit, UnitType otherType) {
         double unitValue = unit.getValue();
         UnitType unitType = unit.getType();
@@ -62,8 +63,6 @@ public class Temperature extends TemplateUnitFormulas {
                     return new Unit(unitValue * 9 / 5 - 459.67, otherType);
                 case R:
                     return new Unit(unitValue * 9 / 5, otherType);
-                default:
-                    return null;
                 }
             case C:
                 switch ((Types) otherType) {
@@ -73,8 +72,6 @@ public class Temperature extends TemplateUnitFormulas {
                     return new Unit(unitValue * 9 / 5 + 32, otherType);
                 case R:
                     return new Unit((unitValue + 273.15) * 9 / 5, otherType);
-                default:
-                    return null;
                 }
             case F:
                 switch ((Types) otherType) {
@@ -84,8 +81,6 @@ public class Temperature extends TemplateUnitFormulas {
                     return new Unit((unitValue - 32) * 5 / 9, otherType);
                 case R:
                     return new Unit(unitValue + 459.67, otherType);
-                default:
-                    return null;
                 }
             case R:
                 switch ((Types) otherType) {
@@ -95,8 +90,6 @@ public class Temperature extends TemplateUnitFormulas {
                     return new Unit((unitValue - 491.67) * 5 / 9, otherType);
                 case F:
                     return new Unit(unitValue - 459.67, otherType);
-                default:
-                    return null;
                 }
         }
         return null;

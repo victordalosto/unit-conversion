@@ -16,11 +16,6 @@ public class RestURL {
     }
 
 
-    public String getURL() {
-        return request.getRequestURL().toString();
-    }
-
-
     public String getURI() {
         return request.getRequestURI();
     }
