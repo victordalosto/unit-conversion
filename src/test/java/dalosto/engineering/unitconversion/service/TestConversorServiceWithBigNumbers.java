@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.TestMetrics;
-import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
+import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.units.Length;
 
 

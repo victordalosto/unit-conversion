@@ -2,7 +2,7 @@ package dalosto.engineering.unitconversion;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
+import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
 public class TestMetrics {
@@ -18,13 +18,12 @@ public class TestMetrics {
     }
 
 
-    public static void assertEquivalentUnit(double fromValue, UnitType from, Double toValue, UnitType to,
-            UnitFormula unitFormula) {
-        assertEquals(toValue, unitFormula.buildUnitIntoAnotherType(new Unit(fromValue, from), to).getValue(),
-                TestMetrics.tolerance);
+    public static void assertEquivalentUnit(double fromValue, UnitType fromType, 
+                                            double toValue, UnitType toType,
+                                            UnitFormula formula) {
+        assertEquals(toValue, formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), TestMetrics.tolerance);
         if (toValue != 0) {
-            assertEquals(1, toValue/unitFormula.buildUnitIntoAnotherType(new Unit(fromValue, from), to).getValue(),
-                    TestMetrics.tolerance);
+            assertEquals(1, toValue/formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), TestMetrics.tolerance);
         }
             
     }

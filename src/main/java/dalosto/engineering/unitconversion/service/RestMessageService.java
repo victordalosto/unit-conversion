@@ -1,13 +1,13 @@
 package dalosto.engineering.unitconversion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import dalosto.engineering.unitconversion.domain.EndpointInfo;
+import dalosto.engineering.unitconversion.domain.RestMessage;
+import dalosto.engineering.unitconversion.domain.RestStatus;
+import dalosto.engineering.unitconversion.domain.RestURL;
 import dalosto.engineering.unitconversion.domain.Unit;
+import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.exception.ParameterException;
-import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
-import dalosto.engineering.unitconversion.rest.domain.RestMessage;
-import dalosto.engineering.unitconversion.rest.domain.RestStatus;
-import dalosto.engineering.unitconversion.rest.domain.RestURL;
-import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
 
 
 @Service

@@ -1,23 +1,22 @@
-package dalosto.engineering.unitconversion.rest.controller;
+package dalosto.engineering.unitconversion.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
-import dalosto.engineering.unitconversion.rest.controller.template.TemplateController;
-import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
-import dalosto.engineering.unitconversion.rest.domain.RestMessage;
-import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
+import dalosto.engineering.unitconversion.domain.EndpointInfo;
+import dalosto.engineering.unitconversion.domain.RestMessage;
+import dalosto.engineering.unitconversion.domain.UnitDAO;
+import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
 @RestController
-@RequestMapping("/api/force")
-public class ForceController extends TemplateController {
+@RequestMapping("/api/volume")
+public class VolumeController extends TemplateController {
 
     @Autowired
-    @Qualifier("force")
+    @Qualifier("volume")
     private UnitFormula unitFormula;
 
 
@@ -31,7 +30,7 @@ public class ForceController extends TemplateController {
 
     @Override
     public EndpointInfo getEndpointInfo() {
-        return new EndpointInfo("force", unitFormula);
+        return new EndpointInfo("volume", unitFormula);
     }
 
     

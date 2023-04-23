@@ -4,10 +4,10 @@ import java.math.RoundingMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import dalosto.engineering.unitconversion.domain.Unit;
+import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.ParameterException;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
-import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
+import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
 @Service

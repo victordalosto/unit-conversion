@@ -2,7 +2,7 @@ package dalosto.engineering.unitconversion.service;
 import org.springframework.stereotype.Service;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.ParameterException;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
+import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
 @Service

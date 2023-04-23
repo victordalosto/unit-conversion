@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.units;
+package dalosto.engineering.unitconversion.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -6,9 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.domain.Unit;
-import dalosto.engineering.unitconversion.domain.UnitType;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
+import dalosto.engineering.unitconversion.units.Area;
+import dalosto.engineering.unitconversion.units.Force;
+import dalosto.engineering.unitconversion.units.Length;
+import dalosto.engineering.unitconversion.units.UnitFormula;
+import dalosto.engineering.unitconversion.units.Volume;
 
 
 @SpringBootTest

@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.rest.domain;
+package dalosto.engineering.unitconversion.domain;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.Getter;

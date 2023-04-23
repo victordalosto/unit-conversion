@@ -1,12 +1,10 @@
-package dalosto.engineering.unitconversion.units;
+package dalosto.engineering.unitconversion.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.domain.UnitType;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
-import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
+import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
 @SpringBootTest

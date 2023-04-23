@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.rest.domain;
+package dalosto.engineering.unitconversion.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import jakarta.servlet.http.HttpServletRequest;

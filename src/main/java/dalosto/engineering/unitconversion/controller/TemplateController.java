@@ -1,9 +1,9 @@
-package dalosto.engineering.unitconversion.rest.controller.template;
+package dalosto.engineering.unitconversion.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import dalosto.engineering.unitconversion.rest.domain.EndpointInfo;
-import dalosto.engineering.unitconversion.rest.domain.RestMessage;
-import dalosto.engineering.unitconversion.rest.domain.UnitDAO;
+import dalosto.engineering.unitconversion.domain.EndpointInfo;
+import dalosto.engineering.unitconversion.domain.RestMessage;
+import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.service.RestMessageService;
 
 @Component

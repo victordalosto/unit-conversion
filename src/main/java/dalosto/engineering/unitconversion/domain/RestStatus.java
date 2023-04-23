@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.rest.domain;
+package dalosto.engineering.unitconversion.domain;
 
 public enum RestStatus {
     

@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.interfaces;
+package dalosto.engineering.unitconversion.units;
 import java.util.Set;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;

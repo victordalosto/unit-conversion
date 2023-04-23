@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.endpoints;
+package dalosto.engineering.unitconversion.e2e;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
-import dalosto.engineering.unitconversion.rest.domain.RestStatus;
+import dalosto.engineering.unitconversion.domain.RestStatus;
+import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
 @SpringBootTest

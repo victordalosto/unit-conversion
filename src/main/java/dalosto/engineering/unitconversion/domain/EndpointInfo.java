@@ -1,5 +1,5 @@
-package dalosto.engineering.unitconversion.rest.domain;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
+package dalosto.engineering.unitconversion.domain;
+import dalosto.engineering.unitconversion.units.UnitFormula;
 import lombok.Getter;
 
 

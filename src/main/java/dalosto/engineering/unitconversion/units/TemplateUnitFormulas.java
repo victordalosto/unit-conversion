@@ -2,7 +2,6 @@ package dalosto.engineering.unitconversion.units;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
-import dalosto.engineering.unitconversion.interfaces.UnitFormula;
 
 
 public abstract class TemplateUnitFormulas implements UnitFormula {
