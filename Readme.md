@@ -141,8 +141,6 @@ Sucess status:
 ```
 
 
-<br/br/>
-
 ### Example page
 If you don't know how to use the API. just go to the /example end-point and it will prompt a full tutorial on how to use the API.
 
