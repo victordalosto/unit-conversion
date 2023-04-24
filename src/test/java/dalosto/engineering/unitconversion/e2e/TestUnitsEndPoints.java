@@ -27,7 +27,7 @@ public class TestUnitsEndPoints {
 
 
     @Test
-    void lengthEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+    public void lengthEndPointShouldBeAbleToConvertCorrectly() throws Exception {
         UnitType inputType = Length.Types.M;
         UnitType outputType = Length.Types.CM;
         mockMvc.perform(get("/api/" + "length" + "?value=12345.67&type=" + inputType + "&target=" + outputType))
@@ -39,7 +39,7 @@ public class TestUnitsEndPoints {
 
 
     @Test
-    void areaEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+    public void areaEndPointShouldBeAbleToConvertCorrectly() throws Exception {
         UnitType inputType = Area.Types.M2;
         UnitType outputType = Area.Types.CM2;
         mockMvc.perform(get("/api/" + "area" + "?value=1.234567&type=" + inputType + "&target=" + outputType))
@@ -51,7 +51,7 @@ public class TestUnitsEndPoints {
 
     
     @Test
-    void volumeEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+    public void volumeEndPointShouldBeAbleToConvertCorrectly() throws Exception {
         UnitType inputType = Volume.Types.M3;
         UnitType outputType = Volume.Types.L;
         mockMvc.perform(get("/api/" + "volume" + "?value=1.234567&type=" + inputType + "&target=" + outputType))
@@ -63,7 +63,7 @@ public class TestUnitsEndPoints {
 
     
     @Test
-    void inertiaEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+    public void inertiaEndPointShouldBeAbleToConvertCorrectly() throws Exception {
         UnitType inputType = Inertia.Types.CM4;
         UnitType outputType = Inertia.Types.MM4;
         mockMvc.perform(get("/api/" + "inertia" + "?value=1.0&type=" + inputType + "&target=" + outputType))
@@ -75,7 +75,7 @@ public class TestUnitsEndPoints {
 
     
     @Test
-    void forceEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+    public void forceEndPointShouldBeAbleToConvertCorrectly() throws Exception {
         UnitType inputType = Force.Types.KN;
         UnitType outputType = Force.Types.N;
         mockMvc.perform(get("/api/" + "force" + "?value=1.0&type=" + inputType + "&target=" + outputType))
@@ -87,7 +87,7 @@ public class TestUnitsEndPoints {
 
     
     @Test
-    void temperatureEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+    public void temperatureEndPointShouldBeAbleToConvertCorrectly() throws Exception {
         UnitType inputType = Temperature.Types.C;
         UnitType outputType = Temperature.Types.K;
         mockMvc.perform(get("/api/" + "temperature" + "?value=1.0&type=" + inputType + "&target=" + outputType))
@@ -99,7 +99,7 @@ public class TestUnitsEndPoints {
 
     
     @Test
-    void timeEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+    public void timeEndPointShouldBeAbleToConvertCorrectly() throws Exception {
         UnitType inputType = Time.Types.DAY;
         UnitType outputType = Time.Types.H;
         mockMvc.perform(get("/api/" + "time" + "?value=1.0&type=" + inputType + "&target=" + outputType))

@@ -19,7 +19,7 @@ public class TestTypesConversion {
 
 
     @Test
-    void assertThatFormulasExtendsTemplateFormula() {
+    public void assertThatFormulasExtendsTemplateFormula() {
         for (UnitFormula unitFormula : formulas) {
             assert(unitFormula instanceof TemplateUnitFormulas);
         }
@@ -27,7 +27,7 @@ public class TestTypesConversion {
 
 
     @Test
-    void assertThatFormulasTypeExtendsUnitType() {
+    public void assertThatFormulasTypeExtendsUnitType() {
         for (UnitFormula unitFormula : formulas) {
             assert(unitFormula.getSITypeOfThisCategory() instanceof UnitType);
         }
@@ -35,7 +35,7 @@ public class TestTypesConversion {
 
 
     @Test
-    void assertThatFormulasThrowsExceptionIfTheyAreNotSameTypeOfFormula() {
+    public void assertThatFormulasThrowsExceptionIfTheyAreNotSameTypeOfFormula() {
         for (UnitFormula unitFormula : formulas) {
             assertThrowsIfNotSameTypeOfFormula(unitFormula);
         }
@@ -44,7 +44,7 @@ public class TestTypesConversion {
 
 
     @Test
-    void assertThatUnitFormulaGetTypesAndUnitTypeGetTypesAreEquivalent() {
+    public void assertThatUnitFormulaGetTypesAndUnitTypeGetTypesAreEquivalent() {
         for (UnitFormula unitFormula : formulas) {
             assertEquals(unitFormula.getSITypeOfThisCategory(), unitFormula.getSITypeOfThisCategory().getSITypeOfThisCategory());
             assertEquals(unitFormula.getAllUnitTypesOfThisCategory(), unitFormula.getSITypeOfThisCategory().getAllUnitTypesOfThisCategory());

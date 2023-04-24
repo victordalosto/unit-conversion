@@ -30,7 +30,7 @@ public class TestInertia {
 
 
     @Test
-    void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
+    public void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 25000000.0;
         UnitType unitType = Inertia.Types.MM4;
         Unit unit = new Unit(value, unitType);
@@ -46,7 +46,7 @@ public class TestInertia {
 
 
     @Test
-    void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
+    public void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
         assertEquals(Inertia.Types.M4, unitFormula.getSITypeOfThisCategory());
         assertEquals(Inertia.Types.M4, Inertia.Types.DM4.getSITypeOfThisCategory());
         assertEquals(Inertia.Types.M4, new Unit(0.0, Inertia.Types.FT4).getType().getSITypeOfThisCategory());
@@ -55,7 +55,7 @@ public class TestInertia {
 
 
     @Test
-    void allVolumeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+    public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(10, Inertia.Types.values().length);
         assertEquivalentInertiaInSI(1.0, new Unit(1, Inertia.Types.M4));
         assertEquivalentInertiaInSI(0.1 * 0.1 * 0.1 * 0.1, new Unit(1, Inertia.Types.DM4));
@@ -71,7 +71,7 @@ public class TestInertia {
 
 
     @Test
-    void allVolumeValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
+    public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(10, Inertia.Types.values().length);
         double expected = 12345.67;
         assertEquivalentInertiaInSI(expected, new Unit(12345.67000000, Inertia.Types.M4));
@@ -88,7 +88,7 @@ public class TestInertia {
 
 
     @Test
-    void allVolumeValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
+    public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
         assertEquals(10, Inertia.Types.values().length);
         double expected = -12345.67;
         assertEquivalentInertiaInSI(expected, new Unit(-12345.67000000, Inertia.Types.M4));
@@ -105,7 +105,7 @@ public class TestInertia {
 
 
     @Test
-    void allVolumeValuesShouldBeTestedAndAreCorrectInSIForZero() {
+    public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForZero() {
         assertEquals(10, Inertia.Types.values().length);
         double expected = 0.0;
         assertEquivalentInertiaInSI(expected, new Unit(0.0, Inertia.Types.M4));
@@ -122,7 +122,7 @@ public class TestInertia {
 
 
     @Test
-    void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
+    public void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(10, Inertia.Types.values().length);
         assertEquivalentInertia(0.0, Inertia.Types.CM4, 0.0, Inertia.Types.M4);
         assertEquivalentInertia(0.0, Inertia.Types.MM4, 0.0, Inertia.Types.M4);
@@ -153,7 +153,7 @@ public class TestInertia {
 
 
     @Test
-    void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
+    public void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(10, Inertia.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentInertia(randomValue, Inertia.Types.CM4, randomValue / 100000000, Inertia.Types.M4);
@@ -183,7 +183,7 @@ public class TestInertia {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Inertia.Types.CM4);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
@@ -193,7 +193,7 @@ public class TestInertia {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Inertia.Types.CM4));

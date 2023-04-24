@@ -30,7 +30,7 @@ public class TestLength {
 
 
     @Test
-    void shouldBeAbleToCreateALengthAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
+    public void shouldBeAbleToCreateALengthAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 5000.0;
         UnitType unitType = Length.Types.MM;
         Unit unit = new Unit(value, unitType);
@@ -46,7 +46,7 @@ public class TestLength {
 
 
     @Test
-    void SIUnitTypeOfLengthShouldBeMeter() {
+    public void SIUnitTypeOfLengthShouldBeMeter() {
         assertEquals(Length.Types.M, unitFormula.getSITypeOfThisCategory());
         assertEquals(Length.Types.M, Length.Types.DM.getSITypeOfThisCategory());
         assertEquals(Length.Types.M, new Unit(0.0, Length.Types.FT).getType().getSITypeOfThisCategory());
@@ -55,13 +55,13 @@ public class TestLength {
 
 
     @Test
-    void unitsReturnFromTypeAreEqualThoseReturnedFromUnitFormula() {
+    public void unitsReturnFromTypeAreEqualThoseReturnedFromUnitFormula() {
         assertEquals(Length.Types.CM.getAllUnitTypesOfThisCategory(), unitFormula.getAllUnitTypesOfThisCategory());
     }
 
 
     @Test
-    void allLengthValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+    public void allLengthValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(10, Length.Types.values().length);
         assertEquivalentLengthInSI(1.0, new Unit(1, Length.Types.M));
         assertEquivalentLengthInSI(0.1, new Unit(1, Length.Types.DM));
@@ -77,7 +77,7 @@ public class TestLength {
 
 
     @Test
-    void allLengthValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
+    public void allLengthValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(10, Length.Types.values().length);
         double expected = 12345.67;
         assertEquivalentLengthInSI(expected, new Unit(12345.67000000, Length.Types.M));
@@ -94,7 +94,7 @@ public class TestLength {
 
 
     @Test
-    void allLengthValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
+    public void allLengthValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
         assertEquals(10, Length.Types.values().length);
         double expected = -12345.67;
         assertEquivalentLengthInSI(expected, new Unit(-12345.67000000, Length.Types.M));
@@ -111,7 +111,7 @@ public class TestLength {
 
 
     @Test
-    void allLengthValuesShouldBeTestedAndAreCorrectInSIForZero() {
+    public void allLengthValuesShouldBeTestedAndAreCorrectInSIForZero() {
         assertEquals(10, Length.Types.values().length);
         double expected = 0.0;
         assertEquivalentLengthInSI(expected, new Unit(0.0, Length.Types.M));
@@ -128,7 +128,7 @@ public class TestLength {
 
 
     @Test
-    void lengthValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
+    public void lengthValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(10, Length.Types.values().length);
         assertEquivalentLength(0.0, Length.Types.CM, 0.0, Length.Types.M);
         assertEquivalentLength(0.0, Length.Types.MM, 0.0, Length.Types.M);
@@ -159,7 +159,7 @@ public class TestLength {
 
 
     @Test
-    void lengthValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
+    public void lengthValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(10, Length.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentLength(randomValue, Length.Types.CM, randomValue / 100, Length.Types.M);
@@ -191,7 +191,7 @@ public class TestLength {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Length.Types.CM);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
@@ -201,7 +201,7 @@ public class TestLength {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Length.Types.CM));

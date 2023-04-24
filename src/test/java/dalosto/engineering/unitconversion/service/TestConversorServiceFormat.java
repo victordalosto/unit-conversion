@@ -21,7 +21,7 @@ public class TestConversorServiceFormat {
 
 
     @Test
-    void shouldBeAbreToFormatUnitDAOForPresentationAndKeepInfoIfTheyAreCorrect() {
+    public void shouldBeAbreToFormatUnitDAOForPresentationAndKeepInfoIfTheyAreCorrect() {
         UnitDAO inputDAO; 
 
         inputDAO = new UnitDAO("12345.67", "MM", "MM");
@@ -55,7 +55,7 @@ public class TestConversorServiceFormat {
 
 
     @Test
-    void shouldBeAbreToFormatUnitDAOAndChangeItsValueForBetterPresentation() {
+    public void shouldBeAbreToFormatUnitDAOAndChangeItsValueForBetterPresentation() {
         UnitDAO inputDAO;
 
         inputDAO = new UnitDAO("12345,67", " mM ", " MM ");

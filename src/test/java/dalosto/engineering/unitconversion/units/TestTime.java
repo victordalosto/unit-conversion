@@ -30,7 +30,7 @@ public class TestTime {
 
 
     @Test
-    void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
+    public void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 60;
         UnitType unitType = Time.Types.MIN;
         Unit unit = new Unit(value, unitType);
@@ -46,7 +46,7 @@ public class TestTime {
 
 
     @Test
-    void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
+    public void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
         assertEquals(Time.Types.S, unitFormula.getSITypeOfThisCategory());
         assertEquals(Time.Types.S, Time.Types.MIN.getSITypeOfThisCategory());
         assertEquals(Time.Types.S, new Unit(0.0, Time.Types.H).getType().getSITypeOfThisCategory());
@@ -56,7 +56,7 @@ public class TestTime {
 
 
     @Test
-    void allTimeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+    public void allTimeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(11, Time.Types.values().length);
         assertEquivalentTimeInSI(1.0, new Unit(1, Time.Types.S));
         assertEquivalentTimeInSI(0.001, new Unit(1, Time.Types.MS));
@@ -73,7 +73,7 @@ public class TestTime {
 
 
     @Test
-    void allTimeValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
+    public void allTimeValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(11, Time.Types.values().length);
         double expected = 12345.67;
         assertEquivalentTimeInSI(expected, new Unit(12345.67, Time.Types.S));
@@ -91,7 +91,7 @@ public class TestTime {
 
 
     @Test
-    void allTimeValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
+    public void allTimeValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
         assertEquals(11, Time.Types.values().length);
         double expected = -12345.67;
         assertEquivalentTimeInSI(expected, new Unit(-12345.67, Time.Types.S));
@@ -109,7 +109,7 @@ public class TestTime {
 
 
     @Test
-    void allTimeValuesShouldBeTestedAndAreCorrectInSIForZero() {
+    public void allTimeValuesShouldBeTestedAndAreCorrectInSIForZero() {
         assertEquals(11, Time.Types.values().length);
         double expected = 0.0;
         assertEquivalentTimeInSI(expected, new Unit(0.0, Time.Types.S));
@@ -127,7 +127,7 @@ public class TestTime {
 
 
     @Test
-    void TimeValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
+    public void TimeValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(11, Time.Types.values().length);
         assertEquivalentTime(0.0, Time.Types.S, 0.0, Time.Types.S);
         assertEquivalentTime(0.0, Time.Types.MS, 0.0, Time.Types.S);
@@ -144,7 +144,7 @@ public class TestTime {
 
 
     @Test
-    void TimeValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
+    public void TimeValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(11, Time.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentTime(randomValue, Time.Types.S, randomValue, Time.Types.S);
@@ -164,7 +164,7 @@ public class TestTime {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Time.Types.S);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
@@ -174,7 +174,7 @@ public class TestTime {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Time.Types.S));

@@ -26,7 +26,7 @@ public class TestEndPoints {
 
 
     @Test
-    void shouldBeAbleToAcessAllFormulasEndPoints() throws Exception {
+    public void shouldBeAbleToAcessAllFormulasEndPoints() throws Exception {
         assert(formulas.size() >= 7);
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
@@ -42,7 +42,7 @@ public class TestEndPoints {
 
 
     @Test
-    void endPointsShouldDisplayInfoWhenNoParamsArePresented() throws Exception {
+    public void endPointsShouldDisplayInfoWhenNoParamsArePresented() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category))
@@ -58,7 +58,7 @@ public class TestEndPoints {
 
 
     @Test
-    void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsValue() throws Exception {
+    public void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsValue() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category + "?value=invalid"))
@@ -72,7 +72,7 @@ public class TestEndPoints {
 
     
     @Test
-    void endPointsShouldDisplayExceptionIfNullParametersAreGivenAsType() throws Exception {
+    public void endPointsShouldDisplayExceptionIfNullParametersAreGivenAsType() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category + "?value=12345.67"))
@@ -86,7 +86,7 @@ public class TestEndPoints {
 
     
     @Test
-    void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsType() throws Exception {
+    public void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsType() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=invalid"))
@@ -100,7 +100,7 @@ public class TestEndPoints {
 
 
     @Test
-    void endPointsShouldDisplayExceptionIfNullParametersAreGivenAsTarget() throws Exception {
+    public void endPointsShouldDisplayExceptionIfNullParametersAreGivenAsTarget() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             String type = formula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();
@@ -115,7 +115,7 @@ public class TestEndPoints {
 
 
     @Test
-    void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsTarget() throws Exception {
+    public void endPointsShouldDisplayExceptionIfInvalidParametersAreGivenAsTarget() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             String type = formula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();

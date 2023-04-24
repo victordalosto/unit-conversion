@@ -30,7 +30,7 @@ public class TestTemperature {
 
 
     @Test
-    void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
+    public void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 100;
         UnitType unitType = Temperature.Types.C;
         Unit unit = new Unit(value, unitType);
@@ -46,7 +46,7 @@ public class TestTemperature {
 
 
     @Test
-    void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
+    public void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
         assertEquals(Temperature.Types.K, unitFormula.getSITypeOfThisCategory());
         assertEquals(Temperature.Types.K, Temperature.Types.C.getSITypeOfThisCategory());
         assertEquals(Temperature.Types.K, new Unit(0.0, Temperature.Types.F).getType().getSITypeOfThisCategory());
@@ -56,7 +56,7 @@ public class TestTemperature {
 
 
     @Test
-    void allTemperatureValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+    public void allTemperatureValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(4, Temperature.Types.values().length);
         assertEquivalentTemperatureInSI(1.0, new Unit(1, Temperature.Types.K));
         assertEquivalentTemperatureInSI(255.927777777777777778, new Unit(1, Temperature.Types.F));
@@ -66,7 +66,7 @@ public class TestTemperature {
 
 
     @Test
-    void allTemperatureValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
+    public void allTemperatureValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(4, Temperature.Types.values().length);
         double expected = 12345.67;
         assertEquivalentTemperatureInSI(expected, new Unit(12345.670, Temperature.Types.K));
@@ -77,7 +77,7 @@ public class TestTemperature {
 
 
     @Test
-    void allTemperatureValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
+    public void allTemperatureValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
         //Some of theses tests aren't correctly, since in some Units, negative values are not allowed.
         assertEquals(4, Temperature.Types.values().length);
         double expected = -12345.67;
@@ -89,7 +89,7 @@ public class TestTemperature {
 
 
     @Test
-    void allTemperatureValuesShouldBeTestedAndAreCorrectInSIForZero() {
+    public void allTemperatureValuesShouldBeTestedAndAreCorrectInSIForZero() {
         assertEquals(4, Temperature.Types.values().length);
         double expected = 0.0;
         assertEquivalentTemperatureInSI(expected, new Unit(0.0, Temperature.Types.K));
@@ -100,7 +100,7 @@ public class TestTemperature {
 
 
     @Test
-    void TemperatureValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
+    public void TemperatureValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(4, Temperature.Types.values().length);
         assertEquivalentTemperature(0.0, Temperature.Types.K, 0.0, Temperature.Types.K);
         assertEquivalentTemperature(-459.67, Temperature.Types.F, 0.0, Temperature.Types.K);
@@ -122,7 +122,7 @@ public class TestTemperature {
 
 
     @Test
-    void TemperatureValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
+    public void TemperatureValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(4, Temperature.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentTemperature(randomValue, Temperature.Types.K, randomValue, Temperature.Types.K);
@@ -145,7 +145,7 @@ public class TestTemperature {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Temperature.Types.K);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
@@ -155,7 +155,7 @@ public class TestTemperature {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Temperature.Types.F));

@@ -21,7 +21,7 @@ public class TestConversorService {
 
 
     @Test
-    void shouldBeAbreToConvertLengthUnitsFromUnitDAO() {
+    public void shouldBeAbreToConvertLengthUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("100", "MM", "CM");
         Unit unit = new Unit(10, Length.Types.CM);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Length()));
@@ -29,7 +29,7 @@ public class TestConversorService {
 
     
     @Test
-    void shouldBeAbreToConvertAreaUnitsFromUnitDAO() {
+    public void shouldBeAbreToConvertAreaUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "IN^2", "MM^2");
         Unit unit = new Unit(2258.06, Area.Types.MM2);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Area()));
@@ -37,7 +37,7 @@ public class TestConversorService {
 
     
     @Test
-    void shouldBeAbreToConvertVolumeUnitsFromUnitDAO() {
+    public void shouldBeAbreToConvertVolumeUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "L", "CM^3");
         Unit unit = new Unit(3500.0, Volume.Types.CM3);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Volume()));
@@ -45,7 +45,7 @@ public class TestConversorService {
 
     
     @Test
-    void shouldBeAbreToConvertForceUnitsFromUnitDAO() {
+    public void shouldBeAbreToConvertForceUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3500", "N", "KN");
         Unit unit = new Unit(3.5, Force.Types.KN);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Force()));
@@ -53,7 +53,7 @@ public class TestConversorService {
 
     
     @Test
-    void shouldBeAbreToConvertTemperatureUnitsFromUnitDAO() {
+    public void shouldBeAbreToConvertTemperatureUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "C", "K");
         Unit unit = new Unit(276.65, Temperature.Types.K);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Temperature()));
@@ -61,7 +61,7 @@ public class TestConversorService {
 
     
     @Test
-    void shouldBeAbreToConvertTimeUnitsFromUnitDAO() {
+    public void shouldBeAbreToConvertTimeUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "DAY", "S");
         Unit unit = new Unit(3.5*86400, Time.Types.S);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Time()));

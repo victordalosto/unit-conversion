@@ -30,7 +30,7 @@ public class TestArea {
 
 
     @Test
-    void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
+    public void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 25000000.0;
         UnitType unitType = Area.Types.MM2;
         Unit unit = new Unit(value, unitType);
@@ -46,7 +46,7 @@ public class TestArea {
 
 
     @Test
-    void SIUnitTypeOfAreaShouldBeMeterSquare() {
+    public void SIUnitTypeOfAreaShouldBeMeterSquare() {
         assertEquals(Area.Types.M2, unitFormula.getSITypeOfThisCategory());
         assertEquals(Area.Types.M2, Area.Types.M2.getSITypeOfThisCategory());
         assertEquals(Area.Types.M2, new Unit(0.0, Area.Types.FT2).getType().getSITypeOfThisCategory());
@@ -55,7 +55,7 @@ public class TestArea {
 
 
     @Test
-    void allAreaValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+    public void allAreaValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(10, Area.Types.values().length);
         assertEquivalentAreaInSI(1.0, new Unit(1, Area.Types.M2));
         assertEquivalentAreaInSI(0.1 * 0.1, new Unit(1, Area.Types.DM2));
@@ -71,7 +71,7 @@ public class TestArea {
 
 
     @Test
-    void allAreaValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
+    public void allAreaValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(10, Area.Types.values().length);
         double expected = 12345.67;
         assertEquivalentAreaInSI(expected, new Unit(12345.67000000, Area.Types.M2));
@@ -88,7 +88,7 @@ public class TestArea {
 
 
     @Test
-    void allAreaValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
+    public void allAreaValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
         assertEquals(10, Area.Types.values().length);
         double expected = -12345.67;
         assertEquivalentAreaInSI(expected, new Unit(-12345.67000000, Area.Types.M2));
@@ -105,7 +105,7 @@ public class TestArea {
 
 
     @Test
-    void allAreaValuesShouldBeTestedAndAreCorrectInSIForZero() {
+    public void allAreaValuesShouldBeTestedAndAreCorrectInSIForZero() {
         assertEquals(10, Area.Types.values().length);
         double expected = 0.0;
         assertEquivalentAreaInSI(expected, new Unit(0.0, Area.Types.M2));
@@ -122,7 +122,7 @@ public class TestArea {
 
 
     @Test
-    void areaValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
+    public void areaValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(10, Area.Types.values().length);
         assertEquivalentArea(0.0, Area.Types.CM2, 0.0, Area.Types.M2);
         assertEquivalentArea(0.0, Area.Types.MM2, 0.0, Area.Types.M2);
@@ -153,7 +153,7 @@ public class TestArea {
 
 
     @Test
-    void areaValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
+    public void areaValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(10, Area.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentArea(randomValue, Area.Types.CM2, randomValue / 100 / 100, Area.Types.M2);
@@ -185,7 +185,7 @@ public class TestArea {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Area.Types.CM2);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
@@ -195,7 +195,7 @@ public class TestArea {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Area.Types.CM2));

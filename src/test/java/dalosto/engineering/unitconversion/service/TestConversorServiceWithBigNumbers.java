@@ -16,7 +16,7 @@ public class TestConversorServiceWithBigNumbers {
 
 
     @Test
-    void serviceShouldBeAbleTOHandleBigNumbersWithoutErrors() {
+    public void serviceShouldBeAbleTOHandleBigNumbersWithoutErrors() {
         assertEquals(1234567.0, service.formatUnitDAOAndConvertToUnit(new UnitDAO("12345.67", "m", "cm"), new Length()).getValue());
         assertEquals(1000.0, service.formatUnitDAOAndConvertToUnit(new UnitDAO("10.0", "m", "cm"), new Length()).getValue());
         assertEquals(1000000.0, service.formatUnitDAOAndConvertToUnit(new UnitDAO("10000.0", "m", "cm"), new Length()).getValue());

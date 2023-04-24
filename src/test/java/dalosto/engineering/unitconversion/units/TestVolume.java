@@ -30,7 +30,7 @@ public class TestVolume {
 
 
     @Test
-    void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
+    public void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 25000000.0;
         UnitType unitType = Volume.Types.MM3;
         Unit unit = new Unit(value, unitType);
@@ -46,7 +46,7 @@ public class TestVolume {
 
 
     @Test
-    void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
+    public void SIUnitTypeOfVolulmeShouldBeMeterCubic() {
         assertEquals(Volume.Types.M3, unitFormula.getSITypeOfThisCategory());
         assertEquals(Volume.Types.M3, Volume.Types.DM3.getSITypeOfThisCategory());
         assertEquals(Volume.Types.M3, new Unit(0.0, Volume.Types.FT3).getType().getSITypeOfThisCategory());
@@ -55,7 +55,7 @@ public class TestVolume {
 
 
     @Test
-    void allVolumeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+    public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(12, Volume.Types.values().length);
         assertEquivalentVolumeInSI(1.0, new Unit(1, Volume.Types.M3));
         assertEquivalentVolumeInSI(0.1 * 0.1 * 0.1, new Unit(1, Volume.Types.DM3));
@@ -73,7 +73,7 @@ public class TestVolume {
 
 
     @Test
-    void allVolumeValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
+    public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(12, Volume.Types.values().length);
         double expected = 12345.67;
         assertEquivalentVolumeInSI(expected, new Unit(12345.67000000, Volume.Types.M3));
@@ -92,7 +92,7 @@ public class TestVolume {
 
 
     @Test
-    void allVolumeValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
+    public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
         assertEquals(12, Volume.Types.values().length);
         double expected = -12345.67;
         assertEquivalentVolumeInSI(expected, new Unit(-12345.67000000, Volume.Types.M3));
@@ -111,7 +111,7 @@ public class TestVolume {
 
 
     @Test
-    void allVolumeValuesShouldBeTestedAndAreCorrectInSIForZero() {
+    public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForZero() {
         assertEquals(12, Volume.Types.values().length);
         double expected = 0.0;
         assertEquivalentVolumeInSI(expected, new Unit(0.0, Volume.Types.M3));
@@ -130,7 +130,7 @@ public class TestVolume {
 
 
     @Test
-    void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
+    public void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(12, Volume.Types.values().length);
         assertEquivalentVolume(0.0, Volume.Types.L, 0.0, Volume.Types.M3);
         assertEquivalentVolume(0.0, Volume.Types.L, 0.0, Volume.Types.ML);
@@ -167,7 +167,7 @@ public class TestVolume {
 
 
     @Test
-    void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
+    public void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(12, Volume.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentVolume(randomValue, Volume.Types.L, randomValue * 1000, Volume.Types.CM3);
@@ -203,7 +203,7 @@ public class TestVolume {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Volume.Types.CM3);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
@@ -213,7 +213,7 @@ public class TestVolume {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Volume.Types.CM3));

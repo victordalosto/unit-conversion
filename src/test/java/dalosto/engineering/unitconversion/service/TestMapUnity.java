@@ -22,7 +22,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldHandleNullString() {
+    public void serviceShouldHandleNullString() {
         assertThrows(ParameterException.class, () -> service.getUnitTypeFromString(null, null));
         assertThrows(ParameterException.class, () -> service.getUnitTypeFromString("Text", null));
         assertThrows(ParameterException.class, () -> service.getUnitTypeFromString(null, new Length()));
@@ -30,7 +30,7 @@ public class TestMapUnity {
 
 
     @Test
-    void shouldThrowExceptionWhenInvalidParamIsGiven() {
+    public void shouldThrowExceptionWhenInvalidParamIsGiven() {
         assertThrows(ParameterException.class, () -> service.getUnitTypeFromString("", new Area()));
         assertThrows(ParameterException.class, () -> service.getUnitTypeFromString("M", new Area()));
         assertThrows(ParameterException.class, () -> service.getUnitTypeFromString("M_2", new Length()));
@@ -40,7 +40,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldBeAbleToMapUnitsEvenWithNoiseInString() {
+    public void serviceShouldBeAbleToMapUnitsEvenWithNoiseInString() {
         assertEquals(Length.Types.MM, service.getUnitTypeFromString("mm", new Length()));
         assertEquals(Length.Types.MM, service.getUnitTypeFromString("MM", new Length()));
         assertEquals(Length.Types.MM, service.getUnitTypeFromString("mM", new Length()));
@@ -52,7 +52,7 @@ public class TestMapUnity {
     }
 
     @Test
-    void serviceShouldBeAbleToConvertWithDifferentFormats() {
+    public void serviceShouldBeAbleToConvertWithDifferentFormats() {
         assertEquals(Length.Types.M, service.getUnitTypeFromString("m", new Length()));
         assertEquals(Length.Types.M, service.getUnitTypeFromString("M", new Length()));
         assertEquals(Area.Types.M2, service.getUnitTypeFromString("M2", new Area()));
@@ -74,7 +74,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldBeAbleToMapLenghtUnits() {
+    public void serviceShouldBeAbleToMapLenghtUnits() {
         assertEquals(Length.Types.M, service.getUnitTypeFromString("M", new Length()));
         assertEquals(Length.Types.DM, service.getUnitTypeFromString("DM", new Length()));
         assertEquals(Length.Types.CM, service.getUnitTypeFromString("CM", new Length()));
@@ -89,7 +89,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldBeAbleToMapAreaUnits() {
+    public void serviceShouldBeAbleToMapAreaUnits() {
         assertEquals(Area.Types.M2, service.getUnitTypeFromString("M2", new Area()));
         assertEquals(Area.Types.DM2, service.getUnitTypeFromString("DM2", new Area()));
         assertEquals(Area.Types.CM2, service.getUnitTypeFromString("CM2", new Area()));
@@ -104,7 +104,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldBeAbleToMapVolumeUnits() {
+    public void serviceShouldBeAbleToMapVolumeUnits() {
         assertEquals(Volume.Types.M3, service.getUnitTypeFromString("M3", new Volume()));
         assertEquals(Volume.Types.DM3, service.getUnitTypeFromString("DM3", new Volume()));
         assertEquals(Volume.Types.CM3, service.getUnitTypeFromString("CM3", new Volume()));
@@ -121,7 +121,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldBeAbleToMapInertiaUnits() {
+    public void serviceShouldBeAbleToMapInertiaUnits() {
         assertEquals(Inertia.Types.M4, service.getUnitTypeFromString("M4", new Inertia()));
         assertEquals(Inertia.Types.DM4, service.getUnitTypeFromString("DM4", new Inertia()));
         assertEquals(Inertia.Types.CM4, service.getUnitTypeFromString("CM4", new Inertia()));
@@ -136,7 +136,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldBeAbleToMapForceUnits() {
+    public void serviceShouldBeAbleToMapForceUnits() {
         assertEquals(Force.Types.N, service.getUnitTypeFromString("N", new Force()));
         assertEquals(Force.Types.KN, service.getUnitTypeFromString("KN", new Force()));
         assertEquals(Force.Types.MN, service.getUnitTypeFromString("MN", new Force()));
@@ -152,7 +152,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldBeAbleToMapTemperatureUnits() {
+    public void serviceShouldBeAbleToMapTemperatureUnits() {
         assertEquals(Temperature.Types.K, service.getUnitTypeFromString("K", new Temperature()));
         assertEquals(Temperature.Types.C, service.getUnitTypeFromString("C", new Temperature()));
         assertEquals(Temperature.Types.F, service.getUnitTypeFromString("F", new Temperature()));
@@ -161,7 +161,7 @@ public class TestMapUnity {
 
 
     @Test
-    void serviceShouldBeAbleToMapTimeUnits() {
+    public void serviceShouldBeAbleToMapTimeUnits() {
         assertEquals(Time.Types.S, service.getUnitTypeFromString("S", new Time()));
         assertEquals(Time.Types.MS, service.getUnitTypeFromString("MS", new Time()));
         assertEquals(Time.Types.US, service.getUnitTypeFromString("US", new Time()));

@@ -16,7 +16,7 @@ public class TestNumericService {
 
 
     @Test
-    void invalidNumericShouldThrowsParameterExceptionNotNUmericException() {
+    public void invalidNumericShouldThrowsParameterExceptionNotNUmericException() {
         assertThrows(ParameterException.class, () -> service.convertToNumeric(""));
         assertThrows(ParameterException.class, () -> service.convertToNumeric(" "));
         assertThrows(ParameterException.class, () -> service.convertToNumeric(null));
@@ -25,7 +25,7 @@ public class TestNumericService {
 
 
     @Test
-    void serviceShouldBeAbleToHandleExponentialValuesWithExplicitE() {
+    public void serviceShouldBeAbleToHandleExponentialValuesWithExplicitE() {
         assert(service.convertToNumeric("1e-3").equals(0.001));
         assert(service.convertToNumeric("1.0e-3").equals(0.001));
         assert(service.convertToNumeric("1e-03").equals(0.001));
@@ -42,7 +42,7 @@ public class TestNumericService {
 
 
     @Test
-    void serviceShouldBeAbleToHandleEspecialExponenitals() {
+    public void serviceShouldBeAbleToHandleEspecialExponenitals() {
         assertEquals(0.001, service.convertToNumeric("1e-3.0"), TestMetrics.tolerance);
         assertEquals(-0.001, service.convertToNumeric("-1.0e-3.0"), TestMetrics.tolerance);
         assertEquals(1000.0, service.convertToNumeric("1.0e+3.0"), TestMetrics.tolerance);
@@ -56,7 +56,7 @@ public class TestNumericService {
 
 
     @Test
-    void serviceShouldBeAbleToConvertSomeTypesToExponential() {
+    public void serviceShouldBeAbleToConvertSomeTypesToExponential() {
         assertEquals(0.001, service.convertToNumeric("1*10^^-3.0"), TestMetrics.tolerance);
         assertEquals(0.00075178085, service.convertToNumeric("1.5 * 10^ -3.3"), TestMetrics.tolerance);
         assertEquals(0.00075178085, service.convertToNumeric("001.500*10^^-3.300"), TestMetrics.tolerance);
@@ -66,7 +66,7 @@ public class TestNumericService {
 
 
     @Test
-    void serviceShouldBeABleToFixExponentialValuesExportedBySomeProgramsLikeGoogleEarth() {
+    public void serviceShouldBeABleToFixExponentialValuesExportedBySomeProgramsLikeGoogleEarth() {
         assertEquals(0.001, service.convertToNumeric("1-3.0"), TestMetrics.tolerance);
         assertEquals(0.00075178085, service.convertToNumeric("1.5  -3.3"), TestMetrics.tolerance);
         assertEquals(0.00075178085, service.convertToNumeric("001.500-3.300"), TestMetrics.tolerance);
@@ -75,7 +75,7 @@ public class TestNumericService {
 
 
     @Test
-    void serviceShouldRemoveNoiseFromStringAndLeavesOnlyNumeric() {
+    public void serviceShouldRemoveNoiseFromStringAndLeavesOnlyNumeric() {
         assert(service.convertToNumeric("qwrty_!@#$%¨&*(0)aksdoaskod!)@(#)!@()").equals(0.0));
         assert(service.convertToNumeric("qwrty_!@#$%¨&*(0)kasdko.d!)@(#)0!@()").equals(0.0));
         assert(service.convertToNumeric("qwrty_!@#$%¨&*(1)o/*x=d!)@(#)!@()").equals(1.0));
@@ -89,7 +89,7 @@ public class TestNumericService {
     
 
     @Test
-    void serviceShouldFixMultiplesDecimalSeparatorAndLeavesOnlyTheFirstOcurrences() {
+    public void serviceShouldFixMultiplesDecimalSeparatorAndLeavesOnlyTheFirstOcurrences() {
         assert(service.convertToNumeric("1.0.0").equals(1.0));
         assert(service.convertToNumeric("123....456").equals(123.456));
         assert(service.convertToNumeric(".1.2.3.4.5.6.").equals(0.123456));
@@ -98,7 +98,7 @@ public class TestNumericService {
 
 
     @Test
-    void serviceShouldKeepsTheSignalValueFromString() {
+    public void serviceShouldKeepsTheSignalValueFromString() {
         assert(service.convertToNumeric("-1.0").equals(-1.0));
         assert(service.convertToNumeric("-123.456").equals(-123.456));
         assert(service.convertToNumeric("-0000.123").equals(-0.123));
@@ -107,7 +107,7 @@ public class TestNumericService {
 
     
     @Test
-    void assertThatConversionUsingCommandAndDotAreWorking() {
+    public void assertThatConversionUsingCommandAndDotAreWorking() {
         assert(service.convertToNumeric("1.0").equals(1.0));
         assert(service.convertToNumeric("1,0").equals(1.0));
         assert(service.convertToNumeric("123.45").equals(123.45));

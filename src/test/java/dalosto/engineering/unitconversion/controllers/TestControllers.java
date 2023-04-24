@@ -19,13 +19,13 @@ public class TestControllers {
 
 
     @Test
-    void allUnitsShouldBeCoveredByAController() {
+    public void allUnitsShouldBeCoveredByAController() {
         assertEquals(formulas.size(), controllers.size());
     }
 
 
     @Test
-    void allControllersMustHaveAValidUnitFormula() {
+    public void allControllersMustHaveAValidUnitFormula() {
         for (TemplateController templateController : controllers) {
             assert(formulas.contains(templateController.getEndpointInfo().getUnitFormula()));
         }
@@ -33,7 +33,7 @@ public class TestControllers {
 
 
     @Test
-    void allControllersMustHaveAValidEndPoint() {
+    public void allControllersMustHaveAValidEndPoint() {
         for (TemplateController templateController : controllers) {
             String unitFormula = templateController.getEndpointInfo().getUnitFormula().getClass().getSimpleName().toLowerCase();
             String endpointTitle = templateController.getEndpointInfo().getTitle();

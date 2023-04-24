@@ -15,7 +15,7 @@ public class TestConversorServiceWithSmallNumbers {
     ConversorService service;
 
     @Test
-    void shouldBeAbleToConvertUnitDaoWithSmallValue() {
+    public void shouldBeAbleToConvertUnitDaoWithSmallValue() {
         assertEquals(1234567.0, service.formatUnitDAOAndConvertToUnit(new UnitDAO("12345.67", "m", "cm"), new Length()).getValue());
         assertEquals(0.0001, service.formatUnitDAOAndConvertToUnit(new UnitDAO("0.000001", "m", "cm"), new Length()).getValue());
         assertEquals(0.000000001, service.formatUnitDAOAndConvertToUnit(new UnitDAO("0.00000000001", "m", "cm"), new Length()).getValue());

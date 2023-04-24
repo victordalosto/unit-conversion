@@ -30,7 +30,7 @@ public class TestForce {
 
 
     @Test
-    void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
+    public void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 50.0;
         UnitType unitType = Force.Types.KN;
         Unit unit = new Unit(value, unitType);
@@ -46,7 +46,7 @@ public class TestForce {
 
 
     @Test
-    void SIUnitTypeOfForceShouldBeMeterSquare() {
+    public void SIUnitTypeOfForceShouldBeMeterSquare() {
         assertEquals(Force.Types.N, unitFormula.getSITypeOfThisCategory());
         assertEquals(Force.Types.N, Force.Types.MN.getSITypeOfThisCategory());
         assertEquals(Force.Types.N, new Unit(0.0, Force.Types.POUND).getType().getSITypeOfThisCategory());
@@ -55,7 +55,7 @@ public class TestForce {
 
 
     @Test
-    void assertThatOnlyTheCorrectUnitTypesUsesGravityValue() {
+    public void assertThatOnlyTheCorrectUnitTypesUsesGravityValue() {
         assertEquals(11, Force.Types.values().length);
         assert(!Force.Types.N.dependesOfGravityOnConversion);
         assert(!Force.Types.KN.dependesOfGravityOnConversion);
@@ -72,7 +72,7 @@ public class TestForce {
 
 
     @Test
-    void allForceValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+    public void allForceValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(11, Force.Types.values().length);
         assertEquivalentForceInSI(1.0, new Unit(1, Force.Types.N));
         assertEquivalentForceInSI(Math.pow(10, 3), new Unit(1, Force.Types.KN));
@@ -89,7 +89,7 @@ public class TestForce {
 
 
     @Test
-    void allForceValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
+    public void allForceValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(11, Force.Types.values().length);
         double expected = 12345.67;
         assertEquivalentForceInSI(expected, new Unit(12345.67, Force.Types.N));
@@ -107,7 +107,7 @@ public class TestForce {
 
 
     @Test
-    void allForceValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
+    public void allForceValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
         assertEquals(11, Force.Types.values().length);
         double expected = -12345.67;
         assertEquivalentForceInSI(expected, new Unit(-12345.67, Force.Types.N));
@@ -125,7 +125,7 @@ public class TestForce {
 
 
     @Test
-    void allForceValuesShouldBeTestedAndAreCorrectInSIForZero() {
+    public void allForceValuesShouldBeTestedAndAreCorrectInSIForZero() {
         assertEquals(11, Force.Types.values().length);
         double expected = 0.0;
         assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.N));
@@ -143,7 +143,7 @@ public class TestForce {
 
 
     @Test
-    void forceValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
+    public void forceValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(11, Force.Types.values().length);
         assertEquivalentForce(0.0, Force.Types.N, 0.0, Force.Types.KN);
         assertEquivalentForce(0.0, Force.Types.KN, 0.0, Force.Types.MN);
@@ -160,7 +160,7 @@ public class TestForce {
 
 
     @Test
-    void forceValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
+    public void forceValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
         assertEquals(11, Force.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentForce(randomValue, Force.Types.N, randomValue/1000.0, Force.Types.KN);
@@ -177,7 +177,7 @@ public class TestForce {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Force.Types.N);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
@@ -187,7 +187,7 @@ public class TestForce {
 
 
     @Test
-    void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
+    public void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Force.Types.N));

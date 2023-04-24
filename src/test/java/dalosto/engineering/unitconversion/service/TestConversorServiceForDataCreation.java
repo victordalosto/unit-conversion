@@ -24,7 +24,7 @@ public class TestConversorServiceForDataCreation {
 
 
     @Test
-    void shouldBeAbreToCreateLengthUnitsFromUnitDAO() {
+    public void shouldBeAbreToCreateLengthUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "MM", "MM");
         Unit unit = new Unit(3.5, Length.Types.MM);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Length()));
@@ -32,7 +32,7 @@ public class TestConversorServiceForDataCreation {
 
     
     @Test
-    void shouldBeAbreToCreateAreaUnitsFromUnitDAO() {
+    public void shouldBeAbreToCreateAreaUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "IN^2", "IN^2");
         Unit unit = new Unit(3.5, Area.Types.IN2);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Area()));
@@ -40,7 +40,7 @@ public class TestConversorServiceForDataCreation {
 
     
     @Test
-    void shouldBeAbreToCreateVolumeUnitsFromUnitDAO() {
+    public void shouldBeAbreToCreateVolumeUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "L", "L");
         Unit unit = new Unit(3.5, Volume.Types.L);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Volume()));
@@ -48,7 +48,7 @@ public class TestConversorServiceForDataCreation {
 
     
     @Test
-    void shouldBeAbreToCreateForceUnitsFromUnitDAO() {
+    public void shouldBeAbreToCreateForceUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "N", "N");
         Unit unit = new Unit(3.5, Force.Types.N);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Force()));
@@ -56,7 +56,7 @@ public class TestConversorServiceForDataCreation {
 
     
     @Test
-    void shouldBeAbreToCreateTemperatureUnitsFromUnitDAO() {
+    public void shouldBeAbreToCreateTemperatureUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "C", "C");
         Unit unit = new Unit(3.5, Temperature.Types.C);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Temperature()));
@@ -64,7 +64,7 @@ public class TestConversorServiceForDataCreation {
 
     
     @Test
-    void shouldBeAbreToCreateTimeUnitsFromUnitDAO() {
+    public void shouldBeAbreToCreateTimeUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("3.5", "S", "S");
         Unit unit = new Unit(3.5, Time.Types.S);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Time()));
@@ -72,14 +72,14 @@ public class TestConversorServiceForDataCreation {
 
 
     @Test
-    void shouldThrowExceptionWhenInvalidParamIsGiven() {
+    public void shouldThrowExceptionWhenInvalidParamIsGiven() {
         UnitDAO unitDAO = new UnitDAO("3.5", "INVALID", "mock");
         assertThrows(ParameterException.class, () -> service.formatUnitDAOAndConvertToUnit(unitDAO, new Length()));
     }
 
 
     @Test
-    void shouldThrowExceptionWhenWrongUnitTypeIsGiven() {
+    public void shouldThrowExceptionWhenWrongUnitTypeIsGiven() {
         assertThrows(ParameterException.class, () -> service.formatUnitDAOAndConvertToUnit(new UnitDAO("3.5", "M", "mock"), new Area()));
         assertThrows(ParameterException.class, () -> service.formatUnitDAOAndConvertToUnit(new UnitDAO("3.5", "M", "mock"), new Force()));
         assertThrows(ParameterException.class, () -> service.formatUnitDAOAndConvertToUnit(new UnitDAO("3.5", "M", "mock"), new Inertia()));
@@ -91,27 +91,27 @@ public class TestConversorServiceForDataCreation {
 
 
     @Test
-    void serviceShouldThrowExceptionIfNullValueIsPassed() {
+    public void serviceShouldThrowExceptionIfNullValueIsPassed() {
         UnitDAO unitDAO = new UnitDAO(null, "M2", "mock");
         assertThrows(ParameterException.class, () -> service.formatUnitDAOAndConvertToUnit(unitDAO, new Length()));
     }
 
     @Test
-    void serviceShouldThrowExceptionIfNullTypeIsPassed() {
+    public void serviceShouldThrowExceptionIfNullTypeIsPassed() {
         UnitDAO unitDAO = new UnitDAO("3.5", null, "mock");
         assertThrows(ParameterException.class, () -> service.formatUnitDAOAndConvertToUnit(unitDAO, new Length()));
     }
 
 
     @Test
-    void serviceShouldThrowExceptionIfNullFormulaIsPassed() {
+    public void serviceShouldThrowExceptionIfNullFormulaIsPassed() {
         UnitDAO unitDAO = new UnitDAO("3.5", "M2", null);
         assertThrows(ParameterException.class, () -> service.formatUnitDAOAndConvertToUnit(unitDAO, new Length()));
     }
 
     
     @Test
-    void serviceShouldThrowExceptionEmptyValueIsPassed() {
+    public void serviceShouldThrowExceptionEmptyValueIsPassed() {
         UnitDAO unitDAO = new UnitDAO("0.0", "", "mock");
         assertThrows(ParameterException.class, () -> service.formatUnitDAOAndConvertToUnit(unitDAO, new Length()));
         UnitDAO unitDAO2 = new UnitDAO("", "M", "mock");
