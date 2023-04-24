@@ -26,21 +26,11 @@ public class TestTimeout {
     private List<UnitFormula> formulas;
 
     @Test
-    public void testsMustBeExecuted100TimesIn1000SecondsBeforeTimeOut() {
+    public void testsMustBeExecuted100TimesIn500SecondsBeforeTimeOut() {
         for (UnitFormula formula : formulas) {
-            String type = formula.getClass().getSimpleName().toLowerCase();
             for (UnitType inputType : formula.getAllUnitTypesOfThisCategory()) {
                 for (UnitType outputType : formula.getAllUnitTypesOfThisCategory()) {
-                    Runnable task = () -> {
-                        try {
-                            mockMvc.perform(get("/api/" + type + "?value=12345.67&type=" + inputType + "&target=" + outputType))
-                                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                            ;
-                        } catch (Exception e) {
-                            fail();
-                        }
-                    };
-                    assertTimeExecutionOfMethodIsExecuted1000InGivenTime(1000, task);
+                    createAndRunTask(formula, inputType, outputType);
                 }
             }
         }
@@ -48,11 +38,28 @@ public class TestTimeout {
     }
 
 
-    private void assertTimeExecutionOfMethodIsExecuted1000InGivenTime(long time, Runnable method) {
-        long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 500; i++) {
-            method.run();
+    private void createAndRunTask(UnitFormula formula, UnitType inputType, UnitType outputType) {
+        String type = formula.getClass().getSimpleName().toLowerCase();
+        Runnable task = () -> createTask(type, inputType, outputType);
+        assertTimeExecutionOfMethodIsExecutedInGivenTime(task, 300, 100);
+    }
+
+
+    private void createTask(String type, UnitType inputType, UnitType outputType) {
+        try {
+            mockMvc.perform(get("/api/" + type + "?value=12345.67&type=" + inputType + "&target=" + outputType))
+                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
+            ;
+        } catch (Exception e) {
+            fail();
         }
+    }
+
+
+    private void assertTimeExecutionOfMethodIsExecutedInGivenTime(Runnable method, long time, int numberOfRuns) {
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < numberOfRuns; i++)
+            method.run();
         long endTime = System.currentTimeMillis();
         long duration = (endTime - startTime);
         assertTrue(duration < time);

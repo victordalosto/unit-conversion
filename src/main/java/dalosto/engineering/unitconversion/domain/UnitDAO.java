@@ -4,9 +4,11 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 
 @Getter
+@Setter
 @AllArgsConstructor
 @EqualsAndHashCode
 public class UnitDAO {
@@ -31,18 +33,5 @@ public class UnitDAO {
     }
 
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-
-    public void setType(String type) {
-        this.type = type.replaceAll("_", "");
-    }
-
-
-    public void setTarget(String target) {
-        this.target = target.replaceAll("_", "");
-    }
 
 }

@@ -22,7 +22,7 @@ public class EndpointInfo {
 
 
     public String getAllUnits() {
-        return unitFormula.getAllUnitTypesOfThisCategory().toString().replaceAll("_", "");
+        return unitFormula.getAllUnitTypesOfThisCategory().toString();
     }
 
 

@@ -46,8 +46,8 @@ public class ExampleController {
 
     private void appendResult(RestMessage message) {
         String value = "12345.67";
-        String type = unitFormula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString().replaceAll("_", "");
-        String target = unitFormula.getAllUnitTypesOfThisCategory().stream().skip(1).findFirst().get().toString().replaceAll("_", "");
+        String type = unitFormula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();
+        String target = unitFormula.getAllUnitTypesOfThisCategory().stream().skip(1).findFirst().get().toString();
         
         message.setResult(RestStatus.INFO, 
                           "example", "How to convert " + value + " " + type + " into " + target + "  ?",
