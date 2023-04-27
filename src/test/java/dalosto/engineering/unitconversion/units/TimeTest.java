@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.TestMetrics;
+import dalosto.engineering.unitconversion.MetricsTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
 @SpringBootTest
-public class TestTime {
+public class TimeTest {
 
     @Autowired
     @Qualifier("time")
@@ -20,12 +20,12 @@ public class TestTime {
 
 
     void assertEquivalentTimeInSI(double expected, Unit actual) {
-        TestMetrics.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentTime(double fromValue, Time.Types from, Double toValue, Time.Types to) {
-        TestMetrics.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class TestTime {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Time.Types.MS);
-        assertEquals(value, unit.getValue(), TestMetrics.tolerance);
+        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(3600.0, outputSI.getValue(), TestMetrics.tolerance);
+        assertEquals(3600.0, outputSI.getValue(), MetricsTest.tolerance);
         assertEquals(Time.Types.S, outputSI.getType());
-        assertEquals(3600000.0, outputAnotherType.getValue(), TestMetrics.tolerance);
+        assertEquals(3600000.0, outputAnotherType.getValue(), MetricsTest.tolerance);
         assertEquals(Time.Types.MS, outputAnotherType.getType());
     }
 

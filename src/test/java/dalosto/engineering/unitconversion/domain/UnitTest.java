@@ -14,7 +14,7 @@ import dalosto.engineering.unitconversion.units.Volume;
 
 
 @SpringBootTest
-public class TestUnit {
+public class UnitTest {
 
     @Autowired
     List<UnitFormula> formulas;

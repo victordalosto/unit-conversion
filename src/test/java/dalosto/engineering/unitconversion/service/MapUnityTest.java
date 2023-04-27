@@ -15,7 +15,7 @@ import dalosto.engineering.unitconversion.units.Volume;
 
 
 @SpringBootTest
-public class TestMapUnity {
+public class MapUnityTest {
 
     @Autowired
     private MapUnitTypeService service;

@@ -12,7 +12,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 
 
 @SpringBootTest
-public class TestTypesConversion {
+public class TypesConversionTest {
 
     @Autowired
     Set<UnitFormula> formulas;

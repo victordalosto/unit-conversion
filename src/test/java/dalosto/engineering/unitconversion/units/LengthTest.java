@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.TestMetrics;
+import dalosto.engineering.unitconversion.MetricsTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
 @SpringBootTest
-public class TestLength {
+public class LengthTest {
 
     @Autowired
     @Qualifier("length")
@@ -20,12 +20,12 @@ public class TestLength {
 
 
     void assertEquivalentLengthInSI(double expected, Unit actual) {
-        TestMetrics.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentLength(double fromValue, Length.Types from, Double toValue, Length.Types to) {
-        TestMetrics.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class TestLength {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Length.Types.CM);
-        assertEquals(value, unit.getValue(), TestMetrics.tolerance);
+        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(5.0, outputSI.getValue(), TestMetrics.tolerance);
+        assertEquals(5.0, outputSI.getValue(), MetricsTest.tolerance);
         assertEquals(Length.Types.M, outputSI.getType());
-        assertEquals(500.0, outputAnotherType.getValue(), TestMetrics.tolerance);
+        assertEquals(500.0, outputAnotherType.getValue(), MetricsTest.tolerance);
         assertEquals(Length.Types.CM, outputAnotherType.getType());
     }
 

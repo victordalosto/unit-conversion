@@ -5,15 +5,15 @@ import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
-public class TestMetrics {
+public class MetricsTest {
 
     public static double tolerance = Math.pow(10, -9);
 
 
     public static void assertEquavalentInSI(double expected, Unit actual, UnitFormula unitFormula) {
-        assertEquals(expected, unitFormula.buildUnitToSI(actual).getValue(), TestMetrics.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(actual).getValue(), MetricsTest.tolerance);
         if (expected != 0) {
-            assertEquals(1, expected/unitFormula.buildUnitToSI(actual).getValue(), TestMetrics.tolerance);
+            assertEquals(1, expected/unitFormula.buildUnitToSI(actual).getValue(), MetricsTest.tolerance);
         }
     }
 
@@ -21,9 +21,9 @@ public class TestMetrics {
     public static void assertEquivalentUnit(double fromValue, UnitType fromType, 
                                             double toValue, UnitType toType,
                                             UnitFormula formula) {
-        assertEquals(toValue, formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), TestMetrics.tolerance);
+        assertEquals(toValue, formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), MetricsTest.tolerance);
         if (toValue != 0) {
-            assertEquals(1, toValue/formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), TestMetrics.tolerance);
+            assertEquals(1, toValue/formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), MetricsTest.tolerance);
         }
             
     }

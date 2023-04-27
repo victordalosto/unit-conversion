@@ -14,7 +14,7 @@ import dalosto.engineering.unitconversion.units.Volume;
 
 
 @SpringBootTest
-public class TestConversorService {
+public class ConversorServiceTest {
 
     @Autowired
     private ConversorService service;

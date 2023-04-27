@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.TestMetrics;
+import dalosto.engineering.unitconversion.MetricsTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
 @SpringBootTest
-public class TestForce {
+public class ForceTest {
 
     @Autowired
     @Qualifier("force")
@@ -20,12 +20,12 @@ public class TestForce {
 
 
     void assertEquivalentForceInSI(double expected, Unit actual) {
-        TestMetrics.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentForce(double fromValue, Force.Types from, Double toValue, Force.Types to) {
-        TestMetrics.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class TestForce {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Force.Types.KG);
-        assertEquals(value, unit.getValue(), TestMetrics.tolerance);
+        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(50000.0, outputSI.getValue(), TestMetrics.tolerance);
+        assertEquals(50000.0, outputSI.getValue(), MetricsTest.tolerance);
         assertEquals(Force.Types.N, outputSI.getType());
-        assertEquals(5098.58104999997, outputAnotherType.getValue(), TestMetrics.tolerance);
+        assertEquals(5098.58104999997, outputAnotherType.getValue(), MetricsTest.tolerance);
         assertEquals(Force.Types.KG, outputAnotherType.getType());
     }
 

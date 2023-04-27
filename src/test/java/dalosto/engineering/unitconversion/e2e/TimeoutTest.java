@@ -17,7 +17,7 @@ import dalosto.engineering.unitconversion.units.UnitFormula;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TestTimeout {
+public class TimeoutTest {
 
     @Autowired
     private MockMvc mockMvc;

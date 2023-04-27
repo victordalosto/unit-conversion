@@ -8,7 +8,7 @@ import dalosto.engineering.unitconversion.units.TemplateUnitFormulas;
 
 
 @SpringBootTest
-public class TestControllers {
+public class ControllersTest {
 
     @Autowired
     Set<TemplateController> controllers;

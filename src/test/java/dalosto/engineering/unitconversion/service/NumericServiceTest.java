@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.TestMetrics;
+import dalosto.engineering.unitconversion.MetricsTest;
 import dalosto.engineering.unitconversion.exception.ParameterException;
 
 
 @SpringBootTest
-public class TestNumericService {
+public class NumericServiceTest {
 
     @Autowired
     private NumericService service;
@@ -43,34 +43,34 @@ public class TestNumericService {
 
     @Test
     public void serviceShouldBeAbleToHandleEspecialExponenitals() {
-        assertEquals(0.001, service.convertToNumeric("1e-3.0"), TestMetrics.tolerance);
-        assertEquals(-0.001, service.convertToNumeric("-1.0e-3.0"), TestMetrics.tolerance);
-        assertEquals(1000.0, service.convertToNumeric("1.0e+3.0"), TestMetrics.tolerance);
-        assertEquals(1743258.1080900824, service.convertToNumeric("3,1e5.75"), TestMetrics.tolerance);
-        assertEquals(1743258.1080900824, service.convertToNumeric("3,1e+5.75"), TestMetrics.tolerance);
-        assertEquals(33951205.17627744, service.convertToNumeric("0.557e+7.785"), TestMetrics.tolerance);
-        assertEquals(-0.14025230678774545, service.convertToNumeric("-0.0125e+1.05"), TestMetrics.tolerance);
-        assertEquals(-0.00257714042, service.convertToNumeric("-0.0332e-1.11"), TestMetrics.tolerance);
-        assertEquals(1743258.1080900824, service.convertToNumeric("+3,1.000e+5.75000"), TestMetrics.tolerance);
+        assertEquals(0.001, service.convertToNumeric("1e-3.0"), MetricsTest.tolerance);
+        assertEquals(-0.001, service.convertToNumeric("-1.0e-3.0"), MetricsTest.tolerance);
+        assertEquals(1000.0, service.convertToNumeric("1.0e+3.0"), MetricsTest.tolerance);
+        assertEquals(1743258.1080900824, service.convertToNumeric("3,1e5.75"), MetricsTest.tolerance);
+        assertEquals(1743258.1080900824, service.convertToNumeric("3,1e+5.75"), MetricsTest.tolerance);
+        assertEquals(33951205.17627744, service.convertToNumeric("0.557e+7.785"), MetricsTest.tolerance);
+        assertEquals(-0.14025230678774545, service.convertToNumeric("-0.0125e+1.05"), MetricsTest.tolerance);
+        assertEquals(-0.00257714042, service.convertToNumeric("-0.0332e-1.11"), MetricsTest.tolerance);
+        assertEquals(1743258.1080900824, service.convertToNumeric("+3,1.000e+5.75000"), MetricsTest.tolerance);
     }
 
 
     @Test
     public void serviceShouldBeAbleToConvertSomeTypesToExponential() {
-        assertEquals(0.001, service.convertToNumeric("1*10^^-3.0"), TestMetrics.tolerance);
-        assertEquals(0.00075178085, service.convertToNumeric("1.5 * 10^ -3.3"), TestMetrics.tolerance);
-        assertEquals(0.00075178085, service.convertToNumeric("001.500*10^^-3.300"), TestMetrics.tolerance);
-        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*10^+3.3"), TestMetrics.tolerance);
-        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*10^3.3"), TestMetrics.tolerance);
+        assertEquals(0.001, service.convertToNumeric("1*10^^-3.0"), MetricsTest.tolerance);
+        assertEquals(0.00075178085, service.convertToNumeric("1.5 * 10^ -3.3"), MetricsTest.tolerance);
+        assertEquals(0.00075178085, service.convertToNumeric("001.500*10^^-3.300"), MetricsTest.tolerance);
+        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*10^+3.3"), MetricsTest.tolerance);
+        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*10^3.3"), MetricsTest.tolerance);
     }
 
 
     @Test
     public void serviceShouldBeABleToFixExponentialValuesExportedBySomeProgramsLikeGoogleEarth() {
-        assertEquals(0.001, service.convertToNumeric("1-3.0"), TestMetrics.tolerance);
-        assertEquals(0.00075178085, service.convertToNumeric("1.5  -3.3"), TestMetrics.tolerance);
-        assertEquals(0.00075178085, service.convertToNumeric("001.500-3.300"), TestMetrics.tolerance);
-        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*+3.3"), TestMetrics.tolerance);
+        assertEquals(0.001, service.convertToNumeric("1-3.0"), MetricsTest.tolerance);
+        assertEquals(0.00075178085, service.convertToNumeric("1.5  -3.3"), MetricsTest.tolerance);
+        assertEquals(0.00075178085, service.convertToNumeric("001.500-3.300"), MetricsTest.tolerance);
+        assertEquals(2992.8934724533183, service.convertToNumeric("1.5*+3.3"), MetricsTest.tolerance);
     }
 
 

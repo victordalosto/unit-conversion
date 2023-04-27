@@ -9,7 +9,7 @@ import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
 @SpringBootTest
-public class TestUnitDAO {
+public class UnitDAOTest {
 
     @Autowired
     List<UnitFormula> formulas;

@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.TestMetrics;
+import dalosto.engineering.unitconversion.MetricsTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
 @SpringBootTest
-public class TestInertia {
+public class IntertiaTest {
 
     @Autowired
     @Qualifier("inertia")
@@ -20,12 +20,12 @@ public class TestInertia {
 
 
     void assertEquivalentInertiaInSI(double expected, Unit actual) {
-        TestMetrics.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentInertia(double fromValue, Inertia.Types from, Double toValue, Inertia.Types to) {
-        TestMetrics.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class TestInertia {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Inertia.Types.CM4);
-        assertEquals(value, unit.getValue(), TestMetrics.tolerance);
+        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(2.5*Math.pow(10, -5), outputSI.getValue(), TestMetrics.tolerance);
+        assertEquals(2.5*Math.pow(10, -5), outputSI.getValue(), MetricsTest.tolerance);
         assertEquals(Inertia.Types.M4, outputSI.getType());
-        assertEquals(2500.0, outputAnotherType.getValue(), TestMetrics.tolerance);
+        assertEquals(2500.0, outputAnotherType.getValue(), MetricsTest.tolerance);
         assertEquals(Inertia.Types.CM4, outputAnotherType.getType());
     }
 

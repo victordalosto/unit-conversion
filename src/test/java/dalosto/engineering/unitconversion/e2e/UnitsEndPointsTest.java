@@ -20,7 +20,7 @@ import dalosto.engineering.unitconversion.units.Volume;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TestUnitsEndPoints {
+public class UnitsEndPointsTest {
 
     @Autowired
     private MockMvc mockMvc;

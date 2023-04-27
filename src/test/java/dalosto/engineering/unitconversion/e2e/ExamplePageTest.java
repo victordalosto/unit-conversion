@@ -13,7 +13,7 @@ import dalosto.engineering.unitconversion.domain.RestStatus;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TestExamplePage {
+public class ExamplePageTest {
 
     @Autowired
     private MockMvc mockMvc;

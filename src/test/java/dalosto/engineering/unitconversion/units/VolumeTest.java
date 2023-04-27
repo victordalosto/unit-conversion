@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.TestMetrics;
+import dalosto.engineering.unitconversion.MetricsTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
 @SpringBootTest
-public class TestVolume {
+public class VolumeTest {
 
     @Autowired
     @Qualifier("volume")
@@ -20,12 +20,12 @@ public class TestVolume {
 
 
     void assertEquivalentVolumeInSI(double expected, Unit actual) {
-        TestMetrics.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentVolume(double fromValue, Volume.Types from, Double toValue, Volume.Types to) {
-        TestMetrics.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class TestVolume {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Volume.Types.CM3);
-        assertEquals(value, unit.getValue(), TestMetrics.tolerance);
+        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(0.025, outputSI.getValue(), TestMetrics.tolerance);
+        assertEquals(0.025, outputSI.getValue(), MetricsTest.tolerance);
         assertEquals(Volume.Types.M3, outputSI.getType());
-        assertEquals(25000.0, outputAnotherType.getValue(), TestMetrics.tolerance);
+        assertEquals(25000.0, outputAnotherType.getValue(), MetricsTest.tolerance);
         assertEquals(Volume.Types.CM3, outputAnotherType.getType());
     }
 

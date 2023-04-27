@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-public class TestMainClass {
+public class UnitconversionApplicationTest {
 
     @Test
     public void mainClassShouldBeCalledWithtoutErrors() {

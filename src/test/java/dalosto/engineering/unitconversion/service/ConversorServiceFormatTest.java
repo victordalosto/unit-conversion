@@ -14,7 +14,7 @@ import dalosto.engineering.unitconversion.units.Time;
 import dalosto.engineering.unitconversion.units.Volume;
 
 @SpringBootTest
-public class TestConversorServiceFormat {
+public class ConversorServiceFormatTest {
 
     @Autowired
     private ConversorService service;

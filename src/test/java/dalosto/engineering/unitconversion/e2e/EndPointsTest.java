@@ -16,7 +16,7 @@ import dalosto.engineering.unitconversion.units.UnitFormula;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TestEndPoints {
+public class EndPointsTest {
 
     @Autowired
     private MockMvc mockMvc;

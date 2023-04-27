@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.TestMetrics;
+import dalosto.engineering.unitconversion.MetricsTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
 @SpringBootTest
-public class TestTemperature {
+public class TemperatureTest {
 
     @Autowired
     @Qualifier("temperature")
@@ -20,12 +20,12 @@ public class TestTemperature {
 
 
     void assertEquivalentTemperatureInSI(double expected, Unit actual) {
-        TestMetrics.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentTemperature(double fromValue, Temperature.Types from, Double toValue, Temperature.Types to) {
-        TestMetrics.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class TestTemperature {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Temperature.Types.F);
-        assertEquals(value, unit.getValue(), TestMetrics.tolerance);
+        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(373.15, outputSI.getValue(), TestMetrics.tolerance);
+        assertEquals(373.15, outputSI.getValue(), MetricsTest.tolerance);
         assertEquals(Temperature.Types.K, outputSI.getType());
-        assertEquals(212, outputAnotherType.getValue(), TestMetrics.tolerance);
+        assertEquals(212, outputAnotherType.getValue(), MetricsTest.tolerance);
         assertEquals(Temperature.Types.F, outputAnotherType.getType());
     }
 

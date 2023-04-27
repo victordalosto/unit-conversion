@@ -10,7 +10,7 @@ import dalosto.engineering.unitconversion.units.Volume;
 
 
 @SpringBootTest
-public class TestServiceToFixString {
+public class ServiceToFixStringTest {
 
     @Autowired
     private MapUnitTypeService mapUnitTypeService;
