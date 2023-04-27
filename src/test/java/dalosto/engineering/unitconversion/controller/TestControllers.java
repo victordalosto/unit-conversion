@@ -1,10 +1,9 @@
-package dalosto.engineering.unitconversion.controllers;
+package dalosto.engineering.unitconversion.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.controller.TemplateController;
 import dalosto.engineering.unitconversion.units.TemplateUnitFormulas;
 
 

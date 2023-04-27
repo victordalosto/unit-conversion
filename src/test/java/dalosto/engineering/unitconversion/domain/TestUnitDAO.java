@@ -1,5 +1,6 @@
 package dalosto.engineering.unitconversion.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class TestUnitDAO {
     @Test
     public void UnitDaoWithNullValuesShouldntHaveData() {
         UnitDAO unit = new UnitDAO(null, null, null);
-        assertEquals(true, unit.doesntHaveData());
+        assertTrue(unit.doesntHaveData());
     }
 
     

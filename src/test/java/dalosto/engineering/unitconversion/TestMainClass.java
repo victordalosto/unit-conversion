@@ -1,8 +1,7 @@
-package dalosto.engineering.unitconversion.spring;
+package dalosto.engineering.unitconversion;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.UnitconversionApplication;
 
 
 @SpringBootTest
