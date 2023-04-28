@@ -24,7 +24,7 @@ public class HomePageTest {
 
 
     @Test
-    public void homePageShouldReturnHeaderAndResult() throws Exception {
+    public void homePageShouldReturnHeaderAndResultAndInformations() throws Exception {
         mockMvc.perform(get("/"))
                .andExpect(status().isOk())
                .andExpect(content().string(containsString("header")))
@@ -36,7 +36,7 @@ public class HomePageTest {
 
     
     @Test
-    public void allTypesMustBePublishedOnTheHomePage() throws Exception {
+    public void homePageMustListAllTypes() throws Exception {
         assert(formulas.size() >= 7);
         for (UnitFormula formula : formulas) {
             String type = formula.getClass().getSimpleName().toLowerCase();

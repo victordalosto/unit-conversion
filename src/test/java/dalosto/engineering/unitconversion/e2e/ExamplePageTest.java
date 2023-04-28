@@ -20,7 +20,7 @@ public class ExamplePageTest {
 
 
     @Test
-    public void examplePageShouldReturnHeaderAndResult() throws Exception {
+    public void examplePageShouldReturnHeaderAndResultAndInformations() throws Exception {
         mockMvc.perform(get("/example"))
                .andExpect(status().isOk())
                .andExpect(content().string(containsString("header")))
@@ -32,7 +32,7 @@ public class ExamplePageTest {
 
 
     @Test
-    public void statusMustBePresentedIntExamplePage() throws Exception {
+    public void examplePageShouldHaveAllStatusListened() throws Exception {
         for (RestStatus status : RestStatus.values()) {
             mockMvc.perform(get("/example"))
                    .andExpect(status().isOk())
@@ -43,7 +43,7 @@ public class ExamplePageTest {
 
 
     @Test
-    public void observationsAboutResilienceSHouldBeInExample() throws Exception {
+    public void examplePageMustHaveobservationsAboutResilience() throws Exception {
         mockMvc.perform(get("/example"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("resilient")))

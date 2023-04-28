@@ -25,23 +25,31 @@ public class TimeoutTest {
     @Autowired
     private List<UnitFormula> formulas;
 
+    private final int numberOfRuns = 100;
+    private final long maxtimeDuration = 200;
+
     @Test
-    public void testsMustBeExecuted100TimesIn500SecondsBeforeTimeOut() {
+    public void apiRequestMustRun100TimesInLessThan200Miliseconds() {
         for (UnitFormula formula : formulas) {
-            for (UnitType inputType : formula.getAllUnitTypesOfThisCategory()) {
-                for (UnitType outputType : formula.getAllUnitTypesOfThisCategory()) {
-                    createAndRunTask(formula, inputType, outputType);
-                }
-            }
+            apiRequestForAllTypesInFormula(formula);
         }
 
     }
 
 
-    private void createAndRunTask(UnitFormula formula, UnitType inputType, UnitType outputType) {
+    private void apiRequestForAllTypesInFormula(UnitFormula formula) {
+        for (UnitType inputType : formula.getAllUnitTypesOfThisCategory()) {
+            for (UnitType outputType : formula.getAllUnitTypesOfThisCategory()) {
+                createAndRunTaskForTypes(formula, inputType, outputType);
+            }
+        }
+    }
+
+
+    private void createAndRunTaskForTypes(UnitFormula formula, UnitType inputType, UnitType outputType) {
         String type = formula.getClass().getSimpleName().toLowerCase();
         Runnable task = () -> createTask(type, inputType, outputType);
-        assertTimeExecutionOfMethodIsExecutedInGivenTime(task, 300, 100);
+        runTaskOrTimeout(task);
     }
 
 
@@ -56,13 +64,12 @@ public class TimeoutTest {
     }
 
 
-    private void assertTimeExecutionOfMethodIsExecutedInGivenTime(Runnable method, long time, int numberOfRuns) {
+    private void runTaskOrTimeout(Runnable method) {
         long startTime = System.currentTimeMillis();
         for (int i = 0; i < numberOfRuns; i++)
             method.run();
         long endTime = System.currentTimeMillis();
-        long duration = (endTime - startTime);
-        assertTrue(duration < time);
+        assertTrue(maxtimeDuration > (endTime - startTime));
     }
 
 

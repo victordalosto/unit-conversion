@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UnitconversionApplicationTest {
 
     @Test
-    public void mainClassShouldBeCalledWithtoutErrors() {
+    public void mainClassShouldntThrowError() {
         assertDoesNotThrow(() -> UnitconversionApplication.main(new String[] {}));
     }
 
