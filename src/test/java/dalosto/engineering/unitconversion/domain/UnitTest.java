@@ -21,16 +21,16 @@ public class UnitTest {
 
     @ParameterizedTest
     @EnumSource(Length.Types.class)
-    public void constructor_withValidValues_setsProperties(UnitType type) {
+    public void unitConstructorHasValidProperties(UnitType type) {
         double value = 10.0;
         Unit unit = new Unit(value, type);
-        assertEquals(unit.getValue(), value);
-        assertEquals(unit.getType(), type);
+        assertEquals(value, unit.getValue());
+        assertEquals(type, unit.getType());
     }
 
 
     @Test
-    public void unitsShouldBeAbleToMatchForAllTypes() {
+    public void unitsShouldBeComparableForAllTypes() {
         for (UnitFormula formula : formulas) {
             for (UnitType type : formula.getAllUnitTypesOfThisCategory()) {
                 assertEquals(new Unit(-12345.6, type), new Unit(-12345.6, type));
@@ -47,7 +47,7 @@ public class UnitTest {
 
 
     @Test
-    public void unitShouldBeAbleToMatchWithCorrespondentUnitFor() {
+    public void unitShouldBeComparable() {
         Unit unit1 = new Unit(12345.6, Length.Types.M);
         assertEquals(new Unit(12345.6, Length.Types.M), unit1);
         assertEquals(new Unit(12345.6, Length.Types.M).hashCode(), unit1.hashCode());

@@ -1,4 +1,5 @@
 package dalosto.engineering.unitconversion.domain;
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
@@ -16,7 +17,31 @@ public class UnitDAOTest {
 
 
     @Test
-    public void unitsDaoShouldBeAbleToMatchForAllTypes() {
+    public void UnitDAOWithNullValuesShouldntHaveData() {
+        UnitDAO dao = new UnitDAO(null, null, null);
+        assertTrue(dao.doesntHaveData());
+    }
+
+    
+    @Test
+    public void UnitDAOWithAtLeastOnelValuesShouldHaveData() {
+        assertFalse(new UnitDAO("mock", null, null).doesntHaveData());
+        assertFalse(new UnitDAO(null, "mock", null).doesntHaveData());
+        assertFalse(new UnitDAO(null, null, "mock").doesntHaveData());
+    }
+
+    
+    @Test
+    public void unitDAOShouldBeAbleToReturnCorrectUnitValues() {
+        UnitDAO dao = new UnitDAO("12345.67", "M", "CM");
+        assertEquals(new UnitDAO("12345.67", "M", "CM"), dao);
+        assertEquals(new UnitDAO("12345.67", "M", "CM").hashCode(), dao.hashCode());
+        assertEquals(new UnitDAO("12345.67", "M", "CM").toString(), dao.toString());
+    }
+
+
+    @Test
+    public void unitsDAONeedsToBeComparable() {
         for (UnitFormula formula : formulas) {
             for (UnitType type : formula.getAllUnitTypesOfThisCategory()) {
                 assertEquals(new UnitDAO("-12345.6", type.toString(), type.toString()), 
@@ -35,7 +60,6 @@ public class UnitDAOTest {
                              new UnitDAO("-12345.6", null, null));
                 assertEquals(new UnitDAO(null, null, null), 
                              new UnitDAO(null, null, null));
-
                 assertEquals(new UnitDAO("-12345.6", type.toString(), type.toString()).hashCode(), 
                              new UnitDAO("-12345.6", type.toString(), type.toString()).hashCode());
                 assertEquals(new UnitDAO(null, type.toString(), type.toString()).hashCode(), 
@@ -55,29 +79,5 @@ public class UnitDAOTest {
             }
         }
     }
-
-    @Test
-    public void UnitDaoWithNullValuesShouldntHaveData() {
-        UnitDAO unit = new UnitDAO(null, null, null);
-        assertTrue(unit.doesntHaveData());
-    }
-
-    
-    @Test
-    public void UnitDaoWithOnelValuesShouldHaveData() {
-        assertEquals(false, new UnitDAO("mock", null, null).doesntHaveData());
-        assertEquals(false, new UnitDAO(null, "mock", null).doesntHaveData());
-        assertEquals(false, new UnitDAO(null, null, "mock").doesntHaveData());
-    }
-
-    
-    @Test
-    public void unitShouldBeAbleToReturnCorrectUnitValues() {
-        UnitDAO unit = new UnitDAO("12345.67", "M", "CM");
-        assertEquals(new UnitDAO("12345.67", "M", "CM"), unit);
-        assertEquals(new UnitDAO("12345.67", "M", "CM").hashCode(), unit.hashCode());
-    }
-
-
    
 }

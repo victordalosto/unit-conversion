@@ -2,21 +2,15 @@ package dalosto.engineering.unitconversion.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.MetricTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
-@SpringBootTest
 public class ForceTest {
 
-    @Autowired
-    @Qualifier("force")
-    UnitFormula unitFormula;
+    UnitFormula unitFormula = new Force();
 
 
     void assertEquivalentForceInSI(double expected, Unit actual) {
