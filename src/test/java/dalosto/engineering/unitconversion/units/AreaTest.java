@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.MetricsTest;
+import dalosto.engineering.unitconversion.MetricTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
@@ -20,12 +20,12 @@ public class AreaTest {
 
 
     void assertEquivalentAreaInSI(double expected, Unit actual) {
-        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentArea(double fromValue, Area.Types from, Double toValue, Area.Types to) {
-        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class AreaTest {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Area.Types.CM2);
-        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
+        assertEquals(value, unit.getValue(), MetricTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(25.0, outputSI.getValue(), MetricsTest.tolerance);
+        assertEquals(25.0, outputSI.getValue(), MetricTest.tolerance);
         assertEquals(Area.Types.M2, outputSI.getType());
-        assertEquals(250000.0, outputAnotherType.getValue(), MetricsTest.tolerance);
+        assertEquals(250000.0, outputAnotherType.getValue(), MetricTest.tolerance);
         assertEquals(Area.Types.CM2, outputAnotherType.getType());
     }
 

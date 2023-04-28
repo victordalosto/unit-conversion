@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.MetricsTest;
+import dalosto.engineering.unitconversion.MetricTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
@@ -20,12 +20,12 @@ public class LengthTest {
 
 
     void assertEquivalentLengthInSI(double expected, Unit actual) {
-        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentLength(double fromValue, Length.Types from, Double toValue, Length.Types to) {
-        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class LengthTest {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Length.Types.CM);
-        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
+        assertEquals(value, unit.getValue(), MetricTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(5.0, outputSI.getValue(), MetricsTest.tolerance);
+        assertEquals(5.0, outputSI.getValue(), MetricTest.tolerance);
         assertEquals(Length.Types.M, outputSI.getType());
-        assertEquals(500.0, outputAnotherType.getValue(), MetricsTest.tolerance);
+        assertEquals(500.0, outputAnotherType.getValue(), MetricTest.tolerance);
         assertEquals(Length.Types.CM, outputAnotherType.getType());
     }
 

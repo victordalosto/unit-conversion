@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.MetricsTest;
+import dalosto.engineering.unitconversion.MetricTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
@@ -20,12 +20,12 @@ public class IntertiaTest {
 
 
     void assertEquivalentInertiaInSI(double expected, Unit actual) {
-        MetricsTest.assertEquavalentInSI(expected, actual, unitFormula);
+        MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
     void assertEquivalentInertia(double fromValue, Inertia.Types from, Double toValue, Inertia.Types to) {
-        MetricsTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
+        MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 
 
@@ -36,11 +36,11 @@ public class IntertiaTest {
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
         Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Inertia.Types.CM4);
-        assertEquals(value, unit.getValue(), MetricsTest.tolerance);
+        assertEquals(value, unit.getValue(), MetricTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(2.5*Math.pow(10, -5), outputSI.getValue(), MetricsTest.tolerance);
+        assertEquals(2.5*Math.pow(10, -5), outputSI.getValue(), MetricTest.tolerance);
         assertEquals(Inertia.Types.M4, outputSI.getType());
-        assertEquals(2500.0, outputAnotherType.getValue(), MetricsTest.tolerance);
+        assertEquals(2500.0, outputAnotherType.getValue(), MetricTest.tolerance);
         assertEquals(Inertia.Types.CM4, outputAnotherType.getType());
     }
 
