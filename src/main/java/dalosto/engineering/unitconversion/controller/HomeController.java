@@ -41,11 +41,6 @@ public class HomeController {
 
 
     private void appendResultsToMessage(RestMessage message) {
-        appendEndPointsToResults(message);
-    }
-
-
-    private void appendEndPointsToResults(RestMessage message) {
         for(TemplateController controller : controllers) {
             Map<String, String> results = new LinkedHashMap<>();
             // The next calls violates the Law of Demeter, but it's the best option considering the design.
@@ -55,4 +50,5 @@ public class HomeController {
             message.addToResult(controller.getEndpointInfo().getTitle(), results);
         }
     }
+
 }

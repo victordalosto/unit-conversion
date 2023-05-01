@@ -25,5 +25,10 @@ public class EndpointInfo {
         return unitFormula.getAllUnitTypesOfThisCategory().toString();
     }
 
+    
+    public String getSI() {
+        return unitFormula.getSITypeOfThisCategory().toString();
+    }
+
 
 }

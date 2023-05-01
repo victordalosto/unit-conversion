@@ -18,7 +18,7 @@ public class MapUnitTypeService {
 
 
     private UnitType mapUnity(String string, UnitFormula unitFormula) {
-        string = fixStringToFindUnityType(string);
+        string = filterString(string);
         for (UnitType type : unitFormula.getAllUnitTypesOfThisCategory()) {
             if (string.equals(type.toString())) {
                 return type;
@@ -28,7 +28,7 @@ public class MapUnitTypeService {
     }
 
 
-    private String fixStringToFindUnityType(String string) {
+    private String filterString(String string) {
         string = string.toUpperCase()
                        .replaceAll("\\s", "")
                        .replaceAll("-", "").replaceAll("_", "")

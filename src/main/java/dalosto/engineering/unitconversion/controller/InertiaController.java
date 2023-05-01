@@ -27,6 +27,14 @@ public class InertiaController extends TemplateController {
         return super.createRestMessage(unitDAO);
     }
 
+    
+    @Override
+    @GetMapping("/si")
+    @PostMapping("/si")
+    public RestMessage si(UnitDAO unitDAO) {
+        return super.createRestMessage(unitDAO);
+    }
+
 
     @Override
     public EndpointInfo getEndpointInfo() {

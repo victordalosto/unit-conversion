@@ -20,4 +20,9 @@ public class RestURL {
         return request.getRequestURI();
     }
 
+    
+    public boolean isSIEndPoint() {
+        return getURI().toLowerCase().endsWith("si");
+    }
+
 }

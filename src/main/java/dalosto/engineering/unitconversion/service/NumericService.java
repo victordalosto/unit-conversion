@@ -20,14 +20,20 @@ public final class NumericService {
         if (rawText == null || rawText.isBlank()) {
             throw new ParameterException("value can't be NULL.");
         }
-        String value = rawText.toUpperCase()
-                              .replaceAll("\\s", "")
-                              .replace(",",".")
-                              .replace("10^", "E")
-                              .replaceAll("[^E\\d.\\-\\+]", "");
+        String value;
+        value = filterString(rawText);
         value = removesMultiplesDecimalSeparatorBesidesTheFirst(value);
-        value = attempsToFixDecimalOperatorExportedForSomePrograms(value);
+        value = attempsToFixExponentialOperatorExportedForSomePrograms(value);
         return convertStringToNumeric(value);
+    }
+
+
+    private String filterString(String rawText) {
+        return rawText.toUpperCase()
+                      .replaceAll("\\s", "")
+                      .replace(",",".")
+                      .replace("10^", "E")
+                      .replaceAll("[^E\\d.\\-\\+]", "");
     }
 
 
@@ -37,19 +43,23 @@ public final class NumericService {
         }
         StringBuilder sb = new StringBuilder(value);
         for (int i = value.indexOf(".") + 1; i < sb.length(); i++) {
-            if (sb.charAt(i) == 'E' || sb.charAt(i) == '-' || sb.charAt(i) == '+') {
-                break;
-            } 
             if (sb.charAt(i) == '.') {
                 sb.deleteCharAt(i);
                 i--;
             }
+            else if (sb.charAt(i) == 'E' || sb.charAt(i) == '-' || sb.charAt(i) == '+') {
+                break;
+            } 
+            
         }
         return sb.toString();
     }
 
 
-    private String attempsToFixDecimalOperatorExportedForSomePrograms(String value) {
+    /** This methods fixes the numeric values using Exponential (10^x) 
+     *  Some programs exports numeric without the E (123+5), 
+     *  Others programs uses the E(123e+5)                             */
+    private String attempsToFixExponentialOperatorExportedForSomePrograms(String value) {
         if (!value.contains("-") && !value.contains("+")) {
             return value;
         }
