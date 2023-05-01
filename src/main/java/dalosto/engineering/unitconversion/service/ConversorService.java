@@ -53,10 +53,10 @@ public class ConversorService {
 
 
     private Unit formatUnit(Unit unit) {
-        if (unit.getValue() < Math.pow(10, -10)) {
+        if (Math.abs(unit.getValue()) < Math.pow(10, -12)) {
             return unit;
         }
-        BigDecimal roundedValue = new BigDecimal(unit.getValue()).setScale(10, RoundingMode.HALF_UP);
+        BigDecimal roundedValue = new BigDecimal(unit.getValue()).setScale(12, RoundingMode.HALF_UP);
         return new Unit(roundedValue.doubleValue(), unit.getType());
     }
 

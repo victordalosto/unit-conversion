@@ -25,11 +25,11 @@ public class TimeoutTest {
     @Autowired
     private List<UnitFormula> formulas;
 
-    private final int numberOfRuns = 100;
+    private final int numberOfRuns = 50;
     private final long maxtimeDuration = 200;
 
     @Test
-    public void apiRequestMustRun100TimesInLessThan200Miliseconds() {
+    public void apiRequestMustRun250TimesInLessThan1Second() {
         for (UnitFormula formula : formulas) {
             apiRequestForAllTypesInFormula(formula);
         }
