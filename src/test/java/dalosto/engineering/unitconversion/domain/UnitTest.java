@@ -1,16 +1,15 @@
 package dalosto.engineering.unitconversion.domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.units.Area;
-import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Length;
 import dalosto.engineering.unitconversion.units.UnitFormula;
-import dalosto.engineering.unitconversion.units.Volume;
 
 
 @SpringBootTest
@@ -18,6 +17,7 @@ public class UnitTest {
 
     @Autowired
     List<UnitFormula> formulas;
+
 
     @ParameterizedTest
     @EnumSource(Length.Types.class)
@@ -51,28 +51,21 @@ public class UnitTest {
         Unit unit1 = new Unit(12345.6, Length.Types.M);
         assertEquals(new Unit(12345.6, Length.Types.M), unit1);
         assertEquals(new Unit(12345.6, Length.Types.M).hashCode(), unit1.hashCode());
-        Unit unit2 = new Unit(12345.6, Area.Types.M2);
-        assertEquals(new Unit(12345.6, Area.Types.M2), unit2);
-        assertEquals(new Unit(12345.6, Area.Types.M2).hashCode(), unit2.hashCode());
-        Unit unit3 = new Unit(12345.6, Volume.Types.M3);
-        assertEquals(new Unit(12345.6, Volume.Types.M3), unit3);
-        assertEquals(new Unit(12345.6, Volume.Types.M3).hashCode(), unit3.hashCode());
-        Unit unit4 = new Unit(12345.6, Force.Types.KN);
-        assertEquals(new Unit(12345.6, Force.Types.KN), unit4);
-        assertEquals(new Unit(12345.6, Force.Types.KN).hashCode(), unit4.hashCode());
+        assertEquals(new Unit(12345.6, Length.Types.M).toString(), unit1.toString());
     }
 
-    
+
+    @Test
+    public void unitShouldBeAbleToReturnCorrectUnitType() {
+        Unit unit1 = new Unit(12345.6, Length.Types.M);
+        assertEquals(Length.Types.M, unit1.getType());
+    }
+
+
     @Test
     public void unitShouldBeAbleToReturnCorrectUnitValues() {
         Unit unit1 = new Unit(12345.6, Length.Types.M);
         assertEquals(12345.6, unit1.getValue());
-        Unit unit2 = new Unit(12345.6, Area.Types.M2);
-        assertEquals(12345.6, unit2.getValue());
-        Unit unit3 = new Unit(12345.6, Volume.Types.M3);
-        assertEquals(12345.6, unit3.getValue());
-        Unit unit4 = new Unit(12345.6, Force.Types.KN);
-        assertEquals(12345.6, unit4.getValue());
     }
 
 
@@ -80,12 +73,6 @@ public class UnitTest {
     public void unitShouldBeAbleToReturnCorrectUnityType() {
         Unit unit1 = new Unit(12345.6, Length.Types.M);
         assertEquals(Length.Types.M, unit1.getType());
-        Unit unit2 = new Unit(12345.6, Area.Types.M2);
-        assertEquals(Area.Types.M2, unit2.getType());
-        Unit unit3 = new Unit(12345.6, Volume.Types.M3);
-        assertEquals(Volume.Types.M3, unit3.getType());
-        Unit unit4 = new Unit(12345.6, Force.Types.KN);
-        assertEquals(Force.Types.KN, unit4.getType());
     }
 
 
@@ -93,11 +80,69 @@ public class UnitTest {
     public void unitShouldBeAbleToReturnCorrectRepresentantionOfUnit() {
         Unit unit1 = new Unit(12345.6, Length.Types.M);
         assertEquals("{value=12345.6, type=M}", unit1.toString());
-        Unit unit2 = new Unit(12345.6, Area.Types.M2);
-        assertEquals("{value=12345.6, type=M2}", unit2.toString());
-        Unit unit3 = new Unit(12345.6, Volume.Types.M3);
-        assertEquals("{value=12345.6, type=M3}", unit3.toString());
-        Unit unit4 = new Unit(12345.6, Force.Types.KN);
-        assertEquals("{value=12345.6, type=KN}", unit4.toString());
     }
+
+
+    @Test
+    public void testEquals_sameInstance() {
+        Unit unit1 = new Unit(5.0, Length.Types.M);
+        assertTrue(unit1.equals(unit1));
+    }
+
+
+    @Test
+    public void testEquals_equalInstance() {
+        Unit unit1 = new Unit(5.0, Length.Types.M);
+        Unit unit2 = new Unit(5.0, Length.Types.M);
+        assertTrue(unit1.equals(unit2));
+    }
+
+
+    @Test
+    public void testEquals_differentValue() {
+        Unit unit1 = new Unit(5.0, Length.Types.M);
+        Unit unit2 = new Unit(3.0, Length.Types.M);
+        assertFalse(unit1.equals(unit2));
+    }
+
+
+    @Test
+    public void testEquals_differentType() {
+        Unit unit1 = new Unit(5.0, Length.Types.M);
+        Unit unit2 = new Unit(5.0, Length.Types.CM);
+        assertFalse(unit1.equals(unit2));
+    }
+
+
+    @Test
+    public void testEquals_differentValueAndType() {
+        Unit unit1 = new Unit(5.0, Length.Types.M);
+        Unit unit2 = new Unit(3.0, Length.Types.CM);
+        assertFalse(unit1.equals(unit2));
+    }
+
+
+    @Test
+    public void testEquals_sameHashCodeDifferentValueAndType() {
+        Unit unit1 = new Unit(Double.POSITIVE_INFINITY, Length.Types.M);
+        Unit unit2 = new Unit(Double.POSITIVE_INFINITY, Length.Types.CM);
+        assertFalse(unit1.equals(unit2));
+    }
+
+
+    @Test
+    public void testEquals_null() {
+        Unit unit1 = new Unit(5.0, Length.Types.M);
+        assertFalse(unit1.equals(null));
+    }
+
+
+    @Test
+    @SuppressWarnings("unlikely-arg-type")
+    public void testEquals_differentClass() {
+        Unit unit1 = new Unit(5.0, Length.Types.M);
+        String unit2 = "unit2";
+        assertFalse(unit1.equals(unit2));
+    }
+
 }

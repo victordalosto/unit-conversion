@@ -1,5 +1,4 @@
 package dalosto.engineering.unitconversion.service;
-import java.math.BigDecimal;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -68,7 +67,7 @@ public final class NumericService {
     private Double convertStringToNumeric(String value) {
         try {
             if (!value.contains("E")) {
-                return new BigDecimal(value).doubleValue();
+                return Double.parseDouble(value);
             }
             return handleExponentialValues(value);
         } catch (NumberFormatException e) {
@@ -85,7 +84,7 @@ public final class NumericService {
         if (exponential.contains(".")) {
             return Double.parseDouble(coefficient) * Math.pow(10, Double.parseDouble(exponential));
         }
-        return new BigDecimal(value).doubleValue();
+        return Double.parseDouble(value);
     }
 
 
