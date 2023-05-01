@@ -33,7 +33,6 @@ public class TimeoutTest {
         for (UnitFormula formula : formulas) {
             apiRequestForAllTypesInFormula(formula);
         }
-
     }
 
 
@@ -66,8 +65,9 @@ public class TimeoutTest {
 
     private void runTaskOrTimeout(Runnable method) {
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < numberOfRuns; i++)
+        for (int i = 0; i < numberOfRuns; i++) {
             method.run();
+        }
         long endTime = System.currentTimeMillis();
         assertTrue(maxtimeDuration > (endTime - startTime));
     }
