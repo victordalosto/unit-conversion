@@ -23,16 +23,6 @@ public class MomentTest {
     List<UnitFormula> formulas;
 
 
-    public void assertEquivalentForceInSI(double expected, Unit actual) {
-        MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
-    }
-
-
-    public void assertEquivalentForce(double fromValue, Force.Types from, Double toValue, Force.Types to) {
-        MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
-    }
-
-
     @Test
     public void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 50.0;
@@ -54,7 +44,7 @@ public class MomentTest {
 
 
     @Test
-    public void SIUnitTypeOfForceShouldBeMeterSquare() {
+    public void SIUnitTypeOfForceShouldBeNVersusMeter() {
         assertEquals(Moment.factory(Force.Types.N, Length.Types.M), unitFormula.getSITypeOfThisCategory());
         assertEquals(Moment.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Moment.factory(Force.Types.KN, Length.Types.MM)).getType().getSITypeOfThisCategory());
         assertEquals(Moment.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Moment.factory(Force.Types.KG, Length.Types.CM)).getType().getSITypeOfThisCategory());
@@ -65,17 +55,33 @@ public class MomentTest {
     @Test
     public void allForceValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
         assertEquals(11, Force.Types.values().length);
-        assertEquivalentForceInSI(1.0, new Unit(1, Force.Types.N));
-        assertEquivalentForceInSI(Math.pow(10, 3), new Unit(1, Force.Types.KN));
-        assertEquivalentForceInSI(Math.pow(10, 6), new Unit(1, Force.Types.MN));
-        assertEquivalentForceInSI(Math.pow(10, 9), new Unit(1, Force.Types.GN));
-        assertEquivalentForceInSI(Math.pow(10, 12), new Unit(1, Force.Types.TN));
-        assertEquivalentForceInSI(4.4482216282509, new Unit(1, Force.Types.LB));
-        assertEquivalentForceInSI(4.4482216282509, new Unit(1, Force.Types.POUND));
-        assertEquivalentForceInSI(4448.2216282509, new Unit(1, Force.Types.KIP));
-        assertEquivalentForceInSI(0.0098066500286389, new Unit(1, Force.Types.G));
-        assertEquivalentForceInSI(9.8066500286389, new Unit(1, Force.Types.KG));
-        assertEquivalentForceInSI(9806.6500286389, new Unit(1, Force.Types.T));
+        assertEquals(1.0,                unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N,     Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(Math.pow(10, 3),    unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.KN,    Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(Math.pow(10, 6),    unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.MN,    Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(Math.pow(10, 9),    unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.GN,    Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(Math.pow(10, 12),   unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.TN,    Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(4.4482216282509,    unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.LB,    Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(4.4482216282509,    unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.POUND, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(4448.2216282509,    unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.KIP,   Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(0.0098066500286389, unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.G,     Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(9.8066500286389,    unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.KG,    Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(9806.6500286389,    unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.T,     Length.Types.M))).getValue(), MetricTest.tolerance);
+    }
+
+
+    @Test
+    public void allLengthValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
+        assertEquals(10, Length.Types.values().length);
+        assertEquals(1.0,              unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.M))).getValue() , MetricTest.tolerance);
+        assertEquals(0.1,              unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.DM))).getValue(), MetricTest.tolerance);
+        assertEquals(0.01,             unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.CM))).getValue(), MetricTest.tolerance);
+        assertEquals(0.001,            unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.MM))).getValue(), MetricTest.tolerance);
+        assertEquals(100.0,            unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.HM))).getValue(), MetricTest.tolerance);
+        assertEquals(1000.0,           unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.KM))).getValue(), MetricTest.tolerance);
+        assertEquals(Math.pow(10, -6), unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.UM))).getValue(), MetricTest.tolerance);
+        assertEquals(0.0254,           unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.IN))).getValue(), MetricTest.tolerance);
+        assertEquals(0.3048,           unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.FT))).getValue(), MetricTest.tolerance);
+        assertEquals(0.9144,           unitFormula.buildUnitToSI(new Unit(1, Moment.factory(Force.Types.N, Length.Types.YD))).getValue(), MetricTest.tolerance);
     }
 
 
@@ -83,88 +89,47 @@ public class MomentTest {
     public void allForceValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
         assertEquals(11, Force.Types.values().length);
         double expected = 12345.67;
-        assertEquivalentForceInSI(expected, new Unit(12345.67, Force.Types.N));
-        assertEquivalentForceInSI(expected, new Unit(12.34567, Force.Types.KN));
-        assertEquivalentForceInSI(expected, new Unit(0.01234567, Force.Types.MN));
-        assertEquivalentForceInSI(expected, new Unit(12345.67 * Math.pow(10, -9), Force.Types.GN));
-        assertEquivalentForceInSI(expected, new Unit(12345.67 * Math.pow(10, -12), Force.Types.TN));
-        assertEquivalentForceInSI(expected, new Unit(2775.41701645259, Force.Types.LB));
-        assertEquivalentForceInSI(expected, new Unit(2775.41701645259, Force.Types.POUND));
-        assertEquivalentForceInSI(expected, new Unit(2.77541701645259, Force.Types.KIP));
-        assertEquivalentForceInSI(expected, new Unit(1258907.98223106, Force.Types.G));
-        assertEquivalentForceInSI(expected, new Unit(1258.90798223106, Force.Types.KG));
-        assertEquivalentForceInSI(expected, new Unit(1.25890798223106, Force.Types.T));
-    }
-
-
-    @Test
-    public void allForceValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
-        assertEquals(11, Force.Types.values().length);
-        double expected = -12345.67;
-        assertEquivalentForceInSI(expected, new Unit(-12345.67, Force.Types.N));
-        assertEquivalentForceInSI(expected, new Unit(-12.34567, Force.Types.KN));
-        assertEquivalentForceInSI(expected, new Unit(-0.01234567, Force.Types.MN));
-        assertEquivalentForceInSI(expected, new Unit(-12345.67 * Math.pow(10, -9), Force.Types.GN));
-        assertEquivalentForceInSI(expected, new Unit(-12345.67 * Math.pow(10, -12), Force.Types.TN));
-        assertEquivalentForceInSI(expected, new Unit(-2775.41701645259, Force.Types.LB));
-        assertEquivalentForceInSI(expected, new Unit(-2775.41701645259, Force.Types.POUND));
-        assertEquivalentForceInSI(expected, new Unit(-2.77541701645259, Force.Types.KIP));
-        assertEquivalentForceInSI(expected, new Unit(-1258907.98223106, Force.Types.G));
-        assertEquivalentForceInSI(expected, new Unit(-1258.90798223106, Force.Types.KG));
-        assertEquivalentForceInSI(expected, new Unit(-1.25890798223106, Force.Types.T));
-    }
-
-
-    @Test
-    public void allForceValuesShouldBeTestedAndAreCorrectInSIForZero() {
-        assertEquals(11, Force.Types.values().length);
-        double expected = 0.0;
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.N));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.KN));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.MN));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.GN));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.TN));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.LB));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.POUND));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.KIP));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.G));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.KG));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.T));
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(12345.67, Moment.factory(Force.Types.N, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(12.34567, Moment.factory(Force.Types.KN, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(0.01234567, Moment.factory(Force.Types.MN, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(12345.67 * Math.pow(10, -9), Moment.factory(Force.Types.GN, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(12345.67 * Math.pow(10, -12), Moment.factory(Force.Types.TN, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(2775.41701645259, Moment.factory(Force.Types.LB, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(2775.41701645259, Moment.factory(Force.Types.POUND, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(2.77541701645259, Moment.factory(Force.Types.KIP, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(1258907.98223106, Moment.factory(Force.Types.G, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(1258.90798223106, Moment.factory(Force.Types.KG, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(1.25890798223106, Moment.factory(Force.Types.T, Length.Types.M))).getValue(), MetricTest.tolerance);
     }
 
 
     @Test
     public void forceValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(11, Force.Types.values().length);
-        assertEquivalentForce(0.0, Force.Types.N, 0.0, Force.Types.KN);
-        assertEquivalentForce(0.0, Force.Types.KN, 0.0, Force.Types.MN);
-        assertEquivalentForce(0.0, Force.Types.MN, 0.0, Force.Types.GN);
-        assertEquivalentForce(0.0, Force.Types.GN, 0.0, Force.Types.TN);
-        assertEquivalentForce(0.0, Force.Types.TN, 0.0, Force.Types.LB);
-        assertEquivalentForce(0.0, Force.Types.LB, 0.0, Force.Types.POUND);
-        assertEquivalentForce(0.0, Force.Types.POUND, 0.0, Force.Types.KIP);
-        assertEquivalentForce(0.0, Force.Types.KIP, 0.0, Force.Types.G);
-        assertEquivalentForce(0.0, Force.Types.G, 0.0, Force.Types.KG);
-        assertEquivalentForce(0.0, Force.Types.KG, 0.0, Force.Types.T);
-        assertEquivalentForce(0.0, Force.Types.T, 0.0, Force.Types.N);
+        assertEquals(10, Length.Types.values().length);
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.KN, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.MN, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.GN, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.TN, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.LB, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.POUND, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.KIP, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.G, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.KG, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.T, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.N, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.KN,    Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.MN,    Length.Types.DM))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.GN,    Length.Types.CM))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.TN,    Length.Types.MM))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.LB,    Length.Types.HM))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.POUND, Length.Types.KM))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.KIP,   Length.Types.UM))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.G,     Length.Types.IN))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.KG,    Length.Types.FT))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Moment.factory(Force.Types.T,     Length.Types.YD))).getValue());
     }
 
-
-    @Test
-    public void forceValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
-        assertEquals(11, Force.Types.values().length);
-        double randomValue = Math.random() * 100;
-        assertEquivalentForce(randomValue, Force.Types.N, randomValue/1000.0, Force.Types.KN);
-        assertEquivalentForce(randomValue, Force.Types.KN, randomValue/1000.0, Force.Types.MN);
-        assertEquivalentForce(randomValue, Force.Types.MN, randomValue/1000.0, Force.Types.GN);
-        assertEquivalentForce(randomValue, Force.Types.GN, randomValue/1000.0, Force.Types.TN);
-        assertEquivalentForce(randomValue, Force.Types.KN, randomValue*224.808942443188, Force.Types.LB);
-        assertEquivalentForce(randomValue, Force.Types.LB, randomValue, Force.Types.POUND);
-        assertEquivalentForce(randomValue, Force.Types.POUND, randomValue/1000.0, Force.Types.KIP);
-        assertEquivalentForce(randomValue, Force.Types.G, randomValue/1000.0, Force.Types.KG);
-        assertEquivalentForce(randomValue, Force.Types.KG, randomValue/1000.0, Force.Types.T);
-        assertEquivalentForce(randomValue, Force.Types.T, randomValue*9.8066500286389*1000.0, Force.Types.N);
-    }
 
     @Test
     public void allForcesArePresentInMoment() {

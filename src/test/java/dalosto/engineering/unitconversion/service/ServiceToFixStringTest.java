@@ -34,7 +34,7 @@ public class ServiceToFixStringTest {
     @Test
     public void serviceShouldFixStringContaingEspecialCharacter() {
         assertEquals(Length.Types.M, mapUnitTypeService.getUnitTypeFromString("M!@#!", new Length()));
-        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("!@#$%¨&&*()M_!@*#*!@)2!@#$%¨&*()", new Area()));
+        assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("!@#$%¨&&()M_!@#!@)2!@#$%¨&()", new Area()));
         assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("!@#M~^!@#___2!", new Area()));
     }
 

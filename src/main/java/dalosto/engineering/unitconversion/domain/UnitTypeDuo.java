@@ -14,9 +14,7 @@ public abstract class UnitTypeDuo implements UnitType {
 
 
     @Override
-    public String toString() {
-        return principal + "." + secondary;
-    }
+    public abstract String toString();
 
 
 }

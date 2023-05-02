@@ -35,7 +35,8 @@ public class MapUnitTypeService {
                        .replaceAll("\\^", "").replaceAll("~", "")
                        .replaceAll("¹", "").replaceAll("²", "2").replaceAll("³", "3").replaceAll("⁴", "4")
                        .replaceAll("₁", "").replaceAll("₂", "2").replaceAll("₃", "3").replaceAll("₄", "4")
-                       .replaceAll("[^a-zA-Z0-9_]+", "");
+                       .replaceAll("·", ".").replaceAll("X", ".").replaceAll("×", ".").replaceAll("\\*", ".")
+                       .replaceAll("[^a-zA-Z0-9\\.]+", "");
         return string;
     }
 

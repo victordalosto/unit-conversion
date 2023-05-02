@@ -35,6 +35,12 @@ public class Moment extends TemplateUnitFormulas {
             return Collections.unmodifiableList(types);
         }
 
+
+        @Override
+        public String toString() {
+            return super.getPrincipal() + "." + super.getSecondary();
+        }
+
     }
 
 
