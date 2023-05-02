@@ -32,28 +32,28 @@ public class RestURLTest {
     @Test
     public void trueIfSIEndPoint() {
         when(request.getRequestURI()).thenReturn("/api/length/si");
-        assertTrue(restURL.isSIEndPoint());
+        assertTrue(restURL.isCurrentURIaSIEndPoint());
     }
 
 
     @Test
     public void falseIfNotSIEndPoint() {
         when(request.getRequestURI()).thenReturn("/api/length");
-        assertFalse(restURL.isSIEndPoint());
+        assertFalse(restURL.isCurrentURIaSIEndPoint());
     }
 
 
     @Test
     public void shouldGetSIEndPoint() {
         when(request.getRequestURI()).thenReturn("/api/length/si");
-        assertEquals("/api/length/si", restURL.getSIEndPoint());
+        assertEquals("/api/length/si", restURL.getURIofSI());
     }
 
 
     @Test
     public void shouldGetSIForNonSIEndPoint() {
         when(request.getRequestURI()).thenReturn("/api/length");
-        assertEquals("/api/length/si", restURL.getSIEndPoint());
+        assertEquals("/api/length/si", restURL.getURIofSI());
     }
 
 
@@ -61,7 +61,7 @@ public class RestURLTest {
     public void shouldHaveConstructorForTests() {
         RestURL restURL = new RestURL(request);
         when(request.getRequestURI()).thenReturn("/api/length/si");
-        assertEquals("/api/length/si", restURL.getSIEndPoint());
+        assertEquals("/api/length/si", restURL.getURIofSI());
     }
 
 }

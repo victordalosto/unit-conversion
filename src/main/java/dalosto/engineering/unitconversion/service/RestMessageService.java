@@ -34,19 +34,19 @@ public class RestMessageService {
 
 
     private void appendDefaultHATEOASmessage(RestMessage message, EndpointInfo info) {
-        if (info.isSIEndPoint()) {
+        if (info.isCurrentURIaSIEndPoint()) {
             message.addResult(RestStatus.INFO, 
                     "title",  "This endpoint converts values to the International Standard ",
-                    "types",  info.getAllUnits(),
-                       "si", "converts values into: " + info.getUnitFormula().getSITypeOfThisCategory());
+                    "types",  info.getAllUnitsOfType(),
+                       "si", "Converts values into: " + info.getSIUnitofType());
         } else {
             message.addResult(RestStatus.INFO, 
                     "title",  "This endpoint provides functionality to convert " + info.getTitle().toUpperCase() + " measurement units.",
-                    "types",  info.getAllUnits(),
+                    "types",  info.getAllUnitsOfType(),
                   "example",  "Check the example endpoint for a usage example.",
               "uri-example",  "/example",
                        "si",  "Check the SI endpoint to convert the value to the International Standard",
-                   "uri-si",  info.getSIEndPoint());
+                   "uri-si",  info.getURIofSI());
         }
         
     }
@@ -77,8 +77,8 @@ public class RestMessageService {
 
 
     private void appendHeader(RestMessage message, EndpointInfo info, UnitDAO unitDAO) {
-        message.addToHeader("uri", info.getURI());
-        message.addToHeader("home", info.getHomeURL());
+        message.addToHeader("uri", info.getCurrentURI());
+        message.addToHeader("home", info.getURLhome());
         message.addToHeader("input", unitDAO.toString());
     }
 

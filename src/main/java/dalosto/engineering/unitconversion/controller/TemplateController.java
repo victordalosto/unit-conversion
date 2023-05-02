@@ -14,8 +14,8 @@ public abstract class TemplateController {
 
 
     public final RestMessage createRestMessage(UnitDAO unitDAO) {
-        if (getEndpointInfo().isSIEndPoint()) {
-            unitDAO.setTarget(getEndpointInfo().getSI());
+        if (getEndpointInfo().isCurrentURIaSIEndPoint()) {
+            unitDAO.setTarget(getEndpointInfo().getSIUnitofType());
         }
         return service.getMessageForEndPoint(this.getEndpointInfo(), unitDAO);
     }

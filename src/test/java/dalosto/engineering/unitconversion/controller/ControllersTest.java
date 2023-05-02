@@ -37,9 +37,9 @@ public class ControllersTest {
             String unitFormula = templateController.getEndpointInfo().getUnitFormula().getClass().getSimpleName().toLowerCase();
             String endpointTitle = templateController.getEndpointInfo().getTitle();
             assertEquals(unitFormula, endpointTitle);
-            assertEquals(templateController.getEndpointInfo().getAPIHomeURI().replaceAll("/api/", ""), unitFormula);
-            assertEquals(templateController.getEndpointInfo().getAPIHomeURI().replaceAll("/api/", ""), endpointTitle);
-            assert(templateController.getEndpointInfo().getAPIHomeURI().matches("/api/[a-z]+"));
+            assertEquals(templateController.getEndpointInfo().getURIofType().replaceAll("/api/", ""), unitFormula);
+            assertEquals(templateController.getEndpointInfo().getURIofType().replaceAll("/api/", ""), endpointTitle);
+            assert(templateController.getEndpointInfo().getURIofType().matches("/api/[a-z]+"));
         }
     }
 

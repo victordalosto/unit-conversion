@@ -27,7 +27,7 @@ public class EndPointInfoTest {
     @Test
     public void getAPIHomeURIShouldBeValid() {
         for (TemplateController controller : controllers) {
-            assertEquals(controller.getEndpointInfo().getAPIHomeURI(), 
+            assertEquals(controller.getEndpointInfo().getURIofType(), 
                          "/api/" + controller.getClass().getSimpleName().toLowerCase().replaceAll("controller", ""));
         }
     }

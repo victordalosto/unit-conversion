@@ -18,38 +18,38 @@ public class EndpointInfo {
     }
 
 
-    public String getAPIHomeURI() {
+    public String getURIofType() {
         return "/api/" + title.toLowerCase();
     }
 
 
-    public String getAllUnits() {
-        return unitFormula.getAllUnitTypesOfThisCategory().toString();
+    public String getURIofSI() {
+        return restURL.getURIofSI();
     }
 
 
-    public String getSI() {
-        return unitFormula.getSITypeOfThisCategory().toString();
-    }
-
-
-    public boolean isSIEndPoint() {
-        return restURL.isSIEndPoint();
-    }
-
-
-    public String getSIEndPoint() {
-        return restURL.getSIEndPoint();
-    }
-
-
-    public String getHomeURL() {
+    public String getURLhome() {
         return restURL.getHomeURL();
     }
 
 
-    public String getURI() {
-        return restURL.getURI();
+    public String getCurrentURI() {
+        return restURL.getCurrentURI();
+    }
+
+
+    public boolean isCurrentURIaSIEndPoint() {
+        return restURL.isCurrentURIaSIEndPoint();
+    }
+
+
+    public String getAllUnitsOfType() {
+        return unitFormula.getAllUnitTypesOfThisCategory().toString();
+    }
+
+
+    public String getSIUnitofType() {
+        return unitFormula.getSITypeOfThisCategory().toString();
     }
 
 }

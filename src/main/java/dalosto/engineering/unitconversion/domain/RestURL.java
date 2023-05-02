@@ -24,21 +24,21 @@ public class RestURL {
     }
 
 
-    public String getURI() {
+    public String getCurrentURI() {
         return request.getRequestURI();
     }
 
 
-    public String getSIEndPoint() {
-        if (isSIEndPoint()) {
-            return getURI();
+    public String getURIofSI() {
+        if (isCurrentURIaSIEndPoint()) {
+            return getCurrentURI();
         }
-        return getURI() + "/si";
+        return getCurrentURI() + "/si";
     }
 
 
-    public boolean isSIEndPoint() {
-        return getURI().toLowerCase().endsWith("si");
+    public boolean isCurrentURIaSIEndPoint() {
+        return getCurrentURI().toLowerCase().endsWith("si");
     }
 
 }
