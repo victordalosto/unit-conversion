@@ -13,12 +13,12 @@ public class VolumeTest {
     UnitFormula unitFormula = new Volume();
 
 
-    void assertEquivalentVolumeInSI(double expected, Unit actual) {
+    public void assertEquivalentVolumeInSI(double expected, Unit actual) {
         MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
-    void assertEquivalentVolume(double fromValue, Volume.Types from, Double toValue, Volume.Types to) {
+    public void assertEquivalentVolume(double fromValue, Volume.Types from, Double toValue, Volume.Types to) {
         MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 

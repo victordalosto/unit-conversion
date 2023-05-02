@@ -13,7 +13,7 @@ import lombok.Getter;
 public final class Unit {
 
     /** Returns the value of the unit in the defined unit type. */
-    public final double value;
+    private final double value;
     
     /** Returns the unit type defined. */
     private final UnitType type;

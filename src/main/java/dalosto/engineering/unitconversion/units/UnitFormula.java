@@ -1,5 +1,5 @@
 package dalosto.engineering.unitconversion.units;
-import java.util.Set;
+import java.util.List;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 
@@ -23,7 +23,7 @@ public interface UnitFormula {
 
     
     /** Get All Unit Types of the Implemented Category */
-    Set<UnitType> getAllUnitTypesOfThisCategory();
+    List<UnitType> getAllUnitTypesOfThisCategory();
     
     
 }

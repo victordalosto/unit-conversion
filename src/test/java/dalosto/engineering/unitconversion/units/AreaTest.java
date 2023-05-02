@@ -13,12 +13,12 @@ public class AreaTest {
     UnitFormula unitFormula = new Area();
 
 
-    void assertEquivalentAreaInSI(double expected, Unit actual) {
+    public void assertEquivalentAreaInSI(double expected, Unit actual) {
         MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
-    void assertEquivalentArea(double fromValue, Area.Types from, Double toValue, Area.Types to) {
+    public void assertEquivalentArea(double fromValue, Area.Types from, Double toValue, Area.Types to) {
         MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 

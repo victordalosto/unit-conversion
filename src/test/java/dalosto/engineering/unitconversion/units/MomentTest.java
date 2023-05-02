@@ -1,16 +1,26 @@
 package dalosto.engineering.unitconversion.units;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.MetricTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
-public class ForceTest {
+@SpringBootTest
+public class MomentTest {
 
-    UnitFormula unitFormula = new Force();
+    UnitFormula unitFormula = new Moment();
+
+    @Autowired
+    List<UnitFormula> formulas;
 
 
     public void assertEquivalentForceInSI(double expected, Unit actual) {
@@ -26,42 +36,29 @@ public class ForceTest {
     @Test
     public void shouldBeAbleToCreateAUnitAndConvertToAnotherUnitWithoutChangingTheOriginalType() {
         double value = 50.0;
-        UnitType unitType = Force.Types.KN;
-        Unit unit = new Unit(value, unitType);
-        Unit outputSI = unitFormula.buildUnitToSI(unit);
-        Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Force.Types.KG);
+        UnitType unitType = Moment.factory(Force.Types.KN, Length.Types.CM);
+
+        Unit unit = new Unit(50.0, unitType);
         assertEquals(value, unit.getValue(), MetricTest.tolerance);
         assertEquals(unitType, unit.getType());
-        assertEquals(50000.0, outputSI.getValue(), MetricTest.tolerance);
-        assertEquals(Force.Types.N, outputSI.getType());
-        assertEquals(5098.58104999997, outputAnotherType.getValue(), MetricTest.tolerance);
-        assertEquals(Force.Types.KG, outputAnotherType.getType());
+        
+        Unit outputSI = unitFormula.buildUnitToSI(unit);
+        System.out.println(outputSI);
+        assertEquals(500.0, outputSI.getValue(), MetricTest.tolerance);
+        assertEquals(Moment.factory(Force.Types.N, Length.Types.M), outputSI.getType());
+        
+        Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Moment.factory(Force.Types.KN, Length.Types.MM));
+        assertEquals(500.0, outputAnotherType.getValue(), MetricTest.tolerance);
+        assertEquals(Moment.factory(Force.Types.KN, Length.Types.MM), outputAnotherType.getType());
     }
 
 
     @Test
     public void SIUnitTypeOfForceShouldBeMeterSquare() {
-        assertEquals(Force.Types.N, unitFormula.getSITypeOfThisCategory());
-        assertEquals(Force.Types.N, Force.Types.MN.getSITypeOfThisCategory());
-        assertEquals(Force.Types.N, new Unit(0.0, Force.Types.POUND).getType().getSITypeOfThisCategory());
-        assertEquals(Force.Types.N, new Unit(0.0, Force.Types.KG).getType().getSITypeOfThisCategory());
-    }
-
-
-    @Test
-    public void assertThatOnlyTheCorrectUnitTypesUsesGravityValue() {
-        assertEquals(11, Force.Types.values().length);
-        assert(!Force.Types.N.dependesOfGravityOnConversion);
-        assert(!Force.Types.KN.dependesOfGravityOnConversion);
-        assert(!Force.Types.MN.dependesOfGravityOnConversion);
-        assert(!Force.Types.GN.dependesOfGravityOnConversion);
-        assert(!Force.Types.TN.dependesOfGravityOnConversion);
-        assert(!Force.Types.LB.dependesOfGravityOnConversion);
-        assert(!Force.Types.POUND.dependesOfGravityOnConversion);
-        assert(!Force.Types.KIP.dependesOfGravityOnConversion);
-        assert(Force.Types.G.dependesOfGravityOnConversion);
-        assert(Force.Types.KG.dependesOfGravityOnConversion);
-        assert(Force.Types.T.dependesOfGravityOnConversion);
+        assertEquals(Moment.factory(Force.Types.N, Length.Types.M), unitFormula.getSITypeOfThisCategory());
+        assertEquals(Moment.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Moment.factory(Force.Types.KN, Length.Types.MM)).getType().getSITypeOfThisCategory());
+        assertEquals(Moment.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Moment.factory(Force.Types.KG, Length.Types.CM)).getType().getSITypeOfThisCategory());
+        assertEquals(Moment.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Moment.factory(Force.Types.POUND, Length.Types.IN)).getType().getSITypeOfThisCategory());
     }
 
 
@@ -169,13 +166,36 @@ public class ForceTest {
         assertEquivalentForce(randomValue, Force.Types.T, randomValue*9.8066500286389*1000.0, Force.Types.N);
     }
 
+    @Test
+    public void allForcesArePresentInMoment() {
+        List<UnitType> forceTypes = new Force().getAllUnitTypesOfThisCategory();
+        List<UnitType> moments = unitFormula.getAllUnitTypesOfThisCategory()
+                                            .stream()
+                                            .map(u -> ((Moment.Types) u).getPrincipal())
+                                            .distinct()
+                                            .collect(Collectors.toList());
+        assertIterableEquals(forceTypes, moments);
+    }
+
+
+    @Test
+    public void allLengthsArePresentInMoment() {
+        List<UnitType> forceTypes = new Length().getAllUnitTypesOfThisCategory();
+        List<UnitType> moments = unitFormula.getAllUnitTypesOfThisCategory()
+                                            .stream()
+                                            .map(u -> ((Moment.Types) u).getSecondary())
+                                            .distinct()
+                                            .collect(Collectors.toList());
+        assertIterableEquals(forceTypes, moments);
+    }
+
 
     @Test
     public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
         Unit unit = new Unit(1, Force.Types.N);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
-        assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(null, Force.Types.N));
+        assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(null, Moment.factory(Force.Types.KN, Length.Types.CM)));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(null, null));
     }
 
@@ -184,8 +204,36 @@ public class ForceTest {
     public void unitExceptionShouldBeThrownWhenNullUnitTypeValuesArePassed() {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
-        assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Force.Types.N));
+        assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Moment.factory(null, null)));
+        assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Moment.factory(Force.Types.G, null)));
+        assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Moment.factory(null, Length.Types.CM)));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
+    }
+
+
+    @Test
+    public void factoryForMomentAcceptOnlyValidPrincipalType() {
+        for (UnitFormula formula : formulas) {
+            if (!(formula instanceof Force)) {
+                assertThrows(UnitException.class, () -> Moment.factory(formula.getSITypeOfThisCategory(), Length.Types.M));
+            }
+            else {
+                assertDoesNotThrow(() -> Moment.factory(formula.getSITypeOfThisCategory(), Length.Types.M));
+            }
+        }
+    }
+
+
+    @Test
+    public void factoryForMomentAcceptOnlyValidSecondaryType() {
+        for (UnitFormula formula : formulas) {
+            if (!(formula instanceof Length)) {
+                assertThrows(UnitException.class, () -> Moment.factory(Force.Types.KN, formula.getSITypeOfThisCategory()));
+            }
+            else {
+                assertDoesNotThrow(() -> Moment.factory(Force.Types.KN, formula.getSITypeOfThisCategory()));
+            }
+        }
     }
 
 }

@@ -1,8 +1,7 @@
 package dalosto.engineering.unitconversion.units;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
@@ -12,7 +11,7 @@ public class Force extends TemplateUnitFormulas {
 
     private static final double GRAVITY = 9.8066500286389;
 
-    public enum Types implements UnitType {
+    public static enum Types implements UnitType {
 
         N(1.0, false),
         KN(1000.0, false),
@@ -43,8 +42,8 @@ public class Force extends TemplateUnitFormulas {
 
 
         @Override
-        public Set<UnitType> getAllUnitTypesOfThisCategory() {
-            return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(Types.values())));
+        public List<UnitType> getAllUnitTypesOfThisCategory() {
+            return new ArrayList<>(Arrays.asList(Types.values()));
         }
 
 
@@ -73,7 +72,7 @@ public class Force extends TemplateUnitFormulas {
 
 
     @Override
-    public Set<UnitType> getAllUnitTypesOfThisCategory() {
+    public List<UnitType> getAllUnitTypesOfThisCategory() {
         return Types.N.getAllUnitTypesOfThisCategory();
     }
 

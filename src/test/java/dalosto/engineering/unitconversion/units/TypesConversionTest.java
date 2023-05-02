@@ -35,19 +35,18 @@ public class TypesConversionTest {
 
 
     @Test
-    public void assertThatFormulasThrowsExceptionIfTheyAreNotSameTypeOfFormula() {
-        for (UnitFormula unitFormula : formulas) {
-            assertThrowsIfNotSameTypeOfFormula(unitFormula);
-        }
-    }
-
-
-
-    @Test
     public void assertThatUnitFormulaGetTypesAndUnitTypeGetTypesAreEquivalent() {
         for (UnitFormula unitFormula : formulas) {
             assertEquals(unitFormula.getSITypeOfThisCategory(), unitFormula.getSITypeOfThisCategory().getSITypeOfThisCategory());
             assertEquals(unitFormula.getAllUnitTypesOfThisCategory(), unitFormula.getSITypeOfThisCategory().getAllUnitTypesOfThisCategory());
+        }
+    }
+
+
+    @Test
+    public void assertThatFormulasThrowsExceptionIfTheyAreNotSameTypeOfFormula() {
+        for (UnitFormula unitFormula : formulas) {
+            assertThrowsIfNotSameTypeOfFormula(unitFormula);
         }
     }
 

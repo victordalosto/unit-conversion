@@ -13,12 +13,12 @@ public class IntertiaTest {
     UnitFormula unitFormula = new Inertia();
 
 
-    void assertEquivalentInertiaInSI(double expected, Unit actual) {
+    public void assertEquivalentInertiaInSI(double expected, Unit actual) {
         MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
-    void assertEquivalentInertia(double fromValue, Inertia.Types from, Double toValue, Inertia.Types to) {
+    public void assertEquivalentInertia(double fromValue, Inertia.Types from, Double toValue, Inertia.Types to) {
         MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 

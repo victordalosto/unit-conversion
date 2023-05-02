@@ -13,12 +13,12 @@ public class TimeTest {
     UnitFormula unitFormula = new Time();
 
 
-    void assertEquivalentTimeInSI(double expected, Unit actual) {
+    public void assertEquivalentTimeInSI(double expected, Unit actual) {
         MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
-    void assertEquivalentTime(double fromValue, Time.Types from, Double toValue, Time.Types to) {
+    public void assertEquivalentTime(double fromValue, Time.Types from, Double toValue, Time.Types to) {
         MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 

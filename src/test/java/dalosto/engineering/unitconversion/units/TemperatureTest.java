@@ -13,12 +13,12 @@ public class TemperatureTest {
     UnitFormula unitFormula = new Temperature();
 
 
-    void assertEquivalentTemperatureInSI(double expected, Unit actual) {
+    public void assertEquivalentTemperatureInSI(double expected, Unit actual) {
         MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
-    void assertEquivalentTemperature(double fromValue, Temperature.Types from, Double toValue, Temperature.Types to) {
+    public void assertEquivalentTemperature(double fromValue, Temperature.Types from, Double toValue, Temperature.Types to) {
         MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 

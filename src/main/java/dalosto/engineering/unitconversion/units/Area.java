@@ -1,8 +1,7 @@
 package dalosto.engineering.unitconversion.units;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
@@ -11,7 +10,7 @@ import dalosto.engineering.unitconversion.domain.UnitType;
 @Component("area")
 public class Area extends TemplateUnitFormulas {
 
-    public enum Types implements UnitType {
+    public static enum Types implements UnitType {
 
         M2(1.0),
         DM2(0.01),
@@ -38,8 +37,8 @@ public class Area extends TemplateUnitFormulas {
 
 
         @Override
-        public Set<UnitType> getAllUnitTypesOfThisCategory() {
-            return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(Types.values())));
+        public List<UnitType> getAllUnitTypesOfThisCategory() {
+            return new ArrayList<>(Arrays.asList(Types.values()));
         }
 
 
@@ -62,7 +61,7 @@ public class Area extends TemplateUnitFormulas {
 
     
     @Override
-    public Set<UnitType> getAllUnitTypesOfThisCategory() {
+    public List<UnitType> getAllUnitTypesOfThisCategory() {
         return Types.M2.getAllUnitTypesOfThisCategory();
     }
 

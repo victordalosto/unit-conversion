@@ -1,5 +1,5 @@
 package dalosto.engineering.unitconversion.domain;
-import java.util.Set;
+import java.util.List;
 
 
 /**
@@ -11,6 +11,6 @@ public interface UnitType {
     UnitType getSITypeOfThisCategory();
 
     /** Returns all UnitTypes of this category */
-    Set<UnitType> getAllUnitTypesOfThisCategory();
+    List<UnitType> getAllUnitTypesOfThisCategory();
 
 }

@@ -1,10 +1,9 @@
 package dalosto.engineering.unitconversion.units;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
@@ -17,7 +16,7 @@ public class Temperature extends TemplateUnitFormulas {
     private static final Map<Types, Map<Types, Function<Double, Double>>> conversionTable = new HashMap<>();
 
 
-    public enum Types implements UnitType {
+    public static enum Types implements UnitType {
 
         K, C, F, R;
 
@@ -29,8 +28,8 @@ public class Temperature extends TemplateUnitFormulas {
 
 
         @Override
-        public Set<UnitType> getAllUnitTypesOfThisCategory() {
-            return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(Types.values())));
+        public List<UnitType> getAllUnitTypesOfThisCategory() {
+            return new ArrayList<>(Arrays.asList(Types.values()));
         }
 
     }
@@ -43,7 +42,7 @@ public class Temperature extends TemplateUnitFormulas {
 
 
     @Override
-    public Set<UnitType> getAllUnitTypesOfThisCategory() {
+    public List<UnitType> getAllUnitTypesOfThisCategory() {
         return Types.K.getAllUnitTypesOfThisCategory();
     }
 

@@ -13,12 +13,12 @@ public class LengthTest {
     UnitFormula unitFormula = new Length();
 
 
-    void assertEquivalentLengthInSI(double expected, Unit actual) {
+    public void assertEquivalentLengthInSI(double expected, Unit actual) {
         MetricTest.assertEquavalentInSI(expected, actual, unitFormula);
     }
 
 
-    void assertEquivalentLength(double fromValue, Length.Types from, Double toValue, Length.Types to) {
+    public void assertEquivalentLength(double fromValue, Length.Types from, Double toValue, Length.Types to) {
         MetricTest.assertEquivalentUnit(fromValue, from, toValue, to, unitFormula);
     }
 

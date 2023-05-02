@@ -1,8 +1,7 @@
 package dalosto.engineering.unitconversion.units;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
@@ -11,7 +10,7 @@ import dalosto.engineering.unitconversion.domain.UnitType;
 @Component("volume")
 public class Volume extends TemplateUnitFormulas {
 
-    public enum Types implements UnitType {
+    public static enum Types implements UnitType {
 
         M3(1.0),
         DM3(0.001),
@@ -40,8 +39,8 @@ public class Volume extends TemplateUnitFormulas {
 
 
         @Override
-        public Set<UnitType> getAllUnitTypesOfThisCategory() {
-            return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(Types.values())));
+        public List<UnitType> getAllUnitTypesOfThisCategory() {
+            return new ArrayList<>(Arrays.asList(Types.values()));
         }
 
 
@@ -64,7 +63,7 @@ public class Volume extends TemplateUnitFormulas {
 
 
     @Override
-    public Set<UnitType> getAllUnitTypesOfThisCategory() {
+    public List<UnitType> getAllUnitTypesOfThisCategory() {
         return Types.M3.getAllUnitTypesOfThisCategory();
     }
 
