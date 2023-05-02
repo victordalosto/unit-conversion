@@ -19,7 +19,7 @@ public class UnitDAO {
 
 
     public boolean doesntHaveData() {
-        return (this.value == null && this.type == null && this.target == null);
+        return (this.value == null && this.type == null);
     }
 
 

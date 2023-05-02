@@ -26,10 +26,9 @@ public class UnitDAOTest {
 
 
     @Test
-    public void UnitDAOWithAtLeastOnelValuesShouldHaveData() {
+    public void UnitDAOWithValueOrType() {
         assertFalse(new UnitDAO("mock", null, null).doesntHaveData());
         assertFalse(new UnitDAO(null, "mock", null).doesntHaveData());
-        assertFalse(new UnitDAO(null, null, "mock").doesntHaveData());
     }
 
 

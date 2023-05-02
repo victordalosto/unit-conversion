@@ -17,10 +17,6 @@ public class HomeController {
     @Autowired
     List<TemplateController> controllers;
 
-
-    @Autowired
-    RestURL restURL;
-
     
     @GetMapping
     public RestMessage getHomeMessage() {
@@ -32,7 +28,7 @@ public class HomeController {
 
 
     private void appendHeaderToMessage(RestMessage message) {
-        message.addToHeader("home", restURL.getHomeURL());
+        message.addToHeader("home", new RestURL().getHomeURL());
         message.addToHeader("title", "Unit Conversion API");
         message.addToHeader("about", "API used for conversion between measurement units most commonly used in the engineering");
         message.addToHeader("description", "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit");
@@ -44,10 +40,10 @@ public class HomeController {
         for(TemplateController controller : controllers) {
             Map<String, String> results = new LinkedHashMap<>();
             // The next calls violates the Law of Demeter, but it's the best option considering the design.
-            results.put("uri", controller.getEndpointInfo().getURI()); 
+            results.put("uri", controller.getEndpointInfo().getAPIHomeURI()); 
             results.put("about", "This endpoint converts "+controller.getEndpointInfo().getTitle()+" measurement units.");
             results.put("units", controller.getEndpointInfo().getAllUnits());
-            message.addToResult(controller.getEndpointInfo().getTitle(), results);
+            message.setResult(controller.getEndpointInfo().getTitle(), results);
         }
     }
 

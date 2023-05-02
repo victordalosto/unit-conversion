@@ -23,9 +23,6 @@ public class ExampleController {
     @Autowired
     ConversorService service;
 
-    @Autowired
-    RestURL restURL;
-
 
     @GetMapping
     public RestMessage home(UnitDAO unitDAO) {
@@ -38,7 +35,7 @@ public class ExampleController {
 
     private void appendHeader(RestMessage message) {
         message.addToHeader("uri", "/example");
-        message.addToHeader("home", restURL.getHomeURL());
+        message.addToHeader("home", new RestURL().getHomeURL());
         message.addToHeader("title", "This endpoint provides example in how to use this API to convert measurement units.");
         message.addToHeader("description", "Given a quantity expressed in a unit type, the end-points returns the equivalent quantity in a different measurement unit.");
     }
@@ -49,7 +46,7 @@ public class ExampleController {
         String type = unitFormula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();
         String target = unitFormula.getAllUnitTypesOfThisCategory().stream().skip(1).findFirst().get().toString();
         
-        message.setResult(RestStatus.INFO, 
+        message.addResult(RestStatus.INFO, 
                           "example", "How to convert " + value + " " + type + " into " + target + "  ?",
                           "GET  Request",  "/api/area?value=" + value + "&type=" + type + "&target=" + target,
                           "POST Request",  "/api/area" + "  Body: {'value': " + value + ", 'type': '" + type + "', 'target': '" + target + "'}",

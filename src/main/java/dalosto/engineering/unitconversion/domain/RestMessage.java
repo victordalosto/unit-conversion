@@ -16,12 +16,12 @@ public class RestMessage {
     }
 
 
-    public void addToResult(String key, Map<String, String> map) {
+    public void setResult(String key, Map<String, String> map) {
         this.result.put(key, map);
     }
 
 
-    public void setResult(RestStatus status, String ... keysAndValues) {
+    public void addResult(RestStatus status, String ... keysAndValues) {
         Map<String, String> map = new LinkedHashMap<>();
         for (int i = 0; i < keysAndValues.length; i += 2) {
             map.put(keysAndValues[i], keysAndValues[i + 1]);

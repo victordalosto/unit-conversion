@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import dalosto.engineering.unitconversion.domain.EndpointInfo;
 import dalosto.engineering.unitconversion.domain.RestMessage;
 import dalosto.engineering.unitconversion.domain.RestStatus;
-import dalosto.engineering.unitconversion.domain.RestURL;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.exception.ParameterException;
@@ -15,9 +14,6 @@ public class RestMessageService {
 
     @Autowired
     private ConversorService conversorService;
-
-    @Autowired
-    private RestURL restURL;
 
 
     public RestMessage getMessageForEndPoint(EndpointInfo info, UnitDAO unitDAO) {
@@ -38,12 +34,21 @@ public class RestMessageService {
 
 
     private void appendDefaultHATEOASmessage(RestMessage message, EndpointInfo info) {
-        message.setResult(RestStatus.INFO, 
-                          "title", "This endpoint provides functionality to convert " + info.getTitle().toUpperCase() + " measurement units.",
-                          "types", info.getAllUnits(),
-                          "about", "Check the example endpoint for a usage example.",
-                          "uri", "/example"
-                          );
+        if (info.isSIEndPoint()) {
+            message.addResult(RestStatus.INFO, 
+                    "title",  "This endpoint converts values to the International Standard ",
+                    "types",  info.getAllUnits(),
+                       "si", "converts values into: " + info.getUnitFormula().getSITypeOfThisCategory());
+        } else {
+            message.addResult(RestStatus.INFO, 
+                    "title",  "This endpoint provides functionality to convert " + info.getTitle().toUpperCase() + " measurement units.",
+                    "types",  info.getAllUnits(),
+                  "example",  "Check the example endpoint for a usage example.",
+              "uri-example",  "/example",
+                       "si",  "Check the SI endpoint to convert the value to the International Standard",
+                   "uri-si",  info.getSIEndPoint());
+        }
+        
     }
 
 
@@ -58,22 +63,22 @@ public class RestMessageService {
 
 
     private void appendResultOfConversion(RestMessage message, Unit unit) {
-        message.setResult(RestStatus.SUCCESS, "unit", unit.toString());
+        message.addResult(RestStatus.SUCCESS, "unit", unit.toString());
     }
 
 
     private void appendMessageOfError(RestMessage message, EndpointInfo info, ParameterException e) {
-        message.setResult(RestStatus.ERROR, 
+        message.addResult(RestStatus.ERROR, 
                           "ParameterException", e.getMessage(), 
-                          "about", "Check the example endpoint to verify the correct API usage.",
-                          "uri", "/example"
+                          "example", "If you dont know how to use this API, check the example endpoint.",
+                          "uri-example", "/example"
                           );
     }
 
 
     private void appendHeader(RestMessage message, EndpointInfo info, UnitDAO unitDAO) {
-        message.addToHeader("uri", restURL.getURI());
-        message.addToHeader("home", restURL.getHomeURL());
+        message.addToHeader("uri", info.getURI());
+        message.addToHeader("home", info.getHomeURL());
         message.addToHeader("input", unitDAO.toString());
     }
 

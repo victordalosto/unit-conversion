@@ -40,6 +40,21 @@ public class EndPointsTest {
         }
     }
 
+    @Test
+    public void shouldBeAbleToAcessSIEndPoints() throws Exception {
+        assert(formulas.size() >= 7);
+        for (UnitFormula formula : formulas) {
+            String category = formula.getClass().getSimpleName().toLowerCase();
+            mockMvc.perform(get("/api/" + category + "/si"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(containsString("header")))
+                    .andExpect(content().string(containsString("result")))
+                    .andExpect(content().string(containsString("\"uri\":\"/api/" + category + "/si\"")))
+                    .andExpect(content().string(containsString("\"home\":")))
+            ;
+        }
+    }
+
 
     @Test
     public void endPointsShouldDisplayInfoWhenNoParamsArePresented() throws Exception {
@@ -50,8 +65,20 @@ public class EndPointsTest {
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.INFO+"\":")))
                     .andExpect(content().string(containsString("\"title\":")))
                     .andExpect(content().string(containsString("\"types\":\"" + formula.getAllUnitTypesOfThisCategory().toString() + "\"")))
-                    .andExpect(content().string(containsString("\"about\":")))
-                    .andExpect(content().string(containsString("\"uri\":\"/example")))
+                    .andExpect(content().string(containsString("\"example\":")))
+                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
+            ;
+        }
+    }
+
+
+    @Test
+    public void endPointsShouldDisplaySIWhenNoParamsArePresented() throws Exception {
+        for (UnitFormula formula : formulas) {
+            String category = formula.getClass().getSimpleName().toLowerCase();
+            mockMvc.perform(get("/api/" + category))
+                    .andExpect(content().string(containsString("\"si\":")))
+                    .andExpect(content().string(containsString("\"uri-si\":\"/api/"+category+"/si")))
             ;
         }
     }
@@ -65,7 +92,7 @@ public class EndPointsTest {
                     .andExpect(content().string(containsString("\"input\":\"{value=invalid, type=null, target=null}\"")))
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
                     .andExpect(content().string(containsString("\"ParameterException\":\"value must be Numeric.\"")))
-                    .andExpect(content().string(containsString("\"uri\":\"/example")))
+                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
             ;
         }
     }
@@ -79,7 +106,7 @@ public class EndPointsTest {
                     .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=null, target=null}\"")))
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
                     .andExpect(content().string(containsString("\"ParameterException\":\"type can't be NULL")))
-                    .andExpect(content().string(containsString("\"uri\":\"/example")))
+                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
             ;
         }
     }
@@ -93,7 +120,7 @@ public class EndPointsTest {
                     .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=invalid, target=null}\"")))
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
                     .andExpect(content().string(containsString("\"ParameterException\":\"type INVALID")))
-                    .andExpect(content().string(containsString("\"uri\":\"/example")))
+                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
             ;
         }
     }
@@ -108,7 +135,7 @@ public class EndPointsTest {
                     .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=" + type + ", target=null}\"")))
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
                     .andExpect(content().string(containsString("\"ParameterException\":\"target can't be NULL.")))
-                    .andExpect(content().string(containsString("\"uri\":\"/example")))
+                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
             ;
         }
     }
@@ -123,7 +150,7 @@ public class EndPointsTest {
                     .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=" + type + ", target=invalid}\"")))
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
                     .andExpect(content().string(containsString("\"ParameterException\":\"type INVALID")))
-                    .andExpect(content().string(containsString("\"uri\":\"/example")))
+                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
             ;
         }
     }

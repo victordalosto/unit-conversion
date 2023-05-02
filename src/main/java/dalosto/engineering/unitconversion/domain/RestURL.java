@@ -1,14 +1,22 @@
 package dalosto.engineering.unitconversion.domain;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import jakarta.servlet.http.HttpServletRequest;
 
 
-@Component
 public class RestURL {
 
-    @Autowired
     private HttpServletRequest request;
+
+
+    public RestURL() {
+        request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+    }
+
+
+    public RestURL(HttpServletRequest request) {
+        this.request = request;
+    }
 
 
     public String getHomeURL() {
@@ -20,7 +28,15 @@ public class RestURL {
         return request.getRequestURI();
     }
 
-    
+
+    public String getSIEndPoint() {
+        if (isSIEndPoint()) {
+            return getURI();
+        }
+        return getURI() + "/si";
+    }
+
+
     public boolean isSIEndPoint() {
         return getURI().toLowerCase().endsWith("si");
     }
