@@ -28,40 +28,30 @@ The entire usage of the application is self explanatory, guided by resources and
     "reference": "https://github.com/victordalosto/UnitConversion"
   },
   "result": {
+    "length": {
+      "uri": "/api/length",
+      "about": "This endpoint converts length measurement units.",
+      "units": "[M, DM, CM, MM, HM, KM, UM, IN, FT, YD, MI]"
+    },
     "area": {
       "uri": "/api/area",
       "about": "This endpoint converts area measurement units.",
       "units": "[M2, DM2, CM2, MM2, HM2, KM2, UM2, IN2, FT2, YD2]"
     },
-    "density": {
-      "uri": "/api/density",
-      "about": "This endpoint converts density measurement units.",
-      "units": "[N/M3, N/DM3, N/CM3, N/MM3, N/HM3, N/KM3, N/UM3, N/IN3, N/FT3, N/YD3, N/ML, N/L, N/GAL, KN/M3, KN/DM3, KN/CM3, KN/MM3, KN/HM3, KN/KM3, KN/UM3, KN/IN3, KN/FT3, KN/YD3, KN/ML, KN/L, KN/GAL, MN/M3, MN/DM3, MN/CM3, MN/MM3, MN/HM3, MN/KM3, MN/UM3, MN/IN3, MN/FT3, MN/YD3, MN/ML, MN/L, MN/GAL, GN/M3, GN/DM3, GN/CM3, GN/MM3, GN/HM3, GN/KM3, GN/UM3, GN/IN3, GN/FT3, GN/YD3, GN/ML, GN/L, GN/GAL, TN/M3, TN/DM3, TN/CM3, TN/MM3, TN/HM3, TN/KM3, TN/UM3, TN/IN3, TN/FT3, TN/YD3, TN/ML, TN/L, TN/GAL, LB/M3, LB/DM3, LB/CM3, LB/MM3, LB/HM3, LB/KM3, LB/UM3, LB/IN3, LB/FT3, LB/YD3, LB/ML, LB/L, LB/GAL, POUND/M3, POUND/DM3, POUND/CM3, POUND/MM3, POUND/HM3, POUND/KM3, POUND/UM3, POUND/IN3, POUND/FT3, POUND/YD3, POUND/ML, POUND/L, POUND/GAL, KIP/M3, KIP/DM3, KIP/CM3, KIP/MM3, KIP/HM3, KIP/KM3, KIP/UM3, KIP/IN3, KIP/FT3, KIP/YD3, KIP/ML, KIP/L, KIP/GAL, GF/M3, GF/DM3, GF/CM3, GF/MM3, GF/HM3, GF/KM3, GF/UM3, GF/IN3, GF/FT3, GF/YD3, GF/ML, GF/L, GF/GAL, KGF/M3, KGF/DM3, KGF/CM3, KGF/MM3, KGF/HM3, KGF/KM3, KGF/UM3, KGF/IN3, KGF/FT3, KGF/YD3, KGF/ML, KGF/L, KGF/GAL, T/M3, T/DM3, T/CM3, T/MM3, T/HM3, T/KM3, T/UM3, T/IN3, T/FT3, T/YD3, T/ML, T/L, T/GAL]"
-    },
-    "force": {
-      "uri": "/api/force",
-      "about": "This endpoint converts force measurement units.",
-      "units": "[N, KN, MN, GN, TN, LB, POUND, KIP, GF, KGF, T]"
+    "volume": {
+      "uri": "/api/volume",
+      "about": "This endpoint converts volume measurement units.",
+      "units": "[M3, DM3, CM3, MM3, HM3, KM3, UM3, IN3, FT3, YD3, ML, L, GAL]"
     },
     "inertia": {
       "uri": "/api/inertia",
       "about": "This endpoint converts inertia measurement units.",
       "units": "[M4, DM4, CM4, MM4, HM4, KM4, UM4, IN4, FT4, YD4]"
     },
-    "length": {
-      "uri": "/api/length",
-      "about": "This endpoint converts length measurement units.",
-      "units": "[M, DM, CM, MM, HM, KM, UM, IN, FT, YD, MI]"
-    },
-    "linear": {
-      "uri": "/api/linear",
-      "about": "This endpoint converts linear measurement units.",
-      "units": "[N/M, N/DM, N/CM, N/MM, N/HM, N/KM, N/UM, N/IN, N/FT, N/YD, N/MI, KN/M, KN/DM, KN/CM, KN/MM, KN/HM, KN/KM, KN/UM, KN/IN, KN/FT, KN/YD, KN/MI, MN/M, MN/DM, MN/CM, MN/MM, MN/HM, MN/KM, MN/UM, MN/IN, MN/FT, MN/YD, MN/MI, GN/M, GN/DM, GN/CM, GN/MM, GN/HM, GN/KM, GN/UM, GN/IN, GN/FT, GN/YD, GN/MI, TN/M, TN/DM, TN/CM, TN/MM, TN/HM, TN/KM, TN/UM, TN/IN, TN/FT, TN/YD, TN/MI, LB/M, LB/DM, LB/CM, LB/MM, LB/HM, LB/KM, LB/UM, LB/IN, LB/FT, LB/YD, LB/MI, POUND/M, POUND/DM, POUND/CM, POUND/MM, POUND/HM, POUND/KM, POUND/UM, POUND/IN, POUND/FT, POUND/YD, POUND/MI, KIP/M, KIP/DM, KIP/CM, KIP/MM, KIP/HM, KIP/KM, KIP/UM, KIP/IN, KIP/FT, KIP/YD, KIP/MI, GF/M, GF/DM, GF/CM, GF/MM, GF/HM, GF/KM, GF/UM, GF/IN, GF/FT, GF/YD, GF/MI, KGF/M, KGF/DM, KGF/CM, KGF/MM, KGF/HM, KGF/KM, KGF/UM, KGF/IN, KGF/FT, KGF/YD, KGF/MI, T/M, T/DM, T/CM, T/MM, T/HM, T/KM, T/UM, T/IN, T/FT, T/YD, T/MI]"
-    },
-    "pressure": {
-      "uri": "/api/pressure",
-      "about": "This endpoint converts pressure measurement units.",
-      "units": "[PA, KPA, MPA, PSI, KSI, N/M2, N/DM2, N/CM2, N/MM2, N/HM2, N/KM2, N/UM2, N/IN2, N/FT2, N/YD2, KN/M2, KN/DM2, KN/CM2, KN/MM2, KN/HM2, KN/KM2, KN/UM2, KN/IN2, KN/FT2, KN/YD2, MN/M2, MN/DM2, MN/CM2, MN/MM2, MN/HM2, MN/KM2, MN/UM2, MN/IN2, MN/FT2, MN/YD2, GN/M2, GN/DM2, GN/CM2, GN/MM2, GN/HM2, GN/KM2, GN/UM2, GN/IN2, GN/FT2, GN/YD2, TN/M2, TN/DM2, TN/CM2, TN/MM2, TN/HM2, TN/KM2, TN/UM2, TN/IN2, TN/FT2, TN/YD2, LB/M2, LB/DM2, LB/CM2, LB/MM2, LB/HM2, LB/KM2, LB/UM2, LB/IN2, LB/FT2, LB/YD2, POUND/M2, POUND/DM2, POUND/CM2, POUND/MM2, POUND/HM2, POUND/KM2, POUND/UM2, POUND/IN2, POUND/FT2, POUND/YD2, KIP/M2, KIP/DM2, KIP/CM2, KIP/MM2, KIP/HM2, KIP/KM2, KIP/UM2, KIP/IN2, KIP/FT2, KIP/YD2, GF/M2, GF/DM2, GF/CM2, GF/MM2, GF/HM2, GF/KM2, GF/UM2, GF/IN2, GF/FT2, GF/YD2, KGF/M2, KGF/DM2, KGF/CM2, KGF/MM2, KGF/HM2, KGF/KM2, KGF/UM2, KGF/IN2, KGF/FT2, KGF/YD2, T/M2, T/DM2, T/CM2, T/MM2, T/HM2, T/KM2, T/UM2, T/IN2, T/FT2, T/YD2]"
+    "force": {
+      "uri": "/api/force",
+      "about": "This endpoint converts force measurement units.",
+      "units": "[N, KN, MN, GN, TN, LB, POUND, KIP, GF, KGF, T]"
     },
     "temperature": {
       "uri": "/api/temperature",
@@ -73,20 +63,30 @@ The entire usage of the application is self explanatory, guided by resources and
       "about": "This endpoint converts time measurement units.",
       "units": "[S, MS, US, MIN, H, DAY, WEEK, MONTH, MONTH30, MONTH31, YEAR]"
     },
-    "speed": {
-      "uri": "/api/speed",
-      "about": "This endpoint converts speed measurement units.",
-      "units": "[M/S, M/MS, M/US, M/MIN, M/H, M/DAY, M/WEEK, M/MONTH, M/MONTH30, M/MONTH31, M/YEAR, DM/S, DM/MS, DM/US, DM/MIN, DM/H, DM/DAY, DM/WEEK, DM/MONTH, DM/MONTH30, DM/MONTH31, DM/YEAR, CM/S, CM/MS, CM/US, CM/MIN, CM/H, CM/DAY, CM/WEEK, CM/MONTH, CM/MONTH30, CM/MONTH31, CM/YEAR, MM/S, MM/MS, MM/US, MM/MIN, MM/H, MM/DAY, MM/WEEK, MM/MONTH, MM/MONTH30, MM/MONTH31, MM/YEAR, HM/S, HM/MS, HM/US, HM/MIN, HM/H, HM/DAY, HM/WEEK, HM/MONTH, HM/MONTH30, HM/MONTH31, HM/YEAR, KM/S, KM/MS, KM/US, KM/MIN, KM/H, KM/DAY, KM/WEEK, KM/MONTH, KM/MONTH30, KM/MONTH31, KM/YEAR, UM/S, UM/MS, UM/US, UM/MIN, UM/H, UM/DAY, UM/WEEK, UM/MONTH, UM/MONTH30, UM/MONTH31, UM/YEAR, IN/S, IN/MS, IN/US, IN/MIN, IN/H, IN/DAY, IN/WEEK, IN/MONTH, IN/MONTH30, IN/MONTH31, IN/YEAR, FT/S, FT/MS, FT/US, FT/MIN, FT/H, FT/DAY, FT/WEEK, FT/MONTH, FT/MONTH30, FT/MONTH31, FT/YEAR, YD/S, YD/MS, YD/US, YD/MIN, YD/H, YD/DAY, YD/WEEK, YD/MONTH, YD/MONTH30, YD/MONTH31, YD/YEAR, MI/S, MI/MS, MI/US, MI/MIN, MI/H, MI/DAY, MI/WEEK, MI/MONTH, MI/MONTH30, MI/MONTH31, MI/YEAR]"
-    },
     "torque": {
       "uri": "/api/torque",
       "about": "This endpoint converts torque measurement units.",
       "units": "[N.M, N.DM, N.CM, N.MM, N.HM, N.KM, N.UM, N.IN, N.FT, N.YD, N.MI, KN.M, KN.DM, KN.CM, KN.MM, KN.HM, KN.KM, KN.UM, KN.IN, KN.FT, KN.YD, KN.MI, MN.M, MN.DM, MN.CM, MN.MM, MN.HM, MN.KM, MN.UM, MN.IN, MN.FT, MN.YD, MN.MI, GN.M, GN.DM, GN.CM, GN.MM, GN.HM, GN.KM, GN.UM, GN.IN, GN.FT, GN.YD, GN.MI, TN.M, TN.DM, TN.CM, TN.MM, TN.HM, TN.KM, TN.UM, TN.IN, TN.FT, TN.YD, TN.MI, LB.M, LB.DM, LB.CM, LB.MM, LB.HM, LB.KM, LB.UM, LB.IN, LB.FT, LB.YD, LB.MI, POUND.M, POUND.DM, POUND.CM, POUND.MM, POUND.HM, POUND.KM, POUND.UM, POUND.IN, POUND.FT, POUND.YD, POUND.MI, KIP.M, KIP.DM, KIP.CM, KIP.MM, KIP.HM, KIP.KM, KIP.UM, KIP.IN, KIP.FT, KIP.YD, KIP.MI, GF.M, GF.DM, GF.CM, GF.MM, GF.HM, GF.KM, GF.UM, GF.IN, GF.FT, GF.YD, GF.MI, KGF.M, KGF.DM, KGF.CM, KGF.MM, KGF.HM, KGF.KM, KGF.UM, KGF.IN, KGF.FT, KGF.YD, KGF.MI, T.M, T.DM, T.CM, T.MM, T.HM, T.KM, T.UM, T.IN, T.FT, T.YD, T.MI]"
     },
-    "volume": {
-      "uri": "/api/volume",
-      "about": "This endpoint converts volume measurement units.",
-      "units": "[M3, DM3, CM3, MM3, HM3, KM3, UM3, IN3, FT3, YD3, ML, L, GAL]"
+    "linear": {
+      "uri": "/api/linear",
+      "about": "This endpoint converts linear measurement units.",
+      "units": "[N/M, N/DM, N/CM, N/MM, N/HM, N/KM, N/UM, N/IN, N/FT, N/YD, N/MI, KN/M, KN/DM, KN/CM, KN/MM, KN/HM, KN/KM, KN/UM, KN/IN, KN/FT, KN/YD, KN/MI, MN/M, MN/DM, MN/CM, MN/MM, MN/HM, MN/KM, MN/UM, MN/IN, MN/FT, MN/YD, MN/MI, GN/M, GN/DM, GN/CM, GN/MM, GN/HM, GN/KM, GN/UM, GN/IN, GN/FT, GN/YD, GN/MI, TN/M, TN/DM, TN/CM, TN/MM, TN/HM, TN/KM, TN/UM, TN/IN, TN/FT, TN/YD, TN/MI, LB/M, LB/DM, LB/CM, LB/MM, LB/HM, LB/KM, LB/UM, LB/IN, LB/FT, LB/YD, LB/MI, POUND/M, POUND/DM, POUND/CM, POUND/MM, POUND/HM, POUND/KM, POUND/UM, POUND/IN, POUND/FT, POUND/YD, POUND/MI, KIP/M, KIP/DM, KIP/CM, KIP/MM, KIP/HM, KIP/KM, KIP/UM, KIP/IN, KIP/FT, KIP/YD, KIP/MI, GF/M, GF/DM, GF/CM, GF/MM, GF/HM, GF/KM, GF/UM, GF/IN, GF/FT, GF/YD, GF/MI, KGF/M, KGF/DM, KGF/CM, KGF/MM, KGF/HM, KGF/KM, KGF/UM, KGF/IN, KGF/FT, KGF/YD, KGF/MI, T/M, T/DM, T/CM, T/MM, T/HM, T/KM, T/UM, T/IN, T/FT, T/YD, T/MI]"
+    },
+    "pressure": {
+      "uri": "/api/pressure",
+      "about": "This endpoint converts pressure measurement units.",
+      "units": "[PA, KPA, MPA, PSI, KSI, N/M2, N/DM2, N/CM2, N/MM2, N/HM2, N/KM2, N/UM2, N/IN2, N/FT2, N/YD2, KN/M2, KN/DM2, KN/CM2, KN/MM2, KN/HM2, KN/KM2, KN/UM2, KN/IN2, KN/FT2, KN/YD2, MN/M2, MN/DM2, MN/CM2, MN/MM2, MN/HM2, MN/KM2, MN/UM2, MN/IN2, MN/FT2, MN/YD2, GN/M2, GN/DM2, GN/CM2, GN/MM2, GN/HM2, GN/KM2, GN/UM2, GN/IN2, GN/FT2, GN/YD2, TN/M2, TN/DM2, TN/CM2, TN/MM2, TN/HM2, TN/KM2, TN/UM2, TN/IN2, TN/FT2, TN/YD2, LB/M2, LB/DM2, LB/CM2, LB/MM2, LB/HM2, LB/KM2, LB/UM2, LB/IN2, LB/FT2, LB/YD2, POUND/M2, POUND/DM2, POUND/CM2, POUND/MM2, POUND/HM2, POUND/KM2, POUND/UM2, POUND/IN2, POUND/FT2, POUND/YD2, KIP/M2, KIP/DM2, KIP/CM2, KIP/MM2, KIP/HM2, KIP/KM2, KIP/UM2, KIP/IN2, KIP/FT2, KIP/YD2, GF/M2, GF/DM2, GF/CM2, GF/MM2, GF/HM2, GF/KM2, GF/UM2, GF/IN2, GF/FT2, GF/YD2, KGF/M2, KGF/DM2, KGF/CM2, KGF/MM2, KGF/HM2, KGF/KM2, KGF/UM2, KGF/IN2, KGF/FT2, KGF/YD2, T/M2, T/DM2, T/CM2, T/MM2, T/HM2, T/KM2, T/UM2, T/IN2, T/FT2, T/YD2]"
+    },
+    "density": {
+      "uri": "/api/density",
+      "about": "This endpoint converts density measurement units.",
+      "units": "[N/M3, N/DM3, N/CM3, N/MM3, N/HM3, N/KM3, N/UM3, N/IN3, N/FT3, N/YD3, N/ML, N/L, N/GAL, KN/M3, KN/DM3, KN/CM3, KN/MM3, KN/HM3, KN/KM3, KN/UM3, KN/IN3, KN/FT3, KN/YD3, KN/ML, KN/L, KN/GAL, MN/M3, MN/DM3, MN/CM3, MN/MM3, MN/HM3, MN/KM3, MN/UM3, MN/IN3, MN/FT3, MN/YD3, MN/ML, MN/L, MN/GAL, GN/M3, GN/DM3, GN/CM3, GN/MM3, GN/HM3, GN/KM3, GN/UM3, GN/IN3, GN/FT3, GN/YD3, GN/ML, GN/L, GN/GAL, TN/M3, TN/DM3, TN/CM3, TN/MM3, TN/HM3, TN/KM3, TN/UM3, TN/IN3, TN/FT3, TN/YD3, TN/ML, TN/L, TN/GAL, LB/M3, LB/DM3, LB/CM3, LB/MM3, LB/HM3, LB/KM3, LB/UM3, LB/IN3, LB/FT3, LB/YD3, LB/ML, LB/L, LB/GAL, POUND/M3, POUND/DM3, POUND/CM3, POUND/MM3, POUND/HM3, POUND/KM3, POUND/UM3, POUND/IN3, POUND/FT3, POUND/YD3, POUND/ML, POUND/L, POUND/GAL, KIP/M3, KIP/DM3, KIP/CM3, KIP/MM3, KIP/HM3, KIP/KM3, KIP/UM3, KIP/IN3, KIP/FT3, KIP/YD3, KIP/ML, KIP/L, KIP/GAL, GF/M3, GF/DM3, GF/CM3, GF/MM3, GF/HM3, GF/KM3, GF/UM3, GF/IN3, GF/FT3, GF/YD3, GF/ML, GF/L, GF/GAL, KGF/M3, KGF/DM3, KGF/CM3, KGF/MM3, KGF/HM3, KGF/KM3, KGF/UM3, KGF/IN3, KGF/FT3, KGF/YD3, KGF/ML, KGF/L, KGF/GAL, T/M3, T/DM3, T/CM3, T/MM3, T/HM3, T/KM3, T/UM3, T/IN3, T/FT3, T/YD3, T/ML, T/L, T/GAL]"
+    },
+    "speed": {
+      "uri": "/api/speed",
+      "about": "This endpoint converts speed measurement units.",
+      "units": "[M/S, M/MS, M/US, M/MIN, M/H, M/DAY, M/WEEK, M/MONTH, M/MONTH30, M/MONTH31, M/YEAR, DM/S, DM/MS, DM/US, DM/MIN, DM/H, DM/DAY, DM/WEEK, DM/MONTH, DM/MONTH30, DM/MONTH31, DM/YEAR, CM/S, CM/MS, CM/US, CM/MIN, CM/H, CM/DAY, CM/WEEK, CM/MONTH, CM/MONTH30, CM/MONTH31, CM/YEAR, MM/S, MM/MS, MM/US, MM/MIN, MM/H, MM/DAY, MM/WEEK, MM/MONTH, MM/MONTH30, MM/MONTH31, MM/YEAR, HM/S, HM/MS, HM/US, HM/MIN, HM/H, HM/DAY, HM/WEEK, HM/MONTH, HM/MONTH30, HM/MONTH31, HM/YEAR, KM/S, KM/MS, KM/US, KM/MIN, KM/H, KM/DAY, KM/WEEK, KM/MONTH, KM/MONTH30, KM/MONTH31, KM/YEAR, UM/S, UM/MS, UM/US, UM/MIN, UM/H, UM/DAY, UM/WEEK, UM/MONTH, UM/MONTH30, UM/MONTH31, UM/YEAR, IN/S, IN/MS, IN/US, IN/MIN, IN/H, IN/DAY, IN/WEEK, IN/MONTH, IN/MONTH30, IN/MONTH31, IN/YEAR, FT/S, FT/MS, FT/US, FT/MIN, FT/H, FT/DAY, FT/WEEK, FT/MONTH, FT/MONTH30, FT/MONTH31, FT/YEAR, YD/S, YD/MS, YD/US, YD/MIN, YD/H, YD/DAY, YD/WEEK, YD/MONTH, YD/MONTH30, YD/MONTH31, YD/YEAR, MI/S, MI/MS, MI/US, MI/MIN, MI/H, MI/DAY, MI/WEEK, MI/MONTH, MI/MONTH30, MI/MONTH31, MI/YEAR]"
     }
   }
 }

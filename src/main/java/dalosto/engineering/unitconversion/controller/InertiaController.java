@@ -1,6 +1,7 @@
 package dalosto.engineering.unitconversion.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import dalosto.engineering.unitconversion.units.UnitFormula;
 
 @RestController
 @RequestMapping("/api/inertia")
+@Order(4)
 public class InertiaController extends TemplateController {
 
     @Autowired
