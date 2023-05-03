@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -28,10 +27,10 @@ public class TimeoutTest {
     private List<UnitFormula> formulas;
 
     private final int numberOfRuns = 1000;
-    private final long maxtimeDuration = 500; // Usually it is 100ms, but we give it some extra time for the CI/CD pipeline to run.
+    private final long maxtimeDuration = 300; // Usually it is 100ms, but we give it some extra time for the CI/CD pipeline to run.
+
 
     @Test
-    @Disabled
     public void apiRequestMustRun1000TimesInLessThan100miliSecond() throws Exception {
         warmpUp();
         for (UnitFormula formula : formulas) {
