@@ -119,7 +119,7 @@ public class EndPointsTest {
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=invalid"))
                     .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=invalid, target=null}\"")))
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
-                    .andExpect(content().string(containsString("\"ParameterException\":\"type INVALID")))
+                    .andExpect(content().string(containsStringIgnoringCase("\"ParameterException\":\"type INVALID")))
                     .andExpect(content().string(containsString("\"uri-example\":\"/example")))
             ;
         }
@@ -149,7 +149,7 @@ public class EndPointsTest {
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=" + type + "&target=invalid"))
                     .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=" + type + ", target=invalid}\"")))
                     .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
-                    .andExpect(content().string(containsString("\"ParameterException\":\"type INVALID")))
+                    .andExpect(content().string(containsStringIgnoringCase("\"ParameterException\":\"type INVALID")))
                     .andExpect(content().string(containsString("\"uri-example\":\"/example")))
             ;
         }

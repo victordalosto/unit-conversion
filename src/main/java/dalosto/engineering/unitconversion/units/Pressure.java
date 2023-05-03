@@ -1,6 +1,5 @@
 package dalosto.engineering.unitconversion.units;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
@@ -15,10 +14,17 @@ public class Pressure extends TemplateUnitFormulas {
     public static class Types extends UnitTypeDuo {
 
         private static List<UnitType> types = new ArrayList<>();
+        private String ALTERNATIVE_NAME = null;
+
         static {
+            types.add(Pressure.factory("PA", Force.Types.N, Area.Types.M2));
+            types.add(Pressure.factory("KPA", Force.Types.KN, Area.Types.M2));
+            types.add(Pressure.factory("MPA", Force.Types.MN, Area.Types.M2));
+            types.add(Pressure.factory("PSI", Force.Types.POUND, Area.Types.IN2));
+            types.add(Pressure.factory("KSI", Force.Types.KIP, Area.Types.IN2));
             for (UnitType force : new Force().getAllUnitTypesOfThisCategory()) {
                 for (UnitType area : new Area().getAllUnitTypesOfThisCategory()) {
-                    Types.types.add(factory(force, area));
+                    types.add(factory(force, area));
                 }
             }
         }
@@ -32,12 +38,15 @@ public class Pressure extends TemplateUnitFormulas {
 
         @Override
         public List<UnitType> getAllUnitTypesOfThisCategory() {
-            return Collections.unmodifiableList(types);
+            return new ArrayList<>(types);
         }
 
 
         @Override
         public String toString() {
+            if (ALTERNATIVE_NAME != null) {
+                return ALTERNATIVE_NAME;
+            }
             return super.getPrincipal() + "/" + super.getSecondary();
         }
 
@@ -54,6 +63,13 @@ public class Pressure extends TemplateUnitFormulas {
         Types t = new Types();
         t.setPrincipal(force);
         t.setSecondary(area);
+        return t;
+    }
+
+
+    public static UnitType factory(String alt, UnitType force, UnitType area) {
+        UnitType t = factory(force, area);
+        ((Types) t).ALTERNATIVE_NAME = alt;
         return t;
     }
 

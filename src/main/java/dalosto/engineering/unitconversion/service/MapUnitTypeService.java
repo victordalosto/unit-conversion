@@ -20,7 +20,7 @@ public class MapUnitTypeService {
     private UnitType mapUnity(String string, UnitFormula unitFormula) {
         string = filterString(string);
         for (UnitType type : unitFormula.getAllUnitTypesOfThisCategory()) {
-            if (string.equals(type.toString())) {
+            if (string.equalsIgnoreCase(type.toString())) {
                 return type;
             }
         }
@@ -29,16 +29,15 @@ public class MapUnitTypeService {
 
 
     private String filterString(String string) {
-        string = string.toUpperCase()
-                       .replaceAll("\\s", "")
-                       .replaceAll("-", "").replaceAll("_", "")
-                       .replaceAll("\\^", "").replaceAll("~", "")
-                       .replaceAll("¹", "").replaceAll("²", "2").replaceAll("³", "3").replaceAll("⁴", "4")
-                       .replaceAll("₁", "").replaceAll("₂", "2").replaceAll("₃", "3").replaceAll("₄", "4")
-                       .replaceAll("·", ".").replaceAll("X", ".").replaceAll("×", ".").replaceAll("\\*", ".")
-                       .replaceAll("\\\\", "/").replaceAll("÷", "/")
-                       .replaceAll("[^a-zA-Z0-9\\./]+", "");
-        return string;
+        return string.toUpperCase()
+                     .replaceAll("\\s", "")
+                     .replaceAll("-", "").replaceAll("_", "")
+                     .replaceAll("\\^", "").replaceAll("~", "")
+                     .replaceAll("¹", "").replaceAll("²", "2").replaceAll("³", "3").replaceAll("⁴", "4")
+                     .replaceAll("₁", "").replaceAll("₂", "2").replaceAll("₃", "3").replaceAll("₄", "4")
+                     .replaceAll("·", ".").replaceAll("X", ".").replaceAll("×", ".").replaceAll("\\*", ".")
+                     .replaceAll("\\\\", "/").replaceAll("÷", "/")
+                     .replaceAll("[^A-Z0-9\\./]+", "");
     }
 
 

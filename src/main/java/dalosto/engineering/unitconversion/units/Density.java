@@ -1,6 +1,5 @@
 package dalosto.engineering.unitconversion.units;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
@@ -32,7 +31,7 @@ public class Density extends TemplateUnitFormulas {
 
         @Override
         public List<UnitType> getAllUnitTypesOfThisCategory() {
-            return Collections.unmodifiableList(types);
+            return new ArrayList<>(types);
         }
 
 

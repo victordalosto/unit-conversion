@@ -13,8 +13,6 @@ public abstract class UnitTypeDuo implements UnitType {
     private UnitType secondary;
 
 
-    @Override
     public abstract String toString();
-
 
 }
