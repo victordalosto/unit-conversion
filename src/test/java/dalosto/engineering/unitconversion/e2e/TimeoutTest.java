@@ -28,11 +28,14 @@ public class TimeoutTest {
     private List<UnitFormula> formulas;
 
     private final int numberOfRuns = 1000;
-    private final long maxtimeDuration = 300; // Usually it is 100ms, but we give it some extra time for the CI/CD pipeline to run.
+
+    // Usually it is 100ms, but we give it some extra time for the CI/CD pipeline to run.
+    private final long maxtimeDuration = 300; 
+    
 
 
     @Test
-    @Disabled("This test is disabled because it takes a long time to run. It is only used to check the performance of the API.")
+    @Disabled("This test is disabled because it is now taking to long to run. It is now only used to check the performance of the API.")
     public void apiRequestMustRun1000TimesInLessThan100miliSecond() throws Exception {
         warmpUp();
         for (UnitFormula formula : formulas) {
@@ -50,7 +53,7 @@ public class TimeoutTest {
     private void warmpUp() throws Exception {
         for (int i=0; i<30000; i++) { // it takes around 9-10k runs to warm up the code.
             mockMvc.perform(get("/api/length?value=12345.67&type=m&target=cm")).andExpect(status().isOk());;
-            mockMvc.perform(get("/api/area?value=12345.67&type=m2&target=cm2")).andExpect(status().isOk());;
+            mockMvc.perform(get("/api/area?value=12345.67&type=m2&target=cm2 ")).andExpect(status().isOk());;
         }
     }
 
@@ -73,7 +76,7 @@ public class TimeoutTest {
     private void createTask(String type, UnitType inputType, UnitType outputType) {
         try {
             mockMvc.perform(get("/api/" + type + "?value=12345.67&type=" + inputType + "&target=" + outputType))
-                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
+                   .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
             ;
         } catch (Exception e) {
             fail();

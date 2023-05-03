@@ -4,10 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.units.Area;
+import dalosto.engineering.unitconversion.units.Density;
 import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Inertia;
 import dalosto.engineering.unitconversion.units.Length;
 import dalosto.engineering.unitconversion.units.Linear;
+import dalosto.engineering.unitconversion.units.Pressure;
+import dalosto.engineering.unitconversion.units.Speed;
+import dalosto.engineering.unitconversion.units.Time;
 import dalosto.engineering.unitconversion.units.Torque;
 import dalosto.engineering.unitconversion.units.Volume;
 
@@ -85,7 +89,35 @@ public class ServiceToFixStringTest {
         assertEquals(Linear.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN\\M", new Linear()));
         assertEquals(Linear.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN÷M", new Linear()));
         assertEquals(Linear.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN ÷ M", new Linear()));
-
+    }
+    
+    
+    @Test
+    public void serviceShouldFixStringForPressure() {
+        assertEquals(Pressure.factory(Force.Types.KN, Area.Types.M2), mapUnitTypeService.getUnitTypeFromString("KN/M2", new Pressure()));
+        assertEquals(Pressure.factory(Force.Types.KN, Area.Types.M2), mapUnitTypeService.getUnitTypeFromString("KN / M2", new Pressure()));
+        assertEquals(Pressure.factory(Force.Types.KN, Area.Types.M2), mapUnitTypeService.getUnitTypeFromString("KN\\M2", new Pressure()));
+        assertEquals(Pressure.factory(Force.Types.KN, Area.Types.M2), mapUnitTypeService.getUnitTypeFromString("KN÷M2", new Pressure()));
+        assertEquals(Pressure.factory(Force.Types.KN, Area.Types.M2), mapUnitTypeService.getUnitTypeFromString("KN ÷ M2", new Pressure()));
+    }
+    
+    
+    @Test
+    public void serviceShouldFixStringForDensity() {
+        assertEquals(Density.factory(Force.Types.KN, Volume.Types.M3), mapUnitTypeService.getUnitTypeFromString("KN/M3", new Density()));
+        assertEquals(Density.factory(Force.Types.KN, Volume.Types.M3), mapUnitTypeService.getUnitTypeFromString("KN / M3", new Density()));
+        assertEquals(Density.factory(Force.Types.KN, Volume.Types.M3), mapUnitTypeService.getUnitTypeFromString("KN\\M3", new Density()));
+        assertEquals(Density.factory(Force.Types.KN, Volume.Types.M3), mapUnitTypeService.getUnitTypeFromString("KN÷M3", new Density()));
+        assertEquals(Density.factory(Force.Types.KN, Volume.Types.M3), mapUnitTypeService.getUnitTypeFromString("KN ÷ M3", new Density()));
+    }
+    
+    
+    @Test
+    public void serviceShouldFixStringForSpeed() {
+        assertEquals(Speed.factory(Length.Types.M, Time.Types.S), mapUnitTypeService.getUnitTypeFromString("M/S", new Speed()));
+        assertEquals(Speed.factory(Length.Types.M, Time.Types.S), mapUnitTypeService.getUnitTypeFromString("M / S", new Speed()));
+        assertEquals(Speed.factory(Length.Types.M, Time.Types.S), mapUnitTypeService.getUnitTypeFromString("M /S", new Speed()));
+        assertEquals(Speed.factory(Length.Types.M, Time.Types.S), mapUnitTypeService.getUnitTypeFromString("M/ S", new Speed()));
     }
 
 }

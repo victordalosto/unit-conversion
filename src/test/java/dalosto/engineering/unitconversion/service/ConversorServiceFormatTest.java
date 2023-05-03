@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.units.Area;
+import dalosto.engineering.unitconversion.units.Density;
 import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Inertia;
 import dalosto.engineering.unitconversion.units.Length;
 import dalosto.engineering.unitconversion.units.Linear;
+import dalosto.engineering.unitconversion.units.Pressure;
+import dalosto.engineering.unitconversion.units.Speed;
 import dalosto.engineering.unitconversion.units.Temperature;
 import dalosto.engineering.unitconversion.units.Time;
 import dalosto.engineering.unitconversion.units.Torque;
@@ -61,6 +64,18 @@ public class ConversorServiceFormatTest {
         inputDAO = new UnitDAO("12345.67", "KGF/M", "T/IN");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Linear());
         assertEquals(new UnitDAO("12345.67", "KGF/M", "T/IN"), inputDAO);
+
+        inputDAO = new UnitDAO("12345.67", "KGF/M2", "T/IN2");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Pressure());
+        assertEquals(new UnitDAO("12345.67", "KGF/M2", "T/IN2"), inputDAO);
+
+        inputDAO = new UnitDAO("12345.67", "KGF/M3", "T/IN3");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Density());
+        assertEquals(new UnitDAO("12345.67", "KGF/M3", "T/IN3"), inputDAO);
+
+        inputDAO = new UnitDAO("12345.67", "M/S", "KM/H");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Speed());
+        assertEquals(new UnitDAO("12345.67", "M/S", "KM/H"), inputDAO);
     }
 
 
@@ -92,9 +107,25 @@ public class ConversorServiceFormatTest {
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Temperature());
         assertEquals(new UnitDAO("12345.67", "C", "C"), inputDAO);
 
-        inputDAO = new UnitDAO("12345 . 67", "s", "S");
-        service.formatUnitDAOAndConvertToUnit(inputDAO, new Time());
-        assertEquals(new UnitDAO("12345.67", "S", "S"), inputDAO);
+        inputDAO = new UnitDAO("12345 . 67", "kg*m", "kgf . m");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Torque());
+        assertEquals(new UnitDAO("12345.67", "KG.M", "KGF.M"), inputDAO);
+
+        inputDAO = new UnitDAO("12345 . 67", "N/m", "N/m");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Linear());
+        assertEquals(new UnitDAO("12345.67", "N/M", "N/M"), inputDAO);
+
+        inputDAO = new UnitDAO("12345 . 67", "KpA", "K P A");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Pressure());
+        assertEquals(new UnitDAO("12345.67", "KPA", "KPA"), inputDAO);
+
+        inputDAO = new UnitDAO("12345 . 67", "N/L", "N/l");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Density());
+        assertEquals(new UnitDAO("12345.67", "N/L", "N/L"), inputDAO);
+
+        inputDAO = new UnitDAO("12345 . 67", "m/s", "m/S");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Speed());
+        assertEquals(new UnitDAO("12345.67", "M/S", "M/S"), inputDAO);
     }
 
 }

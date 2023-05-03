@@ -6,9 +6,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.units.Area;
+import dalosto.engineering.unitconversion.units.Density;
 import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Length;
 import dalosto.engineering.unitconversion.units.Linear;
+import dalosto.engineering.unitconversion.units.Pressure;
+import dalosto.engineering.unitconversion.units.Speed;
 import dalosto.engineering.unitconversion.units.Temperature;
 import dalosto.engineering.unitconversion.units.Time;
 import dalosto.engineering.unitconversion.units.Torque;
@@ -81,9 +84,34 @@ public class ConversorServiceTest {
     @Test
     public void shouldBeAbreToConvertLinearUnitsFromUnitDAO() {
         UnitDAO unitDAO = new UnitDAO("5", "KGF/CM", "T/M");
-        Unit unit = new Unit(0.5, Torque.factory(Force.Types.T, Length.Types.M));
+        Unit unit = new Unit(0.5, Linear.factory(Force.Types.T, Length.Types.M));
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Linear()));
     }
+
+    
+    @Test
+    public void shouldBeAbreToConvertPressureUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("5", "KGF/CM2", "T/M2");
+        Unit unit = new Unit(50.0, Pressure.factory(Force.Types.T, Area.Types.M2));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Pressure()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToConvertDensityUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("5", "KGF/M3", "GF/CM3");
+        Unit unit = new Unit(0.005, Density.factory(Force.Types.GF, Volume.Types.CM3));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Density()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToConvertSpeedUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("35", "M/S", "KM/H");
+        Unit unit = new Unit(126, Speed.factory(Length.Types.KM, Time.Types.H));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Speed()));
+    }
+
 
 
 }

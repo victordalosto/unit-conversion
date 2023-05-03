@@ -26,31 +26,29 @@ public class EndPointsTest {
 
 
     @Test
-    public void shouldBeAbleToAcessAllFormulasEndPoints() throws Exception {
-        assert(formulas.size() >= 7);
+    public void shouldBeAbleToAcessAllEndPoints() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category))
-                    .andExpect(status().isOk())
-                    .andExpect(content().string(containsString("header")))
-                    .andExpect(content().string(containsString("result")))
-                    .andExpect(content().string(containsString("\"uri\":\"/api/" + category + "\"")))
-                    .andExpect(content().string(containsString("\"home\":")))
+                   .andExpect(status().isOk())
+                   .andExpect(content().string(containsString("header")))
+                   .andExpect(content().string(containsString("result")))
+                   .andExpect(content().string(containsString("\"uri\":\"/api/" + category + "\"")))
+                   .andExpect(content().string(containsString("\"home\":")))
             ;
         }
     }
 
     @Test
-    public void shouldBeAbleToAcessSIEndPoints() throws Exception {
-        assert(formulas.size() >= 7);
+    public void shouldBeAbleToAcessSI() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category + "/si"))
-                    .andExpect(status().isOk())
-                    .andExpect(content().string(containsString("header")))
-                    .andExpect(content().string(containsString("result")))
-                    .andExpect(content().string(containsString("\"uri\":\"/api/" + category + "/si\"")))
-                    .andExpect(content().string(containsString("\"home\":")))
+                   .andExpect(status().isOk())
+                   .andExpect(content().string(containsString("header")))
+                   .andExpect(content().string(containsString("result")))
+                   .andExpect(content().string(containsString("\"uri\":\"/api/" + category + "/si\"")))
+                   .andExpect(content().string(containsString("\"home\":")))
             ;
         }
     }

@@ -34,7 +34,7 @@ public class EndPointInfoTest {
 
     
     @Test
-    public void restURLShouldBeNull() {
+    public void restURLShouldtBeNull() {
         for (TemplateController controller : controllers) {
             assertNotNull(controller.getEndpointInfo().getRestURL());
         }

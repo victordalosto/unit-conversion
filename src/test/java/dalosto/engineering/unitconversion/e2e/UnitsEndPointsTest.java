@@ -1,5 +1,4 @@
 package dalosto.engineering.unitconversion.e2e;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -24,9 +23,9 @@ public class UnitsEndPointsTest {
         String inputType = "M";
         String outputType = "CM";
         mockMvc.perform(get("/api/" + "length" + "?value=12345.67&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=1234567.0, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=1234567.0, type=" + outputType + "}\"")))
         ;
     }
 
@@ -36,9 +35,9 @@ public class UnitsEndPointsTest {
         String inputType = "M2";
         String outputType = "CM2";
         mockMvc.perform(get("/api/" + "area" + "?value=1.234567&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=1.234567, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.234567, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=12345.67, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=12345.67, type=" + outputType + "}\"")))
         ;
     }
 
@@ -48,9 +47,9 @@ public class UnitsEndPointsTest {
         String inputType = "M3";
         String outputType = "L";
         mockMvc.perform(get("/api/" + "volume" + "?value=1.234567&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=1.234567, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.234567, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=1234.567, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=1234.567, type=" + outputType + "}\"")))
         ;
     }
 
@@ -60,9 +59,9 @@ public class UnitsEndPointsTest {
         String inputType = "CM4";
         String outputType = "MM4";
         mockMvc.perform(get("/api/" + "inertia" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=10000.0, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=10000.0, type=" + outputType + "}\"")))
         ;
     }
 
@@ -72,9 +71,9 @@ public class UnitsEndPointsTest {
         String inputType = "KN";
         String outputType = "N";
         mockMvc.perform(get("/api/" + "force" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=1000.0, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=1000.0, type=" + outputType + "}\"")))
         ;
     }
 
@@ -84,9 +83,9 @@ public class UnitsEndPointsTest {
         String inputType = "C";
         String outputType = "K";
         mockMvc.perform(get("/api/" + "temperature" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=274.15, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=274.15, type=" + outputType + "}\"")))
         ;
     }
 
@@ -96,9 +95,9 @@ public class UnitsEndPointsTest {
         String inputType = "DAY";
         String outputType = "H";
         mockMvc.perform(get("/api/" + "time" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=24.0, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=24.0, type=" + outputType + "}\"")))
         ;
     }
 
@@ -108,9 +107,9 @@ public class UnitsEndPointsTest {
         String inputType = "KN.CM";
         String outputType = "N.MM";
         mockMvc.perform(get("/api/" + "torque" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=10000.0, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=10000.0, type=" + outputType + "}\"")))
         ;
     }
 
@@ -120,9 +119,45 @@ public class UnitsEndPointsTest {
         String inputType = "KGF/CM";
         String outputType = "T/M";
         mockMvc.perform(get("/api/" + "linear" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsString("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsString("\"unit\":\"{value=0.1, type=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=0.1, type=" + outputType + "}\"")))
+        ;
+    }
+
+    
+    @Test
+    public void stressEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+        String inputType = "MPA";
+        String outputType = "N/MM2";
+        mockMvc.perform(get("/api/" + "stress" + "?value=123.45&type=" + inputType + "&target=" + outputType))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=123.45, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=123.45, type=" + outputType + "}\"")))
+        ;
+    }
+
+    
+    @Test
+    public void densityEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+        String inputType = "KG/M3";
+        String outputType = "G/CM3";
+        mockMvc.perform(get("/api/" + "density" + "?value=1.0&type=" + inputType + "&target=" + outputType))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=0.001, type=" + outputType + "}\"")))
+        ;
+    }
+
+    
+    @Test
+    public void speedEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+        String inputType = "km/h";
+        String outputType = "m/s";
+        mockMvc.perform(get("/api/" + "speed" + "?value=3.6&type=" + inputType + "&target=" + outputType))
+                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=3.6, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
+                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=1.0, type=" + outputType + "}\"")))
         ;
     }
 

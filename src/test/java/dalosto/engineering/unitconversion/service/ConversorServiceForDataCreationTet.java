@@ -8,10 +8,13 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.exception.ParameterException;
 import dalosto.engineering.unitconversion.units.Area;
+import dalosto.engineering.unitconversion.units.Density;
 import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Inertia;
 import dalosto.engineering.unitconversion.units.Length;
 import dalosto.engineering.unitconversion.units.Linear;
+import dalosto.engineering.unitconversion.units.Pressure;
+import dalosto.engineering.unitconversion.units.Speed;
 import dalosto.engineering.unitconversion.units.Temperature;
 import dalosto.engineering.unitconversion.units.Time;
 import dalosto.engineering.unitconversion.units.Torque;
@@ -86,6 +89,30 @@ public class ConversorServiceForDataCreationTet {
         UnitDAO unitDAO = new UnitDAO("3.5", "KGF/M", "KGF/M");
         Unit unit = new Unit(3.5, Linear.factory(Force.Types.KGF, Length.Types.M));
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Linear()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToCreateStressUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("3.5", "KPA", "N/CM2");
+        Unit unit = new Unit(0.35, Pressure.factory(Force.Types.N, Area.Types.CM2));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Pressure()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToCreateDensityUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("3.5", "KGF/M3", "G/CM3");
+        Unit unit = new Unit(0.0035, Density.factory(Force.Types.G, Volume.Types.CM3));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Density()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToCreateSpeedUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("3.5", "FT/S", "M/S");
+        Unit unit = new Unit(1.0668, Speed.factory(Length.Types.M, Time.Types.S));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Speed()));
     }
 
 
