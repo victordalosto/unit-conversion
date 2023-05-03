@@ -114,5 +114,17 @@ public class UnitsEndPointsTest {
         ;
     }
 
+    
+    @Test
+    public void linearEndPointShouldBeAbleToConvertCorrectly() throws Exception {
+        String inputType = "KG/CM";
+        String outputType = "T/M";
+        mockMvc.perform(get("/api/" + "linear" + "?value=1.0&type=" + inputType + "&target=" + outputType))
+                .andExpect(content().string(containsString("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
+                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
+                .andExpect(content().string(containsString("\"unit\":\"{value=0.1, type=" + outputType + "}\"")))
+        ;
+    }
+
 
 }

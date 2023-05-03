@@ -8,8 +8,10 @@ import dalosto.engineering.unitconversion.units.Area;
 import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Inertia;
 import dalosto.engineering.unitconversion.units.Length;
+import dalosto.engineering.unitconversion.units.Linear;
 import dalosto.engineering.unitconversion.units.Temperature;
 import dalosto.engineering.unitconversion.units.Time;
+import dalosto.engineering.unitconversion.units.Torque;
 import dalosto.engineering.unitconversion.units.Volume;
 
 
@@ -51,6 +53,14 @@ public class ConversorServiceFormatTest {
         inputDAO = new UnitDAO("12345.67", "S", "S");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Time());
         assertEquals(new UnitDAO("12345.67", "S", "S"), inputDAO);
+
+        inputDAO = new UnitDAO("12345.67", "KG.M", "T.IN");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Torque());
+        assertEquals(new UnitDAO("12345.67", "KG.M", "T.IN"), inputDAO);
+
+        inputDAO = new UnitDAO("12345.67", "KG/M", "T/IN");
+        service.formatUnitDAOAndConvertToUnit(inputDAO, new Linear());
+        assertEquals(new UnitDAO("12345.67", "KG/M", "T/IN"), inputDAO);
     }
 
 

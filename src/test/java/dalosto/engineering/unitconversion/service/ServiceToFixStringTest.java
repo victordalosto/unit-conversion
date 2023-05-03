@@ -4,8 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.units.Area;
+import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Inertia;
 import dalosto.engineering.unitconversion.units.Length;
+import dalosto.engineering.unitconversion.units.Linear;
+import dalosto.engineering.unitconversion.units.Torque;
 import dalosto.engineering.unitconversion.units.Volume;
 
 
@@ -62,6 +65,27 @@ public class ServiceToFixStringTest {
         assertEquals(Area.Types.M2, mapUnitTypeService.getUnitTypeFromString("M₂", new Area()));
         assertEquals(Volume.Types.M3, mapUnitTypeService.getUnitTypeFromString("M₃", new Volume()));
         assertEquals(Inertia.Types.M4, mapUnitTypeService.getUnitTypeFromString("M₄", new Inertia()));
+    }
+
+
+    @Test
+    public void serviceShouldFixStringForTorque() {
+        assertEquals(Torque.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN.M", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN . M", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KNxM", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN*M", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN×M", new Torque()));
+    }
+    
+    
+    @Test
+    public void serviceShouldFixStringForLinear() {
+        assertEquals(Linear.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN/M", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN / M", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN\\M", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN÷M", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KN, Length.Types.M), mapUnitTypeService.getUnitTypeFromString("KN ÷ M", new Linear()));
+
     }
 
 }

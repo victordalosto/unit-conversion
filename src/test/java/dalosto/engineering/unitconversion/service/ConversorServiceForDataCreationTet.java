@@ -11,8 +11,10 @@ import dalosto.engineering.unitconversion.units.Area;
 import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Inertia;
 import dalosto.engineering.unitconversion.units.Length;
+import dalosto.engineering.unitconversion.units.Linear;
 import dalosto.engineering.unitconversion.units.Temperature;
 import dalosto.engineering.unitconversion.units.Time;
+import dalosto.engineering.unitconversion.units.Torque;
 import dalosto.engineering.unitconversion.units.Volume;
 
 
@@ -68,6 +70,22 @@ public class ConversorServiceForDataCreationTet {
         UnitDAO unitDAO = new UnitDAO("3.5", "S", "S");
         Unit unit = new Unit(3.5, Time.Types.S);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Time()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToCreateTorqueUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("3.5", "KG.M", "KG.M");
+        Unit unit = new Unit(3.5, Torque.factory(Force.Types.KG, Length.Types.M));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Torque()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToCreateLinearUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("3.5", "KG/M", "KG/M");
+        Unit unit = new Unit(3.5, Linear.factory(Force.Types.KG, Length.Types.M));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Linear()));
     }
 
 

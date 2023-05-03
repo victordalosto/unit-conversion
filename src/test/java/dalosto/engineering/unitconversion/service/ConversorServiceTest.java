@@ -8,8 +8,10 @@ import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.units.Area;
 import dalosto.engineering.unitconversion.units.Force;
 import dalosto.engineering.unitconversion.units.Length;
+import dalosto.engineering.unitconversion.units.Linear;
 import dalosto.engineering.unitconversion.units.Temperature;
 import dalosto.engineering.unitconversion.units.Time;
+import dalosto.engineering.unitconversion.units.Torque;
 import dalosto.engineering.unitconversion.units.Volume;
 
 
@@ -65,6 +67,22 @@ public class ConversorServiceTest {
         UnitDAO unitDAO = new UnitDAO("3.5", "DAY", "S");
         Unit unit = new Unit(3.5*86400, Time.Types.S);
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Time()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToConvertTorqueUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("1000000", "G.M", "T.M");
+        Unit unit = new Unit(1.0, Torque.factory(Force.Types.T, Length.Types.M));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Torque()));
+    }
+
+    
+    @Test
+    public void shouldBeAbreToConvertLinearUnitsFromUnitDAO() {
+        UnitDAO unitDAO = new UnitDAO("5", "KG/CM", "T/M");
+        Unit unit = new Unit(0.5, Torque.factory(Force.Types.T, Length.Types.M));
+        assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Linear()));
     }
 
 
