@@ -73,6 +73,11 @@ The entire usage of the application is self explanatory, guided by resources and
       "about": "This endpoint converts time measurement units.",
       "units": "[S, MS, US, MIN, H, DAY, WEEK, MONTH, MONTH30, MONTH31, YEAR]"
     },
+    "speed": {
+      "uri": "/api/speed",
+      "about": "This endpoint converts speed measurement units.",
+      "units": "[M/S, M/MS, M/US, M/MIN, M/H, M/DAY, M/WEEK, M/MONTH, M/MONTH30, M/MONTH31, M/YEAR, DM/S, DM/MS, DM/US, DM/MIN, DM/H, DM/DAY, DM/WEEK, DM/MONTH, DM/MONTH30, DM/MONTH31, DM/YEAR, CM/S, CM/MS, CM/US, CM/MIN, CM/H, CM/DAY, CM/WEEK, CM/MONTH, CM/MONTH30, CM/MONTH31, CM/YEAR, MM/S, MM/MS, MM/US, MM/MIN, MM/H, MM/DAY, MM/WEEK, MM/MONTH, MM/MONTH30, MM/MONTH31, MM/YEAR, HM/S, HM/MS, HM/US, HM/MIN, HM/H, HM/DAY, HM/WEEK, HM/MONTH, HM/MONTH30, HM/MONTH31, HM/YEAR, KM/S, KM/MS, KM/US, KM/MIN, KM/H, KM/DAY, KM/WEEK, KM/MONTH, KM/MONTH30, KM/MONTH31, KM/YEAR, UM/S, UM/MS, UM/US, UM/MIN, UM/H, UM/DAY, UM/WEEK, UM/MONTH, UM/MONTH30, UM/MONTH31, UM/YEAR, IN/S, IN/MS, IN/US, IN/MIN, IN/H, IN/DAY, IN/WEEK, IN/MONTH, IN/MONTH30, IN/MONTH31, IN/YEAR, FT/S, FT/MS, FT/US, FT/MIN, FT/H, FT/DAY, FT/WEEK, FT/MONTH, FT/MONTH30, FT/MONTH31, FT/YEAR, YD/S, YD/MS, YD/US, YD/MIN, YD/H, YD/DAY, YD/WEEK, YD/MONTH, YD/MONTH30, YD/MONTH31, YD/YEAR, MI/S, MI/MS, MI/US, MI/MIN, MI/H, MI/DAY, MI/WEEK, MI/MONTH, MI/MONTH30, MI/MONTH31, MI/YEAR]"
+    },
     "torque": {
       "uri": "/api/torque",
       "about": "This endpoint converts torque measurement units.",
