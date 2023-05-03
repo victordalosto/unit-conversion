@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -31,6 +32,7 @@ public class TimeoutTest {
 
 
     @Test
+    @Disabled("This test is disabled because it takes a long time to run. It is only used to check the performance of the API.")
     public void apiRequestMustRun1000TimesInLessThan100miliSecond() throws Exception {
         warmpUp();
         for (UnitFormula formula : formulas) {

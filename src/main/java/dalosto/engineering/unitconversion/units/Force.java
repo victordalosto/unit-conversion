@@ -19,10 +19,13 @@ public class Force extends TemplateUnitFormulas {
         GN(1000.0*1000.0*1000.0, false),
         TN(1000000000000.0, false),
         LB(4.4482216282509, false),
+        OZ(0.27801385176568125, false),
         POUND(4.4482216282509, false),
         KIP(4448.2216282509, false),
         GF(1.0/1000, true),
+        G(1.0/1000, true),
         KGF(1.0, true),
+        KG(1.0, true),
         T(1000.0, true);
     
 
