@@ -1,6 +1,6 @@
-<h1 align="center"> Unit Converter </h1>
+<h1 align="center"> Unit Conversion </h1>
 
-Unit Converter is a <strong> RESTful </strong> application that implements the Level 3 of the Richardson Maturity Model - HATEOAs.
+Unit Conversion is a <strong> RESTful </strong> application that implements the Level 3 of the Richardson Maturity Model - HATEOAs.
 
 The program was made in Spring and is used for conversion between various measurement units.
 
@@ -25,7 +25,7 @@ The entire usage of the application is self explanatory, guided by resources and
     "title": "Unit Conversion API",
     "about": "API used for conversion between measurement units most commonly used in the engineering",
     "description": "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit",
-    "reference": "https://github.com/victordalosto/UnitConversion"
+    "reference": "https://github.com/victordalosto/unit-conversion"
   },
   "result": {
     "length": {
