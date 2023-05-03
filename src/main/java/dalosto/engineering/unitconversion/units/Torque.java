@@ -49,7 +49,7 @@ public class Torque extends TemplateUnitFormulas {
             throw new UnitException("Force and Length must not be null.");
         }
         if (!(force instanceof Force.Types) || !(length instanceof Length.Types)) {
-            throw new UnitException("Paremeters for Torque constructor doesn't match");
+            throw new UnitException("Paremeters for constructor doesn't match");
         }
         Types t = new Types();
         t.setPrincipal(force);

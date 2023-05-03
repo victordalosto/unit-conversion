@@ -9,16 +9,16 @@ import dalosto.engineering.unitconversion.domain.UnitTypeDuo;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
-@Component("linear")
-public class Linear extends TemplateUnitFormulas {
+@Component("pressure")
+public class Pressure extends TemplateUnitFormulas {
 
     public static class Types extends UnitTypeDuo {
 
         private static List<UnitType> types = new ArrayList<>();
         static {
             for (UnitType force : new Force().getAllUnitTypesOfThisCategory()) {
-                for (UnitType length : new Length().getAllUnitTypesOfThisCategory()) {
-                    Types.types.add(factory(force, length));
+                for (UnitType area : new Area().getAllUnitTypesOfThisCategory()) {
+                    Types.types.add(factory(force, area));
                 }
             }
         }
@@ -26,7 +26,7 @@ public class Linear extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return factory(new Force().getSITypeOfThisCategory(), new Length().getSITypeOfThisCategory());
+            return factory(new Force().getSITypeOfThisCategory(), new Area().getSITypeOfThisCategory());
         }
 
 
@@ -44,16 +44,16 @@ public class Linear extends TemplateUnitFormulas {
     }
 
 
-    public static UnitType factory(UnitType force, UnitType length) {
-        if (force == null || length == null) {
-            throw new UnitException("Force and Length must not be null.");
+    public static UnitType factory(UnitType force, UnitType area) {
+        if (force == null || area == null) {
+            throw new UnitException("Force and Area must not be null.");
         }
-        if (!(force instanceof Force.Types) || !(length instanceof Length.Types)) {
+        if (!(force instanceof Force.Types) || !(area instanceof Area.Types)) {
             throw new UnitException("Paremeters for constructor doesn't match");
         }
         Types t = new Types();
         t.setPrincipal(force);
-        t.setSecondary(length);
+        t.setSecondary(area);
         return t;
     }
 
@@ -78,8 +78,8 @@ public class Linear extends TemplateUnitFormulas {
         UnitType otherPri = ((Types) anotherType).getPrincipal();
         UnitType otherSec = ((Types) anotherType).getSecondary();
         Unit force = new Force().buildUnitIntoAnotherType(new Unit(value, principal), otherPri);
-        Unit length = new Length().buildUnitIntoAnotherType(new Unit(force.getValue(), otherSec), secondary);
-        return new Unit(length.getValue(), anotherType);
+        Unit area = new Area().buildUnitIntoAnotherType(new Unit(force.getValue(), otherSec), secondary);
+        return new Unit(area.getValue(), anotherType);
     }
 
 }
