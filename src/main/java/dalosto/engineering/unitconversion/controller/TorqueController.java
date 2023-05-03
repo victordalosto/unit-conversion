@@ -12,11 +12,11 @@ import dalosto.engineering.unitconversion.units.UnitFormula;
 
 
 @RestController
-@RequestMapping("/api/moment")
-public class MomentController extends TemplateController {
+@RequestMapping("/api/torque")
+public class TorqueController extends TemplateController {
 
     @Autowired
-    @Qualifier("moment")
+    @Qualifier("torque")
     private UnitFormula unitFormula;
 
 
@@ -38,7 +38,7 @@ public class MomentController extends TemplateController {
 
     @Override
     public EndpointInfo getEndpointInfo() {
-        return new EndpointInfo("moment", unitFormula);
+        return new EndpointInfo("torque", unitFormula);
     }
 
     

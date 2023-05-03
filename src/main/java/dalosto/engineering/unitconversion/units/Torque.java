@@ -9,8 +9,8 @@ import dalosto.engineering.unitconversion.domain.UnitTypeDuo;
 import dalosto.engineering.unitconversion.exception.UnitException;
 
 
-@Component("moment")
-public class Moment extends TemplateUnitFormulas {
+@Component("torque")
+public class Torque extends TemplateUnitFormulas {
 
     public static class Types extends UnitTypeDuo {
 
@@ -44,12 +44,12 @@ public class Moment extends TemplateUnitFormulas {
     }
 
 
-    public static Types factory(UnitType force, UnitType length) {
+    public static UnitType factory(UnitType force, UnitType length) {
         if (force == null || length == null) {
             throw new UnitException("Force and Length must not be null.");
         }
         if (!(force instanceof Force.Types) || !(length instanceof Length.Types)) {
-            throw new UnitException("Paremeters for Moment constructor doesn't match");
+            throw new UnitException("Paremeters for Torque constructor doesn't match");
         }
         Types t = new Types();
         t.setPrincipal(force);
