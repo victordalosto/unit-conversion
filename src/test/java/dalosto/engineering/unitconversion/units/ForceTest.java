@@ -29,13 +29,13 @@ public class ForceTest {
         UnitType unitType = Force.Types.KN;
         Unit unit = new Unit(value, unitType);
         Unit outputSI = unitFormula.buildUnitToSI(unit);
-        Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Force.Types.KG);
+        Unit outputAnotherType = unitFormula.buildUnitIntoAnotherType(unit, Force.Types.KGF);
         assertEquals(value, unit.getValue(), MetricTest.tolerance);
         assertEquals(unitType, unit.getType());
         assertEquals(50000.0, outputSI.getValue(), MetricTest.tolerance);
         assertEquals(Force.Types.N, outputSI.getType());
         assertEquals(5098.58104999997, outputAnotherType.getValue(), MetricTest.tolerance);
-        assertEquals(Force.Types.KG, outputAnotherType.getType());
+        assertEquals(Force.Types.KGF, outputAnotherType.getType());
     }
 
 
@@ -44,7 +44,7 @@ public class ForceTest {
         assertEquals(Force.Types.N, unitFormula.getSITypeOfThisCategory());
         assertEquals(Force.Types.N, Force.Types.MN.getSITypeOfThisCategory());
         assertEquals(Force.Types.N, new Unit(0.0, Force.Types.POUND).getType().getSITypeOfThisCategory());
-        assertEquals(Force.Types.N, new Unit(0.0, Force.Types.KG).getType().getSITypeOfThisCategory());
+        assertEquals(Force.Types.N, new Unit(0.0, Force.Types.KGF).getType().getSITypeOfThisCategory());
     }
 
 
@@ -59,8 +59,8 @@ public class ForceTest {
         assert(!Force.Types.LB.dependesOfGravityOnConversion);
         assert(!Force.Types.POUND.dependesOfGravityOnConversion);
         assert(!Force.Types.KIP.dependesOfGravityOnConversion);
-        assert(Force.Types.G.dependesOfGravityOnConversion);
-        assert(Force.Types.KG.dependesOfGravityOnConversion);
+        assert(Force.Types.GF.dependesOfGravityOnConversion);
+        assert(Force.Types.KGF.dependesOfGravityOnConversion);
         assert(Force.Types.T.dependesOfGravityOnConversion);
     }
 
@@ -76,8 +76,8 @@ public class ForceTest {
         assertEquivalentForceInSI(4.4482216282509, new Unit(1, Force.Types.LB));
         assertEquivalentForceInSI(4.4482216282509, new Unit(1, Force.Types.POUND));
         assertEquivalentForceInSI(4448.2216282509, new Unit(1, Force.Types.KIP));
-        assertEquivalentForceInSI(0.0098066500286389, new Unit(1, Force.Types.G));
-        assertEquivalentForceInSI(9.8066500286389, new Unit(1, Force.Types.KG));
+        assertEquivalentForceInSI(0.0098066500286389, new Unit(1, Force.Types.GF));
+        assertEquivalentForceInSI(9.8066500286389, new Unit(1, Force.Types.KGF));
         assertEquivalentForceInSI(9806.6500286389, new Unit(1, Force.Types.T));
     }
 
@@ -94,8 +94,8 @@ public class ForceTest {
         assertEquivalentForceInSI(expected, new Unit(2775.41701645259, Force.Types.LB));
         assertEquivalentForceInSI(expected, new Unit(2775.41701645259, Force.Types.POUND));
         assertEquivalentForceInSI(expected, new Unit(2.77541701645259, Force.Types.KIP));
-        assertEquivalentForceInSI(expected, new Unit(1258907.98223106, Force.Types.G));
-        assertEquivalentForceInSI(expected, new Unit(1258.90798223106, Force.Types.KG));
+        assertEquivalentForceInSI(expected, new Unit(1258907.98223106, Force.Types.GF));
+        assertEquivalentForceInSI(expected, new Unit(1258.90798223106, Force.Types.KGF));
         assertEquivalentForceInSI(expected, new Unit(1.25890798223106, Force.Types.T));
     }
 
@@ -112,8 +112,8 @@ public class ForceTest {
         assertEquivalentForceInSI(expected, new Unit(-2775.41701645259, Force.Types.LB));
         assertEquivalentForceInSI(expected, new Unit(-2775.41701645259, Force.Types.POUND));
         assertEquivalentForceInSI(expected, new Unit(-2.77541701645259, Force.Types.KIP));
-        assertEquivalentForceInSI(expected, new Unit(-1258907.98223106, Force.Types.G));
-        assertEquivalentForceInSI(expected, new Unit(-1258.90798223106, Force.Types.KG));
+        assertEquivalentForceInSI(expected, new Unit(-1258907.98223106, Force.Types.GF));
+        assertEquivalentForceInSI(expected, new Unit(-1258.90798223106, Force.Types.KGF));
         assertEquivalentForceInSI(expected, new Unit(-1.25890798223106, Force.Types.T));
     }
 
@@ -130,8 +130,8 @@ public class ForceTest {
         assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.LB));
         assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.POUND));
         assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.KIP));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.G));
-        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.KG));
+        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.GF));
+        assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.KGF));
         assertEquivalentForceInSI(expected, new Unit(0.0, Force.Types.T));
     }
 
@@ -146,9 +146,9 @@ public class ForceTest {
         assertEquivalentForce(0.0, Force.Types.TN, 0.0, Force.Types.LB);
         assertEquivalentForce(0.0, Force.Types.LB, 0.0, Force.Types.POUND);
         assertEquivalentForce(0.0, Force.Types.POUND, 0.0, Force.Types.KIP);
-        assertEquivalentForce(0.0, Force.Types.KIP, 0.0, Force.Types.G);
-        assertEquivalentForce(0.0, Force.Types.G, 0.0, Force.Types.KG);
-        assertEquivalentForce(0.0, Force.Types.KG, 0.0, Force.Types.T);
+        assertEquivalentForce(0.0, Force.Types.KIP, 0.0, Force.Types.GF);
+        assertEquivalentForce(0.0, Force.Types.GF, 0.0, Force.Types.KGF);
+        assertEquivalentForce(0.0, Force.Types.KGF, 0.0, Force.Types.T);
         assertEquivalentForce(0.0, Force.Types.T, 0.0, Force.Types.N);
     }
 
@@ -164,8 +164,8 @@ public class ForceTest {
         assertEquivalentForce(randomValue, Force.Types.KN, randomValue*224.808942443188, Force.Types.LB);
         assertEquivalentForce(randomValue, Force.Types.LB, randomValue, Force.Types.POUND);
         assertEquivalentForce(randomValue, Force.Types.POUND, randomValue/1000.0, Force.Types.KIP);
-        assertEquivalentForce(randomValue, Force.Types.G, randomValue/1000.0, Force.Types.KG);
-        assertEquivalentForce(randomValue, Force.Types.KG, randomValue/1000.0, Force.Types.T);
+        assertEquivalentForce(randomValue, Force.Types.GF, randomValue/1000.0, Force.Types.KGF);
+        assertEquivalentForce(randomValue, Force.Types.KGF, randomValue/1000.0, Force.Types.T);
         assertEquivalentForce(randomValue, Force.Types.T, randomValue*9.8066500286389*1000.0, Force.Types.N);
     }
 

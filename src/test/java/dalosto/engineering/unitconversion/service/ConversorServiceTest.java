@@ -72,7 +72,7 @@ public class ConversorServiceTest {
     
     @Test
     public void shouldBeAbreToConvertTorqueUnitsFromUnitDAO() {
-        UnitDAO unitDAO = new UnitDAO("1000000", "G.M", "T.M");
+        UnitDAO unitDAO = new UnitDAO("1000000", "GF.M", "T.M");
         Unit unit = new Unit(1.0, Torque.factory(Force.Types.T, Length.Types.M));
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Torque()));
     }
@@ -80,7 +80,7 @@ public class ConversorServiceTest {
     
     @Test
     public void shouldBeAbreToConvertLinearUnitsFromUnitDAO() {
-        UnitDAO unitDAO = new UnitDAO("5", "KG/CM", "T/M");
+        UnitDAO unitDAO = new UnitDAO("5", "KGF/CM", "T/M");
         Unit unit = new Unit(0.5, Torque.factory(Force.Types.T, Length.Types.M));
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Linear()));
     }

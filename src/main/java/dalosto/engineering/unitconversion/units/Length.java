@@ -21,7 +21,8 @@ public class Length extends TemplateUnitFormulas {
         UM(Math.pow(10.0, -6)), 
         IN(0.0254), 
         FT(0.3048),
-        YD(0.9144);
+        YD(0.9144),
+        MI(1609.344);
     
 
         protected final double factorOfEquivalenceToSI;

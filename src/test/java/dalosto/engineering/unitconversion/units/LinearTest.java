@@ -47,7 +47,7 @@ public class LinearTest {
     public void SIUnitTypeOfForceShouldBeNVersusMeter() {
         assertEquals(Torque.factory(Force.Types.N, Length.Types.M), unitFormula.getSITypeOfThisCategory());
         assertEquals(Torque.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Torque.factory(Force.Types.KN, Length.Types.MM)).getType().getSITypeOfThisCategory());
-        assertEquals(Torque.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Torque.factory(Force.Types.KG, Length.Types.CM)).getType().getSITypeOfThisCategory());
+        assertEquals(Torque.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Torque.factory(Force.Types.KGF, Length.Types.CM)).getType().getSITypeOfThisCategory());
         assertEquals(Torque.factory(Force.Types.N, Length.Types.M), new Unit(0.0, Torque.factory(Force.Types.POUND, Length.Types.IN)).getType().getSITypeOfThisCategory());
     }
 
@@ -63,15 +63,15 @@ public class LinearTest {
         assertEquals(4.4482216282509,    unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.LB,    Length.Types.M))).getValue(), MetricTest.tolerance);
         assertEquals(4.4482216282509,    unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.POUND, Length.Types.M))).getValue(), MetricTest.tolerance);
         assertEquals(4448.2216282509,    unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.KIP,   Length.Types.M))).getValue(), MetricTest.tolerance);
-        assertEquals(0.0098066500286389, unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.G,     Length.Types.M))).getValue(), MetricTest.tolerance);
-        assertEquals(9.8066500286389,    unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.KG,    Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(0.0098066500286389, unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.GF,     Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(9.8066500286389,    unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.KGF,    Length.Types.M))).getValue(), MetricTest.tolerance);
         assertEquals(9806.6500286389,    unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.T,     Length.Types.M))).getValue(), MetricTest.tolerance);
     }
 
 
     @Test
     public void allLengthValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
-        assertEquals(10, Length.Types.values().length);
+        assertEquals(11, Length.Types.values().length);
         assertEquals(1.0,              unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.M))).getValue() , MetricTest.tolerance);
         assertEquals(0.1,              unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.DM))).getValue(), MetricTest.tolerance);
         assertEquals(0.01,             unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.CM))).getValue(), MetricTest.tolerance);
@@ -82,6 +82,7 @@ public class LinearTest {
         assertEquals(0.0254,           unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.IN))).getValue(), MetricTest.tolerance);
         assertEquals(0.3048,           unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.FT))).getValue(), MetricTest.tolerance);
         assertEquals(0.9144,           unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.YD))).getValue(), MetricTest.tolerance);
+        assertEquals(1609.344,         unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.MI))).getValue(), MetricTest.tolerance);
     }
 
 
@@ -97,8 +98,8 @@ public class LinearTest {
         assertEquals(expected, unitFormula.buildUnitToSI(new Unit(2775.41701645259, Torque.factory(Force.Types.LB, Length.Types.M))).getValue(), MetricTest.tolerance);
         assertEquals(expected, unitFormula.buildUnitToSI(new Unit(2775.41701645259, Torque.factory(Force.Types.POUND, Length.Types.M))).getValue(), MetricTest.tolerance);
         assertEquals(expected, unitFormula.buildUnitToSI(new Unit(2.77541701645259, Torque.factory(Force.Types.KIP, Length.Types.M))).getValue(), MetricTest.tolerance);
-        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(1258907.98223106, Torque.factory(Force.Types.G, Length.Types.M))).getValue(), MetricTest.tolerance);
-        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(1258.90798223106, Torque.factory(Force.Types.KG, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(1258907.98223106, Torque.factory(Force.Types.GF, Length.Types.M))).getValue(), MetricTest.tolerance);
+        assertEquals(expected, unitFormula.buildUnitToSI(new Unit(1258.90798223106, Torque.factory(Force.Types.KGF, Length.Types.M))).getValue(), MetricTest.tolerance);
         assertEquals(expected, unitFormula.buildUnitToSI(new Unit(1.25890798223106, Torque.factory(Force.Types.T, Length.Types.M))).getValue(), MetricTest.tolerance);
     }
 
@@ -106,7 +107,7 @@ public class LinearTest {
     @Test
     public void forceValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(11, Force.Types.values().length);
-        assertEquals(10, Length.Types.values().length);
+        assertEquals(11, Length.Types.values().length);
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KN, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.MN, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.GN, Length.Types.M))).getValue());
@@ -114,8 +115,8 @@ public class LinearTest {
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.LB, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.POUND, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KIP, Length.Types.M))).getValue());
-        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.G, Length.Types.M))).getValue());
-        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KG, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.GF, Length.Types.M))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KGF, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.T, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.N, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KN,    Length.Types.M))).getValue());
@@ -125,9 +126,10 @@ public class LinearTest {
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.LB,    Length.Types.HM))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.POUND, Length.Types.KM))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KIP,   Length.Types.UM))).getValue());
-        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.G,     Length.Types.IN))).getValue());
-        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KG,    Length.Types.FT))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.GF,     Length.Types.IN))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KGF,    Length.Types.FT))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.T,     Length.Types.YD))).getValue());
+        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.T,     Length.Types.MI))).getValue());
     }
     
     
@@ -138,7 +140,7 @@ public class LinearTest {
         assertEquals(1.0936132983377,unitFormula.buildUnitIntoAnotherType(
             new Unit(1000.0,Torque.factory(Force.Types.N, Length.Types.MM)),Torque.factory(Force.Types.N, Length.Types.YD)).getValue(), MetricTest.tolerance);
         assertEquals(386088.58380468114,unitFormula.buildUnitIntoAnotherType(
-            new Unit(1000.0,Torque.factory(Force.Types.KG, Length.Types.M)),Torque.factory(Force.Types.N, Length.Types.IN)).getValue(), MetricTest.tolerance);
+            new Unit(1000.0,Torque.factory(Force.Types.KGF, Length.Types.M)),Torque.factory(Force.Types.N, Length.Types.IN)).getValue(), MetricTest.tolerance);
         assertEquals(-1.0872590904,unitFormula.buildUnitIntoAnotherType(
             new Unit(-3.567123,Torque.factory(Force.Types.KN, Length.Types.FT)),Torque.factory(Force.Types.KN, Length.Types.M)).getValue(), MetricTest.tolerance);
         assertEquals(0.11283696,unitFormula.buildUnitIntoAnotherType(
@@ -156,15 +158,15 @@ public class LinearTest {
         assertEquals(31.080950080799845,unitFormula.buildUnitIntoAnotherType(
             new Unit(1000.0,Torque.factory(Force.Types.KN, Length.Types.FT)),Torque.factory(Force.Types.T, Length.Types.M)).getValue(), MetricTest.tolerance);
         assertEquals(31080.950080799845,unitFormula.buildUnitIntoAnotherType(
-            new Unit(1000.0,Torque.factory(Force.Types.KN, Length.Types.FT)),Torque.factory(Force.Types.KG, Length.Types.M)).getValue(), MetricTest.tolerance);
+            new Unit(1000.0,Torque.factory(Force.Types.KN, Length.Types.FT)),Torque.factory(Force.Types.KGF, Length.Types.M)).getValue(), MetricTest.tolerance);
         assertEquals(1.0,unitFormula.buildUnitIntoAnotherType(
-            new Unit(1000.0,Torque.factory(Force.Types.KG, Length.Types.M)),Torque.factory(Force.Types.T, Length.Types.M)).getValue(), MetricTest.tolerance);
+            new Unit(1000.0,Torque.factory(Force.Types.KGF, Length.Types.M)),Torque.factory(Force.Types.T, Length.Types.M)).getValue(), MetricTest.tolerance);
         assertEquals(1.0,unitFormula.buildUnitIntoAnotherType(
-            new Unit(100000.0,Torque.factory(Force.Types.KG, Length.Types.CM)),Torque.factory(Force.Types.T, Length.Types.M)).getValue(), MetricTest.tolerance);
+            new Unit(100000.0,Torque.factory(Force.Types.KGF, Length.Types.CM)),Torque.factory(Force.Types.T, Length.Types.M)).getValue(), MetricTest.tolerance);
         assertEquals(1.0,unitFormula.buildUnitIntoAnotherType(
-            new Unit(1000.0,Torque.factory(Force.Types.G, Length.Types.M)),Torque.factory(Force.Types.T, Length.Types.MM)).getValue(), MetricTest.tolerance);
+            new Unit(1000.0,Torque.factory(Force.Types.GF, Length.Types.M)),Torque.factory(Force.Types.T, Length.Types.MM)).getValue(), MetricTest.tolerance);
         assertEquals(1.0,unitFormula.buildUnitIntoAnotherType(
-            new Unit(1000000.0,Torque.factory(Force.Types.G, Length.Types.MM)),Torque.factory(Force.Types.T, Length.Types.MM)).getValue(), MetricTest.tolerance);
+            new Unit(1000000.0,Torque.factory(Force.Types.GF, Length.Types.MM)),Torque.factory(Force.Types.T, Length.Types.MM)).getValue(), MetricTest.tolerance);
     }
 
 
@@ -207,7 +209,7 @@ public class LinearTest {
         Unit unit = new Unit(1, null);
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(unit));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Torque.factory(null, null)));
-        assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Torque.factory(Force.Types.G, null)));
+        assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Torque.factory(Force.Types.GF, null)));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, Torque.factory(null, Length.Types.CM)));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
     }

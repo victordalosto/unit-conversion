@@ -54,13 +54,13 @@ public class ConversorServiceFormatTest {
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Time());
         assertEquals(new UnitDAO("12345.67", "S", "S"), inputDAO);
 
-        inputDAO = new UnitDAO("12345.67", "KG.M", "T.IN");
+        inputDAO = new UnitDAO("12345.67", "KGF.M", "T.IN");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Torque());
-        assertEquals(new UnitDAO("12345.67", "KG.M", "T.IN"), inputDAO);
+        assertEquals(new UnitDAO("12345.67", "KGF.M", "T.IN"), inputDAO);
 
-        inputDAO = new UnitDAO("12345.67", "KG/M", "T/IN");
+        inputDAO = new UnitDAO("12345.67", "KGF/M", "T/IN");
         service.formatUnitDAOAndConvertToUnit(inputDAO, new Linear());
-        assertEquals(new UnitDAO("12345.67", "KG/M", "T/IN"), inputDAO);
+        assertEquals(new UnitDAO("12345.67", "KGF/M", "T/IN"), inputDAO);
     }
 
 

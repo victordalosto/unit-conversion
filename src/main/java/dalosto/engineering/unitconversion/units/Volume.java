@@ -23,7 +23,8 @@ public class Volume extends TemplateUnitFormulas {
         FT3(0.028316846592),
         YD3(0.764554857984),
         ML(0.000001),
-        L(0.001);
+        L(0.001),
+        GAL(0.003785411784);
     
 
         protected final double factorOfEquivalenceToSI;

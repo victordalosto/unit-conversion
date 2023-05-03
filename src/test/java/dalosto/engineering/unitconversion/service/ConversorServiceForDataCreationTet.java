@@ -75,16 +75,16 @@ public class ConversorServiceForDataCreationTet {
     
     @Test
     public void shouldBeAbreToCreateTorqueUnitsFromUnitDAO() {
-        UnitDAO unitDAO = new UnitDAO("3.5", "KG.M", "KG.M");
-        Unit unit = new Unit(3.5, Torque.factory(Force.Types.KG, Length.Types.M));
+        UnitDAO unitDAO = new UnitDAO("3.5", "KGF.M", "KGF.M");
+        Unit unit = new Unit(3.5, Torque.factory(Force.Types.KGF, Length.Types.M));
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Torque()));
     }
 
     
     @Test
     public void shouldBeAbreToCreateLinearUnitsFromUnitDAO() {
-        UnitDAO unitDAO = new UnitDAO("3.5", "KG/M", "KG/M");
-        Unit unit = new Unit(3.5, Linear.factory(Force.Types.KG, Length.Types.M));
+        UnitDAO unitDAO = new UnitDAO("3.5", "KGF/M", "KGF/M");
+        Unit unit = new Unit(3.5, Linear.factory(Force.Types.KGF, Length.Types.M));
         assertEquals(unit , service.formatUnitDAOAndConvertToUnit(unitDAO, new Linear()));
     }
 

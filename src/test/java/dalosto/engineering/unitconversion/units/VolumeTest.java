@@ -50,7 +50,7 @@ public class VolumeTest {
 
     @Test
     public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
-        assertEquals(12, Volume.Types.values().length);
+        assertEquals(13, Volume.Types.values().length);
         assertEquivalentVolumeInSI(1.0, new Unit(1, Volume.Types.M3));
         assertEquivalentVolumeInSI(0.1 * 0.1 * 0.1, new Unit(1, Volume.Types.DM3));
         assertEquivalentVolumeInSI(0.01 * 0.01 * 0.01, new Unit(1, Volume.Types.CM3));
@@ -63,12 +63,13 @@ public class VolumeTest {
         assertEquivalentVolumeInSI(0.9144 * 0.9144 * 0.9144, new Unit(1, Volume.Types.YD3));
         assertEquivalentVolumeInSI(Math.pow(10, -6), new Unit(1, Volume.Types.ML));
         assertEquivalentVolumeInSI(0.001, new Unit(1, Volume.Types.L));
+        assertEquivalentVolumeInSI(0.003785411784, new Unit(1, Volume.Types.GAL));
     }
 
 
     @Test
     public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
-        assertEquals(12, Volume.Types.values().length);
+        assertEquals(13, Volume.Types.values().length);
         double expected = 12345.67;
         assertEquivalentVolumeInSI(expected, new Unit(12345.67000000, Volume.Types.M3));
         assertEquivalentVolumeInSI(expected, new Unit(12345670.00000, Volume.Types.DM3));
@@ -82,12 +83,13 @@ public class VolumeTest {
         assertEquivalentVolumeInSI(expected, new Unit(16147.526722351, Volume.Types.YD3));
         assertEquivalentVolumeInSI(expected, new Unit(12345670.000000, Volume.Types.L));
         assertEquivalentVolumeInSI(expected, new Unit(12345670000.000, Volume.Types.ML));
+        assertEquivalentVolumeInSI(expected, new Unit(3261380.9816365, Volume.Types.GAL));
     }
 
 
     @Test
     public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
-        assertEquals(12, Volume.Types.values().length);
+        assertEquals(13, Volume.Types.values().length);
         double expected = -12345.67;
         assertEquivalentVolumeInSI(expected, new Unit(-12345.67000000, Volume.Types.M3));
         assertEquivalentVolumeInSI(expected, new Unit(-12345670.00000, Volume.Types.DM3));
@@ -101,12 +103,14 @@ public class VolumeTest {
         assertEquivalentVolumeInSI(expected, new Unit(-16147.526722351, Volume.Types.YD3));
         assertEquivalentVolumeInSI(expected, new Unit(-12345670.000000, Volume.Types.L));
         assertEquivalentVolumeInSI(expected, new Unit(-12345670000.000, Volume.Types.ML));
+        assertEquivalentVolumeInSI(expected, new Unit(-3261380.9816365, Volume.Types.GAL));
+
     }
 
 
     @Test
     public void allVolumeValuesShouldBeTestedAndAreCorrectInSIForZero() {
-        assertEquals(12, Volume.Types.values().length);
+        assertEquals(13, Volume.Types.values().length);
         double expected = 0.0;
         assertEquivalentVolumeInSI(expected, new Unit(0.0, Volume.Types.M3));
         assertEquivalentVolumeInSI(expected, new Unit(0.0, Volume.Types.DM3));
@@ -120,12 +124,13 @@ public class VolumeTest {
         assertEquivalentVolumeInSI(expected, new Unit(0.0, Volume.Types.YD3));
         assertEquivalentVolumeInSI(expected, new Unit(0.0, Volume.Types.ML));
         assertEquivalentVolumeInSI(expected, new Unit(0.0, Volume.Types.L));
+        assertEquivalentVolumeInSI(expected, new Unit(0.0, Volume.Types.GAL));
     }
 
 
     @Test
     public void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
-        assertEquals(12, Volume.Types.values().length);
+        assertEquals(13, Volume.Types.values().length);
         assertEquivalentVolume(0.0, Volume.Types.L, 0.0, Volume.Types.M3);
         assertEquivalentVolume(0.0, Volume.Types.L, 0.0, Volume.Types.ML);
         assertEquivalentVolume(0.0, Volume.Types.L, 0.0, Volume.Types.CM3);
@@ -141,6 +146,8 @@ public class VolumeTest {
         assertEquivalentVolume(0.0, Volume.Types.M3, 0.0, Volume.Types.YD3);
         assertEquivalentVolume(0.0, Volume.Types.DM3, 0.0, Volume.Types.CM3);
         assertEquivalentVolume(0.0, Volume.Types.DM3, 0.0, Volume.Types.M3);
+        assertEquivalentVolume(0.0, Volume.Types.GAL, 0.0, Volume.Types.M3);
+        assertEquivalentVolume(0.0, Volume.Types.IN3, 0.0, Volume.Types.GAL);
         assertEquivalentVolume(0.0, Volume.Types.CM3, 0.0, Volume.Types.MM3);
         assertEquivalentVolume(0.0, Volume.Types.CM3, 0.0, Volume.Types.DM3);
         assertEquivalentVolume(0.0, Volume.Types.MM3, 0.0, Volume.Types.HM3);
@@ -162,7 +169,7 @@ public class VolumeTest {
 
     @Test
     public void volumeValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
-        assertEquals(12, Volume.Types.values().length);
+        assertEquals(13, Volume.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentVolume(randomValue, Volume.Types.L, randomValue * 1000, Volume.Types.CM3);
         assertEquivalentVolume(randomValue, Volume.Types.L, randomValue * 61.023744094732283952756881891717, Volume.Types.IN3);
@@ -193,6 +200,8 @@ public class VolumeTest {
         assertEquivalentVolume(randomValue, Volume.Types.FT3, randomValue * 12 * 12 * 12, Volume.Types.IN3);
         assertEquivalentVolume(randomValue, Volume.Types.YD3, randomValue * 0.9144 * 0.9144 * 0.9144, Volume.Types.M3);
         assertEquivalentVolume(randomValue, Volume.Types.YD3, randomValue * 3 * 3 * 3, Volume.Types.FT3);
+        assertEquivalentVolume(randomValue, Volume.Types.IN3, randomValue / 231, Volume.Types.GAL);
+        assertEquivalentVolume(randomValue, Volume.Types.L, randomValue / 3.785411784, Volume.Types.GAL);
     }
 
 

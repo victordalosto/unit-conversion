@@ -147,8 +147,8 @@ public class MapUnityTest {
         assertEquals(Force.Types.LB, service.getUnitTypeFromString("LB", new Force()));
         assertEquals(Force.Types.POUND, service.getUnitTypeFromString("POUND", new Force()));
         assertEquals(Force.Types.KIP, service.getUnitTypeFromString("KIP", new Force()));
-        assertEquals(Force.Types.G, service.getUnitTypeFromString("G", new Force()));
-        assertEquals(Force.Types.KG, service.getUnitTypeFromString("KG", new Force()));
+        assertEquals(Force.Types.GF, service.getUnitTypeFromString("GF", new Force()));
+        assertEquals(Force.Types.KGF, service.getUnitTypeFromString("KGF", new Force()));
         assertEquals(Force.Types.T, service.getUnitTypeFromString("T", new Force()));
     }
 
@@ -180,12 +180,12 @@ public class MapUnityTest {
 
     @Test
     public void serviceShouldBeAbleToMapTorqueUnits() {
-        assertEquals(Torque.factory(Force.Types.KG, Length.Types.M), service.getUnitTypeFromString("KG.M", new Torque()));
-        assertEquals(Torque.factory(Force.Types.KG, Length.Types.CM), service.getUnitTypeFromString("KG.CM", new Torque()));
-        assertEquals(Torque.factory(Force.Types.KG, Length.Types.MM), service.getUnitTypeFromString("KG.MM", new Torque()));
-        assertEquals(Torque.factory(Force.Types.KG, Length.Types.IN), service.getUnitTypeFromString("KG.IN", new Torque()));
-        assertEquals(Torque.factory(Force.Types.KG, Length.Types.FT), service.getUnitTypeFromString("KG.FT", new Torque()));
-        assertEquals(Torque.factory(Force.Types.KG, Length.Types.YD), service.getUnitTypeFromString("KG.YD", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KGF, Length.Types.M), service.getUnitTypeFromString("KGF.M", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KGF, Length.Types.CM), service.getUnitTypeFromString("KGF.CM", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KGF, Length.Types.MM), service.getUnitTypeFromString("KGF.MM", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KGF, Length.Types.IN), service.getUnitTypeFromString("KGF.IN", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KGF, Length.Types.FT), service.getUnitTypeFromString("KGF.FT", new Torque()));
+        assertEquals(Torque.factory(Force.Types.KGF, Length.Types.YD), service.getUnitTypeFromString("KGF.YD", new Torque()));
         assertEquals(Torque.factory(Force.Types.LB, Length.Types.IN), service.getUnitTypeFromString("LB.IN", new Torque()));
         assertEquals(Torque.factory(Force.Types.LB, Length.Types.FT), service.getUnitTypeFromString("LB.FT", new Torque()));
         assertEquals(Torque.factory(Force.Types.LB, Length.Types.YD), service.getUnitTypeFromString("LB.YD", new Torque()));
@@ -224,12 +224,12 @@ public class MapUnityTest {
         assertEquals(Linear.factory(Force.Types.LB, Length.Types.IN), service.getUnitTypeFromString("LB/IN", new Linear()));
         assertEquals(Linear.factory(Force.Types.LB, Length.Types.FT), service.getUnitTypeFromString("LB/FT", new Linear()));
         assertEquals(Linear.factory(Force.Types.LB, Length.Types.YD), service.getUnitTypeFromString("LB/YD", new Linear()));
-        assertEquals(Linear.factory(Force.Types.KG, Length.Types.M), service.getUnitTypeFromString("KG/M", new Linear()));
-        assertEquals(Linear.factory(Force.Types.KG, Length.Types.CM), service.getUnitTypeFromString("KG/CM", new Linear()));
-        assertEquals(Linear.factory(Force.Types.KG, Length.Types.MM), service.getUnitTypeFromString("KG/MM", new Linear()));
-        assertEquals(Linear.factory(Force.Types.KG, Length.Types.IN), service.getUnitTypeFromString("KG/IN", new Linear()));
-        assertEquals(Linear.factory(Force.Types.KG, Length.Types.FT), service.getUnitTypeFromString("KG/FT", new Linear()));
-        assertEquals(Linear.factory(Force.Types.KG, Length.Types.YD), service.getUnitTypeFromString("KG/YD", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KGF, Length.Types.M), service.getUnitTypeFromString("KGF/M", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KGF, Length.Types.CM), service.getUnitTypeFromString("KGF/CM", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KGF, Length.Types.MM), service.getUnitTypeFromString("KGF/MM", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KGF, Length.Types.IN), service.getUnitTypeFromString("KGF/IN", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KGF, Length.Types.FT), service.getUnitTypeFromString("KGF/FT", new Linear()));
+        assertEquals(Linear.factory(Force.Types.KGF, Length.Types.YD), service.getUnitTypeFromString("KGF/YD", new Linear()));
     }
 
 }

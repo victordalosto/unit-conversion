@@ -21,8 +21,8 @@ public class Force extends TemplateUnitFormulas {
         LB(4.4482216282509, false),
         POUND(4.4482216282509, false),
         KIP(4448.2216282509, false),
-        G(1.0/1000, true),
-        KG(1.0, true),
+        GF(1.0/1000, true),
+        KGF(1.0, true),
         T(1000.0, true);
     
 
