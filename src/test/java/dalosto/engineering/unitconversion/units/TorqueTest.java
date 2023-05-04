@@ -12,6 +12,7 @@ import dalosto.engineering.unitconversion.MetricTest;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
+import dalosto.engineering.unitconversion.formula.UnitFormula;
 
 
 @SpringBootTest

@@ -6,10 +6,11 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.domain.UnitTypeDuo;
 import dalosto.engineering.unitconversion.exception.UnitException;
+import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 
 @Component("pressure")
-public class Pressure extends TemplateUnitFormulas {
+public final class Pressure extends TemplateUnitFormulas {
 
     public static class Types extends UnitTypeDuo {
 

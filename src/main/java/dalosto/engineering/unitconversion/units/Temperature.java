@@ -8,10 +8,11 @@ import java.util.function.Function;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
+import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 
 @Component("temperature")
-public class Temperature extends TemplateUnitFormulas {
+public final class Temperature extends TemplateUnitFormulas {
 
     private static final Map<Types, Map<Types, Function<Double, Double>>> conversionTable = new HashMap<>();
 

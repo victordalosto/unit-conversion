@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import dalosto.engineering.unitconversion.units.UnitFormula;
+import dalosto.engineering.unitconversion.formula.UnitFormula;
 
 
 @SpringBootTest

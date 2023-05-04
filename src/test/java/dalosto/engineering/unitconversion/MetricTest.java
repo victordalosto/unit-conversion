@@ -2,7 +2,7 @@ package dalosto.engineering.unitconversion;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
-import dalosto.engineering.unitconversion.units.UnitFormula;
+import dalosto.engineering.unitconversion.formula.UnitFormula;
 
 
 public class MetricTest {

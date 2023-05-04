@@ -6,10 +6,11 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.domain.UnitTypeDuo;
 import dalosto.engineering.unitconversion.exception.UnitException;
+import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 
 @Component("speed")
-public class Speed extends TemplateUnitFormulas {
+public final class Speed extends TemplateUnitFormulas {
 
     public static class Types extends UnitTypeDuo {
 

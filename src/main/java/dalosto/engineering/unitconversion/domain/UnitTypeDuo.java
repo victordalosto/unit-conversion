@@ -9,8 +9,8 @@ import lombok.Setter;
 @EqualsAndHashCode
 public abstract class UnitTypeDuo implements UnitType {
 
-    private UnitType principal;
-    private UnitType secondary;
+    protected UnitType principal;
+    protected UnitType secondary;
 
 
     public abstract String toString();

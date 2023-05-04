@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
+import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 
 @Component("volume")
-public class Volume extends TemplateUnitFormulas {
+public final class Volume extends TemplateUnitFormulas {
 
     public static enum Types implements UnitType {
 

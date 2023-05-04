@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
+import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 @Component("force")
-public class Force extends TemplateUnitFormulas {
+public final class Force extends TemplateUnitFormulas {
 
     private static final double GRAVITY = 9.8066500286389;
 

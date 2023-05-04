@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import dalosto.engineering.unitconversion.domain.RestMessage;
-import dalosto.engineering.unitconversion.domain.RestURL;
+import dalosto.engineering.unitconversion.rest.RestMessage;
+import dalosto.engineering.unitconversion.rest.RestURL;
 import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
 @RequestMapping("/")
-public class HomeController {
+public final class HomeController {
 
     @Autowired
-    List<TemplateController> controllers;
+    private List<TemplateController> controllers;
 
     
     @GetMapping

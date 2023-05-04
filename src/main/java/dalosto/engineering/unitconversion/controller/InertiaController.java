@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import dalosto.engineering.unitconversion.domain.EndpointInfo;
-import dalosto.engineering.unitconversion.domain.RestAttributes;
-import dalosto.engineering.unitconversion.domain.RestMessage;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
-import dalosto.engineering.unitconversion.units.UnitFormula;
+import dalosto.engineering.unitconversion.formula.UnitFormula;
+import dalosto.engineering.unitconversion.rest.RestEndpointInfo;
+import dalosto.engineering.unitconversion.rest.RestAttributes;
+import dalosto.engineering.unitconversion.rest.RestMessage;
 import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
 @RequestMapping("/api/inertia")
 @Order(4)
-public class InertiaController extends TemplateController {
+public final class InertiaController extends TemplateController {
 
     @Autowired
     @Qualifier("inertia")
@@ -47,8 +47,8 @@ public class InertiaController extends TemplateController {
 
 
     @Override
-    public EndpointInfo getEndpointInfo() {
-        return new EndpointInfo("inertia", unitFormula);
+    public RestEndpointInfo getEndpointInfo() {
+        return new RestEndpointInfo("inertia", unitFormula);
     }
 
     

@@ -1,10 +1,10 @@
-package dalosto.engineering.unitconversion.domain;
+package dalosto.engineering.unitconversion.rest;
 import jakarta.servlet.http.HttpServletRequest;
 
 
-public class RestURL {
+public final class RestURL {
 
-    private HttpServletRequest request;
+    private final HttpServletRequest request;
 
 
     public RestURL(HttpServletRequest request) {
@@ -22,16 +22,16 @@ public class RestURL {
     }
 
 
+    public boolean isCurrentURIaSIEndPoint() {
+        return getCurrentURI().toLowerCase().endsWith("si");
+    }
+
+
     public String getURIofSI() {
         if (isCurrentURIaSIEndPoint()) {
             return getCurrentURI();
         }
         return getCurrentURI() + "/si";
-    }
-
-
-    public boolean isCurrentURIaSIEndPoint() {
-        return getCurrentURI().toLowerCase().endsWith("si");
     }
 
 }

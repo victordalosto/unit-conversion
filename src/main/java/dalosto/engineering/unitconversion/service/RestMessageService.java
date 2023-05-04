@@ -1,11 +1,11 @@
 package dalosto.engineering.unitconversion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import dalosto.engineering.unitconversion.domain.RestAttributes;
-import dalosto.engineering.unitconversion.domain.RestMessage;
-import dalosto.engineering.unitconversion.domain.RestStatus;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.exception.ParameterException;
+import dalosto.engineering.unitconversion.rest.RestAttributes;
+import dalosto.engineering.unitconversion.rest.RestMessage;
+import dalosto.engineering.unitconversion.rest.RestStatus;
 
 
 @Service
@@ -34,12 +34,12 @@ public class RestMessageService {
 
     private void appendDefaultHATEOASmessage(RestMessage message, RestAttributes restAttributes) {
         if (restAttributes.getRestURL().isCurrentURIaSIEndPoint()) {
-            message.addResult(RestStatus.INFO, 
+            message.addResultWithStatus(RestStatus.INFO, 
                     "title",  "This endpoint converts values to the International Standard ",
                     "types",  restAttributes.getEndpointInfo().getAllUnitsOfType(),
                        "si", "Converts values into: " + restAttributes.getEndpointInfo().getSIUnitofType());
         } else {
-            message.addResult(RestStatus.INFO, 
+            message.addResultWithStatus(RestStatus.INFO, 
                     "title",  "This endpoint provides functionality to convert " + restAttributes.getEndpointInfo().getTitle().toUpperCase() + " measurement units.",
                     "types",  restAttributes.getEndpointInfo().getAllUnitsOfType(),
                   "example",  "Check the example endpoint for a usage example.",
@@ -62,12 +62,12 @@ public class RestMessageService {
 
 
     private void appendResultOfConversion(RestMessage message, Unit unit) {
-        message.addResult(RestStatus.SUCCESS, "unit", unit.toString());
+        message.addResultWithStatus(RestStatus.SUCCESS, "unit", unit.toString());
     }
 
 
     private void appendMessageOfError(RestMessage message, ParameterException exception) {
-        message.addResult(RestStatus.ERROR, 
+        message.addResultWithStatus(RestStatus.ERROR, 
                           "ParameterException", exception.getMessage(), 
                           "example", "If you dont know how to use this API, check the example endpoint.",
                           "uri-example", "/example"

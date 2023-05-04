@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import dalosto.engineering.unitconversion.domain.RestMessage;
-import dalosto.engineering.unitconversion.domain.RestStatus;
-import dalosto.engineering.unitconversion.domain.RestURL;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
+import dalosto.engineering.unitconversion.formula.UnitFormula;
+import dalosto.engineering.unitconversion.rest.RestMessage;
+import dalosto.engineering.unitconversion.rest.RestStatus;
+import dalosto.engineering.unitconversion.rest.RestURL;
 import dalosto.engineering.unitconversion.service.ConversorService;
-import dalosto.engineering.unitconversion.units.UnitFormula;
 import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
 @RequestMapping("example")
-public class ExampleController {
+public final class ExampleController {
     
     @Autowired
     @Qualifier("area")
@@ -47,7 +47,7 @@ public class ExampleController {
         String type = unitFormula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();
         String target = unitFormula.getAllUnitTypesOfThisCategory().stream().skip(1).findFirst().get().toString();
         
-        message.addResult(RestStatus.INFO, 
+        message.addResultWithStatus(RestStatus.INFO, 
                           "example", "How to convert " + value + " " + type + " into " + target + "  ?",
                           "GET  Request",  "/api/area?value=" + value + "&type=" + type + "&target=" + target,
                           "POST Request",  "/api/area" + "  Body: {'value': " + value + ", 'type': '" + type + "', 'target': '" + target + "'}",

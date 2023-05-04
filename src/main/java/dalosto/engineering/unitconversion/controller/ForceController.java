@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import dalosto.engineering.unitconversion.domain.EndpointInfo;
-import dalosto.engineering.unitconversion.domain.RestAttributes;
-import dalosto.engineering.unitconversion.domain.RestMessage;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
-import dalosto.engineering.unitconversion.units.UnitFormula;
+import dalosto.engineering.unitconversion.formula.UnitFormula;
+import dalosto.engineering.unitconversion.rest.RestEndpointInfo;
+import dalosto.engineering.unitconversion.rest.RestAttributes;
+import dalosto.engineering.unitconversion.rest.RestMessage;
 import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
 @RequestMapping("/api/force")
 @Order(5)
-public class ForceController extends TemplateController {
+public final class ForceController extends TemplateController {
 
     @Autowired
     @Qualifier("force")
@@ -47,8 +47,8 @@ public class ForceController extends TemplateController {
 
 
     @Override
-    public EndpointInfo getEndpointInfo() {
-        return new EndpointInfo("force", unitFormula);
+    public RestEndpointInfo getEndpointInfo() {
+        return new RestEndpointInfo("force", unitFormula);
     }
 
     

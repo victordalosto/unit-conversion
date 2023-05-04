@@ -6,10 +6,11 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.domain.UnitTypeDuo;
 import dalosto.engineering.unitconversion.exception.UnitException;
+import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 
 @Component("torque")
-public class Torque extends TemplateUnitFormulas {
+public final class Torque extends TemplateUnitFormulas {
 
     public static class Types extends UnitTypeDuo {
 
