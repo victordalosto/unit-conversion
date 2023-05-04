@@ -1,11 +1,10 @@
 package dalosto.engineering.unitconversion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import dalosto.engineering.unitconversion.domain.EndpointInfo;
+import dalosto.engineering.unitconversion.domain.RestAttributes;
 import dalosto.engineering.unitconversion.domain.RestMessage;
 import dalosto.engineering.unitconversion.domain.RestStatus;
 import dalosto.engineering.unitconversion.domain.Unit;
-import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.exception.ParameterException;
 
 
@@ -16,48 +15,48 @@ public class RestMessageService {
     private ConversorService conversorService;
 
 
-    public RestMessage getMessageForEndPoint(EndpointInfo info, UnitDAO unitDAO) {
+    public RestMessage getMessageForEndPoint(RestAttributes restAttributes) {
         RestMessage message = new RestMessage();
-        appendResult(message, info, unitDAO);
-        appendHeader(message, info, unitDAO);
+        appendResult(message, restAttributes);
+        appendHeader(message, restAttributes);
         return message;
     }
 
 
-    private void appendResult(RestMessage message, EndpointInfo info, UnitDAO unitDAO) {
-        if (unitDAO.doesntHaveData()) {
-            appendDefaultHATEOASmessage(message, info);
+    private void appendResult(RestMessage message, RestAttributes restAttributes) {
+        if (restAttributes.getUnitDAO().doesntHaveData()) {
+            appendDefaultHATEOASmessage(message, restAttributes);
         } else {
-            appendConversionMessage(message, info, unitDAO);
+            appendConversionMessage(message, restAttributes);
         }   
     }
 
 
-    private void appendDefaultHATEOASmessage(RestMessage message, EndpointInfo info) {
-        if (info.isCurrentURIaSIEndPoint()) {
+    private void appendDefaultHATEOASmessage(RestMessage message, RestAttributes restAttributes) {
+        if (restAttributes.getRestURL().isCurrentURIaSIEndPoint()) {
             message.addResult(RestStatus.INFO, 
                     "title",  "This endpoint converts values to the International Standard ",
-                    "types",  info.getAllUnitsOfType(),
-                       "si", "Converts values into: " + info.getSIUnitofType());
+                    "types",  restAttributes.getEndpointInfo().getAllUnitsOfType(),
+                       "si", "Converts values into: " + restAttributes.getEndpointInfo().getSIUnitofType());
         } else {
             message.addResult(RestStatus.INFO, 
-                    "title",  "This endpoint provides functionality to convert " + info.getTitle().toUpperCase() + " measurement units.",
-                    "types",  info.getAllUnitsOfType(),
+                    "title",  "This endpoint provides functionality to convert " + restAttributes.getEndpointInfo().getTitle().toUpperCase() + " measurement units.",
+                    "types",  restAttributes.getEndpointInfo().getAllUnitsOfType(),
                   "example",  "Check the example endpoint for a usage example.",
               "uri-example",  "/example",
                        "si",  "Check the SI endpoint to convert the value to the International Standard",
-                   "uri-si",  info.getURIofSI());
+                   "uri-si",  restAttributes.getRestURL().getURIofSI());
         }
         
     }
 
 
-    private void appendConversionMessage(RestMessage message, EndpointInfo info, UnitDAO unitDAO) {
+    private void appendConversionMessage(RestMessage message, RestAttributes restAttributes) {
         try {
-            Unit unitConverted = conversorService.formatUnitDAOAndConvertToUnit(unitDAO, info.getUnitFormula());
+            Unit unitConverted = conversorService.formatUnitDAOAndConvertToUnit(restAttributes.getUnitDAO(), restAttributes.getEndpointInfo().getUnitFormula());
             appendResultOfConversion(message, unitConverted);
-        } catch (ParameterException e) {
-            appendMessageOfError(message, info, e);
+        } catch (ParameterException exception) {
+            appendMessageOfError(message, exception);
         }
     }
 
@@ -67,19 +66,19 @@ public class RestMessageService {
     }
 
 
-    private void appendMessageOfError(RestMessage message, EndpointInfo info, ParameterException e) {
+    private void appendMessageOfError(RestMessage message, ParameterException exception) {
         message.addResult(RestStatus.ERROR, 
-                          "ParameterException", e.getMessage(), 
+                          "ParameterException", exception.getMessage(), 
                           "example", "If you dont know how to use this API, check the example endpoint.",
                           "uri-example", "/example"
                           );
     }
 
 
-    private void appendHeader(RestMessage message, EndpointInfo info, UnitDAO unitDAO) {
-        message.addToHeader("uri", info.getCurrentURI());
-        message.addToHeader("home", info.getURLhome());
-        message.addToHeader("input", unitDAO.toString());
+    private void appendHeader(RestMessage message, RestAttributes restAttributes) {
+        message.addToHeader("uri", restAttributes.getRestURL().getCurrentURI());
+        message.addToHeader("home", restAttributes.getRestURL().getHomeURL());
+        message.addToHeader("input", restAttributes.getUnitDAO().toString());
     }
 
 } 

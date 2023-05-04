@@ -10,6 +10,7 @@ import dalosto.engineering.unitconversion.domain.RestURL;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.service.ConversorService;
 import dalosto.engineering.unitconversion.units.UnitFormula;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -25,17 +26,17 @@ public class ExampleController {
 
 
     @GetMapping
-    public RestMessage home(UnitDAO unitDAO) {
+    public RestMessage home(UnitDAO unitDAO, HttpServletRequest request) {
         RestMessage message = new RestMessage();
-        appendHeader(message);
+        appendHeader(message, request);
         appendResult(message);
         return message;
     }
 
 
-    private void appendHeader(RestMessage message) {
+    private void appendHeader(RestMessage message, HttpServletRequest request) {
         message.addToHeader("uri", "/example");
-        message.addToHeader("home", new RestURL().getHomeURL());
+        message.addToHeader("home", new RestURL(request).getHomeURL());
         message.addToHeader("title", "This endpoint provides example in how to use this API to convert measurement units.");
         message.addToHeader("description", "Given a quantity expressed in a unit type, the end-points returns the equivalent quantity in a different measurement unit.");
     }

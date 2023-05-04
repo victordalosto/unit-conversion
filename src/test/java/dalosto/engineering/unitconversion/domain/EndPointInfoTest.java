@@ -1,6 +1,5 @@
 package dalosto.engineering.unitconversion.domain;
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +31,5 @@ public class EndPointInfoTest {
         }
     }
 
-    
-    @Test
-    public void restURLShouldtBeNull() {
-        for (TemplateController controller : controllers) {
-            assertNotNull(controller.getEndpointInfo().getRestURL());
-        }
-    }
 
 }

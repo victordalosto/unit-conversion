@@ -1,17 +1,10 @@
 package dalosto.engineering.unitconversion.domain;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import jakarta.servlet.http.HttpServletRequest;
 
 
 public class RestURL {
 
     private HttpServletRequest request;
-
-
-    public RestURL() {
-        request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-    }
 
 
     public RestURL(HttpServletRequest request) {

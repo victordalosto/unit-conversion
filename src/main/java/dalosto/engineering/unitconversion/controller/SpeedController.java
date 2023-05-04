@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.domain.EndpointInfo;
+import dalosto.engineering.unitconversion.domain.RestAttributes;
 import dalosto.engineering.unitconversion.domain.RestMessage;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.units.UnitFormula;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -25,16 +27,22 @@ public class SpeedController extends TemplateController {
     @Override
     @GetMapping
     @PostMapping
-    public RestMessage home(UnitDAO unitDAO) {
-        return super.createRestMessage(unitDAO);
+    public RestMessage home(UnitDAO unitDAO, HttpServletRequest request) {
+        return super.createRestMessage(getAttribute(unitDAO, request));
     }
 
     
     @Override
     @GetMapping("/si")
     @PostMapping("/si")
-    public RestMessage si(UnitDAO unitDAO) {
-        return super.createRestMessage(unitDAO);
+    public RestMessage si(UnitDAO unitDAO, HttpServletRequest request) {
+        return super.createRestMessage(getAttribute(unitDAO, request));
+    }
+
+
+    @Override
+    protected RestAttributes getAttribute(UnitDAO unitDAO, HttpServletRequest request) {
+        return new RestAttributes(unitDAO, request, getEndpointInfo());
     }
 
 

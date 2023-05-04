@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.domain.RestMessage;
 import dalosto.engineering.unitconversion.domain.RestURL;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -19,16 +20,16 @@ public class HomeController {
 
     
     @GetMapping
-    public RestMessage getHomeMessage() {
+    public RestMessage getHomeMessage(HttpServletRequest request) {
         RestMessage message = new RestMessage();
-        appendHeaderToMessage(message);
+        appendHeaderToMessage(message, request);
         appendResultsToMessage(message);
         return message;
     }
 
 
-    private void appendHeaderToMessage(RestMessage message) {
-        message.addToHeader("home", new RestURL().getHomeURL());
+    private void appendHeaderToMessage(RestMessage message, HttpServletRequest request) {
+        message.addToHeader("home", new RestURL(request).getHomeURL());
         message.addToHeader("title", "Unit Conversion API");
         message.addToHeader("about", "API used for conversion between measurement units most commonly used in the engineering");
         message.addToHeader("description", "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit");
