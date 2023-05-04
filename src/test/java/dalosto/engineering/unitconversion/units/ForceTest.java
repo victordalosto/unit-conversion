@@ -10,7 +10,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 
 public class ForceTest {
 
-    UnitFormula unitFormula = new Force();
+    private UnitFormula unitFormula = new Force();
 
 
     public void assertEquivalentForceInSI(double expected, Unit actual) {

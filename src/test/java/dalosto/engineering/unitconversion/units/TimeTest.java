@@ -10,7 +10,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 
 public class TimeTest {
 
-    UnitFormula unitFormula = new Time();
+    private UnitFormula unitFormula = new Time();
 
 
     public void assertEquivalentTimeInSI(double expected, Unit actual) {

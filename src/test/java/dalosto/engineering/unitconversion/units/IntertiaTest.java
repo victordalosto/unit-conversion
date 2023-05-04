@@ -10,7 +10,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 
 public class IntertiaTest {
 
-    UnitFormula unitFormula = new Inertia();
+    private UnitFormula unitFormula = new Inertia();
 
 
     public void assertEquivalentInertiaInSI(double expected, Unit actual) {

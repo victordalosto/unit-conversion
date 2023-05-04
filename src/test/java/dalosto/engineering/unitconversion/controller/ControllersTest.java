@@ -1,6 +1,6 @@
 package dalosto.engineering.unitconversion.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.Set;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,10 +11,10 @@ import dalosto.engineering.unitconversion.units.TemplateUnitFormulas;
 public class ControllersTest {
 
     @Autowired
-    Set<TemplateController> controllers;
+    private List<TemplateController> controllers;
 
     @Autowired
-    Set<TemplateUnitFormulas> formulas;
+    private List<TemplateUnitFormulas> formulas;
 
 
     @Test

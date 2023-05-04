@@ -10,7 +10,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 
 public class AreaTest {
 
-    UnitFormula unitFormula = new Area();
+    private UnitFormula unitFormula = new Area();
 
 
     public void assertEquivalentAreaInSI(double expected, Unit actual) {
@@ -123,8 +123,8 @@ public class AreaTest {
         assertEquivalentArea(0.0, Area.Types.IN2, 0.0, Area.Types.M2);
         assertEquivalentArea(0.0, Area.Types.IN2, 0.0, Area.Types.CM2);
         assertEquivalentArea(0.0, Area.Types.IN2, 0.0, Area.Types.MM2);
-        assertEquivalentArea(0.0, Area.Types.M2, 0.0, Area.Types.DM2);
-        assertEquivalentArea(0.0, Area.Types.M2, 0.0, Area.Types.YD2);
+        assertEquivalentArea(0.0, Area.Types.M2,  0.0, Area.Types.DM2);
+        assertEquivalentArea(0.0, Area.Types.M2,  0.0, Area.Types.YD2);
         assertEquivalentArea(0.0, Area.Types.DM2, 0.0, Area.Types.CM2);
         assertEquivalentArea(0.0, Area.Types.DM2, 0.0, Area.Types.M2);
         assertEquivalentArea(0.0, Area.Types.CM2, 0.0, Area.Types.MM2);

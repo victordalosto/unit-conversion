@@ -10,7 +10,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 
 public class VolumeTest {
 
-    UnitFormula unitFormula = new Volume();
+    private UnitFormula unitFormula = new Volume();
 
 
     public void assertEquivalentVolumeInSI(double expected, Unit actual) {

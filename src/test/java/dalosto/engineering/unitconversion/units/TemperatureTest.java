@@ -10,7 +10,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 
 public class TemperatureTest {
 
-    UnitFormula unitFormula = new Temperature();
+    private UnitFormula unitFormula = new Temperature();
 
 
     public void assertEquivalentTemperatureInSI(double expected, Unit actual) {

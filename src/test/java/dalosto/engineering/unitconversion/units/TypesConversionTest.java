@@ -2,7 +2,7 @@ package dalosto.engineering.unitconversion.units;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import java.util.Set;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +15,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 public class TypesConversionTest {
 
     @Autowired
-    Set<UnitFormula> formulas;
+    private List<UnitFormula> formulas;
 
 
     @Test
@@ -46,24 +46,23 @@ public class TypesConversionTest {
     @Test
     public void assertThatFormulasThrowsExceptionIfTheyAreNotSameTypeOfFormula() {
         for (UnitFormula unitFormula : formulas) {
-            assertThrowsIfNotSameTypeOfFormula(unitFormula);
+            checkException(unitFormula);
         }
     }
 
 
-
-    private void assertThrowsIfNotSameTypeOfFormula(UnitFormula formula) {
+    private void checkException(UnitFormula formula) {
         for (UnitFormula other : formulas) {
             if (formula != other) {
                 assertThrows(UnitException.class, () -> {
                         formula.buildUnitIntoAnotherType(
-                                                         new Unit(1, formula.getSITypeOfThisCategory()),
+                                                         new Unit(12345.67, formula.getSITypeOfThisCategory()),
                                                          other.getSITypeOfThisCategory());
                 });
             } else {
                 assertDoesNotThrow(() -> 
                         formula.buildUnitIntoAnotherType(
-                                                         new Unit(1, formula.getSITypeOfThisCategory()), 
+                                                         new Unit(12345.67, formula.getSITypeOfThisCategory()), 
                                                          other.getSITypeOfThisCategory()));
             }
         }

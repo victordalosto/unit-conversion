@@ -12,7 +12,7 @@ import dalosto.engineering.unitconversion.units.Length;
 public class ConversorServiceWithSmallNumbersTest {
 
     @Autowired
-    ConversorService service;
+    private ConversorService service;
 
     @Test
     public void shouldBeAbleToConvertUnitDaoWithSmallValue() {

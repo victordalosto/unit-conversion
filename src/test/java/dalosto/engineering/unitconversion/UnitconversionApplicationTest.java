@@ -10,6 +10,7 @@ public class UnitconversionApplicationTest {
 
     
     @Test
+    /** Useful test that checks for Exception in after Compilation. */
     public void mainClassShouldntThrowError() {
         assertDoesNotThrow(() -> UnitconversionApplication.main(new String[] {}));
     }

@@ -10,22 +10,25 @@ public class MetricTest {
     public static double tolerance = Math.pow(10, -9);
 
 
-    public static void assertEquavalentInSI(double expected, Unit actual, UnitFormula unitFormula) {
-        assertEquals(expected, unitFormula.buildUnitToSI(actual).getValue(), MetricTest.tolerance);
-        if (expected != 0) {
-            assertEquals(1, expected/unitFormula.buildUnitToSI(actual).getValue(), MetricTest.tolerance);
+    public static void assertEquivalentUnit(double fromValue, UnitType fromType, 
+                                            double toValue,   UnitType toType,
+                                            UnitFormula formula) {
+        assertEquals(toValue, formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), MetricTest.tolerance);
+        assertEqualForSmallNumber(fromValue, fromType, toValue, toType, formula);
+    }
+
+
+    private static void assertEqualForSmallNumber(double fromValue, UnitType fromType, 
+                                                 double toValue,    UnitType toType,
+                                                 UnitFormula formula) {
+        if (toValue != 0) {
+            assertEquals(1, toValue/formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), MetricTest.tolerance);
         }
     }
 
 
-    public static void assertEquivalentUnit(double fromValue, UnitType fromType, 
-                                            double toValue, UnitType toType,
-                                            UnitFormula formula) {
-        assertEquals(toValue, formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), MetricTest.tolerance);
-        if (toValue != 0) {
-            assertEquals(1, toValue/formula.buildUnitIntoAnotherType(new Unit(fromValue, fromType), toType).getValue(), MetricTest.tolerance);
-        }
-            
+    public static void assertEquavalentInSI(double expected, Unit actual, UnitFormula unitFormula) {
+        assertEquivalentUnit(actual.getValue(), actual.getType(), expected, unitFormula.getSITypeOfThisCategory(), unitFormula);
     }
 
 }

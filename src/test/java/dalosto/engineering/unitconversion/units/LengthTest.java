@@ -10,7 +10,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 
 public class LengthTest {
 
-    UnitFormula unitFormula = new Length();
+    private UnitFormula unitFormula = new Length();
 
 
     public void assertEquivalentLengthInSI(double expected, Unit actual) {

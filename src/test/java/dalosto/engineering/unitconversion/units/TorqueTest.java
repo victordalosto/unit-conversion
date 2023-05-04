@@ -17,7 +17,7 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 @SpringBootTest
 public class TorqueTest {
 
-    UnitFormula unitFormula = new Torque();
+    private UnitFormula unitFormula = new Torque();
 
     @Autowired
     List<UnitFormula> formulas;

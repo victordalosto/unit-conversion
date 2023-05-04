@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.units.Length;
@@ -16,16 +14,19 @@ import dalosto.engineering.unitconversion.units.UnitFormula;
 public class UnitTest {
 
     @Autowired
-    List<UnitFormula> formulas;
+    private List<UnitFormula> formulas;
 
 
-    @ParameterizedTest
-    @EnumSource(Length.Types.class)
-    public void unitConstructorHasValidProperties(UnitType type) {
-        double value = 10.0;
-        Unit unit = new Unit(value, type);
-        assertEquals(value, unit.getValue());
-        assertEquals(type, unit.getType());
+    @Test
+    public void unitConstructorHasValidProperties() {
+        for (UnitFormula formula : formulas) {
+            for (UnitType type : formula.getAllUnitTypesOfThisCategory()) {
+                double value = 10.0;
+                Unit unit = new Unit(value, type);
+                assertEquals(value, unit.getValue());
+                assertEquals(type, unit.getType());
+            }
+        }
     }
 
 

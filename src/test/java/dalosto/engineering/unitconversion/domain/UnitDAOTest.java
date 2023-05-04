@@ -15,7 +15,7 @@ import dalosto.engineering.unitconversion.units.UnitFormula;
 public class UnitDAOTest {
 
     @Autowired
-    List<UnitFormula> formulas;
+    private List<UnitFormula> formulas;
 
 
     @Test
