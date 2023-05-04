@@ -24,7 +24,7 @@ public class TorqueTest {
     private UnitFormula unitFormula = new Torque();
 
     @Autowired
-    List<UnitFormula> formulas;
+    private List<UnitFormula> formulas;
 
 
     @Test
