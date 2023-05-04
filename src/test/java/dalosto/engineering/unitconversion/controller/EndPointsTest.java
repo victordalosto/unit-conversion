@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.e2e;
+package dalosto.engineering.unitconversion.controller;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -39,6 +39,7 @@ public class EndPointsTest {
         }
     }
 
+    
     @Test
     public void shouldBeAbleToAcessSI() throws Exception {
         for (UnitFormula formula : formulas) {

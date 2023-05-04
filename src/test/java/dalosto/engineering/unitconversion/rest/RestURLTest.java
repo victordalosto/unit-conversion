@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.domain;
+package dalosto.engineering.unitconversion.rest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import dalosto.engineering.unitconversion.rest.RestURL;
 import jakarta.servlet.http.HttpServletRequest;
 
 
@@ -27,6 +26,22 @@ public class RestURLTest {
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
+    }
+
+
+    @Test
+    public void shouldGetHomeURL() {
+        when(request.getScheme()).thenReturn("http");
+        when(request.getServerName()).thenReturn("localhost");
+        when(request.getServerPort()).thenReturn(8080);
+        assertEquals("http://localhost:8080", restURL.getHomeURL());
+    }
+
+
+    @Test
+    public void shouldGetCurrentURI() {
+        when(request.getRequestURI()).thenReturn("/api/length");
+        assertEquals("/api/length", restURL.getCurrentURI());
     }
 
 

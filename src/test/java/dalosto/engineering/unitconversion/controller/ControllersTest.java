@@ -1,4 +1,5 @@
 package dalosto.engineering.unitconversion.controller;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -25,8 +26,8 @@ public class ControllersTest {
 
     @Test
     public void allControllersMustHaveAValidUnitFormula() {
-        for (TemplateController templateController : controllers) {
-            assert(formulas.contains(templateController.getEndpointInfo().getUnitFormula()));
+        for (TemplateController controller : controllers) {
+            assertTrue(formulas.contains(controller.getEndpointInfo().getUnitFormula()));
         }
     }
 

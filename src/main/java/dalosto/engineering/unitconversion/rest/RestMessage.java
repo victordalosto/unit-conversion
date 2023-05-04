@@ -2,6 +2,7 @@ package dalosto.engineering.unitconversion.rest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.Getter;
+import lombok.ToString;
 
 
 /** CREATES a REST MESSAGE in JSON FORMAT
@@ -18,6 +19,7 @@ import lombok.Getter;
         }
     }                                                  */
 @Getter
+@ToString
 public final class RestMessage {
 
     private final Map<String, String> header = new LinkedHashMap<>();

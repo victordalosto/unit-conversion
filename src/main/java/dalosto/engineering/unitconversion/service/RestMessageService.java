@@ -53,6 +53,9 @@ public class RestMessageService {
 
     private void appendConversionMessage(RestMessage message, RestAttributes restAttributes) {
         try {
+            if (restAttributes.getRestURL().isCurrentURIaSIEndPoint()) {
+                restAttributes.getUnitDAO().setTarget(restAttributes.getEndpointInfo().getSIUnitofType());
+            }
             Unit unitConverted = conversorService.formatUnitDAOAndConvertToUnit(restAttributes.getUnitDAO(), restAttributes.getEndpointInfo().getUnitFormula());
             appendResultOfConversion(message, unitConverted);
         } catch (ParameterException exception) {

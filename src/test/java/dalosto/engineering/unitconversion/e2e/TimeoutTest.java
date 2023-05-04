@@ -27,11 +27,10 @@ public class TimeoutTest {
     @Autowired
     private List<UnitFormula> formulas;
 
-    private final int numberOfRuns = 1000;
-
     // Usually it is 100ms, but we give it some extra time for the CI/CD pipeline to run.
     private final long maxtimeDuration = 300; 
     
+    private final int numberOfRuns = 1000;
 
 
     @Test
