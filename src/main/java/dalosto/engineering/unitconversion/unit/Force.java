@@ -1,39 +1,47 @@
-package dalosto.engineering.unitconversion.units;
-import java.util.Arrays;
+package dalosto.engineering.unitconversion.unit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
+@Component("force")
+public final class Force extends TemplateUnitFormulas {
 
-@Component("area")
-public final class Area extends TemplateUnitFormulas {
+    private static final double GRAVITY = 9.8066500286389;
 
     public static enum Types implements UnitType {
 
-        M2(1.0),
-        DM2(0.01),
-        CM2(0.0001),
-        MM2(0.000001),
-        HM2(10000.0),
-        KM2(1000000.0),
-        UM2(Math.pow(10.0, -12)),
-        IN2(0.00064516),
-        FT2(0.09290304),
-        YD2(0.83612736);
+        N(1.0, false),
+        KN(1000.0, false),
+        MN(1000.0*1000.0, false),
+        GN(1000.0*1000.0*1000.0, false),
+        TN(1000000000000.0, false),
+        LB(4.4482216282509, false),
+        OZ(0.27801385176568125, false),
+        POUND(4.4482216282509, false),
+        KIP(4448.2216282509, false),
+        GF(1.0/1000, true),
+        G(1.0/1000, true),
+        KGF(1.0, true),
+        KG(1.0, true),
+        T(1000.0, true);
     
 
         protected final double factorOfEquivalenceToSI;
-        private Types(double factorOfEquivalenceToSI) {
+        public final boolean dependesOfGravityOnConversion;
+
+        private Types(double factorOfEquivalenceToSI, boolean usesGravity) {
             this.factorOfEquivalenceToSI = factorOfEquivalenceToSI;
+            this.dependesOfGravityOnConversion = usesGravity;
         }
 
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return M2;
+            return N;
         }
 
 
@@ -49,7 +57,13 @@ public final class Area extends TemplateUnitFormulas {
     @Override
     public Unit convertUnitIntoAnotherType(Unit unit, UnitType anotherType) {
         double inputConversion = ((Types) unit.getType()).factorOfEquivalenceToSI;
+        if (((Types) unit.getType()).dependesOfGravityOnConversion) {
+            inputConversion *= GRAVITY;
+        }
         double ouputConversion = ((Types) anotherType).factorOfEquivalenceToSI;
+        if (((Types) anotherType).dependesOfGravityOnConversion) {
+            ouputConversion *= GRAVITY;
+        }
         double value = unit.getValue() * (inputConversion / ouputConversion);
         return new Unit(value, anotherType);
     }
@@ -57,14 +71,15 @@ public final class Area extends TemplateUnitFormulas {
 
     @Override
     public UnitType getSITypeOfThisCategory() {
-        return Types.M2.getSITypeOfThisCategory();
+        return Types.N.getSITypeOfThisCategory();
     }
 
-    
+
     @Override
     public List<UnitType> getAllUnitTypesOfThisCategory() {
-        return Types.M2.getAllUnitTypesOfThisCategory();
+        return Types.N.getAllUnitTypesOfThisCategory();
     }
+
 
 
 }

@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.units;
+package dalosto.engineering.unitconversion.unit;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -9,16 +9,16 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 
-@Component("speed")
-public final class Speed extends TemplateUnitFormulas {
+@Component("torque")
+public final class Torque extends TemplateUnitFormulas {
 
     public static class Types extends UnitTypeDuo {
 
         private static List<UnitType> types = new ArrayList<>();
         static {
-            for (UnitType length : new Length().getAllUnitTypesOfThisCategory()) {
-                for (UnitType time : new Time().getAllUnitTypesOfThisCategory()) {
-                    Types.types.add(factory(length, time));
+            for (UnitType force : new Force().getAllUnitTypesOfThisCategory()) {
+                for (UnitType length : new Length().getAllUnitTypesOfThisCategory()) {
+                    Types.types.add(factory(force, length));
                 }
             }
         }
@@ -26,7 +26,7 @@ public final class Speed extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return factory(new Length().getSITypeOfThisCategory(), new Time().getSITypeOfThisCategory());
+            return factory(new Force().getSITypeOfThisCategory(), new Length().getSITypeOfThisCategory());
         }
 
 
@@ -38,22 +38,22 @@ public final class Speed extends TemplateUnitFormulas {
 
         @Override
         public String toString() {
-            return super.getPrincipal() + "/" + super.getSecondary();
+            return super.getPrincipal() + "." + super.getSecondary();
         }
 
     }
 
 
-    public static UnitType factory(UnitType speed, UnitType time) {
-        if (speed == null || time == null) {
-            throw new UnitException("Length and Time must not be null.");
+    public static UnitType factory(UnitType force, UnitType length) {
+        if (force == null || length == null) {
+            throw new UnitException("Force and Length must not be null.");
         }
-        if (!(speed instanceof Length.Types) || !(time instanceof Time.Types)) {
+        if (!(force instanceof Force.Types) || !(length instanceof Length.Types)) {
             throw new UnitException("Paremeters for constructor doesn't match");
         }
         Types t = new Types();
-        t.setPrincipal(speed);
-        t.setSecondary(time);
+        t.setPrincipal(force);
+        t.setSecondary(length);
         return t;
     }
 
@@ -77,9 +77,9 @@ public final class Speed extends TemplateUnitFormulas {
         UnitType secondary = ((Types) unit.getType()).getSecondary();
         UnitType otherPri = ((Types) anotherType).getPrincipal();
         UnitType otherSec = ((Types) anotherType).getSecondary();
-        Unit length = new Length().buildUnitIntoAnotherType(new Unit(value, principal), otherPri);
-        Unit time = new Time().buildUnitIntoAnotherType(new Unit(length.getValue(), otherSec), secondary);
-        return new Unit(time.getValue(), anotherType);
+        Unit force = new Force().buildUnitIntoAnotherType(new Unit(value, principal), otherPri);
+        Unit length = new Length().buildUnitIntoAnotherType(new Unit(force.getValue(), secondary), otherSec);
+        return new Unit(length.getValue(), anotherType);
     }
 
 }

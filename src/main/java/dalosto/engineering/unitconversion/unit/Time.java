@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.units;
+package dalosto.engineering.unitconversion.unit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,41 +7,34 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
-@Component("force")
-public final class Force extends TemplateUnitFormulas {
 
-    private static final double GRAVITY = 9.8066500286389;
+@Component("time")
+public final class Time extends TemplateUnitFormulas {
 
     public static enum Types implements UnitType {
 
-        N(1.0, false),
-        KN(1000.0, false),
-        MN(1000.0*1000.0, false),
-        GN(1000.0*1000.0*1000.0, false),
-        TN(1000000000000.0, false),
-        LB(4.4482216282509, false),
-        OZ(0.27801385176568125, false),
-        POUND(4.4482216282509, false),
-        KIP(4448.2216282509, false),
-        GF(1.0/1000, true),
-        G(1.0/1000, true),
-        KGF(1.0, true),
-        KG(1.0, true),
-        T(1000.0, true);
+        S(1.0),
+        MS(Math.pow(10.0, -3)),
+        US(Math.pow(10.0, -6)),
+        MIN(60.0),
+        H(3600.0),
+        DAY(86400.0),
+        WEEK(604800.0),
+        MONTH(86400.0 * (365.0/12.0)),
+        MONTH30(86400.0 * 30.0),
+        MONTH31(86400.0 * 31.0),
+        YEAR(31536000.0);
     
 
         protected final double factorOfEquivalenceToSI;
-        public final boolean dependesOfGravityOnConversion;
-
-        private Types(double factorOfEquivalenceToSI, boolean usesGravity) {
+        private Types(double factorOfEquivalenceToSI) {
             this.factorOfEquivalenceToSI = factorOfEquivalenceToSI;
-            this.dependesOfGravityOnConversion = usesGravity;
         }
 
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return N;
+            return S;
         }
 
 
@@ -57,13 +50,7 @@ public final class Force extends TemplateUnitFormulas {
     @Override
     public Unit convertUnitIntoAnotherType(Unit unit, UnitType anotherType) {
         double inputConversion = ((Types) unit.getType()).factorOfEquivalenceToSI;
-        if (((Types) unit.getType()).dependesOfGravityOnConversion) {
-            inputConversion *= GRAVITY;
-        }
         double ouputConversion = ((Types) anotherType).factorOfEquivalenceToSI;
-        if (((Types) anotherType).dependesOfGravityOnConversion) {
-            ouputConversion *= GRAVITY;
-        }
         double value = unit.getValue() * (inputConversion / ouputConversion);
         return new Unit(value, anotherType);
     }
@@ -71,15 +58,14 @@ public final class Force extends TemplateUnitFormulas {
 
     @Override
     public UnitType getSITypeOfThisCategory() {
-        return Types.N.getSITypeOfThisCategory();
+        return Types.S.getSITypeOfThisCategory();
     }
 
-
+    
     @Override
     public List<UnitType> getAllUnitTypesOfThisCategory() {
-        return Types.N.getAllUnitTypesOfThisCategory();
+        return Types.S.getAllUnitTypesOfThisCategory();
     }
-
 
 
 }

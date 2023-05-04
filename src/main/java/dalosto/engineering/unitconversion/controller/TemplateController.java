@@ -17,17 +17,14 @@ public abstract class TemplateController {
 
 
     public final RestMessage createRestMessage(RestAttributes attributes) {
-        if (attributes.getRestURL().isCurrentURIaSIEndPoint()) {
-            attributes.getUnitDAO().setTarget(getEndpointInfo().getSIUnitofType());
-        }
         return service.getMessageForEndPoint(attributes);
     }
+    
 
+    public abstract RestEndpointInfo getEndpointInfo();
+    protected abstract RestAttributes getAttribute(UnitDAO unitDAO, HttpServletRequest request);
 
     protected abstract RestMessage home(UnitDAO unitDAO, HttpServletRequest request);
     protected abstract RestMessage si(UnitDAO unitDAO, HttpServletRequest request);
-
-    protected abstract RestAttributes getAttribute(UnitDAO unitDAO, HttpServletRequest request);
-    public abstract RestEndpointInfo getEndpointInfo();
 
 }

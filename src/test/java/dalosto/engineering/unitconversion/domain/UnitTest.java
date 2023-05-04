@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.formula.UnitFormula;
-import dalosto.engineering.unitconversion.units.Length;
+import dalosto.engineering.unitconversion.unit.Length;
 
 
 @SpringBootTest

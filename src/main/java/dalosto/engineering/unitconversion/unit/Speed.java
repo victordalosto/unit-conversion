@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.units;
+package dalosto.engineering.unitconversion.unit;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -9,16 +9,16 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 
-@Component("density")
-public final class Density extends TemplateUnitFormulas {
+@Component("speed")
+public final class Speed extends TemplateUnitFormulas {
 
     public static class Types extends UnitTypeDuo {
 
         private static List<UnitType> types = new ArrayList<>();
         static {
-            for (UnitType force : new Force().getAllUnitTypesOfThisCategory()) {
-                for (UnitType volume : new Volume().getAllUnitTypesOfThisCategory()) {
-                    Types.types.add(factory(force, volume));
+            for (UnitType length : new Length().getAllUnitTypesOfThisCategory()) {
+                for (UnitType time : new Time().getAllUnitTypesOfThisCategory()) {
+                    Types.types.add(factory(length, time));
                 }
             }
         }
@@ -26,7 +26,7 @@ public final class Density extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return factory(new Force().getSITypeOfThisCategory(), new Volume().getSITypeOfThisCategory());
+            return factory(new Length().getSITypeOfThisCategory(), new Time().getSITypeOfThisCategory());
         }
 
 
@@ -44,16 +44,16 @@ public final class Density extends TemplateUnitFormulas {
     }
 
 
-    public static UnitType factory(UnitType force, UnitType volume) {
-        if (force == null || volume == null) {
-            throw new UnitException("Force and Volume must not be null.");
+    public static UnitType factory(UnitType speed, UnitType time) {
+        if (speed == null || time == null) {
+            throw new UnitException("Length and Time must not be null.");
         }
-        if (!(force instanceof Force.Types) || !(volume instanceof Volume.Types)) {
+        if (!(speed instanceof Length.Types) || !(time instanceof Time.Types)) {
             throw new UnitException("Paremeters for constructor doesn't match");
         }
         Types t = new Types();
-        t.setPrincipal(force);
-        t.setSecondary(volume);
+        t.setPrincipal(speed);
+        t.setSecondary(time);
         return t;
     }
 
@@ -77,9 +77,9 @@ public final class Density extends TemplateUnitFormulas {
         UnitType secondary = ((Types) unit.getType()).getSecondary();
         UnitType otherPri = ((Types) anotherType).getPrincipal();
         UnitType otherSec = ((Types) anotherType).getSecondary();
-        Unit force = new Force().buildUnitIntoAnotherType(new Unit(value, principal), otherPri);
-        Unit volume = new Volume().buildUnitIntoAnotherType(new Unit(force.getValue(), otherSec), secondary);
-        return new Unit(volume.getValue(), anotherType);
+        Unit length = new Length().buildUnitIntoAnotherType(new Unit(value, principal), otherPri);
+        Unit time = new Time().buildUnitIntoAnotherType(new Unit(length.getValue(), otherSec), secondary);
+        return new Unit(time.getValue(), anotherType);
     }
 
 }

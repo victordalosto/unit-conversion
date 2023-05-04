@@ -22,7 +22,7 @@ public final class ExampleController {
     private UnitFormula unitFormula;
 
     @Autowired
-    ConversorService service;
+    private ConversorService service;
 
 
     @GetMapping
@@ -48,13 +48,13 @@ public final class ExampleController {
         String target = unitFormula.getAllUnitTypesOfThisCategory().stream().skip(1).findFirst().get().toString();
         
         message.addResultWithStatus(RestStatus.INFO, 
-                          "example", "How to convert " + value + " " + type + " into " + target + "  ?",
+                               "example",  "How to convert " + value + " " + type + " into " + target + "  ?",
                           "GET  Request",  "/api/area?value=" + value + "&type=" + type + "&target=" + target,
                           "POST Request",  "/api/area" + "  Body: {'value': " + value + ", 'type': '" + type + "', 'target': '" + target + "'}",
-                          "Response", RestStatus.possibleStatus() + "   " + service.formatUnitDAOAndConvertToUnit(new UnitDAO(value, type, target), unitFormula),
-                          "observation", "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myVal is 1.23)",
-                          "observation2", "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
-                          );
+                              "Response",  RestStatus.possibleStatus() + "   " + service.formatUnitDAOAndConvertToUnit(new UnitDAO(value, type, target), unitFormula),
+                           "observation",  "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myVal is 1.23)",
+                          "observation2",  "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
+        );
     }
 
 }

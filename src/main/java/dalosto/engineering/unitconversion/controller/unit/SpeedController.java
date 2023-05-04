@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.controller;
+package dalosto.engineering.unitconversion.controller.unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.annotation.Order;
@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import dalosto.engineering.unitconversion.controller.TemplateController;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.formula.UnitFormula;
 import dalosto.engineering.unitconversion.rest.RestEndpointInfo;
@@ -15,12 +16,12 @@ import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
-@RequestMapping({"/api/pressure", "/api/stress"})
-@Order(10)
-public final class PressureController extends TemplateController {
+@RequestMapping("/api/speed")
+@Order(12)
+public final class SpeedController extends TemplateController {
 
     @Autowired
-    @Qualifier("pressure")
+    @Qualifier("speed")
     private UnitFormula unitFormula;
 
 
@@ -48,7 +49,7 @@ public final class PressureController extends TemplateController {
 
     @Override
     public RestEndpointInfo getEndpointInfo() {
-        return new RestEndpointInfo("pressure", unitFormula);
+        return new RestEndpointInfo("speed", unitFormula);
     }
 
     

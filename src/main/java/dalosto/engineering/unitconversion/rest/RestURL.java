@@ -1,10 +1,12 @@
 package dalosto.engineering.unitconversion.rest;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.NoArgsConstructor;
 
 
+@NoArgsConstructor
 public final class RestURL {
 
-    private final HttpServletRequest request;
+    private HttpServletRequest request;
 
 
     public RestURL(HttpServletRequest request) {

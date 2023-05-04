@@ -3,8 +3,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.Getter;
 
-/**
- *  CREATES a REST MESSAGE in JSON FORMAT
+
+/** CREATES a REST MESSAGE in JSON FORMAT
     {
         "header": {
             header.key1: header.value1
@@ -16,8 +16,7 @@ import lombok.Getter;
                 result.key1.key2: result.key1.value2
             }
         }
-    }
-*/
+    }                                                  */
 @Getter
 public final class RestMessage {
 
@@ -30,17 +29,17 @@ public final class RestMessage {
     }
 
 
-    public void setResult(String key, Map<String, String> map) {
-        this.result.put(key, map);
-    }
-
-
-    public void addResultWithStatus(RestStatus status, String ... keysAndValues) {
+    public void addResultWithTitle(String title, String ... keysAndValues) {
         Map<String, String> map = new LinkedHashMap<>();
         for (int i = 0; i < keysAndValues.length; i += 2) {
             map.put(keysAndValues[i], keysAndValues[i + 1]);
         }
-        this.result.put(status.toString().toLowerCase(), map);
+        this.result.put(title.toLowerCase(), map);
+    }
+
+
+    public void addResultWithStatus(RestStatus status, String ... keysAndValues) {
+        addResultWithTitle(status.toString(), keysAndValues);
     }
 
 

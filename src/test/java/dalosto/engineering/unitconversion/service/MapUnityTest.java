@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.exception.ParameterException;
-import dalosto.engineering.unitconversion.units.Area;
-import dalosto.engineering.unitconversion.units.Force;
-import dalosto.engineering.unitconversion.units.Inertia;
-import dalosto.engineering.unitconversion.units.Length;
-import dalosto.engineering.unitconversion.units.Linear;
-import dalosto.engineering.unitconversion.units.Temperature;
-import dalosto.engineering.unitconversion.units.Time;
-import dalosto.engineering.unitconversion.units.Torque;
-import dalosto.engineering.unitconversion.units.Volume;
+import dalosto.engineering.unitconversion.unit.Area;
+import dalosto.engineering.unitconversion.unit.Force;
+import dalosto.engineering.unitconversion.unit.Inertia;
+import dalosto.engineering.unitconversion.unit.Length;
+import dalosto.engineering.unitconversion.unit.Linear;
+import dalosto.engineering.unitconversion.unit.Temperature;
+import dalosto.engineering.unitconversion.unit.Time;
+import dalosto.engineering.unitconversion.unit.Torque;
+import dalosto.engineering.unitconversion.unit.Volume;
 
 
 @SpringBootTest

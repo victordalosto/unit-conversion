@@ -13,6 +13,9 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.exception.UnitException;
 import dalosto.engineering.unitconversion.formula.UnitFormula;
+import dalosto.engineering.unitconversion.unit.Force;
+import dalosto.engineering.unitconversion.unit.Length;
+import dalosto.engineering.unitconversion.unit.Torque;
 
 
 @SpringBootTest

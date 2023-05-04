@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.controller;
+package dalosto.engineering.unitconversion.controller.unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.annotation.Order;
@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import dalosto.engineering.unitconversion.controller.TemplateController;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
 import dalosto.engineering.unitconversion.formula.UnitFormula;
 import dalosto.engineering.unitconversion.rest.RestEndpointInfo;
@@ -15,12 +16,12 @@ import jakarta.servlet.http.HttpServletRequest;
 
 
 @RestController
-@RequestMapping("/api/torque")
-@Order(8)
-public final class TorqueController extends TemplateController {
+@RequestMapping("/api/time")
+@Order(7)
+public final class TimeController extends TemplateController {
 
     @Autowired
-    @Qualifier("torque")
+    @Qualifier("time")
     private UnitFormula unitFormula;
 
 
@@ -48,7 +49,7 @@ public final class TorqueController extends TemplateController {
 
     @Override
     public RestEndpointInfo getEndpointInfo() {
-        return new RestEndpointInfo("torque", unitFormula);
+        return new RestEndpointInfo("time", unitFormula);
     }
 
     

@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.units;
+package dalosto.engineering.unitconversion.unit;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -9,16 +9,16 @@ import dalosto.engineering.unitconversion.exception.UnitException;
 import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
 
-@Component("torque")
-public final class Torque extends TemplateUnitFormulas {
+@Component("density")
+public final class Density extends TemplateUnitFormulas {
 
     public static class Types extends UnitTypeDuo {
 
         private static List<UnitType> types = new ArrayList<>();
         static {
             for (UnitType force : new Force().getAllUnitTypesOfThisCategory()) {
-                for (UnitType length : new Length().getAllUnitTypesOfThisCategory()) {
-                    Types.types.add(factory(force, length));
+                for (UnitType volume : new Volume().getAllUnitTypesOfThisCategory()) {
+                    Types.types.add(factory(force, volume));
                 }
             }
         }
@@ -26,7 +26,7 @@ public final class Torque extends TemplateUnitFormulas {
 
         @Override
         public UnitType getSITypeOfThisCategory() {
-            return factory(new Force().getSITypeOfThisCategory(), new Length().getSITypeOfThisCategory());
+            return factory(new Force().getSITypeOfThisCategory(), new Volume().getSITypeOfThisCategory());
         }
 
 
@@ -38,22 +38,22 @@ public final class Torque extends TemplateUnitFormulas {
 
         @Override
         public String toString() {
-            return super.getPrincipal() + "." + super.getSecondary();
+            return super.getPrincipal() + "/" + super.getSecondary();
         }
 
     }
 
 
-    public static UnitType factory(UnitType force, UnitType length) {
-        if (force == null || length == null) {
-            throw new UnitException("Force and Length must not be null.");
+    public static UnitType factory(UnitType force, UnitType volume) {
+        if (force == null || volume == null) {
+            throw new UnitException("Force and Volume must not be null.");
         }
-        if (!(force instanceof Force.Types) || !(length instanceof Length.Types)) {
+        if (!(force instanceof Force.Types) || !(volume instanceof Volume.Types)) {
             throw new UnitException("Paremeters for constructor doesn't match");
         }
         Types t = new Types();
         t.setPrincipal(force);
-        t.setSecondary(length);
+        t.setSecondary(volume);
         return t;
     }
 
@@ -78,8 +78,8 @@ public final class Torque extends TemplateUnitFormulas {
         UnitType otherPri = ((Types) anotherType).getPrincipal();
         UnitType otherSec = ((Types) anotherType).getSecondary();
         Unit force = new Force().buildUnitIntoAnotherType(new Unit(value, principal), otherPri);
-        Unit length = new Length().buildUnitIntoAnotherType(new Unit(force.getValue(), secondary), otherSec);
-        return new Unit(length.getValue(), anotherType);
+        Unit volume = new Volume().buildUnitIntoAnotherType(new Unit(force.getValue(), otherSec), secondary);
+        return new Unit(volume.getValue(), anotherType);
     }
 
 }

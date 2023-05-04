@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import dalosto.engineering.unitconversion.MetricTest;
 import dalosto.engineering.unitconversion.domain.UnitDAO;
-import dalosto.engineering.unitconversion.units.Length;
+import dalosto.engineering.unitconversion.unit.Length;
 
 
 @SpringBootTest

@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.units;
+package dalosto.engineering.unitconversion.unit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
