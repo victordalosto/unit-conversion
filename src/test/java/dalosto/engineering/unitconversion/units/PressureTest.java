@@ -31,7 +31,7 @@ public class PressureTest {
 
 
     @Test
-    public void SIUnitTypeOfForceShouldBeNVersusMeter() {
+    public void SIUnitTypeOfForceShouldBeNVersusMeterSquare() {
         assertEquals(Pressure.factory(Force.Types.N, Area.Types.M2), unitFormula.getSITypeOfThisCategory());
         assertEquals(Pressure.factory(Force.Types.N, Area.Types.M2), new Unit(0.0, Pressure.factory(Force.Types.KN, Area.Types.MM2)).getType().getSITypeOfThisCategory());
         assertEquals(Pressure.factory(Force.Types.N, Area.Types.M2), new Unit(0.0, Pressure.factory(Force.Types.KGF, Area.Types.CM2)).getType().getSITypeOfThisCategory());
@@ -154,7 +154,7 @@ public class PressureTest {
 
     @Test
     public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
-        Unit unit = new Unit(1, Force.Types.N);
+        Unit unit = new Unit(1, Pressure.factory(Force.Types.KN, Area.Types.CM2));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(null, Pressure.factory(Force.Types.KN, Area.Types.CM2)));

@@ -37,7 +37,6 @@ public class TorqueTest {
         assertEquals(unitType, unit.getType());
         
         Unit outputSI = unitFormula.buildUnitToSI(unit);
-        System.out.println(outputSI);
         assertEquals(500.0, outputSI.getValue(), MetricTest.tolerance);
         assertEquals(Torque.factory(Force.Types.N, Length.Types.M), outputSI.getType());
         
@@ -185,25 +184,25 @@ public class TorqueTest {
 
     @Test
     public void allForcesArePresentInTorque() {
-        List<UnitType> forceTypes = new Force().getAllUnitTypesOfThisCategory();
+        List<UnitType> forces = new Force().getAllUnitTypesOfThisCategory();
         List<UnitType> torques = unitFormula.getAllUnitTypesOfThisCategory()
                                             .stream()
                                             .map(u -> ((Torque.Types) u).getPrincipal())
                                             .distinct()
                                             .collect(Collectors.toList());
-        assertIterableEquals(forceTypes, torques);
+        assertIterableEquals(forces, torques);
     }
 
 
     @Test
     public void allLengthsArePresentInTorque() {
-        List<UnitType> forceTypes = new Length().getAllUnitTypesOfThisCategory();
+        List<UnitType> lengths = new Length().getAllUnitTypesOfThisCategory();
         List<UnitType> torques = unitFormula.getAllUnitTypesOfThisCategory()
                                             .stream()
                                             .map(u -> ((Torque.Types) u).getSecondary())
                                             .distinct()
                                             .collect(Collectors.toList());
-        assertIterableEquals(forceTypes, torques);
+        assertIterableEquals(lengths, torques);
     }
 
 

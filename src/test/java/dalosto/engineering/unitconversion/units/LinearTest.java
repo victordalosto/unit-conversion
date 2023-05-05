@@ -113,31 +113,31 @@ public class LinearTest {
 
     @Test
     public void allForcesArePresentInLinear() {
-        List<UnitType> forceTypes = new Force().getAllUnitTypesOfThisCategory();
+        List<UnitType> forces = new Force().getAllUnitTypesOfThisCategory();
         List<UnitType> linear = unitFormula.getAllUnitTypesOfThisCategory()
                                             .stream()
                                             .map(u -> ((Linear.Types) u).getPrincipal())
                                             .distinct()
                                             .collect(Collectors.toList());
-        assertIterableEquals(forceTypes, linear);
+        assertIterableEquals(forces, linear);
     }
 
 
     @Test
     public void allLengthsArePresentInLinear() {
-        List<UnitType> forceTypes = new Length().getAllUnitTypesOfThisCategory();
+        List<UnitType> lengths = new Length().getAllUnitTypesOfThisCategory();
         List<UnitType> linear = unitFormula.getAllUnitTypesOfThisCategory()
                                             .stream()
                                             .map(u -> ((Linear.Types) u).getSecondary())
                                             .distinct()
                                             .collect(Collectors.toList());
-        assertIterableEquals(forceTypes, linear);
+        assertIterableEquals(lengths, linear);
     }
 
 
     @Test
     public void unitExceptionShouldBeThrownWhenNullValuesArePassed() {
-        Unit unit = new Unit(1, Force.Types.N);
+        Unit unit = new Unit(1, Linear.factory(Force.Types.KN, Length.Types.CM));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitToSI(null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(unit, null));
         assertThrows(UnitException.class, () -> unitFormula.buildUnitIntoAnotherType(null, Linear.factory(Force.Types.KN, Length.Types.CM)));

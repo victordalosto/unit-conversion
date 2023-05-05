@@ -7,6 +7,7 @@ import dalosto.engineering.unitconversion.domain.Unit;
 import dalosto.engineering.unitconversion.domain.UnitType;
 import dalosto.engineering.unitconversion.formula.TemplateUnitFormulas;
 
+
 @Component("force")
 public final class Force extends TemplateUnitFormulas {
 

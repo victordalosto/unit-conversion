@@ -44,7 +44,6 @@ public class UnitDAOTest {
     @Test
     public void unitsDAONeedsToBeComparable() {
         for (UnitFormula formula : formulas) {
-            System.out.println("\nFormula: " + formula);
             for (UnitType type : formula.getAllUnitTypesOfThisCategory()) {
                 assert(new UnitDAO("-12345.6", type.toString(), type.toString()).equals(
                        new UnitDAO("-12345.6", type.toString(), type.toString())));

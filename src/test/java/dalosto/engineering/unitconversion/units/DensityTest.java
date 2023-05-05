@@ -31,7 +31,7 @@ public class DensityTest {
 
 
     @Test
-    public void SIUnitTypeOfForceShouldBeNVersusMeter() {
+    public void SIUnitTypeOfForceShouldBeNVersusMeterCube() {
         assertEquals(Density.factory(Force.Types.N, Volume.Types.M3), unitFormula.getSITypeOfThisCategory());
         assertEquals(Density.factory(Force.Types.N, Volume.Types.M3), new Unit(0.0, Density.factory(Force.Types.KN, Volume.Types.MM3)).getType().getSITypeOfThisCategory());
         assertEquals(Density.factory(Force.Types.N, Volume.Types.M3), new Unit(0.0, Density.factory(Force.Types.KGF, Volume.Types.CM3)).getType().getSITypeOfThisCategory());
