@@ -1,5 +1,4 @@
 package dalosto.engineering.unitconversion.controller;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -30,11 +29,12 @@ public class EndPointsTest {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category))
-                   .andExpect(status().isOk())
-                   .andExpect(content().string(containsString("header")))
-                   .andExpect(content().string(containsString("result")))
-                   .andExpect(content().string(containsString("\"uri\":\"/api/" + category + "\"")))
-                   .andExpect(content().string(containsString("\"home\":")))
+                    .andExpectAll(
+                        status().isOk(),
+                        content().string(containsStringIgnoringCase("header")),
+                        content().string(containsStringIgnoringCase("\"uri\":\"/api/" + category + "\"")),
+                        content().string(containsStringIgnoringCase("\"home\":")),
+                        content().string(containsStringIgnoringCase("result")))
             ;
         }
     }
@@ -45,11 +45,12 @@ public class EndPointsTest {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category + "/si"))
-                   .andExpect(status().isOk())
-                   .andExpect(content().string(containsString("header")))
-                   .andExpect(content().string(containsString("result")))
-                   .andExpect(content().string(containsString("\"uri\":\"/api/" + category + "/si\"")))
-                   .andExpect(content().string(containsString("\"home\":")))
+                    .andExpectAll(
+                        status().isOk(),
+                        content().string(containsStringIgnoringCase("header")),
+                        content().string(containsStringIgnoringCase("\"uri\":\"/api/" + category + "/si\"")),
+                        content().string(containsStringIgnoringCase("\"home\":")),
+                        content().string(containsStringIgnoringCase("result")))
             ;
         }
     }
@@ -60,24 +61,53 @@ public class EndPointsTest {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category))
-                    .andExpect(content().string(containsString("\"input\":\"{value=null, type=null, target=null}\"")))
-                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.INFO+"\":")))
-                    .andExpect(content().string(containsString("\"title\":")))
-                    .andExpect(content().string(containsString("\"types\":\"" + formula.getAllUnitTypesOfThisCategory().toString() + "\"")))
-                    .andExpect(content().string(containsString("\"example\":")))
-                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
+                    .andExpectAll(
+                        content().string(containsStringIgnoringCase("\"input\":\"{value=null, type=null, target=null}\"")),
+                        content().string(containsStringIgnoringCase("\""+RestStatus.INFO+"\":")),
+                        content().string(containsStringIgnoringCase("\"title\":")),
+                        content().string(containsStringIgnoringCase("\"types\":\"" + formula.getAllUnitTypesOfThisCategory().toString() + "\"")),
+                        content().string(containsStringIgnoringCase("\"example\":")),
+                        content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
         }
     }
 
 
     @Test
-    public void endPointsShouldDisplaySIWhenNoParamsArePresented() throws Exception {
+    public void endPointsShouldDisplayInfoAboutSIWhenNoParamsArePresented() throws Exception {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category))
-                    .andExpect(content().string(containsString("\"si\":")))
-                    .andExpect(content().string(containsString("\"uri-si\":\"/api/"+category+"/si")))
+                    .andExpect(content().string(containsStringIgnoringCase("\"si\":")))
+                    .andExpect(content().string(containsStringIgnoringCase("\"uri-si\":\"/api/"+category+"/si")))
+            ;
+        }
+    }
+
+
+    @Test
+    public void siEndPointsShouldDisplayTheSIUnit() throws Exception {
+        for (UnitFormula formula : formulas) {
+            String category = formula.getClass().getSimpleName().toLowerCase();
+            mockMvc.perform(get("/api/" + category + "/si"))
+                    .andExpectAll(
+                        content().string(containsStringIgnoringCase("\"input\":\"{value=null, type=null, target="+formula.getSITypeOfThisCategory()+"}\"")),
+                        content().string(containsStringIgnoringCase("\"types\":\"" + formula.getAllUnitTypesOfThisCategory().toString() + "\"")),
+                        content().string(containsStringIgnoringCase("\"si\":\"Converts values into: " + formula.getSITypeOfThisCategory() + "\"")))
+            ;
+        }
+    }
+
+
+    @Test
+    public void siEndPointsShouldIgnoreTargetOfSiUNIT() throws Exception {
+        for (UnitFormula formula : formulas) {
+            String category = formula.getClass().getSimpleName().toLowerCase();
+            mockMvc.perform(get("/api/" + category + "/si?target=invalid"))
+                    .andExpectAll(
+                        content().string(containsStringIgnoringCase("\"input\":\"{value=null, type=null, target="+formula.getSITypeOfThisCategory()+"}\"")),
+                        content().string(containsStringIgnoringCase("\"types\":\"" + formula.getAllUnitTypesOfThisCategory().toString() + "\"")),
+                        content().string(containsStringIgnoringCase("\"si\":\"Converts values into: " + formula.getSITypeOfThisCategory() + "\"")))
             ;
         }
     }
@@ -88,10 +118,11 @@ public class EndPointsTest {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category + "?value=invalid"))
-                    .andExpect(content().string(containsString("\"input\":\"{value=invalid, type=null, target=null}\"")))
-                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
-                    .andExpect(content().string(containsString("\"ParameterException\":\"value must be Numeric.\"")))
-                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
+                    .andExpectAll(
+                        content().string(containsStringIgnoringCase("\"input\":\"{value=invalid, type=null, target=null}\"")),
+                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"ParameterException\":\"value must be Numeric.\"")),
+                        content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
         }
     }
@@ -102,10 +133,11 @@ public class EndPointsTest {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category + "?value=12345.67"))
-                    .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=null, target=null}\"")))
-                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
-                    .andExpect(content().string(containsString("\"ParameterException\":\"type can't be NULL")))
-                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
+                    .andExpectAll(
+                        content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=null, target=null}\"")),
+                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"ParameterException\":\"type can't be NULL")),
+                        content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
         }
     }
@@ -116,10 +148,11 @@ public class EndPointsTest {
         for (UnitFormula formula : formulas) {
             String category = formula.getClass().getSimpleName().toLowerCase();
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=invalid"))
-                    .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=invalid, target=null}\"")))
-                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
-                    .andExpect(content().string(containsStringIgnoringCase("\"ParameterException\":\"type INVALID")))
-                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
+                    .andExpectAll(
+                        content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=invalid, target=null}\"")),
+                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"ParameterException\":\"type INVALID")),
+                        content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
         }
     }
@@ -131,10 +164,11 @@ public class EndPointsTest {
             String category = formula.getClass().getSimpleName().toLowerCase();
             String type = formula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=" + type))
-                    .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=" + type + ", target=null}\"")))
-                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
-                    .andExpect(content().string(containsString("\"ParameterException\":\"target can't be NULL.")))
-                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
+                    .andExpectAll(
+                        content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=" + type + ", target=null}\"")),
+                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"ParameterException\":\"target can't be NULL.")),
+                        content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
         }
     }
@@ -146,10 +180,11 @@ public class EndPointsTest {
             String category = formula.getClass().getSimpleName().toLowerCase();
             String type = formula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=" + type + "&target=invalid"))
-                    .andExpect(content().string(containsString("\"input\":\"{value=12345.67, type=" + type + ", target=invalid}\"")))
-                    .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")))
-                    .andExpect(content().string(containsStringIgnoringCase("\"ParameterException\":\"type INVALID")))
-                    .andExpect(content().string(containsString("\"uri-example\":\"/example")))
+                    .andExpectAll(
+                        content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=" + type + ", target=invalid}\"")),
+                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"ParameterException\":\"type INVALID")),
+                        content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
         }
     }

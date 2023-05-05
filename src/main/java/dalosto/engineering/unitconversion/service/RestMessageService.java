@@ -9,7 +9,7 @@ import dalosto.engineering.unitconversion.rest.RestStatus;
 
 
 @Service
-public class RestMessageService {
+public final class RestMessageService {
 
     @Autowired
     private ConversorService conversorService;
@@ -24,6 +24,9 @@ public class RestMessageService {
 
 
     private void appendResult(RestMessage message, RestAttributes restAttributes) {
+        if (restAttributes.getRestURL().isCurrentURIaSIEndPoint()) {
+            conversorService.convertToSItheUnitDAO(restAttributes.getUnitDAO(), restAttributes.getEndpointInfo().getUnitFormula());
+        }
         if (restAttributes.getUnitDAO().doesntHaveData()) {
             appendDefaultHATEOASmessage(message, restAttributes);
         } else {
@@ -53,9 +56,6 @@ public class RestMessageService {
 
     private void appendConversionMessage(RestMessage message, RestAttributes restAttributes) {
         try {
-            if (restAttributes.getRestURL().isCurrentURIaSIEndPoint()) {
-                restAttributes.getUnitDAO().setTarget(restAttributes.getEndpointInfo().getSIUnitofType());
-            }
             Unit unitConverted = conversorService.formatUnitDAOAndConvertToUnit(restAttributes.getUnitDAO(), restAttributes.getEndpointInfo().getUnitFormula());
             appendResultOfConversion(message, unitConverted);
         } catch (ParameterException exception) {

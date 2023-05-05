@@ -6,7 +6,7 @@ import dalosto.engineering.unitconversion.formula.UnitFormula;
 
 
 @Service
-public class MapUnitTypeService {
+public final class MapUnitTypeService {
 
 
     public UnitType getUnitTypeFromString(String unitType, UnitFormula unitFormula) throws ParameterException {

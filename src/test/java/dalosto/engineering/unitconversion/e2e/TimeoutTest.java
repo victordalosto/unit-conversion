@@ -51,17 +51,22 @@ public class TimeoutTest {
      */
     private void warmpUp() throws Exception {
         for (int i=0; i<30000; i++) { // it takes around 9-10k runs to warm up the code.
-            mockMvc.perform(get("/api/length?value=12345.67&type=m&target=cm")).andExpect(status().isOk());;
-            mockMvc.perform(get("/api/area?value=12345.67&type=m2&target=cm2 ")).andExpect(status().isOk());;
+            mockMvc.perform(get("/api/length?value=12345.67&type=m&target=cm")).andExpect(status().isOk());
+            mockMvc.perform(get("/api/area?value=12345.67&type=m2&target=cm2 ")).andExpect(status().isOk());
         }
     }
 
 
     private void apiRequestForAllTypesInFormula(UnitFormula formula) {
         UnitType inputType = formula.getSITypeOfThisCategory();
+        // int i = 0;
+        // long startTime = System.currentTimeMillis();
         for (UnitType outputType : formula.getAllUnitTypesOfThisCategory()) {
             createAndRunTaskForTypes(formula, inputType, outputType);
+            // ++i;
         }
+        // long endTime = System.currentTimeMillis();
+        // System.out.println("Time taken for " + formula.getClass().getSimpleName() + " measure: " + (((double) (i * numberOfRuns)) / (endTime - startTime)) +  " - " + i +  " runs in " + (endTime - startTime) + "ms");
     }
 
 

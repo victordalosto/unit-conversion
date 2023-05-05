@@ -11,7 +11,7 @@ import dalosto.engineering.unitconversion.formula.UnitFormula;
 
 
 @Service
-public class ConversorService {
+public final class ConversorService {
 
     @Autowired
     private MapUnitTypeService mapUnitTypeService;
@@ -24,6 +24,11 @@ public class ConversorService {
         Unit unit = createUnitFromUnitDAO(unitDAO, unitFormula);
         UnitType targetType = getTargetUnitType(unitDAO, unitFormula);
         return createNewUnit(unitFormula, unit, targetType);
+    }
+
+
+    public void convertToSItheUnitDAO(UnitDAO unitDAO, UnitFormula unitFormula) {
+        unitDAO.setTarget(unitFormula.getSITypeOfThisCategory().toString());
     }
 
 

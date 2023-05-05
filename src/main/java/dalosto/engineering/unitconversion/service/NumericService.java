@@ -13,7 +13,7 @@ public final class NumericService {
         setDotAsDefaultDecimalSeparator();
     }
 
-    private Pattern pattern = Pattern.compile("(?i)(.+)E(.+)");
+    private final Pattern pattern = Pattern.compile("(?i)(.+)E(.+)");
 
 
     public Double convertToNumeric(String rawText) throws ParameterException {

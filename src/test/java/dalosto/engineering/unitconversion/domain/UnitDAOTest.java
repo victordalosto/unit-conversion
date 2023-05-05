@@ -180,6 +180,7 @@ public class UnitDAOTest {
         assertFalse(unit1.equals(unit2));
     }
 
+
     @Test
     public void testEquals_differentValueAndTarget() {
         UnitDAO unit1 = new UnitDAO("5.0", "M", "KM");
@@ -187,12 +188,14 @@ public class UnitDAOTest {
         assertFalse(unit1.equals(unit2));
     }
 
+
     @Test
     public void testEquals_differentTypeAndTarget() {
         UnitDAO unit1 = new UnitDAO("5.0", "M", "KM");
         UnitDAO unit2 = new UnitDAO("5.0", "KM", "CM");
         assertFalse(unit1.equals(unit2));
     }
+
 
     @Test
     public void testEquals_allDifferent() {
