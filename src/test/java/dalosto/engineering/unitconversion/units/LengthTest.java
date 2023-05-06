@@ -58,7 +58,7 @@ public class LengthTest {
 
     @Test
     public void allLengthValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         assertEquivalentLengthInSI(1.0, new Unit(1, Length.Types.M));
         assertEquivalentLengthInSI(0.1, new Unit(1, Length.Types.DM));
         assertEquivalentLengthInSI(0.01, new Unit(1, Length.Types.CM));
@@ -69,13 +69,12 @@ public class LengthTest {
         assertEquivalentLengthInSI(0.0254, new Unit(1, Length.Types.IN));
         assertEquivalentLengthInSI(0.3048, new Unit(1, Length.Types.FT));
         assertEquivalentLengthInSI(0.9144, new Unit(1, Length.Types.YD));
-        assertEquivalentLengthInSI(1609.344, new Unit(1, Length.Types.MI));
     }
 
 
     @Test
     public void allLengthValuesShouldBeTestedAndAreCorrectInSIForPostiveValue() {
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         double expected = 12345.67;
         assertEquivalentLengthInSI(expected, new Unit(12345.67000000, Length.Types.M));
         assertEquivalentLengthInSI(expected, new Unit(123456.7000000, Length.Types.DM));
@@ -87,13 +86,12 @@ public class LengthTest {
         assertEquivalentLengthInSI(expected, new Unit(486050, Length.Types.IN));
         assertEquivalentLengthInSI(expected, new Unit(40504.166666666666667, Length.Types.FT));
         assertEquivalentLengthInSI(expected, new Unit(13501.388888888888889, Length.Types.YD));
-        assertEquivalentLengthInSI(expected, new Unit(7.6712436868686868687, Length.Types.MI));
     }
 
 
     @Test
     public void allLengthValuesShouldBeTestedAndAreCorrectInSIForNegativeValue() {
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         double expected = -12345.67;
         assertEquivalentLengthInSI(expected, new Unit(-12345.67000000, Length.Types.M));
         assertEquivalentLengthInSI(expected, new Unit(-123456.7000000, Length.Types.DM));
@@ -105,14 +103,13 @@ public class LengthTest {
         assertEquivalentLengthInSI(expected, new Unit(-486050, Length.Types.IN));
         assertEquivalentLengthInSI(expected, new Unit(-40504.166666666666667, Length.Types.FT));
         assertEquivalentLengthInSI(expected, new Unit(-13501.388888888888889, Length.Types.YD));
-        assertEquivalentLengthInSI(expected, new Unit(-7.6712436868686868687, Length.Types.MI));
 
     }
 
 
     @Test
     public void allLengthValuesShouldBeTestedAndAreCorrectInSIForZero() {
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         double expected = 0.0;
         assertEquivalentLengthInSI(expected, new Unit(0.0, Length.Types.M));
         assertEquivalentLengthInSI(expected, new Unit(0.0, Length.Types.DM));
@@ -124,13 +121,12 @@ public class LengthTest {
         assertEquivalentLengthInSI(expected, new Unit(0.0, Length.Types.IN));
         assertEquivalentLengthInSI(expected, new Unit(0.0, Length.Types.FT));
         assertEquivalentLengthInSI(expected, new Unit(0.0, Length.Types.YD));
-        assertEquivalentLengthInSI(expected, new Unit(0.0, Length.Types.MI));
     }
 
 
     @Test
     public void lengthValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         assertEquivalentLength(0.0, Length.Types.CM, 0.0, Length.Types.M);
         assertEquivalentLength(0.0, Length.Types.MM, 0.0, Length.Types.M);
         assertEquivalentLength(0.0, Length.Types.IN, 0.0, Length.Types.M);
@@ -141,8 +137,6 @@ public class LengthTest {
         assertEquivalentLength(0.0, Length.Types.DM, 0.0, Length.Types.CM);
         assertEquivalentLength(0.0, Length.Types.DM, 0.0, Length.Types.M);
         assertEquivalentLength(0.0, Length.Types.CM, 0.0, Length.Types.MM);
-        assertEquivalentLength(0.0, Length.Types.CM, 0.0, Length.Types.MI);
-        assertEquivalentLength(0.0, Length.Types.MI, 0.0, Length.Types.MM);
         assertEquivalentLength(0.0, Length.Types.CM, 0.0, Length.Types.DM);
         assertEquivalentLength(0.0, Length.Types.MM, 0.0, Length.Types.HM);
         assertEquivalentLength(0.0, Length.Types.MM, 0.0, Length.Types.CM);
@@ -163,7 +157,7 @@ public class LengthTest {
 
     @Test
     public void lengthValuesShouldBeCorrectForConversionBetweenTypesUsingRandomValues() {
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         double randomValue = Math.random() * 100;
         assertEquivalentLength(randomValue, Length.Types.CM, randomValue / 100, Length.Types.M);
         assertEquivalentLength(randomValue, Length.Types.MM, randomValue / 1000, Length.Types.M);
@@ -190,8 +184,6 @@ public class LengthTest {
         assertEquivalentLength(randomValue, Length.Types.FT, randomValue * 12, Length.Types.IN);
         assertEquivalentLength(randomValue, Length.Types.YD, randomValue * 0.9144, Length.Types.M);
         assertEquivalentLength(randomValue, Length.Types.YD, randomValue * 3, Length.Types.FT);
-        assertEquivalentLength(randomValue, Length.Types.MI, randomValue * 5280, Length.Types.FT);
-        assertEquivalentLength(randomValue, Length.Types.MI, randomValue * 1760, Length.Types.YD);
     }
 
 

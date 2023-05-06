@@ -81,7 +81,7 @@ public class LinearTest {
     @Test
     public void forceValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(14, Force.Types.values().length);
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Linear.factory(Force.Types.KN, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Linear.factory(Force.Types.MN, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Linear.factory(Force.Types.GN, Length.Types.M))).getValue());
@@ -106,7 +106,6 @@ public class LinearTest {
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Linear.factory(Force.Types.GF,     Length.Types.IN))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Linear.factory(Force.Types.KGF,    Length.Types.FT))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Linear.factory(Force.Types.T,     Length.Types.YD))).getValue());
-        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Linear.factory(Force.Types.T,     Length.Types.MI))).getValue());
     }
     
 

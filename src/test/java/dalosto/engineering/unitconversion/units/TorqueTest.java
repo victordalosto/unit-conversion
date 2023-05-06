@@ -77,7 +77,7 @@ public class TorqueTest {
 
     @Test
     public void allLengthValuesShouldBeTestedAndAreCorrectInSIForUnitaryValue() {
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         assertEquals(1.0,              unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.M))).getValue() , MetricTest.tolerance);
         assertEquals(0.1,              unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.DM))).getValue(), MetricTest.tolerance);
         assertEquals(0.01,             unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.CM))).getValue(), MetricTest.tolerance);
@@ -88,7 +88,6 @@ public class TorqueTest {
         assertEquals(0.0254,           unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.IN))).getValue(), MetricTest.tolerance);
         assertEquals(0.3048,           unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.FT))).getValue(), MetricTest.tolerance);
         assertEquals(0.9144,           unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.YD))).getValue(), MetricTest.tolerance);
-        assertEquals(1609.344,           unitFormula.buildUnitToSI(new Unit(1, Torque.factory(Force.Types.N, Length.Types.MI))).getValue(), MetricTest.tolerance);
     }
 
 
@@ -116,7 +115,7 @@ public class TorqueTest {
     @Test
     public void forceValuesShouldBeCorrectForConversionBetweenTypesUsingZero() {
         assertEquals(14, Force.Types.values().length);
-        assertEquals(11, Length.Types.values().length);
+        assertEquals(10, Length.Types.values().length);
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KN, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.MN, Length.Types.M))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.GN, Length.Types.M))).getValue());
@@ -141,7 +140,6 @@ public class TorqueTest {
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.GF,     Length.Types.IN))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.KGF,    Length.Types.FT))).getValue());
         assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.T,     Length.Types.YD))).getValue());
-        assertEquals(0.0, unitFormula.buildUnitToSI(new Unit(0.0, Torque.factory(Force.Types.T,     Length.Types.MI))).getValue());
     }
     
     

@@ -1,4 +1,4 @@
-package dalosto.engineering.unitconversion.e2e;
+package dalosto.engineering.unitconversion.controller;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

@@ -17,148 +17,104 @@ public class UnitsEndPointsTest {
     @Autowired
     private MockMvc mockMvc;
 
+    public void testEndPoint(String endpoint, String inputType, String outputType, String inputValue, String outputValue) throws Exception {
+        mockMvc.perform(get("/api/" + endpoint + "?value=" + inputValue + "&type=" + inputType + "&target=" + outputType))
+                .andExpectAll(
+                    content().string(containsStringIgnoringCase("\"input\":\"{value=" + inputValue + ", type=" + inputType + ", target=" + outputType + "}\"")),
+                    content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")),
+                    content().string(containsStringIgnoringCase("\"unit\":\"{value=" + outputValue)))
+        ;
+    }
+
 
     @Test
     public void lengthEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "M";
-        String outputType = "CM";
-        mockMvc.perform(get("/api/" + "length" + "?value=12345.67&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=1234567.0, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("length", "M", "CM", "12345.67", "1234567.0");
+        testEndPoint("length", "M", "MM", "12345.67", "1.234567E7");
+        testEndPoint("length", "M", "DM", "12345.67", "123456.7");
+        testEndPoint("length", "M", "HM", "12345.67", "123.4567");
+        testEndPoint("length", "M", "KM", "12345.67", "12.34567");
+        testEndPoint("length", "M", "UM", "12345.67", "1.234567E10");
+        testEndPoint("length", "M", "IN", "12345.67", "486050.0");
+        testEndPoint("length", "M", "FT", "12345.67", "40504.16666666666");
+        testEndPoint("length", "M", "YD", "12345.67", "13501.388888888889");
+        testEndPoint("length", "CM", "M", "123.4567", "1.234567");
+        testEndPoint("length", "CM", "DM", "12345.67", "1234.567");
+        testEndPoint("length", "CM", "MM", "123.4567", "1234.567");
+        testEndPoint("length", "CM", "HM", "12345.67", "1.234567");
+        testEndPoint("length", "CM", "KM", "1234567.0", "12.34567");
+        testEndPoint("length", "CM", "UM", "0.1234567", "1234.567");
+        testEndPoint("length", "CM", "IN", "1234.567", "486.05");
+        testEndPoint("length", "CM", "FT", "1234.567", "40.504166666667");
+        testEndPoint("length", "CM", "YD", "1234.567", "13.501388888889");
     }
 
 
     @Test
     public void areaEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "M2";
-        String outputType = "CM2";
-        mockMvc.perform(get("/api/" + "area" + "?value=1.234567&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.234567, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=12345.67, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("area", "M2", "MM2", "12345.67", "1.234567E10");
+        testEndPoint("area", "M2", "DM2", "12345.67", "1234567.0");
+        testEndPoint("area", "M2", "CM2", "12345.67", "1.234567E8");
     }
 
-    
+
     @Test
     public void volumeEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "M3";
-        String outputType = "L";
-        mockMvc.perform(get("/api/" + "volume" + "?value=1.234567&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.234567, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=1234.567, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("volume", "M3", "L", "1.234567", "1234.567");
     }
 
-    
+
     @Test
     public void inertiaEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "CM4";
-        String outputType = "MM4";
-        mockMvc.perform(get("/api/" + "inertia" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=10000.0, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("inertia", "CM4", "MM4", "1.0", "10000.0");
     }
 
-    
+
     @Test
     public void forceEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "KN";
-        String outputType = "N";
-        mockMvc.perform(get("/api/" + "force" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=1000.0, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("force", "KN", "N", "1.0", "1000.0");
     }
 
-    
+
     @Test
     public void temperatureEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "C";
-        String outputType = "K";
-        mockMvc.perform(get("/api/" + "temperature" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=274.15, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("temperature", "C", "K", "1.0", "274.15");
     }
 
-    
+
     @Test
     public void timeEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "DAY";
-        String outputType = "H";
-        mockMvc.perform(get("/api/" + "time" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=24.0, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("time", "DAY", "H", "1.0", "24.0");
     }
 
-    
+
     @Test
     public void torqueEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "KN.CM";
-        String outputType = "N.MM";
-        mockMvc.perform(get("/api/" + "torque" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=10000.0, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("torque", "KN.CM", "N.MM", "1.0", "10000.0");
     }
 
-    
+
     @Test
     public void linearEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "KGF/CM";
-        String outputType = "T/M";
-        mockMvc.perform(get("/api/" + "linear" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=0.1, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("linear", "KGF/CM", "T/M", "1.0", "0.1");
     }
 
-    
+
     @Test
     public void stressEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "MPA";
-        String outputType = "N/MM2";
-        mockMvc.perform(get("/api/" + "stress" + "?value=123.45&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=123.45, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=123.45, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("stress", "MPA", "N/MM2", "123.45", "123.45");
     }
 
-    
+
     @Test
     public void densityEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "KG/M3";
-        String outputType = "G/CM3";
-        mockMvc.perform(get("/api/" + "density" + "?value=1.0&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=1.0, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=0.001, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("density", "KG/M3", "G/CM3", "1.0", "0.001");
     }
 
-    
+
     @Test
     public void speedEndPointShouldBeAbleToConvertCorrectly() throws Exception {
-        String inputType = "km/h";
-        String outputType = "m/s";
-        mockMvc.perform(get("/api/" + "speed" + "?value=3.6&type=" + inputType + "&target=" + outputType))
-                .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=3.6, type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
-                .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=1.0, type=" + outputType + "}\"")))
-        ;
+        testEndPoint("speed", "km/h", "m/s", "3.6", "1.0");
     }
 
 

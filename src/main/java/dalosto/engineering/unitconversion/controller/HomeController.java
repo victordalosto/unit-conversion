@@ -31,7 +31,7 @@ public final class HomeController {
         message.addToHeader(      "title",  "Unit Conversion API");
         message.addToHeader(      "about",  "API used for conversion between measurement units most commonly used in the engineering");
         message.addToHeader("description",  "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit");
-        message.addToHeader(  "reference",  "https://github.com/victordalosto/UnitConversion");
+        message.addToHeader(  "reference",  "https://github.com/victordalosto/unit-conversion");
     }
 
 
