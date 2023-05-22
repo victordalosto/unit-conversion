@@ -1,15 +1,12 @@
 package dalosto.engineering.unitconversion;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
 
 
-@SpringBootTest
 public class UnitconversionApplicationTest {
 
     @Test
-    /** Useful test that checks for Exception thrown after Compilation. */
     public void mainClassShouldntThrowError() {
         assertDoesNotThrow(() -> UnitconversionApplication.main(new String[] {}));
     }
