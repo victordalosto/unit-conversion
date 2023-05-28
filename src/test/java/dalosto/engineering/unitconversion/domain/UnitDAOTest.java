@@ -93,6 +93,13 @@ public class UnitDAOTest {
 
 
     @Test
+    public void unitDAOtoStringIsWorking() {
+        UnitDAO dao = new UnitDAO("12345.67", "M", "CM");
+        assertEquals("{value=12345.67, type=M, target=CM}", dao.toString());
+    }
+
+
+    @Test
     public void testEquals_sameInstance() {
         UnitDAO unit1 = new UnitDAO("5.0", "M", "KM");
         assertTrue(unit1.equals(unit1));

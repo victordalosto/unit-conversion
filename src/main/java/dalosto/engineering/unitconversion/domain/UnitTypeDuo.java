@@ -7,6 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
+/**
+ * Representation of a Measurement Unit, containing two different Type.
+ * Example: Pressure = Force / Area   or  Speed = Distance / Time
+ */
 public abstract class UnitTypeDuo implements UnitType {
 
     protected UnitType principal;

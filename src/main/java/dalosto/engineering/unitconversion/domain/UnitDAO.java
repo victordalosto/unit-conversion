@@ -1,6 +1,4 @@
 package dalosto.engineering.unitconversion.domain;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,11 +23,7 @@ public class UnitDAO {
 
     @Override
     public String toString() {
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("value", this.value);
-        map.put("type", this.type);
-        map.put("target", this.target);
-        return map.toString();
+        return "{value=" + value + ", type=" + type + ", target=" + target + "}";
     }
 
 }
