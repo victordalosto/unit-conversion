@@ -36,19 +36,18 @@ public final class RestMessageService {
 
 
     private void appendDefaultHATEOASmessage(RestMessage message, RestAttributes restAttributes) {
+        message.addToHeader(RestStatus.INFO);
         if (restAttributes.getRestURL().isCurrentURIaSIEndPoint()) {
-            message.addResultWithStatus(RestStatus.INFO, 
-                    "title",  "This endpoint converts values to the International Standard ",
-                    "types",  restAttributes.getEndpointInfo().getAllUnitsOfType(),
-                       "si", "Converts values into: " + restAttributes.getEndpointInfo().getSIUnitofType());
+            message.addToResult("title", "This endpoint converts values to the International Standard ");
+            message.addToResult("types", restAttributes.getEndpointInfo().getAllUnitsOfType());
+            message.addToResult("si", "Converts values into: " + restAttributes.getEndpointInfo().getSIUnitofType());
         } else {
-            message.addResultWithStatus(RestStatus.INFO, 
-                    "title",  "This endpoint provides functionality to convert " + restAttributes.getEndpointInfo().getTitle().toUpperCase() + " measurement units.",
-                    "types",  restAttributes.getEndpointInfo().getAllUnitsOfType(),
-                  "example",  "Check the example endpoint for a usage example.",
-              "uri-example",  "/example",
-                       "si",  "Check the SI endpoint to convert the value to the International Standard",
-                   "uri-si",  restAttributes.getRestURL().getURIofSI());
+            message.addToResult("title", "This endpoint provides functionality to convert " + restAttributes.getEndpointInfo().getTitle().toUpperCase() + " measurement units.");
+            message.addToResult("types", restAttributes.getEndpointInfo().getAllUnitsOfType());
+            message.addToResult("example", "Check the example endpoint for a usage example.");
+            message.addToResult("uri-example", "/example");
+            message.addToResult("si", "Check the SI endpoint to convert the value to the International Standard");
+            message.addToResult("uri-si", restAttributes.getRestURL().getURIofSI());
         }
         
     }
@@ -65,23 +64,23 @@ public final class RestMessageService {
 
 
     private void appendResultOfConversion(RestMessage message, Unit unit) {
-        message.addResultWithStatus(RestStatus.SUCCESS, "unit", unit.toString());
+        message.addToHeader(RestStatus.SUCCESS);
+        message.addToResult("unit", unit.toString());
     }
 
 
     private void appendMessageOfError(RestMessage message, ParameterException exception) {
-        message.addResultWithStatus(RestStatus.ERROR, 
-                          "ParameterException", exception.getMessage(), 
-                          "example", "If you dont know how to use this API, check the example endpoint.",
-                          "uri-example", "/example"
-                          );
+        message.addToHeader(RestStatus.ERROR);
+        message.addToResult("ParameterException", exception.getMessage());
+        message.addToResult("example", "If you dont know how to use this API, check the example endpoint.");
+        message.addToResult("uri-example", "/example");
     }
 
 
     private void appendHeader(RestMessage message, RestAttributes restAttributes) {
+        message.addToHeader("input", restAttributes.getUnitDAO().toString());
         message.addToHeader("uri", restAttributes.getRestURL().getCurrentURI());
         message.addToHeader("home", restAttributes.getRestURL().getHomeURL());
-        message.addToHeader("input", restAttributes.getUnitDAO().toString());
     }
 
 } 

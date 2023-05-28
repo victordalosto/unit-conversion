@@ -63,7 +63,7 @@ public class EndPointsTest {
             mockMvc.perform(get("/api/" + category))
                     .andExpectAll(
                         content().string(containsStringIgnoringCase("\"input\":\"{value=null, type=null, target=null}\"")),
-                        content().string(containsStringIgnoringCase("\""+RestStatus.INFO+"\":")),
+                        content().string(containsStringIgnoringCase("\"status\":\""+RestStatus.INFO+"\"")),
                         content().string(containsStringIgnoringCase("\"title\":")),
                         content().string(containsStringIgnoringCase("\"types\":\"" + formula.getAllUnitTypesOfThisCategory().toString() + "\"")),
                         content().string(containsStringIgnoringCase("\"example\":")),
@@ -120,7 +120,7 @@ public class EndPointsTest {
             mockMvc.perform(get("/api/" + category + "?value=invalid"))
                     .andExpectAll(
                         content().string(containsStringIgnoringCase("\"input\":\"{value=invalid, type=null, target=null}\"")),
-                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"status\":\""+RestStatus.ERROR+"\"")),
                         content().string(containsStringIgnoringCase("\"ParameterException\":\"value must be Numeric.\"")),
                         content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
@@ -135,7 +135,7 @@ public class EndPointsTest {
             mockMvc.perform(get("/api/" + category + "?value=12345.67"))
                     .andExpectAll(
                         content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=null, target=null}\"")),
-                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"status\":\""+RestStatus.ERROR+"\"")),
                         content().string(containsStringIgnoringCase("\"ParameterException\":\"type can't be NULL")),
                         content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
@@ -150,7 +150,7 @@ public class EndPointsTest {
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=invalid"))
                     .andExpectAll(
                         content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=invalid, target=null}\"")),
-                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"status\":\""+RestStatus.ERROR+"\"")),
                         content().string(containsStringIgnoringCase("\"ParameterException\":\"type INVALID")),
                         content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
@@ -166,7 +166,7 @@ public class EndPointsTest {
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=" + type))
                     .andExpectAll(
                         content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=" + type + ", target=null}\"")),
-                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"status\":\""+RestStatus.ERROR+"\"")),
                         content().string(containsStringIgnoringCase("\"ParameterException\":\"target can't be NULL.")),
                         content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;
@@ -182,7 +182,7 @@ public class EndPointsTest {
             mockMvc.perform(get("/api/" + category + "?value=12345.67&type=" + type + "&target=invalid"))
                     .andExpectAll(
                         content().string(containsStringIgnoringCase("\"input\":\"{value=12345.67, type=" + type + ", target=invalid}\"")),
-                        content().string(containsStringIgnoringCase("\""+RestStatus.ERROR+"\":")),
+                        content().string(containsStringIgnoringCase("\"status\":\""+RestStatus.ERROR+"\"")),
                         content().string(containsStringIgnoringCase("\"ParameterException\":\"type INVALID")),
                         content().string(containsStringIgnoringCase("\"uri-example\":\"/example")))
             ;

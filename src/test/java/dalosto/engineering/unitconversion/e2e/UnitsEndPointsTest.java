@@ -20,8 +20,8 @@ public class UnitsEndPointsTest {
     public void testEndPoint(String endpoint, String inputType, String outputType, String inputValue, String outputValue) throws Exception {
         mockMvc.perform(get("/api/" + endpoint + "?value=" + inputValue + "&type=" + inputType + "&target=" + outputType))
                 .andExpectAll(
+                    content().string(containsStringIgnoringCase("\"status\":\""+RestStatus.SUCCESS+"\"")),
                     content().string(containsStringIgnoringCase("\"input\":\"{value=" + inputValue + ", type=" + inputType + ", target=" + outputType + "}\"")),
-                    content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")),
                     content().string(containsStringIgnoringCase("\"unit\":\"{value=" + outputValue)))
         ;
     }

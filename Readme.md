@@ -112,19 +112,18 @@ Info status:
 ```json
 {
   "header": {
+    "status": "info",
+    "input": "{value=null, type=null, target=null}",
     "uri": "/api/area",
-    "home": "http://localhost:8080",
-    "input": "{value=null, type=null, target=null}"
+    "home": "http://localhost:8080"
   },
   "result": {
-    "info": {
-      "title": "This endpoint provides functionality to convert AREA measurement units.",
-      "types": "[M2, DM2, CM2, MM2, HM2, KM2, UM2, IN2, FT2, YD2]",
-      "example": "Check the example endpoint for a usage example.",
-      "uri-example": "/example",
-      "si": "Check the SI endpoint to convert the value to the International Standard",
-      "uri-si": "/api/area/si"
-    }
+    "title": "This endpoint provides functionality to convert AREA measurement units.",
+    "types": "[M2, DM2, CM2, MM2, HM2, KM2, UM2, IN2, FT2, YD2]",
+    "example": "Check the example endpoint for a usage example.",
+    "uri-example": "/example",
+    "si": "Check the SI endpoint to convert the value to the International Standard",
+    "uri-si": "/api/area/si"
   }
 }
 ```
@@ -135,19 +134,17 @@ Error status:
 ```json
 {
   "header": {
+    "status": "error",
+    "input": "{value=5.55, type=INVALID, target=null}",
     "uri": "/api/length",
-    "home": "http://localhost:8080",
-    "input": "{value=5.55, type=INVALID, target=null}"
+    "home": "http://localhost:8080"
   },
   "result": {
-    "error": {
-      "ParameterException": "type INVALID not found.",
-      "example": "If you dont know how to use this API, check the example endpoint.",
-      "uri-example": "/example"
-    }
+    "ParameterException": "type INVALID not found.",
+    "example": "If you dont know how to use this API, check the example endpoint.",
+    "uri-example": "/example"
   }
 }
-
 ```
 <br/>
 
@@ -156,14 +153,13 @@ Sucess status:
 ```json
 {
   "header": {
+    "status": "success",
+    "input": "{value=5.55, type=M, target=CM}",
     "uri": "/api/length",
-    "home": "http://localhost:8080",
-    "input": "{value=5.55, type=M, target=CM}"
+    "home": "http://localhost:8080"
   },
   "result": {
-    "sucess": {
-      "unit": "{value=555.0, type=CM}"
-    }
+    "unit": "{value=555.0, type=CM}"
   }
 }
 ```
@@ -171,24 +167,23 @@ Sucess status:
 
 ### Example page
 If you don't know how to use the API. just go to the /example end-point and it will prompt a full tutorial on how to use the API.
-
+> <b>Endpoint</b>: localhost:8080/example
 ```json
 {
   "header": {
+    "status": "info",
     "uri": "/example",
     "home": "http://localhost:8080",
     "title": "This endpoint provides example in how to use this API to convert measurement units.",
     "description": "Given a quantity expressed in a unit type, the end-points returns the equivalent quantity in a different measurement unit."
   },
   "result": {
-    "info": {
-      "example": "How to convert 12345.67 M2 into DM2  ?",
-      "GET  Request": "/api/area?value=12345.67&type=M2&target=DM2",
-      "POST Request": "/api/area  Body: {'value': 12345.67, 'type': 'M2', 'target': 'DM2'}",
-      "Response": "{ SUCCESS | ERROR | INFO }   {value=1234567.0, type=DM2}",
-      "observation": "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myVal is 1.23)",
-      "observation2": "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
-    }
+    "example": "How to convert 12345.67 M2 into DM2  ?",
+    "GET  Request": "/api/area?value=12345.67&type=M2&target=DM2",
+    "POST Request": "/api/area  Body: {'value': 12345.67, 'type': 'M2', 'target': 'DM2'}",
+    "Response": "{ SUCCESS | ERROR | INFO }   {value=1234567.0, type=DM2}",
+    "observation": "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myVal is 1.23)",
+    "observation2": "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]..."
   }
 }
 ```

@@ -1,5 +1,7 @@
 package dalosto.engineering.unitconversion.controller;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +29,10 @@ public final class HomeController {
 
 
     private void appendHeaderToMessage(RestMessage message, HttpServletRequest request) {
-        message.addToHeader(       "home",  new RestURL(request).getHomeURL());
         message.addToHeader(      "title",  "Unit Conversion API");
         message.addToHeader(      "about",  "API used for conversion between measurement units most commonly used in the engineering");
         message.addToHeader("description",  "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit");
+        message.addToHeader(       "home",  new RestURL(request).getHomeURL());
         message.addToHeader(  "reference",  "https://github.com/victordalosto/unit-conversion");
     }
 
@@ -38,10 +40,11 @@ public final class HomeController {
     private void appendResultsToMessage(RestMessage message) {
         for(TemplateController controller : controllers) {
             String title = controller.getEndpointInfo().getTitle();
-            message.addResultWithTitle(title, 
-                            "uri", controller.getEndpointInfo().getURIofType(),
-                            "about", "This endpoint converts "+title+" measurement units.",
-                            "units", controller.getEndpointInfo().getAllUnitsOfType());
+            Map<String, String> result = new LinkedHashMap<>();
+            result.put("uri", controller.getEndpointInfo().getURIofType());
+            result.put("about", "This endpoint converts "+title+" measurement units");
+            result.put("units", controller.getEndpointInfo().getAllUnitsOfType());
+            message.addToResult(title, result.toString());
         }
     }
 

@@ -27,19 +27,4 @@ public class RestMessageTest {
     }
 
 
-    @Test
-    public void testResultMessage() {
-        RestMessage message = new RestMessage();
-        message.addResultWithStatus(RestStatus.INFO, 
-                    "title",  "This endpoint provides functionality to convert " + "length" + " measurement units.",
-                    "types",  "[MM, CM, DM, M]",
-                  "example",  "Check the example endpoint for a usage example.",
-              "uri-example",  "/example",
-                       "si",  "Check the SI endpoint to convert the value to the International Standard",
-                   "uri-si",  "/api/length/si");
-        assertEquals(
-                    "RestMessage(header={}, result={info={title=This endpoint provides functionality to convert length measurement units., types=[MM, CM, DM, M], example=Check the example endpoint for a usage example., uri-example=/example, si=Check the SI endpoint to convert the value to the International Standard, uri-si=/api/length/si}})", 
-                    message.toString());
-    }
-
 }

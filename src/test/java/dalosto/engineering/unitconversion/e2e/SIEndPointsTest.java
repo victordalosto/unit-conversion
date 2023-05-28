@@ -27,7 +27,7 @@ public class SIEndPointsTest {
     public void testEndPoint(String endpoint, String inputType, String outputType, String inputValue, String outputValue) throws Exception {
         mockMvc.perform(get("/api/" + endpoint + "/si" + "?value=" + inputValue + "&type=" + inputType + "&target=" + outputType))
                 .andExpect(content().string(containsStringIgnoringCase("\"input\":\"{value=" + inputValue + ", type=" + inputType + ", target=" + outputType + "}\"")))
-                .andExpect(content().string(containsStringIgnoringCase("\""+RestStatus.SUCCESS+"\":")))
+                .andExpect(content().string(containsStringIgnoringCase("\"status\":\""+RestStatus.SUCCESS+"\"")))
                 .andExpect(content().string(containsStringIgnoringCase("\"unit\":\"{value=" + outputValue + ", type=" + outputType + "}\"")))
         ;
     }
