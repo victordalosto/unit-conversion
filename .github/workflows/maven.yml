@@ -1,7 +1,12 @@
-# This workflow will build a Java project with Maven, Run all tests, 
-# and if passed in all tests, it will create a Image in Docker and Update/Uploads it do Docker Hub
+# This workflow will build a Java project with Maven and run all tests, 
+# if pass: then it will create a Image in Docker and Uploads it do Docker Hub
+# if pass: then it will make a ssh connection to a server and run the image
 
-name: Java CI with Maven
+name: CICD = Test with Maven & Docker Image Build & SSH to Deploy
+
+env:
+  IMAGE_NAME: victordalosto/unitconversion
+
 
 on:
   push:
@@ -12,10 +17,10 @@ on:
 
 
 jobs:
+
+  # First phase - Build jar and Run Tests
   test-build:
-
     runs-on: ubuntu-latest
-
     steps:
     
     - uses: actions/checkout@v3
@@ -40,6 +45,8 @@ jobs:
         path: ./target/*.jar
 
 
+
+  # Second phase - Build And Push Docker image on docker-hub
   docker:
     needs: test-build
     runs-on: ubuntu-latest
@@ -56,7 +63,7 @@ jobs:
     - name: Docker login
       uses: docker/login-action@v2.1.0
       with:
-        username: victordalosto
+        username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASS}}
     
     - name: Build and push Docker images
@@ -65,5 +72,25 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: victordalosto/unitconversion
-      
+        tags: ${{env.IMAGE_NAME}}
+
+
+
+  # Third phase - Pull image on server and run it
+  deploy:
+      # requires instalation on server: sudo apt install docker.io
+      needs: docker
+      runs-on: ubuntu-latest
+      steps:
+      - name: remove ssh command using pass
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: 194.195.209.109
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASS }}
+          script: export PATH=$PATH:/usr/bin/docker &&
+                  echo ${{secrets.DOCKER_PASS}} | docker login --username "${{secrets.DOCKER_USERNAME}}" --password-stdin &&
+                  docker ps -aq | xargs --no-run-if-empty docker stop &&
+                  docker ps -aq | xargs --no-run-if-empty docker rm &&
+                  docker images -aq | xargs --no-run-if-empty docker rmi &&
+                  docker run -d -p 80:8080 ${{env.IMAGE_NAME}}:latest

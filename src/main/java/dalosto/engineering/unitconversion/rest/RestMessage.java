@@ -24,7 +24,7 @@ public final class RestMessage {
     private final Map<String, String> header = new LinkedHashMap<>();
     private final Map<String, String> result = new LinkedHashMap<>();
 
-    @JsonIgnore 
+    @JsonIgnore  @ToString.Exclude
     private RestStatus status;
 
 

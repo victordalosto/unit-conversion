@@ -44,7 +44,7 @@ public class HomePageTest {
                    .andExpect(status().isOk())
                    .andExpect(content().string(containsString(type)))
                    .andExpect(content().string(containsString(formula.getAllUnitTypesOfThisCategory().toString())))
-                   .andExpect(content().string(containsString("uri=/api/" + type)))
+                   .andExpect(content().string(containsString("\"uri\":\"/api/" + type)))
                 ;
         }
     }

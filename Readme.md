@@ -11,17 +11,21 @@ The program basically converts the Measurement Unit and its value into another e
 
 <h2 align="center"> How to use </h2>
 
+The program is now hosted on a server:
+> https://tinyurl.com/unitconversionbr
+
 The program is now hosted on docker-hub. Just use the command:
-> docker run -d -p 8080:8080 victordalosto/unitconversion
+> docker run -d -p 80:80 victordalosto/unitconversion
+
 
 </br>
 
 The entire usage of the application is self explanatory, guided by resources and its URI.
-> <b>Endpoint</b>: localhost:8080
+> <b>Endpoint</b>: localhost:80
 ```json
 {
   "header": {
-    "home": "http://localhost:8080",
+    "home": "http://localhost:80",
     "title": "Unit Conversion API",
     "about": "API used for conversion between measurement units most commonly used in the engineering",
     "description": "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit",
@@ -108,14 +112,14 @@ This same page will present the request based on 3 different statuses:
 
 
 Info status:
-> <b>Endpoint</b>: localhost:8080/api/area
+> <b>Endpoint</b>: localhost:80/api/area
 ```json
 {
   "header": {
     "status": "info",
     "input": "{value=null, type=null, target=null}",
     "uri": "/api/area",
-    "home": "http://localhost:8080"
+    "home": "http://localhost:80"
   },
   "result": {
     "title": "This endpoint provides functionality to convert AREA measurement units.",
@@ -130,14 +134,14 @@ Info status:
 <br/>
 
 Error status:
-> <b>Endpoint</b>: localhost:8080/api/length?value=5.55&type=INVALID
+> <b>Endpoint</b>: localhost:80/api/length?value=5.55&type=INVALID
 ```json
 {
   "header": {
     "status": "error",
     "input": "{value=5.55, type=INVALID, target=null}",
     "uri": "/api/length",
-    "home": "http://localhost:8080"
+    "home": "http://localhost:80"
   },
   "result": {
     "ParameterException": "type INVALID not found.",
@@ -149,14 +153,14 @@ Error status:
 <br/>
 
 Sucess status:
-> <b>Endpoint</b>: localhost:8080/api/length?value=5.55&type=M&target=CM
+> <b>Endpoint</b>: localhost:80/api/length?value=5.55&type=M&target=CM
 ```json
 {
   "header": {
     "status": "success",
     "input": "{value=5.55, type=M, target=CM}",
     "uri": "/api/length",
-    "home": "http://localhost:8080"
+    "home": "http://localhost:80"
   },
   "result": {
     "unit": "{value=555.0, type=CM}"
@@ -167,13 +171,13 @@ Sucess status:
 
 ### Example page
 If you don't know how to use the API. just go to the /example end-point and it will prompt a full tutorial on how to use the API.
-> <b>Endpoint</b>: localhost:8080/example
+> <b>Endpoint</b>: localhost:80/example
 ```json
 {
   "header": {
     "status": "info",
     "uri": "/example",
-    "home": "http://localhost:8080",
+    "home": "http://localhost:80",
     "title": "This endpoint provides example in how to use this API to convert measurement units.",
     "description": "Given a quantity expressed in a unit type, the end-points returns the equivalent quantity in a different measurement unit."
   },
