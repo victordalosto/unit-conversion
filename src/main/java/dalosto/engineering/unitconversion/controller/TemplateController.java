@@ -20,7 +20,6 @@ public abstract class TemplateController {
 
     public final ResponseEntity<RestMessage> createRestMessage(RestAttributes attributes) {
         RestMessage msg = service.getMessageForEndPoint(attributes);
-        System.out.println("ERROR: " + msg.getStatus());
         if(RestStatus.ERROR.equals(msg.getStatus())) {
            return ResponseEntity.status(400).body(msg);
         }
