@@ -30,7 +30,10 @@ public abstract class TemplateController {
     public abstract RestEndpointInfo getEndpointInfo();
     protected abstract RestAttributes getAttribute(UnitDAO unitDAO, HttpServletRequest request);
 
-    protected abstract ResponseEntity<RestMessage> home(UnitDAO unitDAO, HttpServletRequest request);
-    protected abstract ResponseEntity<RestMessage> si(UnitDAO unitDAO, HttpServletRequest request);
+    protected abstract ResponseEntity<RestMessage> getHOME(UnitDAO unitDAO, HttpServletRequest request);
+    protected abstract ResponseEntity<RestMessage> postHOME(UnitDAO unitDAO, HttpServletRequest request);
+
+    protected abstract ResponseEntity<RestMessage> getSI(UnitDAO unitDAO, HttpServletRequest request);
+    protected abstract ResponseEntity<RestMessage> postSI(UnitDAO unitDAO, HttpServletRequest request);
 
 }

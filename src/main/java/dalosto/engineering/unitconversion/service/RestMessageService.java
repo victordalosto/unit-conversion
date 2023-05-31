@@ -27,7 +27,7 @@ public final class RestMessageService {
         if (restAttributes.getRestURL().isCurrentURIaSIEndPoint()) {
             conversorService.convertToSItheUnitDAO(restAttributes.getUnitDAO(), restAttributes.getEndpointInfo().getUnitFormula());
         }
-        if (restAttributes.getUnitDAO().doesntHaveData()) {
+        if (restAttributes.doesntHaveValues()) {
             appendDefaultHATEOASmessage(message, restAttributes);
         } else {
             appendConversionMessage(message, restAttributes);

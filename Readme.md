@@ -22,6 +22,7 @@ The program is now hosted on docker-hub. Just use the command:
 
 The entire usage of the application is self explanatory, guided by resources and its URI.
 > <b>Endpoint</b>: localhost:80
+
 ```json
 {
   "header": {

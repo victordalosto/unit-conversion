@@ -17,5 +17,10 @@ public final class RestAttributes {
         this.restURL = new RestURL(request);
         this.endpointInfo = endpointInfo;
     }
+
+
+    public boolean doesntHaveValues() {
+        return unitDAO == null || unitDAO.doesntHaveData();
+    }
     
 }

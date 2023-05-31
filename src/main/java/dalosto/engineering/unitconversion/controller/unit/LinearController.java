@@ -5,6 +5,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import dalosto.engineering.unitconversion.controller.TemplateController;
@@ -28,16 +29,28 @@ public final class LinearController extends TemplateController {
 
     @Override
     @GetMapping
-    @PostMapping
-    public ResponseEntity<RestMessage> home(UnitDAO unitDAO, HttpServletRequest request) {
+    public ResponseEntity<RestMessage> getHOME(UnitDAO unitDAO, HttpServletRequest request) {
         return super.createRestMessage(getAttribute(unitDAO, request));
     }
 
-    
+
+    @Override
+    @PostMapping
+    public ResponseEntity<RestMessage> postHOME(@RequestBody(required = false) UnitDAO unitDAO, HttpServletRequest request) {
+        return super.createRestMessage(getAttribute(unitDAO, request));
+    }
+
+
     @Override
     @GetMapping("/si")
+    public ResponseEntity<RestMessage> getSI(UnitDAO unitDAO, HttpServletRequest request) {
+        return super.createRestMessage(getAttribute(unitDAO, request));
+    }
+
+
+    @Override
     @PostMapping("/si")
-    public ResponseEntity<RestMessage> si(UnitDAO unitDAO, HttpServletRequest request) {
+    public ResponseEntity<RestMessage> postSI(@RequestBody(required = false) UnitDAO unitDAO, HttpServletRequest request) {
         return super.createRestMessage(getAttribute(unitDAO, request));
     }
 
@@ -53,5 +66,4 @@ public final class LinearController extends TemplateController {
         return new RestEndpointInfo("linear", unitFormula);
     }
 
-    
 }
