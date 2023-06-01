@@ -48,8 +48,8 @@ public final class ExampleController {
         String type = unitFormula.getAllUnitTypesOfThisCategory().stream().findFirst().get().toString();
         String target = unitFormula.getAllUnitTypesOfThisCategory().stream().skip(1).findFirst().get().toString();
         message.addToResult("example",  "How to convert " + value + " " + type + " into " + target + "  ?");
-        message.addToResult("GET  Request",  "/api/area?value=" + value + "&type=" + type + "&target=" + target);
-        message.addToResult("POST Request",  "/api/area" + "  Body: {'value': " + value + ", 'type': '" + type + "', 'target': '" + target + "'}");
+        message.addToResult("GET",  "/api/area?value=" + value + "&type=" + type + "&target=" + target);
+        message.addToResult("POST",  "/api/area" + "  Body: {'value': " + value + ", 'type': '" + type + "', 'target': '" + target + "'}");
         message.addToResult("Response",  RestStatus.possibleStatus() + "   " + service.formatUnitDAOAndConvertToUnit(new UnitDAO(value, type, target), unitFormula));
         message.addToResult("observation",  "Parameters are resilient. Values can be represented using comma (1,23), dot (1.23), or contain noise (myVal is 1.23)");
         message.addToResult("observation2",  "Types are also resilient. Types can be presented in: [ M2 ] or [ M² ] or [ M^2 ] or [ M_2 ] or [ M 2 ]...");

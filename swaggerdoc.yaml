@@ -1,0 +1,424 @@
+openapi: 3.0.3
+
+info:
+  title: unit-conversion
+  description: |-
+    Built on the robust Spring framework, <b>unit-conversion</b> provides seamless and intuitive conversion capabilities for a wide range of measurement units. Whether you need to convert length, weight, volume, temperature, or any other commonly used engineering unit, this application has got you covered.
+    
+    Unit Conversion is a powerful and efficient RESTful application that adheres to the Level 3 of the Richardson Maturity Model, also known as HATEOAS (Hypermedia as the Engine of Application State).
+    
+    Acess the Github documentation page:
+     - [Github](https://github.com/victordalosto/unit-conversion)
+  version: 2.0.2
+  contact:
+    email: victordalosto@gmail.com
+  license:
+    name: MIT License
+    url: https://github.com/victordalosto/unit-conversion/blob/master/LICENSE
+
+
+
+tags:
+
+  - name: Home
+    description: Home initial page
+    
+  - name: Example
+    description: Provides example in how to use the API
+    
+  - name: Length
+    description: Convert between various units of length measurement.
+#    
+#  - name: area
+#    description: Convert between different area measurement units.
+#    
+#  - name: volume
+#    description: Perform conversions among various volume measurement units.
+#    
+#  - name: inertia
+#    description: Convert inertia measurements across multiple units.
+#    
+#  - name: force
+#    description: Convert force measurements between different units.
+#    
+#  - name: temperature
+#    description: Convert temperature measurements across various units.
+#    
+#  - name: time
+#    description: Perform conversions between different time measurement units.
+#    
+#  - name: torque
+#    description: Convert torque measurements across multiple units.
+#    
+#  - name: linear
+#    description: Perform linear measurement unit conversions.
+#    
+#  - name: pressure
+#    description: Convert pressure measurements between various units.
+#    
+#  - name: density
+#    description: Convert density measurements across different units.
+
+
+
+paths:
+
+  /:
+    get:
+      tags:
+      - Home
+      responses:
+        200:
+          $ref: "#/components/responses/home-page"
+  
+  
+  /example:
+    get:
+      tags:
+      - Example
+      responses:
+        200:
+          $ref: "#/components/responses/example"
+
+
+  /api/length:
+    get:
+      tags:
+      - Length
+      summary: Unit conversion
+      description: Conversion via query parameters in URL
+      parameters:
+        - $ref: '#/components/parameters/ValueParam'
+        - $ref: '#/components/parameters/TypeParam'
+        - $ref: '#/components/parameters/TargetParam'
+      responses:
+        200:
+          $ref: "#/components/responses/conversion-200"
+        400:
+          $ref: "#/components/responses/conversion-400"
+          
+    post:
+      tags:
+      - Length
+      summary: Unit conversion
+      description: Conversion via payload in the HTTP body
+      requestBody:
+        description: Post conversion
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Unit-post"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Unit-post"
+      responses:
+        200:
+          $ref: "#/components/responses/conversion-200"
+        400:
+          $ref: "#/components/responses/conversion-400"
+  
+  
+  /api/length/si:
+    get:
+      tags:
+      - Length
+      summary: Unit conversion to SI
+      description: Conversion via query parameters in URL
+      parameters:
+        - $ref: '#/components/parameters/ValueParam'
+        - $ref: '#/components/parameters/TypeParam'
+      responses:
+        200:
+          $ref: "#/components/responses/conversion-200"
+        400:
+          $ref: "#/components/responses/conversion-400"
+          
+    post:
+      tags:
+      - Length
+      summary: Unit conversion to SI
+      description: Conversion via payload in the HTTP body
+      requestBody:
+        description: Post conversion
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Unit-post-SI"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Unit-post-SI"
+      responses:
+        200:
+          $ref: "#/components/responses/conversion-200"
+        400:
+          $ref: "#/components/responses/conversion-400"      
+
+  
+
+
+
+components:
+    
+  schemas:
+    RestMessage:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            status: 
+              type: string
+              example: SUCESS
+        result:
+          type: object
+          properties:
+            unit:
+              type: object
+              properties:
+                value:
+                  type: number
+                  example: 5.555
+                type:
+                  type: string
+                  example: "M"
+      xml:
+        name: RestMessage
+ 
+    RestMessage-error:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            status: 
+              type: string
+              example: ERROR
+        result:
+          type: object
+          properties:
+            ParameterException:
+              type: string
+              example: type not found
+            example:
+              type: string
+              example: check the /example endpoint for a tutorial.
+      xml:
+        name: RestMessage-error
+    
+    Unit-post:
+      type: object
+      properties:
+        value: 
+          type: number
+          example: 555.5
+        type:
+          type: string
+          example: "CM"
+        target:
+          type: string
+          example: "M"
+    
+    Unit-post-SI:
+      type: object
+      properties:
+        value: 
+          type: number
+          example: 555.5
+        type:
+          type: string
+          example: "CM"
+          
+    Example:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            status: 
+              type: string
+              example: "INFO"
+            title: 
+              type: string
+              example: "This endpoint provides example in how to use this API to convert measurement units."
+        result:
+          type: object
+          properties:
+            example: 
+              type: string
+              example: "How to convert 12345.67 M2 into DM2 ?"
+            GET: 
+              type: string
+              example: "/api/area?value=12345.67&type=M2&target=DM2"
+            POST: 
+              type: string
+              example: "/api/area Body: {'value': 12345.67, 'type': 'M2', 'target': 'DM2'}"
+            Response: 
+              type: string
+              example: "{ SUCCESS | ERROR | INFO } {value=1234567.0, type=DM2}"
+          
+    HomeMessage:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            title: 
+              type: string
+              example: "Unit Conversion API"
+            about: 
+              type: string
+              example: "API used for conversion between measurement units most commonly used in the engineering"
+            description: 
+              type: string
+              example: "Given a quantity expressed in a certain measurement unit, the endpoint returns equivalent quantitys expressed in a different measurement unit"
+            reference:
+              type: string
+              example: "https://github.com/victordalosto/unit-conversion"
+        result:
+          type: object
+          properties:
+            unit:
+              type: object
+              properties:
+                length:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/length"
+                area:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/area"
+                volume:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/volume"
+                inertia:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/inertia"
+                force:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/force"
+                temperature:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/temperature"
+                time:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/time"
+                torque:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/torque"
+                linear:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/linear"
+                pressure:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/pressure"
+                density:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/density"
+                speed:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: "/api/speed"
+                    
+      xml:
+        name: HomeMessage
+        
+
+  parameters:
+    ValueParam:
+      name: value
+      in: query
+      required: false
+      schema:
+        type: number
+        example: 5.555
+    TypeParam:
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
+        example: "CM"
+    TargetParam:
+      name: target
+      in: query
+      required: false
+      schema:
+        type: string
+        example: "M"
+    
+          
+  responses:
+  
+    home-page:
+      description: Returns the home page of the Rest API
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HomeMessage'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/HomeMessage'
+  
+    example:
+      description: Returns the Example page of the Rest API
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Example'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Example'
+  
+    conversion-200:
+      description: Successful conversion
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RestMessage'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/RestMessage'
+      
+    conversion-400:    
+      description: Bad parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RestMessage-error'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/RestMessage-error'
