@@ -12,7 +12,7 @@ The program basically converts the Measurement Unit and its value into another e
 <h2 align="center"> How to use </h2>
 
 The program is now hosted on a server:
-> https://tinyurl.com/unitconversionbr
+> https://unit-conversion.onrender.com
 
 The program is now hosted on docker-hub. Just use the command:
 > docker run -d -p 80:80 victordalosto/unitconversion

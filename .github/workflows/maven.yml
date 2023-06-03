@@ -77,20 +77,20 @@ jobs:
 
 
   # Third phase - Pull image on server and run it
-  deploy:
-      # requires instalation on server: sudo apt install docker.io
-      needs: docker
-      runs-on: ubuntu-latest
-      steps:
-      - name: remove ssh command using pass
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: 194.195.209.109
-          username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASS }}
-          script: export PATH=$PATH:/usr/bin/docker &&
-                  echo ${{secrets.DOCKER_PASS}} | docker login --username "${{secrets.DOCKER_USERNAME}}" --password-stdin &&
-                  docker ps -aq | xargs --no-run-if-empty docker stop &&
-                  docker ps -aq | xargs --no-run-if-empty docker rm &&
-                  docker images -aq | xargs --no-run-if-empty docker rmi &&
-                  docker run -d -p 80:8080 ${{env.IMAGE_NAME}}:latest
+  # deploy:
+  #     # requires instalation on server: sudo apt install docker.io
+  #     needs: docker
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #     - name: remove ssh command using pass
+  #       uses: appleboy/ssh-action@v0.1.10
+  #       with:
+  #         host: 194.195.209.109
+  #         username: ${{ secrets.SERVER_USERNAME }}
+  #         password: ${{ secrets.SERVER_PASS }}
+  #         script: export PATH=$PATH:/usr/bin/docker &&
+  #                 echo ${{secrets.DOCKER_PASS}} | docker login --username "${{secrets.DOCKER_USERNAME}}" --password-stdin &&
+  #                 docker ps -aq | xargs --no-run-if-empty docker stop &&
+  #                 docker ps -aq | xargs --no-run-if-empty docker rm &&
+  #                 docker images -aq | xargs --no-run-if-empty docker rmi &&
+  #                 docker run -d -p 80:8080 ${{env.IMAGE_NAME}}:latest
